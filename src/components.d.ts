@@ -8,6 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MyComponent {
         /**
+          * color weight
+         */
+        "color": string;
+        /**
           * The first name
          */
         "first": string;
@@ -34,6 +38,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface MyComponent {
+        /**
+          * color weight
+         */
+        "color"?: string;
         /**
           * The first name
          */
