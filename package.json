@@ -1,5 +1,5 @@
 {
-  "name": "@wordproof/ui",
+  "name": "@wordproof/uikit",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -9,20 +9,31 @@
   "types": "dist/custom-elements/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/ui/ui.esm.js",
+  "unpkg": "dist/uikit/uikit.esm.js",
   "files": [
     "dist/",
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build --docs",
+    "build": "NODE_ENV=production stencil build --docs",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.0.1"
+    "@stencil/core": "^2.0.1",
+    "autoprefixer": "^10.2.3",
+    "classnames": "^2.2.6",
+    "postcss": "^8.2.4",
+    "tailwindcss": "^2.0.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^4.0.0",
+    "@stencil/postcss": "^2.0.0",
+    "@types/node": "^14.14.22",
+    "cssnano": "^4.1.10",
+    "jest": "^26.6.3"
+  }
 }
