@@ -1,6 +1,7 @@
 import { Config } from '@stencil/core';
 import { postcss } from '@stencil/postcss';
 import autoprefixer from 'autoprefixer';
+import tailwindcss from 'tailwindcss';
 
 const purgecss = require('@fullhuman/postcss-purgecss')({
   content: ['./src/**/*.tsx', './src/**/*.css', './src/index.html'],
@@ -29,7 +30,7 @@ export const config: Config = {
   plugins: [
     postcss({
       plugins: [
-        require('tailwindcss')('./tailwind.config.js'),
+        tailwindcss('./tailwind.config.js'),
         autoprefixer(),
         ...(process.env.NODE_ENV === 'production'
           ? [purgecss, require('cssnano')]
