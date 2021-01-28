@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property   | Attribute  | Description           | Type      | Default     |
-| ---------- | ---------- | --------------------- | --------- | ----------- |
-| `disabled` | `disabled` | disabled              | `boolean` | `undefined` |
-| `text`     | `text`     | render button as text | `boolean` | `undefined` |
-| `type`     | `type`     | html button type      | `string`  | `'button'`  |
+| Property   | Attribute  | Description                       | Type                                     | Default    |
+| ---------- | ---------- | --------------------------------- | ---------------------------------------- | ---------- |
+| `disabled` | `disabled` | button html "disabled" attribute  | `boolean`                                | `false`    |
+| `size`     | `size`     | button text size                  | `"base" \| "lg" \| "sm" \| "xl" \| "xs"` | `'base'`   |
+| `text`     | `text`     | renders button as underlined text | `boolean`                                | `false`    |
+| `type`     | `type`     | button html "type" attribute      | `string`                                 | `'button'` |
 
 
 ----------------------------------------------

@@ -26,15 +26,19 @@ export namespace Components {
     }
     interface WButton {
         /**
-          * disabled
+          * button html "disabled" attribute
          */
         "disabled": boolean;
         /**
-          * render button as text
+          * button text size
+         */
+        "size": 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+        /**
+          * renders button as underlined text
          */
         "text": boolean;
         /**
-          * html button type
+          * button html "type" attribute
          */
         "type": string;
     }
@@ -78,15 +82,19 @@ declare namespace LocalJSX {
     }
     interface WButton {
         /**
-          * disabled
+          * button html "disabled" attribute
          */
         "disabled"?: boolean;
         /**
-          * render button as text
+          * button text size
+         */
+        "size"?: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+        /**
+          * renders button as underlined text
          */
         "text"?: boolean;
         /**
-          * html button type
+          * button html "type" attribute
          */
         "type"?: string;
     }
