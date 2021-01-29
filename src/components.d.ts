@@ -6,24 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * color weight
-         */
-        "color": string;
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
     interface WButton {
         /**
           * button html "disabled" attribute
@@ -44,12 +26,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLWButtonElement extends Components.WButton, HTMLStencilElement {
     }
     var HTMLWButtonElement: {
@@ -57,29 +33,10 @@ declare global {
         new (): HTMLWButtonElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
         "w-button": HTMLWButtonElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * color weight
-         */
-        "color"?: string;
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface WButton {
         /**
           * button html "disabled" attribute
@@ -99,7 +56,6 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
         "w-button": WButton;
     }
 }
@@ -107,7 +63,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
         }
     }
