@@ -32,6 +32,21 @@ describe('w-button', () => {
     `);
   });
 
+  it('renders an outlined button', async () => {
+    const { root } = await newSpecPage({
+      components: [WButton],
+      html: /*html*/ `<w-button outline></w-button>`,
+    });
+
+    expect(root).toEqualHtml(/*html*/ `
+      <w-button outline="">
+        <button
+        class="active:bg-gray-900 bg-white border-2 border-blue duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue focus:ring-opacity-50 focus:shadow-outline-blue font-sohne-bold inline-flex items-center outline-none px-5 py-2 rounded-full text-blue text-lg transition"
+        type="button"></button>
+      </w-button>
+    `);
+  });
+
   it('sets "type" attribute', async () => {
     const { root } = await newSpecPage({
       components: [WButton],
