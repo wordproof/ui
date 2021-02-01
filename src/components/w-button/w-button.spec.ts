@@ -26,7 +26,7 @@ describe('w-button', () => {
     expect(root).toEqualHtml(/*html*/ `
       <w-button text="">
         <button
-        class="active:bg-gray-900 duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue font-sohne-bold hover:text-gray-800 inline-flex items-center outline-none text-gray-600 text-lg transition underline"
+        class="active:bg-gray-900 duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue font-sohne hover:text-gray-800 inline-flex items-center outline-none text-gray-600 text-lg transition underline"
         type="button"></button>
       </w-button>
     `);
