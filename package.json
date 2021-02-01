@@ -22,7 +22,7 @@
     "generate": "stencil generate",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "publish": "npm run test && npm run build && npm version patch && npm publish"
+    "release": "npm run test && npm run build && npm version patch && npm publish"
   },
   "dependencies": {
     "@stencil/core": "^2.0.1",
