@@ -11,7 +11,7 @@ describe('w-button', () => {
     expect(root).toEqualHtml(/*html*/ `
       <w-button>
         <button
-        class="bg-gradient-to-r active:bg-gray-900 border border-transparent duration-150 ease-in-out focus:border-blue focus:outline-none focus:shadow-outline-blue font-sohne-bold from-blue hover:bg-gray-700 inline-flex items-center outline-none px-5 py-2 rounded-full text-base text-white to-purple transition"
+        class="active:bg-gray-900 bg-gradient-to-r duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue focus:ring-opacity-50 focus:shadow-outline-blue font-sohne-bold from-blue inline-flex items-center outline-none px-5 py-2 rounded-full text-lg text-white to-purple transition"
         type="button"></button>
       </w-button>
     `);
@@ -26,7 +26,7 @@ describe('w-button', () => {
     expect(root).toEqualHtml(/*html*/ `
       <w-button text="">
         <button
-        class="active:bg-gray-900 duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue font-sohne-bold hover:text-gray-800 inline-flex items-center outline-none text-base text-gray-600 transition underline"
+        class="active:bg-gray-900 duration-150 ease-in-out focus:outline-none focus:shadow-outline-blue font-sohne-bold hover:text-gray-800 inline-flex items-center outline-none text-gray-600 text-lg transition underline"
         type="button"></button>
       </w-button>
     `);
@@ -41,7 +41,7 @@ describe('w-button', () => {
     expect(root).toEqualHtml(/*html*/ `
       <w-button type="submit">
         <button
-        class="text-base bg-gradient-to-r active:bg-gray-900 border border-transparent duration-150 ease-in-out focus:border-blue focus:outline-none focus:shadow-outline-blue font-sohne-bold from-blue hover:bg-gray-700 inline-flex items-center outline-none px-5 py-2 rounded-full text-white to-purple transition"
+        class="active:bg-gray-900 bg-gradient-to-r duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue focus:ring-opacity-50 focus:shadow-outline-blue font-sohne-bold from-blue inline-flex items-center outline-none px-5 py-2 rounded-full text-lg text-white to-purple transition"
         type="submit"></button>
       </w-button>
     `);
@@ -56,7 +56,7 @@ describe('w-button', () => {
     expect(root).toEqualHtml(/*html*/ `
       <w-button disabled="">
         <button
-        class="bg-gradient-to-r active:bg-gray-900 border border-transparent duration-150 ease-in-out focus:border-blue focus:outline-none focus:shadow-outline-blue font-sohne-bold from-blue hover:bg-gray-700 inline-flex items-center outline-none px-5 py-2 rounded-full text-base text-white to-purple transition"
+        class="active:bg-gray-900 bg-gradient-to-r duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue focus:ring-opacity-50 focus:shadow-outline-blue font-sohne-bold from-blue inline-flex items-center outline-none px-5 py-2 rounded-full text-lg text-white to-purple transition"
         disabled=""
         type="button"></button>
       </w-button>
@@ -72,7 +72,7 @@ describe('w-button', () => {
     expect(root).toEqualHtml(/*html*/ `
       <w-button size="xs">
         <button
-        class="text-xs bg-gradient-to-r active:bg-gray-900 border border-transparent duration-150 ease-in-out focus:border-blue focus:outline-none focus:shadow-outline-blue font-sohne-bold from-blue hover:bg-gray-700 inline-flex items-center outline-none px-5 py-2 rounded-full text-white to-purple transition"
+        class="active:bg-gray-900 bg-gradient-to-r duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue focus:ring-opacity-50 focus:shadow-outline-blue font-sohne-bold from-blue inline-flex items-center outline-none px-5 py-2 rounded-full text-white text-xs to-purple transition"
         type="button"></button>
       </w-button>
     `);
