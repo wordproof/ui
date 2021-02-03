@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 // import cx from 'classnames';
 
 @Component({
@@ -30,7 +30,7 @@ export class WInputText {
   /**
    * value, defaults to ""
    */
-  @Prop() value: string = '';
+  @Prop({ mutable: true }) value: string;
 
   /**
    * error message displayed in the form group, defaults to ""
@@ -47,28 +47,42 @@ export class WInputText {
    */
   @Prop() inputmode: string = 'text';
 
+  // @Event() change: EventEmitter<string>;
+
+  // @Event() input: EventEmitter<string>;
+
+  // handleChange(ev) {
+  //   this.value = ev.target ? ev.target.value : null;
+  //   this.change.emit(this.value);
+  // }
+
+  // handleInput(ev) {
+  //   this.value = ev.target ? ev.target.value : null;
+  //   this.input.emit(this.value);
+  // }
+  // onChange={(ev) => this.handleChange(ev)}
+  // onInput={(ev) => this.handleInput(ev)}
+
   render() {
     return (
-      <div class="block w-full">
-        <div class="block w-full">
-          <label class="block relative w-full">
-            <input
-              class="block w-full text-gray-800 border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm"
-              placeholder={this.label}
-              required={this.required}
-              autofocus={this.autofocus}
-              type={this.type}
-              value={this.value}
-              autocomplete={this.autocomplete}
-              inputmode={this.inputmode}
-            />
-            <span class="absolute text-blue">{this.label}</span>
-          </label>
-        </div>
+      <Host>
+        <label class="block relative w-full">
+          <input
+            class="block w-full text-gray-800 border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm"
+            placeholder={this.label}
+            required={this.required}
+            autofocus={this.autofocus}
+            type={this.type}
+            autocomplete={this.autocomplete}
+            inputmode={this.inputmode}
+            value={this.value}
+          />
+          <span class="absolute text-blue">{this.label}</span>
+        </label>
         <div class="text-sm text-pink" v-if="error">
           {this.error}
         </div>
-      </div>
+      </Host>
     );
   }
 }

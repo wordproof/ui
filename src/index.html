@@ -37,11 +37,20 @@
     </div>
     <h3 class="mt-6">Inputs</h3>
     <div class="mt-4">
-      <w-input-text class="w-64 mx-auto" label="Name" type="email"></w-input-text>
+      <w-input-text id="input" class="w-64 mx-auto" label="Email" type="email"></w-input-text>
+      <div class="mt-4" id="value"></div>
       <w-input-text class="w-80 mt-6 mx-auto" label="Name" error="Name should start with capital letter" />
       </w-input-text>
     </div>
   </div>
+  <script>
+    const input = document.getElementById("input");
+    const value = document.getElementById("value");
+
+    input.addEventListener('change', ev => {
+      value.innerText = ev.target.value;
+    });
+  </script>
 </body>
 
 </html>
