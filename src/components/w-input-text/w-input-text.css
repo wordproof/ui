@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+label > span {
+  cursor: text;
+  font-size: 12px;
+  opacity: 1;
+  transition: all 0.2s;
+  top: -6.5px;
+  left: 20px;
+  z-index: 3;
+  line-height: 1;
+  padding: 0 1px;
+}
+
+label::after,
+label > span::after {
+  content: ' ';
+  left: -0.2em;
+  right: -0.2em;
+  z-index: -1;
+  height: 12px;
+  transition: border-color 0.15s ease-in-out;
+  @apply top-0 bg-white absolute block;
+}
+
+input::-webkit-input-placeholder {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+input:placeholder-shown:not(:focus)::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+input:placeholder-shown:not(:focus) + * {
+  font-size: 18px;
+  top: 50%;
+  transform: translate(0%, -50%);
+  @apply bg-white text-gray-800;
+}
+
+input:focus {
+  outline: none;
+}

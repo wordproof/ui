@@ -12,10 +12,22 @@
     <script nomodule src="/build/uikit.js"></script>
   </head>
   <body>
-    <div>
-      <w-button>+ website</w-button>
-      <w-button outline>+ website</w-button>
-      <w-button text size="xs">+ website</w-button>
+    <div class="max-w-3xl mx-auto mt-4">
+      <h3>Buttons</h3>
+      <div class="mt-2">
+        <w-button>+ website</w-button>
+        <w-button class="ml-8" outline>+ website</w-button>
+        <w-button class="ml-8" text size="xs">+ website</w-button>
+      </div>
+      <h3 class="mt-6">Inputs</h3>
+      <div class="mt-4">
+        <w-input-text class="w-64 mx-auto" label="Name"></w-input-text>
+        <w-input-text
+          class="w-80 mt-6 mx-auto"
+          label="Name"
+          error="Name should start with capital letter"
+        /></w-input-text>
+      </div>
     </div>
   </body>
 </html>

@@ -28,6 +28,40 @@ export namespace Components {
          */
         "type": string;
     }
+    interface WInputText {
+        /**
+          * input html tag "autocomplete" attribute, defaults to ""
+         */
+        "autocomplete": string;
+        /**
+          * input html tag "autofocus" attribute, defaults to "false"
+         */
+        "autofocus": boolean;
+        /**
+          * error message displayed in the form group, defaults to ""
+         */
+        "error": string;
+        /**
+          * input html tag "inputmode" attribute, defaults to ""
+         */
+        "inputmode": string;
+        /**
+          * label for the form group, defaults to ""
+         */
+        "label": string;
+        /**
+          * input html tag "required" attribute, defaults to "false"
+         */
+        "required": boolean;
+        /**
+          * input html tag "type" attribute, defaults to "text"
+         */
+        "type": string;
+        /**
+          * value, defaults to ""
+         */
+        "value": string;
+    }
 }
 declare global {
     interface HTMLWButtonElement extends Components.WButton, HTMLStencilElement {
@@ -36,8 +70,15 @@ declare global {
         prototype: HTMLWButtonElement;
         new (): HTMLWButtonElement;
     };
+    interface HTMLWInputTextElement extends Components.WInputText, HTMLStencilElement {
+    }
+    var HTMLWInputTextElement: {
+        prototype: HTMLWInputTextElement;
+        new (): HTMLWInputTextElement;
+    };
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
+        "w-input-text": HTMLWInputTextElement;
     }
 }
 declare namespace LocalJSX {
@@ -63,8 +104,43 @@ declare namespace LocalJSX {
          */
         "type"?: string;
     }
+    interface WInputText {
+        /**
+          * input html tag "autocomplete" attribute, defaults to ""
+         */
+        "autocomplete"?: string;
+        /**
+          * input html tag "autofocus" attribute, defaults to "false"
+         */
+        "autofocus"?: boolean;
+        /**
+          * error message displayed in the form group, defaults to ""
+         */
+        "error"?: string;
+        /**
+          * input html tag "inputmode" attribute, defaults to ""
+         */
+        "inputmode"?: string;
+        /**
+          * label for the form group, defaults to ""
+         */
+        "label"?: string;
+        /**
+          * input html tag "required" attribute, defaults to "false"
+         */
+        "required"?: boolean;
+        /**
+          * input html tag "type" attribute, defaults to "text"
+         */
+        "type"?: string;
+        /**
+          * value, defaults to ""
+         */
+        "value"?: string;
+    }
     interface IntrinsicElements {
         "w-button": WButton;
+        "w-input-text": WInputText;
     }
 }
 export { LocalJSX as JSX };
@@ -72,6 +148,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
+            "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
         }
     }
 }

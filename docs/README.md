@@ -48,3 +48,11 @@ defineCustomElements();
 ### API
 
 <<< @/src/components/w-button/readme.md
+
+## Text Input
+
+<div style="margin-top:1rem;"><w-input-text></w-input-text></div>
+
+```html
+<w-input-text></w-input-text></div>
+```
