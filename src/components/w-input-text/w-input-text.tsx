@@ -6,7 +6,7 @@ import { Component, Prop, h } from '@stencil/core';
   styleUrl: 'w-input-text.css',
   shadow: true,
 })
-export class WButton {
+export class WInputText {
   /**
    * input html tag "type" attribute, defaults to "text"
    */
