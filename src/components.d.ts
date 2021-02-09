@@ -50,9 +50,21 @@ export namespace Components {
          */
         "label": string;
         /**
+          * input html tag "placeholder" attribute, if not set defaults to "label" prop value
+         */
+        "placeholder": string;
+        /**
           * input html tag "required" attribute, defaults to "false"
          */
         "required": boolean;
+        /**
+          * a regex string (new RegExp is creted from this string) that is stripped from input value (replaced with an empty string) could be used to strip protocol and route from an URL to get website name for example strip="^http[s]?:\/\/" will strip out the protocol from an URL and strip="^http[s]?:\/\/|\/$|\.examplemaindomain.com.*" will leave subdomain value only. combined with suffix=".examplemaindomain.com" will allow to get website name without protocol and any route, query etc.
+         */
+        "strip": string;
+        /**
+          * a string displayed inside input form field group as appended label and added to visible input value could be used to get from user an URL in a specific domain for example somesubdomain[.examplemaindomain.com]
+         */
+        "suffix": string;
         /**
           * input html tag "type" attribute, defaults to "text"
          */
@@ -128,9 +140,21 @@ declare namespace LocalJSX {
         "onChange"?: (event: CustomEvent<string>) => void;
         "onInput"?: (event: CustomEvent<string>) => void;
         /**
+          * input html tag "placeholder" attribute, if not set defaults to "label" prop value
+         */
+        "placeholder"?: string;
+        /**
           * input html tag "required" attribute, defaults to "false"
          */
         "required"?: boolean;
+        /**
+          * a regex string (new RegExp is creted from this string) that is stripped from input value (replaced with an empty string) could be used to strip protocol and route from an URL to get website name for example strip="^http[s]?:\/\/" will strip out the protocol from an URL and strip="^http[s]?:\/\/|\/$|\.examplemaindomain.com.*" will leave subdomain value only. combined with suffix=".examplemaindomain.com" will allow to get website name without protocol and any route, query etc.
+         */
+        "strip"?: string;
+        /**
+          * a string displayed inside input form field group as appended label and added to visible input value could be used to get from user an URL in a specific domain for example somesubdomain[.examplemaindomain.com]
+         */
+        "suffix"?: string;
         /**
           * input html tag "type" attribute, defaults to "text"
          */

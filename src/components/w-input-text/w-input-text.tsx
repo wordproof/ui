@@ -1,5 +1,13 @@
-import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
-// import cx from 'classnames';
+import {
+  Component,
+  Prop,
+  h,
+  Host,
+  EventEmitter,
+  Event,
+  State,
+} from '@stencil/core';
+import cx from 'classnames';
 
 @Component({
   tag: 'w-input-text',
@@ -47,38 +55,116 @@ export class WInputText {
    */
   @Prop() inputmode: string = 'text';
 
+  /**
+   * input html tag "placeholder" attribute,
+   * if not set defaults to "label" prop value
+   */
+  @Prop() placeholder: string = '';
+
+  /**
+   * a string displayed inside input form field group as appended label
+   * and added to visible input value
+   * could be used to get from user an URL in a specific domain
+   * for example somesubdomain[.examplemaindomain.com]
+   */
+  @Prop() suffix: string = '';
+
+  /**
+   * a regex string (new RegExp is creted from this string)
+   * that is stripped from input value (replaced with an empty string)
+   * could be used to strip protocol and route from an URL to get website name
+   * for example strip="^http[s]?:\/\/" will strip out the protocol from an URL
+   * and strip="^http[s]?:\/\/|\/$|\.examplemaindomain.com.*" will leave
+   * subdomain value only. combined with suffix=".examplemaindomain.com"
+   * will allow to get website name without protocol and any route, query etc.
+   */
+  @Prop() strip: string = '';
+
   @Event() change: EventEmitter<string>;
 
   @Event() input: EventEmitter<string>;
 
-  handleChange(ev) {
-    this.value = ev.target ? ev.target.value : null;
-    this.change.emit(this.value);
+  handleChange(ev: Event) {
+    console.warn('handleChange called!');
+
+    if (this.handleValueChange(ev)) {
+      console.warn('handleChange emitted!', this.value);
+      this.change.emit(this.value);
+    }
   }
 
-  handleInput(ev) {
-    this.value = ev.target ? ev.target.value : null;
-    this.input.emit(this.value);
+  handleInput(ev: Event) {
+    console.warn('handleInput called!');
+
+    if (this.handleValueChange(ev)) {
+      console.warn('handleInput emitted!', this.value);
+      this.input.emit(this.value);
+    }
+  }
+
+  @State() localValue: string = '';
+
+  handleValueChange(ev: Event): boolean {
+    if (ev.target) {
+      const { value } = ev.target as HTMLInputElement;
+      this.localValue =
+        this.stripRegex !== null ? value.replace(this.stripRegex, '') : value;
+      console.warn('localValue set to: ', this.localValue);
+
+      this.value =
+        this.localValue.trim() === '' ? '' : `${this.localValue}${this.suffix}`;
+      return true;
+    }
+
+    return false;
+  }
+
+  stripRegex: RegExp | null = null;
+
+  connectedCallback() {
+    this.localValue = this.value;
+
+    if (this.strip) {
+      try {
+        this.stripRegex = new RegExp(this.strip, 'g');
+      } catch (error) {
+        throw new Error(
+          `w-input-text: Can't create a RegExp from "strip" attribute value "${this.strip}"`,
+        );
+      }
+    }
   }
 
   render() {
     return (
       <Host>
-        <label class="block relative w-full">
-          <input
-            class="block w-full text-gray-800 border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm"
-            placeholder={this.label}
-            required={this.required}
-            autofocus={this.autofocus}
-            type={this.type}
-            autocomplete={this.autocomplete}
-            inputmode={this.inputmode}
-            value={this.value}
-            onChange={ev => this.handleChange(ev)}
-            onInput={ev => this.handleInput(ev)}
-          />
-          <span class="absolute text-blue">{this.label}</span>
-        </label>
+        <div>
+          <label class="block relative w-full">
+            <input
+              class={cx(
+                'block w-full text-gray-800 text-lg border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm focus:outline-none',
+                {
+                  ['pr-32']: this.suffix,
+                },
+              )}
+              placeholder={this.placeholder ? this.placeholder : this.label}
+              required={this.required}
+              autofocus={this.autofocus}
+              type={this.type}
+              autocomplete={this.autocomplete}
+              inputmode={this.inputmode}
+              value={this.localValue}
+              onChange={ev => this.handleChange(ev)}
+              onInput={ev => this.handleInput(ev)}
+            />
+            <span class="absolute text-blue">{this.label}</span>
+            {this.suffix && (
+              <div class="absolute right-0.5 top-1/2 transform -translate-y-1/2 text-gray-800 text-base border-l border-gray-400 bg-gray-200 pl-1 pr-1 py-2 rounder-r-md z-0">
+                {this.suffix}
+              </div>
+            )}
+          </label>
+        </div>
         <div class="text-sm text-pink" v-if="error">
           {this.error}
         </div>
