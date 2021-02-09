@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host, EventEmitter, Event } from '@stencil/core';
 // import cx from 'classnames';
 
 @Component({
@@ -47,21 +47,19 @@ export class WInputText {
    */
   @Prop() inputmode: string = 'text';
 
-  // @Event() change: EventEmitter<string>;
+  @Event() change: EventEmitter<string>;
 
-  // @Event() input: EventEmitter<string>;
+  @Event() input: EventEmitter<string>;
 
-  // handleChange(ev) {
-  //   this.value = ev.target ? ev.target.value : null;
-  //   this.change.emit(this.value);
-  // }
+  handleChange(ev) {
+    this.value = ev.target ? ev.target.value : null;
+    this.change.emit(this.value);
+  }
 
-  // handleInput(ev) {
-  //   this.value = ev.target ? ev.target.value : null;
-  //   this.input.emit(this.value);
-  // }
-  // onChange={(ev) => this.handleChange(ev)}
-  // onInput={(ev) => this.handleInput(ev)}
+  handleInput(ev) {
+    this.value = ev.target ? ev.target.value : null;
+    this.input.emit(this.value);
+  }
 
   render() {
     return (
@@ -76,6 +74,8 @@ export class WInputText {
             autocomplete={this.autocomplete}
             inputmode={this.inputmode}
             value={this.value}
+            onChange={ev => this.handleChange(ev)}
+            onInput={ev => this.handleInput(ev)}
           />
           <span class="absolute text-blue">{this.label}</span>
         </label>
