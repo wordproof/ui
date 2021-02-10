@@ -161,9 +161,7 @@ export class WInputText {
             )}
           </label>
         </div>
-        <div class="text-sm text-pink" v-if="error">
-          {this.error}
-        </div>
+        {this.error && <div class="text-sm text-pink">{this.error}</div>}
       </Host>
     );
   }
