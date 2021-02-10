@@ -85,19 +85,13 @@ export class WInputText {
   @Event() input: EventEmitter<string>;
 
   handleChange(ev: Event) {
-    console.warn('handleChange called!');
-
     if (this.handleValueChange(ev)) {
-      console.warn('handleChange emitted!', this.value);
       this.change.emit(this.value);
     }
   }
 
   handleInput(ev: Event) {
-    console.warn('handleInput called!');
-
     if (this.handleValueChange(ev)) {
-      console.warn('handleInput emitted!', this.value);
       this.input.emit(this.value);
     }
   }
@@ -109,8 +103,7 @@ export class WInputText {
       const { value } = ev.target as HTMLInputElement;
       this.localValue =
         this.stripRegex !== null ? value.replace(this.stripRegex, '') : value;
-      console.warn('localValue set to: ', this.localValue);
-
+      this.inputEl.value = this.localValue;
       this.value =
         this.localValue.trim() === '' ? '' : `${this.localValue}${this.suffix}`;
       return true;
@@ -120,6 +113,8 @@ export class WInputText {
   }
 
   stripRegex: RegExp | null = null;
+
+  inputEl: HTMLInputElement;
 
   connectedCallback() {
     this.localValue = this.value;
@@ -156,6 +151,7 @@ export class WInputText {
               value={this.localValue}
               onChange={ev => this.handleChange(ev)}
               onInput={ev => this.handleInput(ev)}
+              ref={el => (this.inputEl = el as HTMLInputElement)}
             />
             <span class="absolute text-blue">{this.label}</span>
             {this.suffix && (
