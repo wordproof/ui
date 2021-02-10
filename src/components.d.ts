@@ -28,6 +28,52 @@ export namespace Components {
          */
         "type": string;
     }
+    interface WInputText {
+        /**
+          * input html tag "autocomplete" attribute, defaults to ""
+         */
+        "autocomplete": string;
+        /**
+          * input html tag "autofocus" attribute, defaults to "false"
+         */
+        "autofocus": boolean;
+        /**
+          * error message displayed in the form group, defaults to ""
+         */
+        "error": string;
+        /**
+          * input html tag "inputmode" attribute, defaults to ""
+         */
+        "inputmode": string;
+        /**
+          * label for the form group, defaults to ""
+         */
+        "label": string;
+        /**
+          * input html tag "placeholder" attribute, if not set defaults to "label" prop value
+         */
+        "placeholder": string;
+        /**
+          * input html tag "required" attribute, defaults to "false"
+         */
+        "required": boolean;
+        /**
+          * a regex string (new RegExp is creted from this string) that is stripped from input value (replaced with an empty string) could be used to strip protocol and route from an URL to get website name for example strip="^http[s]?:\/\/" will strip out the protocol from an URL and strip="^http[s]?:\/\/|\/$|\.examplemaindomain.com.*" will leave subdomain value only. combined with suffix=".examplemaindomain.com" will allow to get website name without protocol and any route, query etc.
+         */
+        "strip": string;
+        /**
+          * a string displayed inside input form field group as appended label and added to visible input value could be used to get from user an URL in a specific domain for example somesubdomain[.examplemaindomain.com]
+         */
+        "suffix": string;
+        /**
+          * input html tag "type" attribute, defaults to "text"
+         */
+        "type": string;
+        /**
+          * value, defaults to ""
+         */
+        "value": string;
+    }
 }
 declare global {
     interface HTMLWButtonElement extends Components.WButton, HTMLStencilElement {
@@ -36,8 +82,15 @@ declare global {
         prototype: HTMLWButtonElement;
         new (): HTMLWButtonElement;
     };
+    interface HTMLWInputTextElement extends Components.WInputText, HTMLStencilElement {
+    }
+    var HTMLWInputTextElement: {
+        prototype: HTMLWInputTextElement;
+        new (): HTMLWInputTextElement;
+    };
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
+        "w-input-text": HTMLWInputTextElement;
     }
 }
 declare namespace LocalJSX {
@@ -63,8 +116,57 @@ declare namespace LocalJSX {
          */
         "type"?: string;
     }
+    interface WInputText {
+        /**
+          * input html tag "autocomplete" attribute, defaults to ""
+         */
+        "autocomplete"?: string;
+        /**
+          * input html tag "autofocus" attribute, defaults to "false"
+         */
+        "autofocus"?: boolean;
+        /**
+          * error message displayed in the form group, defaults to ""
+         */
+        "error"?: string;
+        /**
+          * input html tag "inputmode" attribute, defaults to ""
+         */
+        "inputmode"?: string;
+        /**
+          * label for the form group, defaults to ""
+         */
+        "label"?: string;
+        "onChange"?: (event: CustomEvent<string>) => void;
+        "onInput"?: (event: CustomEvent<string>) => void;
+        /**
+          * input html tag "placeholder" attribute, if not set defaults to "label" prop value
+         */
+        "placeholder"?: string;
+        /**
+          * input html tag "required" attribute, defaults to "false"
+         */
+        "required"?: boolean;
+        /**
+          * a regex string (new RegExp is creted from this string) that is stripped from input value (replaced with an empty string) could be used to strip protocol and route from an URL to get website name for example strip="^http[s]?:\/\/" will strip out the protocol from an URL and strip="^http[s]?:\/\/|\/$|\.examplemaindomain.com.*" will leave subdomain value only. combined with suffix=".examplemaindomain.com" will allow to get website name without protocol and any route, query etc.
+         */
+        "strip"?: string;
+        /**
+          * a string displayed inside input form field group as appended label and added to visible input value could be used to get from user an URL in a specific domain for example somesubdomain[.examplemaindomain.com]
+         */
+        "suffix"?: string;
+        /**
+          * input html tag "type" attribute, defaults to "text"
+         */
+        "type"?: string;
+        /**
+          * value, defaults to ""
+         */
+        "value"?: string;
+    }
     interface IntrinsicElements {
         "w-button": WButton;
+        "w-input-text": WInputText;
     }
 }
 export { LocalJSX as JSX };
@@ -72,6 +174,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
+            "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
         }
     }
 }

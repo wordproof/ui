@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  width: 100%;
+  padding: 0 !important;
+  border: none !important;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+label > span {
+  cursor: text;
+  font-size: 12px;
+  opacity: 1;
+  transition: all 0.2s;
+  top: -6.5px;
+  left: 20px;
+  z-index: 3;
+  line-height: 1;
+  padding: 0 1px;
+  color: blue;
+  @apply bg-white px-1;
+}
+
+input::-webkit-input-placeholder {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+input:placeholder-shown:not(:focus)::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+input:placeholder-shown:not(:focus) + span {
+  font-size: 18px;
+  top: 50%;
+  transform: translate(0%, -50%);
+  @apply bg-white text-gray-800;
+}

@@ -1,21 +1,76 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    />
-    <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/uikit.esm.js"></script>
-    <script nomodule src="/build/uikit.js"></script>
-  </head>
-  <body>
-    <div>
-      <w-button>+ website</w-button>
-      <w-button outline>+ website</w-button>
-      <w-button text size="xs">+ website</w-button>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/uikit.esm.js"></script>
+  <script nomodule src="/build/uikit.js"></script>
+  <style>
+    [type='email'] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: #fff;
+      border-color: #6b7280;
+      border-width: 1px;
+      border-radius: 0px;
+      padding-top: 0.5rem;
+      padding-right: 0.75rem;
+      padding-bottom: 0.5rem;
+      padding-left: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="max-w-3xl mx-auto mt-4">
+    <h3>Buttons</h3>
+    <div class="mt-2">
+      <w-button id="btn1">+ website</w-button>
+      <w-button class="ml-8" outline>+ website</w-button>
+      <w-button class="ml-8" text size="xs">+ website</w-button>
     </div>
-  </body>
+    <h3 class="mt-6">Inputs</h3>
+    <div class="mt-4">
+      <w-input-text id="input1" class="w-64 mx-auto" label="Email" type="email"></w-input-text>
+      <div class="mt-4" id="value1"></div>
+
+      <w-input-text id="input2" class="w-full mt-6 mx-auto" label="Website URL"
+        error="Name should start with capital letter" placeholder="examplestore" suffix=".shopify.com"
+        strip="^http[s]?:\/\/|\/$|\.myshopify\.com.*" />
+      </w-input-text>
+      <div class="mt-4" id="value2"></div>
+    </div>
+  </div>
+  <script>
+    const input1 = document.getElementById("input1");
+    const value1 = document.getElementById("value1");
+    input1.addEventListener('change', ev => {
+      value1.innerText = ev.target.value;
+    });
+    input1.addEventListener('input', ev => {
+      value1.innerText = ev.target.value;
+    });
+
+    const input2 = document.getElementById("input2");
+    const value2 = document.getElementById("value2");
+    input2.addEventListener('change', ev => {
+      value2.innerText = ev.target.value;
+    });
+    input2.addEventListener('input', ev => {
+      value2.innerText = ev.target.value;
+    });
+
+    const btn1 = document.getElementById("btn1");
+    btn1.addEventListener('click', ev => {
+      input2.setAttribute('placeholder', 'email@google.com')
+    });
+  </script>
+</body>
+
 </html>
