@@ -80,6 +80,20 @@ export namespace Components {
          */
         "value": string;
     }
+    interface WLogo {
+        /**
+          * sets the logo colors to blue on white
+         */
+        "blueOnWhite": boolean;
+        /**
+          * sets the logo colors to blue on white
+         */
+        "tealOnWhite": boolean;
+        /**
+          * sets the logo colors to blue on white
+         */
+        "whiteOnBlue": boolean;
+    }
 }
 declare global {
     interface HTMLWButtonElement extends Components.WButton, HTMLStencilElement {
@@ -100,10 +114,17 @@ declare global {
         prototype: HTMLWInputTextElement;
         new (): HTMLWInputTextElement;
     };
+    interface HTMLWLogoElement extends Components.WLogo, HTMLStencilElement {
+    }
+    var HTMLWLogoElement: {
+        prototype: HTMLWLogoElement;
+        new (): HTMLWLogoElement;
+    };
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
         "w-input-text": HTMLWInputTextElement;
+        "w-logo": HTMLWLogoElement;
     }
 }
 declare namespace LocalJSX {
@@ -183,10 +204,25 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface WLogo {
+        /**
+          * sets the logo colors to blue on white
+         */
+        "blueOnWhite"?: boolean;
+        /**
+          * sets the logo colors to blue on white
+         */
+        "tealOnWhite"?: boolean;
+        /**
+          * sets the logo colors to blue on white
+         */
+        "whiteOnBlue"?: boolean;
+    }
     interface IntrinsicElements {
         "w-button": WButton;
         "w-certificate": WCertificate;
         "w-input-text": WInputText;
+        "w-logo": WLogo;
     }
 }
 export { LocalJSX as JSX };
@@ -196,6 +232,7 @@ declare module "@stencil/core" {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
+            "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
         }
     }
 }
