@@ -1,5 +1,5 @@
-import { Component, Prop, h } from '@stencil/core';
-// import cx from 'classnames';
+import { Component, Prop, h, State } from '@stencil/core';
+import cx from 'classnames';
 
 @Component({
   tag: 'w-certificate',
@@ -12,9 +12,43 @@ export class WCertificate {
    */
   @Prop() noIcon: boolean = false;
 
+  @State() visible: boolean = false;
+
+  backdropEl: HTMLDivElement;
+
+  triggerEl: EventTarget;
+
+  open() {
+    this.visible = true;
+  }
+
+  close() {
+    this.visible = false;
+  }
+
+  toggle() {
+    this.visible = !this.visible;
+  }
+
+  onBackdropClick(ev: MouseEvent) {
+    if (ev.target === this.backdropEl) {
+      ev.stopPropagation();
+      this.close();
+    }
+  }
+
+  onTriggerClick(ev: MouseEvent) {
+    this.toggle();
+  }
+
   render() {
     return (
-      <button type="button" class="flex items-center focus:outline-none">
+      <button
+        type="button"
+        class="flex items-center focus:outline-none relative"
+        onClick={(ev: MouseEvent) => this.onTriggerClick(ev)}
+        ref={el => (this.triggerEl = el)}
+      >
         {!this.noIcon && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +72,21 @@ export class WCertificate {
         <span class="text-teal hover:text-blue">
           <slot />
         </span>
+        <div
+          class={cx(
+            'fixed bg-black opacity-50 top-0 left-0 w-full h-full flex items-center justify-center',
+            {
+              ['invisible']: !this.visible,
+            },
+          )}
+          ref={el => (this.backdropEl = el as HTMLDivElement)}
+          onClick={ev => this.onBackdropClick(ev)}
+        >
+          <div
+            class="bg-white w-96 h-64"
+            onClick={ev => ev.stopPropagation()}
+          ></div>
+        </div>
       </button>
     );
   }
