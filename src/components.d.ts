@@ -34,6 +34,12 @@ export namespace Components {
          */
         "noIcon": boolean;
     }
+    interface WIcon {
+        /**
+          * renders the icon with corresponding name
+         */
+        "name": string;
+    }
     interface WInputText {
         /**
           * input html tag "autocomplete" attribute, defaults to ""
@@ -108,6 +114,12 @@ declare global {
         prototype: HTMLWCertificateElement;
         new (): HTMLWCertificateElement;
     };
+    interface HTMLWIconElement extends Components.WIcon, HTMLStencilElement {
+    }
+    var HTMLWIconElement: {
+        prototype: HTMLWIconElement;
+        new (): HTMLWIconElement;
+    };
     interface HTMLWInputTextElement extends Components.WInputText, HTMLStencilElement {
     }
     var HTMLWInputTextElement: {
@@ -123,6 +135,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
+        "w-icon": HTMLWIconElement;
         "w-input-text": HTMLWInputTextElement;
         "w-logo": HTMLWLogoElement;
     }
@@ -155,6 +168,12 @@ declare namespace LocalJSX {
           * hides icon
          */
         "noIcon"?: boolean;
+    }
+    interface WIcon {
+        /**
+          * renders the icon with corresponding name
+         */
+        "name"?: string;
     }
     interface WInputText {
         /**
@@ -221,6 +240,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "w-button": WButton;
         "w-certificate": WCertificate;
+        "w-icon": WIcon;
         "w-input-text": WInputText;
         "w-logo": WLogo;
     }
@@ -231,6 +251,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
+            "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
             "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
         }
