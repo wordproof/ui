@@ -37,7 +37,7 @@ export class WCertificate {
     }
   }
 
-  onTriggerClick(ev: MouseEvent) {
+  onTriggerClick() {
     this.toggle();
   }
 
@@ -46,7 +46,7 @@ export class WCertificate {
       <button
         type="button"
         class="flex items-center focus:outline-none relative"
-        onClick={(ev: MouseEvent) => this.onTriggerClick(ev)}
+        onClick={() => this.onTriggerClick()}
         ref={el => (this.triggerEl = el)}
       >
         {!this.noIcon && (
