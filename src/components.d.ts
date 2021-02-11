@@ -28,6 +28,12 @@ export namespace Components {
          */
         "type": string;
     }
+    interface WCertificate {
+        /**
+          * hides icon
+         */
+        "noIcon": boolean;
+    }
     interface WInputText {
         /**
           * input html tag "autocomplete" attribute, defaults to ""
@@ -82,6 +88,12 @@ declare global {
         prototype: HTMLWButtonElement;
         new (): HTMLWButtonElement;
     };
+    interface HTMLWCertificateElement extends Components.WCertificate, HTMLStencilElement {
+    }
+    var HTMLWCertificateElement: {
+        prototype: HTMLWCertificateElement;
+        new (): HTMLWCertificateElement;
+    };
     interface HTMLWInputTextElement extends Components.WInputText, HTMLStencilElement {
     }
     var HTMLWInputTextElement: {
@@ -90,6 +102,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
+        "w-certificate": HTMLWCertificateElement;
         "w-input-text": HTMLWInputTextElement;
     }
 }
@@ -115,6 +128,12 @@ declare namespace LocalJSX {
           * button html "type" attribute
          */
         "type"?: string;
+    }
+    interface WCertificate {
+        /**
+          * hides icon
+         */
+        "noIcon"?: boolean;
     }
     interface WInputText {
         /**
@@ -166,6 +185,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "w-button": WButton;
+        "w-certificate": WCertificate;
         "w-input-text": WInputText;
     }
 }
@@ -174,6 +194,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
+            "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
         }
     }
