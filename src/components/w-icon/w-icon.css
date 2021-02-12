@@ -1,5 +1,21 @@
 :host {
   display: block;
+  height: 50px;
+}
+
+.eye {
+  width: 17px;
+  height: 9px;
+}
+
+.comment {
+  width: 28px;
+  height: 23px;
+}
+
+.close {
+  width: 16px;
+  height: 16px;
 }
 
 @tailwind base;

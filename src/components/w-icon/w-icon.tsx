@@ -1,6 +1,4 @@
 import { Component, Prop, h } from '@stencil/core';
-// import cx from 'classnames';
-
 @Component({
   tag: 'w-icon',
   styleUrl: 'w-icon.css',
@@ -12,9 +10,17 @@ export class WIcon {
    */
   @Prop() name: string = '';
 
+  /**
+   * icon will try to fill all awailable space maintainig aspect ration
+   */
+  @Prop() fluid: boolean = false;
+
   render() {
     return (
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class={this.fluid ? 'w-full h-full' : this.name}
+      >
         <use xlinkHref={`#${this.name}`} />
         <symbol id="comment" viewBox="0 0 28 23">
           <path
@@ -45,11 +51,11 @@ export class WIcon {
         </symbol>
 
         <symbol id="close" viewBox="0 0 16 16">
-            <path
-              d="M15.324 13.832L9.302 7.811l6.243-6.243L13.998.021 7.755 6.264 1.734.242.187 1.79 6.21 7.811.02 13.998l1.547 1.547 6.187-6.188 6.022 6.022z"
-              fill="#2000FF"
-              fill-rule="nonzero"
-            />
+          <path
+            d="M15.324 13.832L9.302 7.811l6.243-6.243L13.998.021 7.755 6.264 1.734.242.187 1.79 6.21 7.811.02 13.998l1.547 1.547 6.187-6.188 6.022 6.022z"
+            fill="#2000FF"
+            fill-rule="nonzero"
+          />
         </symbol>
 
         <symbol id="somename" viewBox="0 0 28 23"></symbol>
