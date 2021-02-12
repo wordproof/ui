@@ -1,9 +1,9 @@
-import { getComponentClosestLanguage } from './locale';
+import { getLocaleStrings } from './locale';
 
 describe('getComponentClosestLanguage', () => {
   it('returns empty string for no names defined', () => {
     const el = new HTMLElement();
 
-    expect(getComponentClosestLanguage(el)).toEqual('en');
+    expect(getLocaleStrings(el)).toEqual('en');
   });
 });
