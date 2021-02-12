@@ -82,16 +82,19 @@ export class WCertificate {
         </span>
         <div
           class={cx(
-            'fixed bg-black opacity-50 top-0 left-0 w-full h-full flex items-center justify-center',
+            'fixed top-0 left-0 w-full h-full flex items-center justify-center cursor-default',
             {
-              ['invisible']: !this.visible,
+              ['hidden']: !this.visible,
             },
           )}
-          ref={el => (this.backdropEl = el as HTMLDivElement)}
-          onClick={ev => this.onBackdropClick(ev)}
         >
           <div
-            class="bg-white w-96 h-64"
+            class="absolute bg-black opacity-50 top-0 left-0 w-full h-full"
+            ref={el => (this.backdropEl = el as HTMLDivElement)}
+            onClick={ev => this.onBackdropClick(ev)}
+          ></div>
+          <div
+            class="bg-white w-2/3 h-2/3 z-50"
             onClick={ev => ev.stopPropagation()}
           ></div>
         </div>
