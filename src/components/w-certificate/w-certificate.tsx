@@ -1,12 +1,15 @@
-import { Component, Prop, h, State } from '@stencil/core';
+import { Component, Prop, h, State, Element } from '@stencil/core';
 import cx from 'classnames';
-
+import { getLocaleComponentStrings } from '../../utils/locale';
 @Component({
   tag: 'w-certificate',
   styleUrl: 'w-certificate.css',
-  shadow: false,
+  shadow: true,
 })
 export class WCertificate {
+  @Element() hostElement: HTMLElement;
+  strings: Record<string, string>;
+
   /**
    * hides icon
    */
@@ -17,6 +20,15 @@ export class WCertificate {
   backdropEl: HTMLDivElement;
 
   triggerEl: EventTarget;
+
+  hasSlot: boolean;
+
+  async componentWillLoad(): Promise<void> {
+    this.strings = await getLocaleComponentStrings(this.hostElement);
+    const slot = this.hostElement.querySelector('[slot]');
+    this.hasSlot = this.hostElement.querySelector('[slot]') !== undefined;
+    console.warn({ slot });
+  }
 
   open() {
     this.visible = true;
