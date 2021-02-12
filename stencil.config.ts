@@ -56,4 +56,8 @@ export const config: Config = {
       ],
     }),
   ],
+  devServer: {
+    reloadStrategy: 'pageReload',
+    openBrowser: false,
+  },
 };
