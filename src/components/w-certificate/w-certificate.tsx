@@ -1,6 +1,6 @@
 import { Component, Prop, h, State, Element } from '@stencil/core';
 import cx from 'classnames';
-import { getLocaleComponentStrings } from '../../utils/locale';
+import { getLocaleStrings } from '../../utils/locale';
 @Component({
   tag: 'w-certificate',
   styleUrl: 'w-certificate.css',
@@ -8,6 +8,7 @@ import { getLocaleComponentStrings } from '../../utils/locale';
 })
 export class WCertificate {
   @Element() hostElement: HTMLElement;
+
   strings: Record<string, string>;
 
   /**
@@ -21,13 +22,8 @@ export class WCertificate {
 
   triggerEl: EventTarget;
 
-  hasSlot: boolean;
-
   async componentWillLoad(): Promise<void> {
-    this.strings = await getLocaleComponentStrings(this.hostElement);
-    const slot = this.hostElement.querySelector('[slot]');
-    this.hasSlot = this.hostElement.querySelector('[slot]') !== undefined;
-    console.warn({ slot });
+    this.strings = await getLocaleStrings(this.hostElement);
   }
 
   open() {
@@ -82,7 +78,7 @@ export class WCertificate {
           </svg>
         )}
         <span class="text-teal hover:text-blue">
-          <slot />
+          <slot>{this.strings.defaultLinkText}</slot>
         </span>
         <div
           class={cx(
