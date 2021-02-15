@@ -53,7 +53,7 @@ export class WIcon {
         <symbol id="close" viewBox="0 0 16 16">
           <path
             d="M15.324 13.832L9.302 7.811l6.243-6.243L13.998.021 7.755 6.264 1.734.242.187 1.79 6.21 7.811.02 13.998l1.547 1.547 6.187-6.188 6.022 6.022z"
-            fill="#2000FF"
+            fill="currentColor"
             fill-rule="nonzero"
           />
         </symbol>
