@@ -104,6 +104,12 @@ export namespace Components {
          */
         "whiteOnBlue": boolean;
     }
+    interface WModal {
+        /**
+          * controls visibility of the modal
+         */
+        "visible": boolean;
+    }
 }
 declare global {
     interface HTMLWButtonElement extends Components.WButton, HTMLStencilElement {
@@ -136,12 +142,19 @@ declare global {
         prototype: HTMLWLogoElement;
         new (): HTMLWLogoElement;
     };
+    interface HTMLWModalElement extends Components.WModal, HTMLStencilElement {
+    }
+    var HTMLWModalElement: {
+        prototype: HTMLWModalElement;
+        new (): HTMLWModalElement;
+    };
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
         "w-icon": HTMLWIconElement;
         "w-input-text": HTMLWInputTextElement;
         "w-logo": HTMLWLogoElement;
+        "w-modal": HTMLWModalElement;
     }
 }
 declare namespace LocalJSX {
@@ -245,12 +258,19 @@ declare namespace LocalJSX {
          */
         "whiteOnBlue"?: boolean;
     }
+    interface WModal {
+        /**
+          * controls visibility of the modal
+         */
+        "visible"?: boolean;
+    }
     interface IntrinsicElements {
         "w-button": WButton;
         "w-certificate": WCertificate;
         "w-icon": WIcon;
         "w-input-text": WInputText;
         "w-logo": WLogo;
+        "w-modal": WModal;
     }
 }
 export { LocalJSX as JSX };
@@ -262,6 +282,7 @@ declare module "@stencil/core" {
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
             "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
+            "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;
         }
     }
 }
