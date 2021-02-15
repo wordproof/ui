@@ -110,9 +110,21 @@ export namespace Components {
          */
         "blueOnWhite": boolean;
         /**
+          * shows "WordProof" in blue and teal
+         */
+        "doubleColored": boolean;
+        /**
+          * icon will try to fit into the available space maintainig aspect ratio
+         */
+        "fit": boolean;
+        /**
           * sets the logo colors to blue on white
          */
         "tealOnWhite": boolean;
+        /**
+          * adds "WordProof" text to logo
+         */
+        "text": boolean;
         /**
           * sets the logo colors to blue on white
          */
@@ -285,9 +297,21 @@ declare namespace LocalJSX {
          */
         "blueOnWhite"?: boolean;
         /**
+          * shows "WordProof" in blue and teal
+         */
+        "doubleColored"?: boolean;
+        /**
+          * icon will try to fit into the available space maintainig aspect ratio
+         */
+        "fit"?: boolean;
+        /**
           * sets the logo colors to blue on white
          */
         "tealOnWhite"?: boolean;
+        /**
+          * adds "WordProof" text to logo
+         */
+        "text"?: boolean;
         /**
           * sets the logo colors to blue on white
          */
