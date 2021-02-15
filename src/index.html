@@ -50,6 +50,10 @@
       <w-certificate></w-certificate>
     </div>
 
+    <div class="my-10">
+      <w-certificate-link id="btn1"></w-certificate-link>
+    </div>
+
     <div class="my-10 flex p-10 bg-gray-400">
       <w-logo></w-logo>
       <w-logo class="ml-4" teal-on-white></w-logo>
@@ -65,6 +69,12 @@
   </div>
   </div>
   <script>
+    const btn1 = document.getElementById("btn1");
+    btn1.addEventListener('click', ev => {
+      console.warn('click!', ev.target);
+    });
+
+
     // const input1 = document.getElementById("input1");
     // const value1 = document.getElementById("value1");
     // input1.addEventListener('change', ev => {
