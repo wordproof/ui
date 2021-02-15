@@ -30,7 +30,11 @@ export namespace Components {
     }
     interface WCertificate {
         /**
-          * hides icon
+          * custom certificate link text
+         */
+        "linkText": string;
+        /**
+          * hides icon on certificate link
          */
         "noIcon": boolean;
     }
@@ -195,7 +199,11 @@ declare namespace LocalJSX {
     }
     interface WCertificate {
         /**
-          * hides icon
+          * custom certificate link text
+         */
+        "linkText"?: string;
+        /**
+          * hides icon on certificate link
          */
         "noIcon"?: boolean;
     }
@@ -278,6 +286,7 @@ declare namespace LocalJSX {
         "whiteOnBlue"?: boolean;
     }
     interface WModal {
+        "onClose"?: (event: CustomEvent<any>) => void;
         /**
           * controls visibility of the modal
          */

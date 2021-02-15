@@ -1,5 +1,6 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Event } from '@stencil/core';
 import cx from 'classnames';
+import EventEmitter from 'events';
 
 @Component({
   tag: 'w-modal',
@@ -10,18 +11,16 @@ export class WModal {
   /**
    * controls visibility of the modal
    */
-  @Prop({ mutable: true }) visible: boolean = false;
+  @Prop() visible: boolean = false;
+
+  @Event() close: EventEmitter;
 
   backdropEl: EventTarget;
-
-  close() {
-    this.visible = false;
-  }
 
   onBackdropClick(ev: MouseEvent) {
     if (ev.target === this.backdropEl) {
       ev.stopPropagation();
-      this.close();
+      this.close.emit('close');
     }
   }
 
