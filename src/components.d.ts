@@ -12,6 +12,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * button html "type" attribute
+         */
+        "icon": string;
+        /**
           * renders button as underlined text
          */
         "outline": boolean;
@@ -180,6 +184,10 @@ declare namespace LocalJSX {
           * button html "disabled" attribute
          */
         "disabled"?: boolean;
+        /**
+          * button html "type" attribute
+         */
+        "icon"?: string;
         /**
           * renders button as underlined text
          */
