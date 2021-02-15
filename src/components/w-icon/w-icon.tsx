@@ -11,15 +11,15 @@ export class WIcon {
   @Prop() name: string = '';
 
   /**
-   * icon will try to fill all awailable space maintainig aspect ration
+   * icon will try to fit into the available space maintainig aspect ratio
    */
-  @Prop() fluid: boolean = false;
+  @Prop() fit: boolean = false;
 
   render() {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class={this.fluid ? 'w-full h-full' : this.name}
+        class={this.fit ? 'w-full h-full' : this.name}
       >
         <use xlinkHref={`#${this.name}`} />
         <symbol id="comment" viewBox="0 0 28 23">
@@ -56,6 +56,24 @@ export class WIcon {
             fill="#2000FF"
             fill-rule="nonzero"
           />
+        </symbol>
+
+        <symbol id="close-circle" viewBox="0 0 30 29">
+          <g transform="translate(-8 -8)" fill="none" fill-rule="evenodd">
+            <path
+              d="M24.111 22.489l5.087-4.985a.785.785 0 0 0 0-1.09.825.825 0 0 0-1.11 0L23 21.4l-5.087-4.985a.825.825 0 0 0-1.111 0 .785.785 0 0 0 0 1.089l5.087 4.985-5.087 4.985c-.293.287-.351.803 0 1.09.292.286.818.343 1.11 0L23 23.577l5.087 4.985c.293.287.819.344 1.111 0 .293-.286.351-.802 0-1.089l-5.087-4.985z"
+              fill="currentColor"
+              fill-rule="nonzero"
+            ></path>
+            <ellipse
+              stroke="currentColor"
+              stroke-width="2"
+              cx="23"
+              cy="22.5"
+              rx="13.72"
+              ry="13.4"
+            ></ellipse>
+          </g>
         </symbol>
 
         <symbol id="somename" viewBox="0 0 28 23"></symbol>

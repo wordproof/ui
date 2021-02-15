@@ -18,6 +18,11 @@
   height: 16px;
 }
 
+.close-circle {
+  width: 30px;
+  height: 29px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

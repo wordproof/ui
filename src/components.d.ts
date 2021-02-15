@@ -46,9 +46,9 @@ export namespace Components {
     }
     interface WIcon {
         /**
-          * icon will try to fill all awailable space maintainig aspect ration
+          * icon will try to fit into the available space maintainig aspect ratio
          */
-        "fluid": boolean;
+        "fit": boolean;
         /**
           * renders the icon with corresponding name
          */
@@ -215,9 +215,9 @@ declare namespace LocalJSX {
     }
     interface WIcon {
         /**
-          * icon will try to fill all awailable space maintainig aspect ration
+          * icon will try to fit into the available space maintainig aspect ratio
          */
-        "fluid"?: boolean;
+        "fit"?: boolean;
         /**
           * renders the icon with corresponding name
          */
