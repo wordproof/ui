@@ -52,7 +52,7 @@ export class WModal {
         ></div>
 
         <div
-          class={cx('bg-white w-2/3 h-2/3 z-50 relative', {
+          class={cx('bg-white z-50 relative w-11/12 md:max-w-4xl', {
             [`rounded-${this.rounded}`]: this.rounded,
           })}
           onClick={ev => ev.stopPropagation()}
