@@ -1,5 +1,11 @@
 :host {
-  /* display: block; */
+  display: block;
+}
+
+::slotted(w-button) {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 @tailwind base;
@@ -7,11 +13,11 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Sohne-Dreiviertelfett";
-  src: url("../../global/fonts/Sohne-Dreiviertelfett.otf");
+  font-family: 'Sohne-Dreiviertelfett';
+  src: url('../../global/fonts/Sohne-Dreiviertelfett.otf');
 }
 
 @font-face {
-  font-family: "Sohne-Buch";
-  src: url("../../global/fonts/Sohne-Buch.otf");
+  font-family: 'Sohne-Buch';
+  src: url('../../global/fonts/Sohne-Buch.otf');
 }

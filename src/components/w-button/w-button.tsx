@@ -59,7 +59,7 @@ export class WButton {
         type={this.type}
         disabled={this.disabled}
         class={cx(
-          'inline-flex items-center active:bg-gray-900 outline-none focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150',
+          'block items-center active:bg-gray-900 outline-none focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150',
           {
             ['px-5 py-2 font-sohne-bold focus:ring-blue focus:ring-2 focus:ring-opacity-50 rounded-full']:
               !this.text && !this.icon,

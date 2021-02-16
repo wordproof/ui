@@ -24,6 +24,12 @@ export class WModal {
     }
   }
 
+  onClose(ev: MouseEvent) {
+    ev.stopPropagation();
+    this.close.emit('close');
+    console.warn('close');
+  }
+
   render() {
     return (
       <div
@@ -39,11 +45,18 @@ export class WModal {
           ref={el => (this.backdropEl = el as HTMLDivElement)}
           onClick={ev => this.onBackdropClick(ev)}
         ></div>
+
         <div
-          class="bg-white w-2/3 h-2/3 z-50"
+          class="bg-white w-2/3 h-2/3 z-50 relative"
           onClick={ev => ev.stopPropagation()}
         >
-          <slot />
+          <div class="absolute top-0 right-0" onClick={ev => this.onClose(ev)}>
+            <slot name="close">
+              <w-button icon="close" class="block text-blue mr-2 mt-2"></w-button>
+            </slot>
+          </div>
+
+          <slot></slot>
         </div>
       </div>
     );
