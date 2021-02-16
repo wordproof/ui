@@ -1,4 +1,5 @@
 import { Component, Prop, h, Element } from '@stencil/core';
+import { CertificateLinkStrings } from '../../i18n/i18n';
 import { getLocaleStrings } from '../../utils/locale';
 
 @Component({
@@ -9,7 +10,7 @@ import { getLocaleStrings } from '../../utils/locale';
 export class WCertificateLink {
   @Element() hostElement: HTMLElement;
 
-  strings: Record<string, string>;
+  strings: CertificateLinkStrings;
 
   /**
    * hides icon
