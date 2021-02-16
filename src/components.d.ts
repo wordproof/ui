@@ -134,6 +134,10 @@ export namespace Components {
         /**
           * controls visibility of the modal
          */
+        "rounded": string | boolean;
+        /**
+          * controls visibility of the modal
+         */
         "visible": boolean;
     }
 }
@@ -319,6 +323,10 @@ declare namespace LocalJSX {
     }
     interface WModal {
         "onClose"?: (event: CustomEvent<any>) => void;
+        /**
+          * controls visibility of the modal
+         */
+        "rounded"?: string | boolean;
         /**
           * controls visibility of the modal
          */

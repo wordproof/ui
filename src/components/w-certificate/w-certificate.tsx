@@ -30,7 +30,7 @@ export class WCertificate {
         >
           {this.linkText ? this.linkText : null}
         </w-certificate-link>
-        <w-modal visible={this.visible} onClose={() => (this.visible = false)}>
+        <w-modal rounded="lg" visible={this.visible} onClose={() => (this.visible = false)}>
           <w-button
             slot="close"
             icon="close-circle"

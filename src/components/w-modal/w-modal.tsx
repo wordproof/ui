@@ -13,6 +13,11 @@ export class WModal {
    */
   @Prop() visible: boolean = false;
 
+  /**
+   * controls visibility of the modal
+   */
+  @Prop() rounded: string | boolean = false;
+
   @Event() close: EventEmitter;
 
   backdropEl: EventTarget;
@@ -47,12 +52,17 @@ export class WModal {
         ></div>
 
         <div
-          class="bg-white w-2/3 h-2/3 z-50 relative"
+          class={cx('bg-white w-2/3 h-2/3 z-50 relative', {
+            [`rounded-${this.rounded}`]: this.rounded,
+          })}
           onClick={ev => ev.stopPropagation()}
         >
           <div class="absolute top-0 right-0" onClick={ev => this.onClose(ev)}>
             <slot name="close">
-              <w-button icon="close" class="block text-blue mr-2 mt-2"></w-button>
+              <w-button
+                icon="close"
+                class="block text-blue mr-2 mt-2"
+              ></w-button>
             </slot>
           </div>
 
