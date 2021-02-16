@@ -126,6 +126,10 @@ export namespace Components {
          */
         "text": boolean;
         /**
+          * render large logo text
+         */
+        "textLarge": boolean;
+        /**
           * sets the logo colors to blue on white
          */
         "whiteOnBlue": boolean;
@@ -316,6 +320,10 @@ declare namespace LocalJSX {
           * adds "WordProof" text to logo
          */
         "text"?: boolean;
+        /**
+          * render large logo text
+         */
+        "textLarge"?: boolean;
         /**
           * sets the logo colors to blue on white
          */
