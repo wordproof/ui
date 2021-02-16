@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Sohne-Buch";
+  src: url("/fonts/Söhne-Buch.otf");
+}
+
+@font-face {
+  font-family: "Sohne-Dreiviertelfett";
+  src: url("/fonts/Söhne-Dreiviertelfett.otf");
+}
+
+@font-face {
+  font-family: "Sohne-Halbfett";
+  src: url("/fonts/Söhne-Halbfett.otf");
+}
+
+@font-face {
+  font-family: "Sohne-Kraftig";
+  src: url("/fonts/Sohne-Kraftig.otf");
+}
