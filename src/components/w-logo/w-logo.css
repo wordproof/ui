@@ -2,7 +2,12 @@
   display: block;
 }
 
-.icon {
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+.logo-with-text {
   width: 330px;
   height: 100px;
 }
