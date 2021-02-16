@@ -1,7 +1,7 @@
-export type CertificateLinkKeys = ['defaultLinkText'][number];
+type CertificateLinkKeys = ['defaultLinkText'][number];
 export type CertificateLinkStrings = Record<CertificateLinkKeys, string>;
 
-export type CertificateKeys = [
+type CertificateKeys = [
   'contentIsWordProof',
   'contentHasNotChangedTitle',
   'contentHasNotChangedText',
@@ -12,4 +12,4 @@ export type CertificateKeys = [
   'viewPreviousVersions',
   'publishedBy',
 ][number];
-export type CertificateStrings = Record<CertificateLinkKeys, string>;
+export type CertificateStrings = Record<CertificateKeys, string>;
