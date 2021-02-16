@@ -21,6 +21,7 @@ module.exports = {
         },
         'light-blue': '#E2E9F4',
         'sand': '#FFEBCA',
+        'yellowAccent':'#fddd7e'
       },
       fontSize: {
         'xs': '.75rem',
