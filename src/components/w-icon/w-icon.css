@@ -23,6 +23,25 @@
   height: 29px;
 }
 
+.check-circle {
+  width: 18px;
+  height: 18px;
+}
+.times-circle {
+  width: 18px;
+  height: 18px;
+}
+
+.clock {
+  width: 32px;
+  height: 32px;
+}
+
+.ink-pen {
+  width: 32px;
+  height: 32px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
