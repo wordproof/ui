@@ -7,5 +7,10 @@
   "discoverHowTitle": "Ontdek hoe deze inhoud tot stand kwam",
   "discoverHowText": "Deze website timestamped elke revisie op de blockchain, waardoor jij verschillende versies kunt vergelijken.",
   "viewPreviousVersions": "Bekijk eerdere versies",
-  "publishedBy": "Gepubliceerd door"
+  "publishedBy": "Gepubliceerd door",
+  "importanceTitle": "Waarom is een blockchain timestamp belangrijk?",
+  "importanceParagraph1": "De unieke vingerafdruk (\"hash\") van de laatste versie is opgeslagen in de blockchain en kan niet worden aangepast of verwijderd.",
+  "importanceParagraph2": "Zowel jij als de website hebben toegang tot de hash en invoer die hoort bij de hash.",
+  "importanceParagraph3": "Jij hebt bewijs dat de eigenaar deze inhoud creëerde en dat het niet is aangepast sinds de timestamp.",
+  "importanceParagraph4": "De website heeft bewijs dat het over deze inhoud beschikt, wat gebruikt kan worden voor schendingen van auteursrecht."
 }

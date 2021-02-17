@@ -11,5 +11,10 @@ type CertificateKeys = [
   'discoverHowText',
   'viewPreviousVersions',
   'publishedBy',
+  'importanceTitle',
+  'importanceParagraph1',
+  'importanceParagraph2',
+  'importanceParagraph3',
+  'importanceParagraph4',
 ][number];
 export type CertificateStrings = Record<CertificateKeys, string>;

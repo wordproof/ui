@@ -7,5 +7,10 @@
   "discoverHowTitle": "Discover how this content changed over time",
   "discoverHowText": "Because this website timestamps every revision on the blockchain, you can compare the different versions.",
   "viewPreviousVersions": "View previous versions",
-  "publishedBy": "Published by"
+  "publishedBy": "Published by",
+  "importanceTitle": "Why does a timestamp on the blockchain matter?",
+  "importanceParagraph1": "The unique fingerprint (called the hash) of the latest version of this content has been added to the blockchain. It can’t be changed or removed.",
+  "importanceParagraph2": "Both you and the website have access to the hash and input that corresponds to this hash.",
+  "importanceParagraph3": "You have proof that the owner of this content created it and that it was not tampered with.",
+  "importanceParagraph4": "The website has proof of having this content at certain points in time, which can be used for copyright conflicts."
 }

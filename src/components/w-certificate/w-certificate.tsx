@@ -1,8 +1,14 @@
 import { Component, Prop, h, State, Element } from '@stencil/core';
+import {
+  CertificateViews,
+  CertificateView,
+  CertificateViewKeys,
+} from './types';
 import { CertificateStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
 import renderHeader from './components/header';
 import renderOverview from './views/overview';
+import renderImportance from './views/importance';
 @Component({
   tag: 'w-certificate',
   styleUrl: 'w-certificate.css',
@@ -22,6 +28,22 @@ export class WCertificate {
   @Prop() linkText: string;
 
   @State() visible: boolean = true;
+
+  views: CertificateViews = {
+    [CertificateView.overview]: () =>
+      renderOverview({
+        strings: this.strings,
+        lastEdited: new Date('2020-02-16 2:20'),
+        publishedBy: 'Sebastiaan van der Lans',
+        locale: 'en',
+      }),
+    [CertificateView.importance]: () =>
+      renderImportance({
+        strings: this.strings,
+      }),
+  };
+
+  currentView: CertificateViewKeys = CertificateView.importance;
 
   strings: CertificateStrings;
 
@@ -51,12 +73,7 @@ export class WCertificate {
 
           {renderHeader({ strings: this.strings })}
 
-          {renderOverview({
-            strings: this.strings,
-            lastEdited: new Date('2020-02-16 2:20'),
-            publishedBy: 'Sebastiaan van der Lans',
-            locale: 'en',
-          })}
+          {this.views[this.currentView]()}
         </w-modal>
       </div>
     );
