@@ -12,7 +12,7 @@ import cx from 'classnames';
 @Component({
   tag: 'w-input-text',
   styleUrl: 'w-input-text.css',
-  shadow: true,
+  shadow: false,
 })
 export class WInputText {
   /**
