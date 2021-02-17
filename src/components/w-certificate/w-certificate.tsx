@@ -1,7 +1,7 @@
 import { Component, Prop, h, State, Element } from '@stencil/core';
 import { CertificateStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
-import renderBanner from './components/banner';
+import renderHeader from './components/header';
 import renderOverview from './views/overview';
 @Component({
   tag: 'w-certificate',
@@ -49,27 +49,14 @@ export class WCertificate {
             class="text-teal mr-2 mt-2"
           ></w-button>
 
-          <div class="">
-            <div class="flex p-3 items-center border-b-2 border-gray-400">
-              <w-logo fit double-colored text text-large class="h-8"></w-logo>
-              <p class="hidden md:block ml-auto mr-8 text-blue font-sohne">
-                {this.strings.contentIsWordProof}
-              </p>
-            </div>
+          {renderHeader({ strings: this.strings })}
 
-            <div class="flex flex-row">
-              <div class="hidden md:block md:w-1/3 overflow-hidden">
-                {renderBanner()}
-              </div>
-
-              {renderOverview({
-                strings: this.strings,
-                lastEdited: new Date('2020-02-16 2:20'),
-                publishedBy: 'Sebastiaan van der Lans',
-                locale: 'en',
-              })}
-            </div>
-          </div>
+          {renderOverview({
+            strings: this.strings,
+            lastEdited: new Date('2020-02-16 2:20'),
+            publishedBy: 'Sebastiaan van der Lans',
+            locale: 'en',
+          })}
         </w-modal>
       </div>
     );
