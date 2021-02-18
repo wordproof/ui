@@ -1,14 +1,12 @@
 import { Component, Prop, h, State, Element } from '@stencil/core';
-import {
-  CertificateViews,
-  CertificateView,
-  CertificateViewKeys,
-} from './types';
+import { CertificateView, CertificateViewKeys } from './types';
 import { CertificateStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
 import renderHeader from './components/header';
 import renderOverview from './views/overview';
 import renderImportance from './views/importance';
+import { routerTriggered, Route } from '../w-router-outlet';
+
 @Component({
   tag: 'w-certificate',
   styleUrl: 'w-certificate.css',
@@ -29,19 +27,26 @@ export class WCertificate {
 
   @State() visible: boolean = true;
 
-  views: CertificateViews = {
-    [CertificateView.overview]: () =>
-      renderOverview({
-        strings: this.strings,
-        lastEdited: new Date('2020-02-16 2:20'),
-        publishedBy: 'Sebastiaan van der Lans',
-        locale: 'en',
-      }),
-    [CertificateView.importance]: () =>
-      renderImportance({
-        strings: this.strings,
-      }),
-  };
+  routes = [
+    {
+      hash: CertificateView.overview,
+      renderer: () =>
+        renderOverview({
+          strings: this.strings,
+          lastEdited: new Date('2020-02-16 2:20'),
+          publishedBy: 'Sebastiaan van der Lans',
+          locale: 'en',
+        }),
+      default: true,
+    },
+    {
+      hash: CertificateView.importance,
+      renderer: () =>
+        renderImportance({
+          strings: this.strings,
+        }),
+    },
+  ] as Route[];
 
   currentView: CertificateViewKeys = CertificateView.importance;
 
@@ -49,6 +54,7 @@ export class WCertificate {
 
   async componentWillLoad(): Promise<void> {
     this.strings = await getLocaleStrings(this.hostElement);
+    this.visible = routerTriggered();
   }
 
   render() {
@@ -73,7 +79,7 @@ export class WCertificate {
 
           {renderHeader({ strings: this.strings })}
 
-          {this.views[this.currentView]()}
+          <w-router-outlet routes={this.routes} />
         </w-modal>
       </div>
     );

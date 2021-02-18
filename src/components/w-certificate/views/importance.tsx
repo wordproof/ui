@@ -3,8 +3,6 @@ import { CertificateStrings } from '../../../i18n';
 import renderBanner from '../components/banner';
 
 const renderImportance = ({ strings }: { strings: CertificateStrings }) => {
-  console.warn({ strings });
-
   return (
     <div class="flex flex-row">
       <div class="hidden md:block md:w-1/3 overflow-hidden">

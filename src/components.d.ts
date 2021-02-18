@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Route } from "./components/w-router-outlet";
 export namespace Components {
     interface WButton {
         /**
@@ -144,6 +145,9 @@ export namespace Components {
          */
         "visible": boolean;
     }
+    interface WRouterOutlet {
+        "routes": Route[];
+    }
 }
 declare global {
     interface HTMLWButtonElement extends Components.WButton, HTMLStencilElement {
@@ -188,6 +192,12 @@ declare global {
         prototype: HTMLWModalElement;
         new (): HTMLWModalElement;
     };
+    interface HTMLWRouterOutletElement extends Components.WRouterOutlet, HTMLStencilElement {
+    }
+    var HTMLWRouterOutletElement: {
+        prototype: HTMLWRouterOutletElement;
+        new (): HTMLWRouterOutletElement;
+    };
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
@@ -196,6 +206,7 @@ declare global {
         "w-input-text": HTMLWInputTextElement;
         "w-logo": HTMLWLogoElement;
         "w-modal": HTMLWModalElement;
+        "w-router-outlet": HTMLWRouterOutletElement;
     }
 }
 declare namespace LocalJSX {
@@ -340,6 +351,9 @@ declare namespace LocalJSX {
          */
         "visible"?: boolean;
     }
+    interface WRouterOutlet {
+        "routes"?: Route[];
+    }
     interface IntrinsicElements {
         "w-button": WButton;
         "w-certificate": WCertificate;
@@ -348,6 +362,7 @@ declare namespace LocalJSX {
         "w-input-text": WInputText;
         "w-logo": WLogo;
         "w-modal": WModal;
+        "w-router-outlet": WRouterOutlet;
     }
 }
 export { LocalJSX as JSX };
@@ -361,6 +376,7 @@ declare module "@stencil/core" {
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
             "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
             "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;
+            "w-router-outlet": LocalJSX.WRouterOutlet & JSXBase.HTMLAttributes<HTMLWRouterOutletElement>;
         }
     }
 }
