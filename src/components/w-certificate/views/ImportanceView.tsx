@@ -1,8 +1,14 @@
-import { h } from '@stencil/core';
+import { FunctionalComponent, h } from '@stencil/core';
 import { CertificateStrings } from '../../../i18n';
 import Banner from '../components/Banner';
 
-const renderImportance = ({ strings }: { strings: CertificateStrings }) => {
+interface ImportanceViewProps {
+  strings: CertificateStrings;
+}
+
+const ImportanceView: FunctionalComponent<ImportanceViewProps> = ({
+  strings,
+}) => {
   return (
     <div class="flex flex-row">
       <div class="hidden md:block md:w-1/3 overflow-hidden">
@@ -21,4 +27,4 @@ const renderImportance = ({ strings }: { strings: CertificateStrings }) => {
   );
 };
 
-export default renderImportance;
+export default ImportanceView;

@@ -1,18 +1,20 @@
-import { h } from '@stencil/core';
+import { FunctionalComponent, h } from '@stencil/core';
 import { CertificateStrings } from '../../../i18n';
 import Banner from '../components/Banner';
 import OverviewCard from '../components/OverviewCard';
 
-const renderOverview = ({
-  strings,
-  lastEdited,
-  publishedBy,
-  locale,
-}: {
+interface OverviewViewProps {
   strings: CertificateStrings;
   lastEdited: Date;
   publishedBy: string;
   locale: string;
+}
+
+const OverviewView: FunctionalComponent<OverviewViewProps> = ({
+  strings,
+  lastEdited,
+  publishedBy,
+  locale,
 }) => (
   <div class="flex flex-row">
     <div class="hidden md:block md:w-1/3 overflow-hidden">
@@ -52,4 +54,4 @@ const renderOverview = ({
   </div>
 );
 
-export default renderOverview;
+export default OverviewView;

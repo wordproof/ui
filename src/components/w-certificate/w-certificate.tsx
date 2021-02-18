@@ -3,8 +3,8 @@ import { CertificateView, CertificateViewKeys } from './types';
 import { CertificateStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
 import Header from './components/Header';
-import renderOverview from './views/overview';
-import renderImportance from './views/importance';
+import OverviewView from './views/OverviewView';
+import ImportanceView from './views/ImportanceView';
 import { routerTriggered, Route } from '../w-router-outlet';
 
 @Component({
@@ -30,21 +30,19 @@ export class WCertificate {
   routes = [
     {
       hash: CertificateView.overview,
-      renderer: () =>
-        renderOverview({
-          strings: this.strings,
-          lastEdited: new Date('2020-02-16 2:20'),
-          publishedBy: 'Sebastiaan van der Lans',
-          locale: 'en',
-        }),
+      renderer: () => (
+        <OverviewView
+          strings={this.strings}
+          lastEdited={new Date('2020-02-16 2:20')}
+          publishedBy="Sebastiaan van der Lans"
+          locale="en"
+        />
+      ),
       default: true,
     },
     {
       hash: CertificateView.importance,
-      renderer: () =>
-        renderImportance({
-          strings: this.strings,
-        }),
+      renderer: () => <ImportanceView strings={this.strings} />,
     },
   ] as Route[];
 
