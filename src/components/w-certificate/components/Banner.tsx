@@ -1,6 +1,6 @@
-import { h } from '@stencil/core';
+import { FunctionalComponent, h } from '@stencil/core';
 
-const renderBanner = () => (
+const Banner:FunctionalComponent = () => (
   <div class="relative h-full">
     <div
       class="bg-yellowAccent w-full h-full absolute"
@@ -61,4 +61,4 @@ const renderBanner = () => (
   </div>
 );
 
-export default renderBanner;
+export default Banner;

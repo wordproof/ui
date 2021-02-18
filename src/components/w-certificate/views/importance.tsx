@@ -1,12 +1,12 @@
 import { h } from '@stencil/core';
 import { CertificateStrings } from '../../../i18n';
-import renderBanner from '../components/banner';
+import Banner from '../components/Banner';
 
 const renderImportance = ({ strings }: { strings: CertificateStrings }) => {
   return (
     <div class="flex flex-row">
       <div class="hidden md:block md:w-1/3 overflow-hidden">
-        {renderBanner()}
+        <Banner />
       </div>
       <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left">
         <div class="md:py-4 md:px-6 text-left border-2 border-gray-300 rounded-lg">

@@ -1,7 +1,11 @@
-import { h } from '@stencil/core';
+import { FunctionalComponent, h } from '@stencil/core';
 import { CertificateStrings } from '../../../i18n';
 
-const renderHeader = ({ strings }: { strings: CertificateStrings }) => (
+interface HeaderProps {
+  strings: CertificateStrings;
+}
+
+const Header: FunctionalComponent<HeaderProps> = ({ strings }) => (
   <div class="flex p-3 items-center border-b-2 border-gray-400">
     <w-logo fit double-colored text text-large class="h-8"></w-logo>
     <p class="hidden md:block ml-auto mr-8 text-blue font-sohne">
@@ -10,4 +14,4 @@ const renderHeader = ({ strings }: { strings: CertificateStrings }) => (
   </div>
 );
 
-export default renderHeader;
+export default Header;

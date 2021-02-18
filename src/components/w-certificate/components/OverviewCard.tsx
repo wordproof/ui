@@ -1,14 +1,6 @@
-import { h } from '@stencil/core';
+import { FunctionalComponent, h } from '@stencil/core';
 
-const renderOverviewCard = ({
-  icon,
-  title,
-  text,
-  link,
-  onLinkClick,
-  checked,
-  checkedText,
-}: {
+interface OverviewCardProps {
   icon: string;
   title: string;
   text: string;
@@ -16,6 +8,15 @@ const renderOverviewCard = ({
   onLinkClick: Function;
   checked: boolean | null;
   checkedText: string;
+}
+const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
+  icon,
+  title,
+  text,
+  link,
+  onLinkClick,
+  checked,
+  checkedText,
 }) => (
   <div class="border-2 border-solid border-gray-300 rounded-lg p-4 md:px-4 md:py-5 mb-3">
     <div class="flex flex-col">
@@ -51,4 +52,4 @@ const renderOverviewCard = ({
   </div>
 );
 
-export default renderOverviewCard;
+export default OverviewCard;
