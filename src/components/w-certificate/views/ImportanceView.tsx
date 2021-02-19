@@ -1,6 +1,8 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { CertificateStrings } from '../../../i18n';
+import { router } from '../../w-router-outlet';
 import Banner from '../components/Banner';
+import Button from '../components/Button';
 
 interface ImportanceViewProps {
   strings: CertificateStrings;
@@ -12,14 +14,9 @@ const ImportanceView: FunctionalComponent<ImportanceViewProps> = ({
   return (
     <div>
       <w-certificate-header>
-        <w-logo
-          slot="left"
-          fit
-          double-colored
-          text
-          text-large
-          class="h-8"
-        ></w-logo>
+        <div slot="left">
+          <Button onClick={router.back} text="Previous" />
+        </div>
         <p slot="right">{strings.contentIsWordProof}</p>
       </w-certificate-header>
 

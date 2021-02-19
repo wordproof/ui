@@ -55,12 +55,13 @@ export class WCertificate {
   }
 
   showModal() {
-    this.visible = true;
     router.go();
+    this.visible = true;
   }
 
   hideModal() {
     this.visible = false;
+    router.go();
     router.clearHash();
   }
 
