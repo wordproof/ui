@@ -47,7 +47,7 @@ defineCustomElements();
 
 ### API
 
-<<< @/src/components/w-button/readme.md
+!!!include(src/components/w-button/readme.md)!!!
 
 ## Text Input
 
@@ -59,4 +59,4 @@ defineCustomElements();
 
 ### API
 
-<<< @/src/components/w-input-text/readme.md
+!!!include(src/components/w-input-text/readme.md)!!!

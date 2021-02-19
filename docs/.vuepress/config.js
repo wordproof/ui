@@ -9,4 +9,10 @@ module.exports = {
       },
     ],
   ],
+  markdown: {
+    extendMarkdown: md => {
+      md.use(require('markdown-it-include'));
+    },
+  },
+  plugins: ['vuepress-plugin-mermaidjs'],
 };
