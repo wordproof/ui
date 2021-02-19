@@ -10,17 +10,31 @@ const ImportanceView: FunctionalComponent<ImportanceViewProps> = ({
   strings,
 }) => {
   return (
-    <div class="flex flex-row">
-      <div class="hidden md:block md:w-1/3 overflow-hidden">
-        <Banner />
-      </div>
-      <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left">
-        <div class="md:py-4 md:px-6 text-left border-2 border-gray-300 rounded-lg">
-          <h2 class="font-medium">{strings.importanceTitle}</h2>
-          <p class="pb-3 text-gray-700">{strings.importanceParagraph1}</p>
-          <p class="pb-3 text-gray-700">{strings.importanceParagraph2}</p>
-          <p class="pb-3 text-gray-700">{strings.importanceParagraph3}</p>
-          <p class="pb-3 text-gray-700">{strings.importanceParagraph4}</p>
+    <div>
+      <w-certificate-header>
+        <w-logo
+          slot="left"
+          fit
+          double-colored
+          text
+          text-large
+          class="h-8"
+        ></w-logo>
+        <p slot="right">{strings.contentIsWordProof}</p>
+      </w-certificate-header>
+
+      <div class="flex flex-row">
+        <div class="hidden md:block md:w-1/3 overflow-hidden">
+          <Banner />
+        </div>
+        <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left">
+          <div class="md:py-4 md:px-6 text-left border-2 border-gray-300 rounded-lg">
+            <h2 class="font-medium">{strings.importanceTitle}</h2>
+            <p class="pb-3 text-gray-700">{strings.importanceParagraph1}</p>
+            <p class="pb-3 text-gray-700">{strings.importanceParagraph2}</p>
+            <p class="pb-3 text-gray-700">{strings.importanceParagraph3}</p>
+            <p class="pb-3 text-gray-700">{strings.importanceParagraph4}</p>
+          </div>
         </div>
       </div>
     </div>

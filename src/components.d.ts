@@ -43,6 +43,8 @@ export namespace Components {
          */
         "noIcon": boolean;
     }
+    interface WCertificateHeader {
+    }
     interface WCertificateLink {
         /**
           * hides icon
@@ -162,6 +164,12 @@ declare global {
         prototype: HTMLWCertificateElement;
         new (): HTMLWCertificateElement;
     };
+    interface HTMLWCertificateHeaderElement extends Components.WCertificateHeader, HTMLStencilElement {
+    }
+    var HTMLWCertificateHeaderElement: {
+        prototype: HTMLWCertificateHeaderElement;
+        new (): HTMLWCertificateHeaderElement;
+    };
     interface HTMLWCertificateLinkElement extends Components.WCertificateLink, HTMLStencilElement {
     }
     var HTMLWCertificateLinkElement: {
@@ -201,6 +209,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
+        "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
         "w-icon": HTMLWIconElement;
         "w-input-text": HTMLWInputTextElement;
@@ -245,6 +254,8 @@ declare namespace LocalJSX {
           * hides icon on certificate link
          */
         "noIcon"?: boolean;
+    }
+    interface WCertificateHeader {
     }
     interface WCertificateLink {
         /**
@@ -357,6 +368,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "w-button": WButton;
         "w-certificate": WCertificate;
+        "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
         "w-icon": WIcon;
         "w-input-text": WInputText;
@@ -371,6 +383,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
+            "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;

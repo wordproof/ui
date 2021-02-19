@@ -2,7 +2,6 @@ import { Component, Prop, h, State, Element } from '@stencil/core';
 import { CertificateView, CertificateViewKeys } from './types';
 import { CertificateStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
-import Header from './components/Header';
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
 import { routerTriggered, Route } from '../w-router-outlet';
@@ -74,8 +73,6 @@ export class WCertificate {
             icon="close-circle"
             class="text-teal mr-2 mt-2"
           ></w-button>
-
-          <Header strings={this.strings} />
 
           <w-router-outlet routes={this.routes} />
         </w-modal>
