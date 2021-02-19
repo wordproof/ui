@@ -28,7 +28,7 @@ const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
           <h3 class="text-lg text-black font-medium">{title}</h3>
           <p class="mb-2">{text}</p>
           <button
-            class="text-darkblue font-medium"
+            class="text-darkblue font-medium focus:outline-none"
             onClick={() => onLinkClick()}
           >
             &gt; {link}

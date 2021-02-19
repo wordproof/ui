@@ -1,7 +1,9 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { CertificateStrings } from '../../../i18n';
+import { router } from '../../w-router-outlet';
 import Banner from '../components/Banner';
 import OverviewCard from '../components/OverviewCard';
+import { CertificateView } from '../types';
 
 interface OverviewViewProps {
   strings: CertificateStrings;
@@ -40,7 +42,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
           title={strings.contentHasNotChangedTitle}
           text={strings.contentHasNotChangedText}
           link={strings.whyIsThisImportnat}
-          onLinkClick={() => {}}
+          onLinkClick={() => {router.go(CertificateView.importance)}}
           checked={true}
           checkedText={`${strings.lastEdit} ${lastEdited.toLocaleDateString(
             locale,
