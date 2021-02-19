@@ -14,9 +14,29 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
+      copy: [
+        {
+          src: '**/*.i18n.*.json',
+          dest: 'i18n',
+        },
+        {
+          src: 'global/fonts',
+          dest: 'fonts',
+        },
+      ],
     },
     {
       type: 'dist-custom-elements-bundle',
+      copy: [
+        {
+          src: '**/*.i18n.*.json',
+          dest: 'i18n',
+        },
+        {
+          src: 'global/fonts',
+          dest: 'fonts',
+        },
+      ],
     },
     {
       type: 'docs-readme',
@@ -24,6 +44,16 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
+      copy: [
+        {
+          src: '**/*.i18n.*.json',
+          dest: 'i18n',
+        },
+        {
+          src: 'global/fonts',
+          dest: 'fonts',
+        },
+      ],
     },
   ],
   globalStyle: 'src/global/styles.css',
@@ -38,4 +68,8 @@ export const config: Config = {
       ],
     }),
   ],
+  devServer: {
+    reloadStrategy: 'pageReload',
+    openBrowser: false,
+  },
 };

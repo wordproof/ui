@@ -9,4 +9,18 @@ module.exports = {
       },
     ],
   ],
+  markdown: {
+    extendMarkdown: md => {
+      md.use(require('markdown-it-include'));
+    },
+  },
+  plugins: ['vuepress-plugin-mermaidjs'],
+  themeConfig: {
+    sidebar: [
+      '/pages/installation',
+      '/pages/w-button',
+      '/pages/w-text-input',
+      '/pages/w-modal',
+    ],
+  },
 };

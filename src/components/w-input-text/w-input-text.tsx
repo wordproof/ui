@@ -12,7 +12,7 @@ import cx from 'classnames';
 @Component({
   tag: 'w-input-text',
   styleUrl: 'w-input-text.css',
-  shadow: true,
+  shadow: false,
 })
 export class WInputText {
   /**
@@ -132,8 +132,8 @@ export class WInputText {
 
   render() {
     return (
-      <Host>
-        <div>
+      <Host class="block">
+        <div class="block">
           <label class="block relative w-full">
             <input
               class={cx(

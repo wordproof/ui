@@ -5,12 +5,17 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Route } from "./components/w-router-outlet";
 export namespace Components {
     interface WButton {
         /**
           * button html "disabled" attribute
          */
         "disabled": boolean;
+        /**
+          * button html "type" attribute
+         */
+        "icon": string;
         /**
           * renders button as underlined text
          */
@@ -27,6 +32,34 @@ export namespace Components {
           * button html "type" attribute
          */
         "type": string;
+    }
+    interface WCertificate {
+        /**
+          * custom certificate link text
+         */
+        "linkText": string;
+        /**
+          * hides icon on certificate link
+         */
+        "noIcon": boolean;
+    }
+    interface WCertificateHeader {
+    }
+    interface WCertificateLink {
+        /**
+          * hides icon
+         */
+        "noIcon": boolean;
+    }
+    interface WIcon {
+        /**
+          * icon will try to fit into the available space maintainig aspect ratio
+         */
+        "fit": boolean;
+        /**
+          * renders the icon with corresponding name
+         */
+        "name": string;
     }
     interface WInputText {
         /**
@@ -74,6 +107,73 @@ export namespace Components {
          */
         "value": string;
     }
+    interface WLogo {
+        /**
+          * sets the logo colors to blue on white
+         */
+        "blueOnWhite": boolean;
+        /**
+          * shows "WordProof" in blue and teal
+         */
+        "doubleColored": boolean;
+        /**
+          * icon will try to fit into the available space maintainig aspect ratio
+         */
+        "fit": boolean;
+        /**
+          * sets the logo colors to blue on white
+         */
+        "tealOnWhite": boolean;
+        /**
+          * adds "WordProof" text to logo
+         */
+        "text": boolean;
+        /**
+          * render large logo text
+         */
+        "textLarge": boolean;
+        /**
+          * sets the logo colors to blue on white
+         */
+        "whiteOnBlue": boolean;
+    }
+    interface WModal {
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "ariaModalDescription": string;
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "ariaModalTitle": string;
+        /**
+          * class names added to backdrop element of the modal
+         */
+        "backdropClassName": string;
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "contentClassName": string;
+        /**
+          * class names added to modal element of the modal
+         */
+        "modalClassName": string;
+        /**
+          * controls visibility of the modal
+         */
+        "rounded": string | boolean;
+        /**
+          * controls visibility of the modal
+         */
+        "visible": boolean;
+        /**
+          * class names added to wrapper element of the modal
+         */
+        "wrapClassName": string;
+    }
+    interface WRouterOutlet {
+        "routes": Route[];
+    }
 }
 declare global {
     interface HTMLWButtonElement extends Components.WButton, HTMLStencilElement {
@@ -82,15 +182,64 @@ declare global {
         prototype: HTMLWButtonElement;
         new (): HTMLWButtonElement;
     };
+    interface HTMLWCertificateElement extends Components.WCertificate, HTMLStencilElement {
+    }
+    var HTMLWCertificateElement: {
+        prototype: HTMLWCertificateElement;
+        new (): HTMLWCertificateElement;
+    };
+    interface HTMLWCertificateHeaderElement extends Components.WCertificateHeader, HTMLStencilElement {
+    }
+    var HTMLWCertificateHeaderElement: {
+        prototype: HTMLWCertificateHeaderElement;
+        new (): HTMLWCertificateHeaderElement;
+    };
+    interface HTMLWCertificateLinkElement extends Components.WCertificateLink, HTMLStencilElement {
+    }
+    var HTMLWCertificateLinkElement: {
+        prototype: HTMLWCertificateLinkElement;
+        new (): HTMLWCertificateLinkElement;
+    };
+    interface HTMLWIconElement extends Components.WIcon, HTMLStencilElement {
+    }
+    var HTMLWIconElement: {
+        prototype: HTMLWIconElement;
+        new (): HTMLWIconElement;
+    };
     interface HTMLWInputTextElement extends Components.WInputText, HTMLStencilElement {
     }
     var HTMLWInputTextElement: {
         prototype: HTMLWInputTextElement;
         new (): HTMLWInputTextElement;
     };
+    interface HTMLWLogoElement extends Components.WLogo, HTMLStencilElement {
+    }
+    var HTMLWLogoElement: {
+        prototype: HTMLWLogoElement;
+        new (): HTMLWLogoElement;
+    };
+    interface HTMLWModalElement extends Components.WModal, HTMLStencilElement {
+    }
+    var HTMLWModalElement: {
+        prototype: HTMLWModalElement;
+        new (): HTMLWModalElement;
+    };
+    interface HTMLWRouterOutletElement extends Components.WRouterOutlet, HTMLStencilElement {
+    }
+    var HTMLWRouterOutletElement: {
+        prototype: HTMLWRouterOutletElement;
+        new (): HTMLWRouterOutletElement;
+    };
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
+        "w-certificate": HTMLWCertificateElement;
+        "w-certificate-header": HTMLWCertificateHeaderElement;
+        "w-certificate-link": HTMLWCertificateLinkElement;
+        "w-icon": HTMLWIconElement;
         "w-input-text": HTMLWInputTextElement;
+        "w-logo": HTMLWLogoElement;
+        "w-modal": HTMLWModalElement;
+        "w-router-outlet": HTMLWRouterOutletElement;
     }
 }
 declare namespace LocalJSX {
@@ -99,6 +248,10 @@ declare namespace LocalJSX {
           * button html "disabled" attribute
          */
         "disabled"?: boolean;
+        /**
+          * button html "type" attribute
+         */
+        "icon"?: string;
         /**
           * renders button as underlined text
          */
@@ -115,6 +268,34 @@ declare namespace LocalJSX {
           * button html "type" attribute
          */
         "type"?: string;
+    }
+    interface WCertificate {
+        /**
+          * custom certificate link text
+         */
+        "linkText"?: string;
+        /**
+          * hides icon on certificate link
+         */
+        "noIcon"?: boolean;
+    }
+    interface WCertificateHeader {
+    }
+    interface WCertificateLink {
+        /**
+          * hides icon
+         */
+        "noIcon"?: boolean;
+    }
+    interface WIcon {
+        /**
+          * icon will try to fit into the available space maintainig aspect ratio
+         */
+        "fit"?: boolean;
+        /**
+          * renders the icon with corresponding name
+         */
+        "name"?: string;
     }
     interface WInputText {
         /**
@@ -164,9 +345,84 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface WLogo {
+        /**
+          * sets the logo colors to blue on white
+         */
+        "blueOnWhite"?: boolean;
+        /**
+          * shows "WordProof" in blue and teal
+         */
+        "doubleColored"?: boolean;
+        /**
+          * icon will try to fit into the available space maintainig aspect ratio
+         */
+        "fit"?: boolean;
+        /**
+          * sets the logo colors to blue on white
+         */
+        "tealOnWhite"?: boolean;
+        /**
+          * adds "WordProof" text to logo
+         */
+        "text"?: boolean;
+        /**
+          * render large logo text
+         */
+        "textLarge"?: boolean;
+        /**
+          * sets the logo colors to blue on white
+         */
+        "whiteOnBlue"?: boolean;
+    }
+    interface WModal {
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "ariaModalDescription"?: string;
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "ariaModalTitle"?: string;
+        /**
+          * class names added to backdrop element of the modal
+         */
+        "backdropClassName"?: string;
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "contentClassName"?: string;
+        /**
+          * class names added to modal element of the modal
+         */
+        "modalClassName"?: string;
+        "onClose"?: (event: CustomEvent<any>) => void;
+        /**
+          * controls visibility of the modal
+         */
+        "rounded"?: string | boolean;
+        /**
+          * controls visibility of the modal
+         */
+        "visible"?: boolean;
+        /**
+          * class names added to wrapper element of the modal
+         */
+        "wrapClassName"?: string;
+    }
+    interface WRouterOutlet {
+        "routes"?: Route[];
+    }
     interface IntrinsicElements {
         "w-button": WButton;
+        "w-certificate": WCertificate;
+        "w-certificate-header": WCertificateHeader;
+        "w-certificate-link": WCertificateLink;
+        "w-icon": WIcon;
         "w-input-text": WInputText;
+        "w-logo": WLogo;
+        "w-modal": WModal;
+        "w-router-outlet": WRouterOutlet;
     }
 }
 export { LocalJSX as JSX };
@@ -174,7 +430,14 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
+            "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
+            "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
+            "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
+            "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
+            "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
+            "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;
+            "w-router-outlet": LocalJSX.WRouterOutlet & JSXBase.HTMLAttributes<HTMLWRouterOutletElement>;
         }
     }
 }

@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  height: 50px;
+}
+
+.eye {
+  width: 17px;
+  height: 9px;
+}
+
+.comment {
+  width: 28px;
+  height: 23px;
+}
+
+.close {
+  width: 16px;
+  height: 16px;
+}
+
+.close-circle {
+  width: 30px;
+  height: 29px;
+}
+
+.check-circle {
+  width: 18px;
+  height: 18px;
+}
+.times-circle {
+  width: 18px;
+  height: 18px;
+}
+
+.clock {
+  width: 32px;
+  height: 32px;
+}
+
+.ink-pen {
+  width: 32px;
+  height: 32px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Sohne-Dreiviertelfett';
+  src: url('../../global/fonts/Sohne-Dreiviertelfett.otf');
+}
+
+@font-face {
+  font-family: 'Sohne-Buch';
+  src: url('../../global/fonts/Sohne-Buch.otf');
+}

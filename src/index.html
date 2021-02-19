@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
   <title>Stencil Component Starter</title>
-
+  <link rel="stylesheet" href="/build/uikit.css">
   <script type="module" src="/build/uikit.esm.js"></script>
   <script nomodule src="/build/uikit.js"></script>
   <style>
@@ -29,7 +29,7 @@
 
 <body>
   <div class="max-w-3xl mx-auto mt-4">
-    <h3>Buttons</h3>
+    <!-- <h3>Buttons</h3>
     <div class="mt-2">
       <w-button id="btn1">+ website</w-button>
       <w-button class="ml-8" outline>+ website</w-button>
@@ -44,32 +44,57 @@
         error="Name should start with capital letter" placeholder="examplestore" suffix=".shopify.com"
         strip="^http[s]?:\/\/|\/$|\.myshopify\.com.*" />
       </w-input-text>
-      <div class="mt-4" id="value2"></div>
+      <div class="mt-4" id="value2"></div> -->
+
+    <div class="my-10">
+      <w-certificate></w-certificate>
     </div>
+
+    <!-- <div class="my-10 flex flex-wrap p-10 bg-gray-400">
+      <w-logo text fit class="h-10 m-5"></w-logo>
+      <w-logo white-on-blue text fit class="h-10 m-5"></w-logo>
+      <w-logo teal-on-white text fit class="h-10 m-5"></w-logo>
+      <w-logo blue-on-white text fit class="h-10 m-5"></w-logo>
+      <w-logo fit text text-large double-colored  class="h-10 m-5"></w-logo>
+      <w-logo fit white-on-blue text text-large double-colored  class="h-10 m-5"></w-logo>
+      <w-logo fit teal-on-white text text-large double-colored  class="h-10 m-5"></w-logo>
+      <w-logo fit blue-on-white text text-large double-colored  class="h-10 m-5"></w-logo>
+      <w-logo fit class="h-10 m-5"></w-logo>
+      <w-logo white-on-blue fit class="h-10 m-5"></w-logo>
+      <w-logo teal-on-white fit class="h-10 m-5"></w-logo>
+      <w-logo blue-on-white fit class="h-10 m-5"></w-logo>
+    </div> -->
+
+    <!-- <div class="my-10 flex p-10">
+      <w-button icon="close" size="xs" class="ml-4 text-teal"></w-button>
+      <w-icon name="eye" class="ml-4 h-10 w-10 text-teal"></w-icon>
+      <w-icon name="comment" class="ml-4 text-purple"></w-icon>
+      <w-icon name="close-circle" fit class="ml-4 w-5 h-5 text-teal"></w-icon>
+    </div> -->
   </div>
   <script>
-    const input1 = document.getElementById("input1");
-    const value1 = document.getElementById("value1");
-    input1.addEventListener('change', ev => {
-      value1.innerText = ev.target.value;
-    });
-    input1.addEventListener('input', ev => {
-      value1.innerText = ev.target.value;
-    });
+    // const input1 = document.getElementById("input1");
+    // const value1 = document.getElementById("value1");
+    // input1.addEventListener('change', ev => {
+    //   value1.innerText = ev.target.value;
+    // });
+    // input1.addEventListener('input', ev => {
+    //   value1.innerText = ev.target.value;
+    // });
 
-    const input2 = document.getElementById("input2");
-    const value2 = document.getElementById("value2");
-    input2.addEventListener('change', ev => {
-      value2.innerText = ev.target.value;
-    });
-    input2.addEventListener('input', ev => {
-      value2.innerText = ev.target.value;
-    });
+    // const input2 = document.getElementById("input2");
+    // const value2 = document.getElementById("value2");
+    // input2.addEventListener('change', ev => {
+    //   value2.innerText = ev.target.value;
+    // });
+    // input2.addEventListener('input', ev => {
+    //   value2.innerText = ev.target.value;
+    // });
 
-    const btn1 = document.getElementById("btn1");
-    btn1.addEventListener('click', ev => {
-      input2.setAttribute('placeholder', 'email@google.com')
-    });
+    // const btn1 = document.getElementById("btn1");
+    // btn1.addEventListener('click', ev => {
+    //   input2.setAttribute('placeholder', 'email@google.com')
+    // });
   </script>
 </body>
 

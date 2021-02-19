@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.logo {
+  /* width: 100px; */
+  height: 100px;
+}
+
+.logo-with-text {
+  /* width: 330px; */
+  height: 100px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Sohne-Dreiviertelfett';
+  src: url('../../global/fonts/Sohne-Dreiviertelfett.otf');
+}
+
+@font-face {
+  font-family: 'Sohne-Buch';
+  src: url('../../global/fonts/Sohne-Buch.otf');
+}
