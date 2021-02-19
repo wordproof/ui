@@ -139,6 +139,26 @@ export namespace Components {
     }
     interface WModal {
         /**
+          * class names added to content wrapper element of the modal
+         */
+        "ariaModalDescription": string;
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "ariaModalTitle": string;
+        /**
+          * class names added to backdrop element of the modal
+         */
+        "backdropClassName": string;
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "contentClassName": string;
+        /**
+          * class names added to modal element of the modal
+         */
+        "modalClassName": string;
+        /**
           * controls visibility of the modal
          */
         "rounded": string | boolean;
@@ -146,6 +166,10 @@ export namespace Components {
           * controls visibility of the modal
          */
         "visible": boolean;
+        /**
+          * class names added to wrapper element of the modal
+         */
+        "wrapClassName": string;
     }
     interface WRouterOutlet {
         "routes": Route[];
@@ -352,6 +376,26 @@ declare namespace LocalJSX {
         "whiteOnBlue"?: boolean;
     }
     interface WModal {
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "ariaModalDescription"?: string;
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "ariaModalTitle"?: string;
+        /**
+          * class names added to backdrop element of the modal
+         */
+        "backdropClassName"?: string;
+        /**
+          * class names added to content wrapper element of the modal
+         */
+        "contentClassName"?: string;
+        /**
+          * class names added to modal element of the modal
+         */
+        "modalClassName"?: string;
         "onClose"?: (event: CustomEvent<any>) => void;
         /**
           * controls visibility of the modal
@@ -361,6 +405,10 @@ declare namespace LocalJSX {
           * controls visibility of the modal
          */
         "visible"?: boolean;
+        /**
+          * class names added to wrapper element of the modal
+         */
+        "wrapClassName"?: string;
     }
     interface WRouterOutlet {
         "routes"?: Route[];

@@ -16,5 +16,10 @@ type CertificateKeys = [
   'importanceParagraph2',
   'importanceParagraph3',
   'importanceParagraph4',
+  'ariaModalTitle',
+  'ariaModalDescription',
 ][number];
 export type CertificateStrings = Record<CertificateKeys, string>;
+
+type ModalStringKeys = ['ariaClose'][number];
+export type ModalStrings = Record<ModalStringKeys, string>;
