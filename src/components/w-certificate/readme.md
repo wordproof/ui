@@ -20,6 +20,8 @@
 - [w-certificate-link](../w-certificate-link)
 - [w-modal](../w-modal)
 - [w-button](../w-button)
+- [w-router-outlet](../w-router-outlet)
+- [w-certificate-header](components)
 - [w-logo](../w-logo)
 - [w-icon](../w-icon)
 
@@ -29,6 +31,8 @@ graph TD;
   w-certificate --> w-certificate-link
   w-certificate --> w-modal
   w-certificate --> w-button
+  w-certificate --> w-router-outlet
+  w-certificate --> w-certificate-header
   w-certificate --> w-logo
   w-certificate --> w-icon
   w-modal --> w-button

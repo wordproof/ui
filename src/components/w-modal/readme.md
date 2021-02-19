@@ -7,10 +7,16 @@
 
 ## Properties
 
-| Property  | Attribute | Description                      | Type                | Default |
-| --------- | --------- | -------------------------------- | ------------------- | ------- |
-| `rounded` | `rounded` | controls visibility of the modal | `boolean \| string` | `false` |
-| `visible` | `visible` | controls visibility of the modal | `boolean`           | `false` |
+| Property               | Attribute                | Description                                               | Type                | Default               |
+| ---------------------- | ------------------------ | --------------------------------------------------------- | ------------------- | --------------------- |
+| `ariaModalDescription` | `aria-modal-description` | class names added to content wrapper element of the modal | `string`            | `'Modal description'` |
+| `ariaModalTitle`       | `aria-modal-title`       | class names added to content wrapper element of the modal | `string`            | `'Modal'`             |
+| `backdropClassName`    | `backdrop-class-name`    | class names added to backdrop element of the modal        | `string`            | `''`                  |
+| `contentClassName`     | `content-class-name`     | class names added to content wrapper element of the modal | `string`            | `''`                  |
+| `modalClassName`       | `modal-class-name`       | class names added to modal element of the modal           | `string`            | `''`                  |
+| `rounded`              | `rounded`                | controls visibility of the modal                          | `boolean \| string` | `false`               |
+| `visible`              | `visible`                | controls visibility of the modal                          | `boolean`           | `false`               |
+| `wrapClassName`        | `wrap-class-name`        | class names added to wrapper element of the modal         | `string`            | `''`                  |
 
 
 ## Events
