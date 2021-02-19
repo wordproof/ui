@@ -4,7 +4,7 @@ import { CertificateStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
-import { routerTriggered, Route } from '../w-router-outlet';
+import { router, Route } from '../w-router-outlet';
 
 @Component({
   tag: 'w-certificate',
@@ -51,7 +51,17 @@ export class WCertificate {
 
   async componentWillLoad(): Promise<void> {
     this.strings = await getLocaleStrings(this.hostElement);
-    this.visible = routerTriggered();
+    this.visible = router.isTriggered();
+  }
+
+  showModal() {
+    this.visible = true;
+    router.go();
+  }
+
+  hideModal() {
+    this.visible = false;
+    router.clearHash();
   }
 
   render() {
@@ -59,14 +69,14 @@ export class WCertificate {
       <div>
         <w-certificate-link
           noIcon={this.noIcon}
-          onClick={() => (this.visible = !this.visible)}
+          onClick={() => this.showModal()}
         >
           {this.linkText ? this.linkText : null}
         </w-certificate-link>
         <w-modal
           rounded="lg"
           visible={this.visible}
-          onClose={() => (this.visible = false)}
+          onClose={() => this.hideModal()}
         >
           <w-button
             slot="close"
