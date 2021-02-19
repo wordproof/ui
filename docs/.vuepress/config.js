@@ -16,6 +16,11 @@ module.exports = {
   },
   plugins: ['vuepress-plugin-mermaidjs'],
   themeConfig: {
-    sidebar: ['/pages/installation', '/pages/w-button', '/pages/w-text-input'],
+    sidebar: [
+      '/pages/installation',
+      '/pages/w-button',
+      '/pages/w-text-input',
+      '/pages/w-modal',
+    ],
   },
 };
