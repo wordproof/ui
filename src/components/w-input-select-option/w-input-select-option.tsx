@@ -6,6 +6,7 @@ import {
   Event,
   Element,
 } from '@stencil/core';
+import cx from 'classnames';
 
 @Component({
   tag: 'w-input-select-option',
@@ -18,12 +19,17 @@ export class WInputSelectOption {
   /**
    * form element error message
    */
-  @Prop() value: string = '';
+  @Prop() value: string | number = '';
 
   /**
    * form element error message
    */
   @Prop() label: string = '';
+
+  /**
+   * disabled
+   */
+  @Prop() disabled: boolean = false;
 
   @Event() choose: EventEmitter<HTMLElement>;
 
@@ -32,11 +38,22 @@ export class WInputSelectOption {
     this.choose.emit(this.hostElement);
   }
 
+  componentWillLoad() {
+    this.hostElement.setAttribute('value', String(this.value));
+    this.hostElement.setAttribute('label', this.label);
+  }
+
   render() {
     return (
       <li
         role="option"
-        class="text-gray-900 cursor-pointer select-none relative py-2 px-3 transition duration-300 ease-in-out hover:bg-gray-200 font-sohne"
+        class={cx(
+          'cursor-pointer select-none relative py-2 px-3 transition duration-300 ease-in-out hover:bg-gray-200 font-sohne',
+          {
+            ['text-gray-900']: !this.disabled,
+            ['text-gray-500']: this.disabled,
+          },
+        )}
         onClick={ev => {
           this.handleClick(ev);
         }}
