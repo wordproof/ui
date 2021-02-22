@@ -3,6 +3,7 @@ import { CertificateStrings } from '../../../../i18n';
 import { router } from '../../../w-router-outlet';
 import Button from '../../components/Button';
 import { WPContent, WPRevision } from '../../service';
+import { diffWords } from 'diff';
 
 interface RevisionOption {
   label: string;
@@ -50,6 +51,22 @@ export class WCertificateLink {
       .replace(new RegExp(PARAGRAPH_DIVIDER, 'gi'), '<br /><br />');
   }
 
+  addDiffStyling(oldStr: string, newStr: string): string {
+    return diffWords(oldStr, newStr)
+      .map(change => {
+        if (change.removed) {
+          return `<span class="bg-red-200 text-red-600">${change.value}</span>`;
+        }
+
+        if (change.added) {
+          return `<span class="bg-green-200 text-green-600">${change.value}</span>`;
+        }
+
+        return change.value;
+      })
+      .join('');
+  }
+
   @State() oldRevisionValue: number;
 
   @State() newRevisionValue: number;
@@ -57,11 +74,20 @@ export class WCertificateLink {
   @Watch('oldRevisionValue')
   watchOldRevisionValue(newValue: number) {
     this.newOptions = this.allOptions.filter(option => option.value < newValue);
+    this.oldContent = this.cleanUp(this.allRevisions[newValue].content);
+    this.newContent = this.addDiffStyling(
+      this.oldContent,
+      this.cleanUp(this.allRevisions[this.newRevisionValue].content),
+    );
   }
 
   @Watch('newRevisionValue')
   watchNewRevisionValue(newValue: number) {
     this.oldOptions = this.allOptions.filter(option => option.value > newValue);
+    this.newContent = this.addDiffStyling(
+      this.oldContent,
+      this.cleanUp(this.allRevisions[newValue].content),
+    );
   }
 
   allRevisions: WPRevision[];
@@ -70,6 +96,10 @@ export class WCertificateLink {
   @State() oldOptions: RevisionOption[];
 
   @State() newOptions: RevisionOption[];
+
+  @State() oldContent: string;
+
+  @State() newContent: string;
 
   componentWillLoad() {
     const { revisions, ...otherProps } = this.content;
@@ -132,23 +162,13 @@ export class WCertificateLink {
               class="w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800"
               style={{ maxHeight: '280px' }}
             >
-              <div
-                class="w-full break-all"
-                innerHTML={this.cleanUp(
-                  this.allRevisions[this.oldRevisionValue].content,
-                )}
-              ></div>
+              <div class="w-full break-all" innerHTML={this.oldContent}></div>
             </div>
             <div
               class="w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800"
               style={{ maxHeight: '280px' }}
             >
-              <div
-                class="w-full break-all"
-                innerHTML={this.cleanUp(
-                  this.allRevisions[this.newRevisionValue].content,
-                )}
-              ></div>
+              <div class="w-full break-all" innerHTML={this.newContent}></div>
             </div>
           </div>
         </div>
