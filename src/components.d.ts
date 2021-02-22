@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CertificateStrings } from "./i18n";
+import { WPContent } from "./components/w-certificate/service";
 import { Route } from "./components/w-router-outlet";
 export namespace Components {
     interface WButton {
@@ -42,6 +44,11 @@ export namespace Components {
           * hides icon on certificate link
          */
         "noIcon": boolean;
+    }
+    interface WCertificateCompareView {
+        "content": WPContent;
+        "locale": string;
+        "strings": CertificateStrings;
     }
     interface WCertificateHeader {
     }
@@ -216,6 +223,12 @@ declare global {
         prototype: HTMLWCertificateElement;
         new (): HTMLWCertificateElement;
     };
+    interface HTMLWCertificateCompareViewElement extends Components.WCertificateCompareView, HTMLStencilElement {
+    }
+    var HTMLWCertificateCompareViewElement: {
+        prototype: HTMLWCertificateCompareViewElement;
+        new (): HTMLWCertificateCompareViewElement;
+    };
     interface HTMLWCertificateHeaderElement extends Components.WCertificateHeader, HTMLStencilElement {
     }
     var HTMLWCertificateHeaderElement: {
@@ -273,6 +286,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
+        "w-certificate-compare-view": HTMLWCertificateCompareViewElement;
         "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
         "w-icon": HTMLWIconElement;
@@ -320,6 +334,11 @@ declare namespace LocalJSX {
           * hides icon on certificate link
          */
         "noIcon"?: boolean;
+    }
+    interface WCertificateCompareView {
+        "content"?: WPContent;
+        "locale"?: string;
+        "strings"?: CertificateStrings;
     }
     interface WCertificateHeader {
     }
@@ -487,6 +506,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "w-button": WButton;
         "w-certificate": WCertificate;
+        "w-certificate-compare-view": WCertificateCompareView;
         "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
         "w-icon": WIcon;
@@ -504,6 +524,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
+            "w-certificate-compare-view": LocalJSX.WCertificateCompareView & JSXBase.HTMLAttributes<HTMLWCertificateCompareViewElement>;
             "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;

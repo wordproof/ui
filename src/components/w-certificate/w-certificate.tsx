@@ -7,7 +7,6 @@ import {
 } from '../../utils/locale';
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
-import CompareView from './views/CompareView';
 import { router, Route } from '../w-router-outlet';
 import { fetchContent, WPContent } from './service';
 
@@ -51,11 +50,11 @@ export class WCertificate {
     {
       hash: CertificateView.compare,
       renderer: () => (
-        <CompareView
+        <w-certificate-compare-view
           strings={this.strings}
           content={this.content}
           locale={this.locale}
-        />
+        ></w-certificate-compare-view>
       ),
     },
   ] as Route[];
