@@ -1,6 +1,5 @@
 :host {
   display: block;
-  height: 50px;
 }
 
 .eye {
@@ -40,6 +39,10 @@
 .ink-pen {
   width: 32px;
   height: 32px;
+}
+.arrow-down {
+  width: 13px;
+  height: 6px;
 }
 
 @tailwind base;
