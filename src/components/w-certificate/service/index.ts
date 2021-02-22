@@ -204,6 +204,6 @@ export const fetchContent = async (): Promise<WPContent> => {
   return new Promise(resolve => {
     setTimeout(() => {
       return resolve(sample);
-    }, 500);
+    }, 100);
   });
 };
