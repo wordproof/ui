@@ -25,7 +25,7 @@ const ImportanceView: FunctionalComponent<ImportanceViewProps> = ({
           <Banner />
         </div>
         <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left">
-          <div class="md:py-4 md:px-6 text-left border-2 border-gray-300 rounded-lg">
+          <div class="p-3 md:py-4 md:px-6 text-left border-2 border-gray-300 rounded-lg">
             <h2 class="font-medium">{strings.importanceTitle}</h2>
             <p class="pb-3 text-gray-700">{strings.importanceParagraph1}</p>
             <p class="pb-3 text-gray-700">{strings.importanceParagraph2}</p>

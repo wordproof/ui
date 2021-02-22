@@ -126,7 +126,7 @@ export class WCertificateLink {
         </w-certificate-header>
 
         <div>
-          <div class="flex flex-col sm:flex-row sm:space-x-4 mx-4 mt-3 mb-4">
+          <div class="flex flex-col sm:flex-row mx-3 sm:space-x-4 sm:mx-4 sm:mt-3 sm:mb-4">
             <w-input-select
               value={this.oldRevisionValue}
               class="w-full"
@@ -143,7 +143,7 @@ export class WCertificateLink {
             </w-input-select>
             <w-input-select
               value={this.newRevisionValue}
-              class="w-full my-2 sm:my-0"
+              class="w-full"
               onInput={(ev: InputEvent) => {
                 this.newRevisionValue = Number(ev.data);
               }}
@@ -157,9 +157,9 @@ export class WCertificateLink {
             </w-input-select>
           </div>
 
-          <div class="flex flex-col sm:flex-row sm:space-x-4 mx-4 mt-3 mb-4">
+          <div class="flex flex-col mx-3 my-2 sm:flex-row sm:space-x-4 sm:mx-4 sm:mt-3 sm:mb-4">
             <div
-              class="w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800"
+              class="hidden sm:block w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800"
               style={{ maxHeight: '280px' }}
             >
               <div class="w-full break-all" innerHTML={this.oldContent}></div>

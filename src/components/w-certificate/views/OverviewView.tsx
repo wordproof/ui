@@ -36,7 +36,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         <Banner />
       </div>
 
-      <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left">
+      <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left space-y-4">
         <OverviewCard
           icon="ink-pen"
           title={strings.contentHasNotChangedTitle}
