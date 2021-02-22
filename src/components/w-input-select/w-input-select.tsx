@@ -20,6 +20,12 @@ export class WInputSelect {
    */
   @Prop() placeholder: string = '';
 
+  /**
+   * value
+   */
+  @Prop({ mutable: true })
+  value: string | number = '';
+
   @State() displayVallue: string = '';
 
   @State() open: boolean = false;
@@ -29,8 +35,22 @@ export class WInputSelect {
     const { value: data, label } = event.detail;
     this.open = false;
     this.displayVallue = label;
-    const emittedEvent = new InputEvent('input', { data });
+    const emittedEvent = new InputEvent('input', { data: String(data) });
     this.hostElement.dispatchEvent(emittedEvent);
+  }
+
+  options: WInputSelectOption[];
+
+  componentWillLoad() {
+    this.options = (Array.from(this.hostElement.childNodes).filter(
+      node => node.nodeType === Node.ELEMENT_NODE,
+    ) as unknown) as WInputSelectOption[];
+
+    const selected = this.options.find(option => option.value == this.value);
+
+    if (selected) {
+      this.displayVallue = selected.label;
+    }
   }
 
   render() {
