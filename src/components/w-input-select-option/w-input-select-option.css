@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  border-bottom: 1px solid #e2e9f4 !important;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Sohne-Dreiviertelfett';
+  src: url('../../global/fonts/Sohne-Dreiviertelfett.otf');
+}
+
+@font-face {
+  font-family: 'Sohne-Buch';
+  src: url('../../global/fonts/Sohne-Buch.otf');
+}

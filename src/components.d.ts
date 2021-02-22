@@ -61,6 +61,26 @@ export namespace Components {
          */
         "name": string;
     }
+    interface WInputSelect {
+        /**
+          * form element error message
+         */
+        "error": string;
+        /**
+          * placeholder
+         */
+        "placeholder": string;
+    }
+    interface WInputSelectOption {
+        /**
+          * form element error message
+         */
+        "label": string;
+        /**
+          * form element error message
+         */
+        "value": string;
+    }
     interface WInputText {
         /**
           * input html tag "autocomplete" attribute, defaults to ""
@@ -206,6 +226,18 @@ declare global {
         prototype: HTMLWIconElement;
         new (): HTMLWIconElement;
     };
+    interface HTMLWInputSelectElement extends Components.WInputSelect, HTMLStencilElement {
+    }
+    var HTMLWInputSelectElement: {
+        prototype: HTMLWInputSelectElement;
+        new (): HTMLWInputSelectElement;
+    };
+    interface HTMLWInputSelectOptionElement extends Components.WInputSelectOption, HTMLStencilElement {
+    }
+    var HTMLWInputSelectOptionElement: {
+        prototype: HTMLWInputSelectOptionElement;
+        new (): HTMLWInputSelectOptionElement;
+    };
     interface HTMLWInputTextElement extends Components.WInputText, HTMLStencilElement {
     }
     var HTMLWInputTextElement: {
@@ -236,6 +268,8 @@ declare global {
         "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
         "w-icon": HTMLWIconElement;
+        "w-input-select": HTMLWInputSelectElement;
+        "w-input-select-option": HTMLWInputSelectOptionElement;
         "w-input-text": HTMLWInputTextElement;
         "w-logo": HTMLWLogoElement;
         "w-modal": HTMLWModalElement;
@@ -296,6 +330,27 @@ declare namespace LocalJSX {
           * renders the icon with corresponding name
          */
         "name"?: string;
+    }
+    interface WInputSelect {
+        /**
+          * form element error message
+         */
+        "error"?: string;
+        /**
+          * placeholder
+         */
+        "placeholder"?: string;
+    }
+    interface WInputSelectOption {
+        /**
+          * form element error message
+         */
+        "label"?: string;
+        "onChoose"?: (event: CustomEvent<HTMLElement>) => void;
+        /**
+          * form element error message
+         */
+        "value"?: string;
     }
     interface WInputText {
         /**
@@ -419,6 +474,8 @@ declare namespace LocalJSX {
         "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
         "w-icon": WIcon;
+        "w-input-select": WInputSelect;
+        "w-input-select-option": WInputSelectOption;
         "w-input-text": WInputText;
         "w-logo": WLogo;
         "w-modal": WModal;
@@ -434,6 +491,8 @@ declare module "@stencil/core" {
             "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
+            "w-input-select": LocalJSX.WInputSelect & JSXBase.HTMLAttributes<HTMLWInputSelectElement>;
+            "w-input-select-option": LocalJSX.WInputSelectOption & JSXBase.HTMLAttributes<HTMLWInputSelectOptionElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
             "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
             "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;
