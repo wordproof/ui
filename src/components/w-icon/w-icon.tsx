@@ -109,9 +109,19 @@ export class WIcon {
           </g>
         </symbol>
 
+        <symbol id="arrow-down" viewBox="0 0 13 6">
+          <path
+            d="M1 1l5.403 3.443L11.55 1"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            fill-rule="evenodd"
+            stroke-linecap="round"
+          />
+        </symbol>
+
         <symbol id="somename" viewBox="0 0 28 23"></symbol>
       </svg>
     );
   }
 }
-
