@@ -15,7 +15,7 @@ const ImportanceView: FunctionalComponent<ImportanceViewProps> = ({
     <div>
       <w-certificate-header>
         <div slot="left">
-          <Button onClick={router.back} text="Previous" />
+          <Button onClick={router.back} text={strings.previous} />
         </div>
         <p slot="right">{strings.contentIsWordProof}</p>
       </w-certificate-header>
