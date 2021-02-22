@@ -28,6 +28,7 @@
     "@stencil/core": "^2.0.1",
     "autoprefixer": "^10.2.3",
     "classnames": "^2.2.6",
+    "diff": "^5.0.0",
     "postcss": "^8.2.4",
     "tailwindcss": "^2.0.2"
   },
