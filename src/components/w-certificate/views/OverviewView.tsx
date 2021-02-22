@@ -42,7 +42,9 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
           title={strings.contentHasNotChangedTitle}
           text={strings.contentHasNotChangedText}
           link={strings.whyIsThisImportnat}
-          onLinkClick={() => {router.go(CertificateView.importance)}}
+          onLinkClick={() => {
+            router.go(CertificateView.importance);
+          }}
           checked={true}
           checkedText={`${strings.lastEdit} ${lastEdited.toLocaleDateString(
             locale,
@@ -61,7 +63,9 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
           title={strings.discoverHowTitle}
           text={strings.discoverHowText}
           link={strings.viewPreviousVersions}
-          onLinkClick={() => {}}
+          onLinkClick={() => {
+            router.go(CertificateView.compare);
+          }}
           checked={true}
           checkedText={`${strings.publishedBy} ${publishedBy}`}
         />
