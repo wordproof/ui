@@ -5,6 +5,7 @@ import { getLocaleStrings } from '../../utils/locale';
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
 import { router, Route } from '../w-router-outlet';
+import { fetchContent, WPContent } from './service';
 
 @Component({
   tag: 'w-certificate',
@@ -49,9 +50,12 @@ export class WCertificate {
 
   strings: CertificateStrings;
 
+  content: WPContent;
+
   async componentWillLoad(): Promise<void> {
     this.strings = await getLocaleStrings(this.hostElement);
     this.visible = router.isTriggered();
+    this.content = await fetchContent();
   }
 
   showModal() {
