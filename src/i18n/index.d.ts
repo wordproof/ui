@@ -18,6 +18,15 @@ type CertificateKeys = [
   'importanceParagraph4',
   'ariaModalTitle',
   'ariaModalDescription',
+  'recent',
+  'firstTimestamp',
+  'explanation',
+  'timestampCheck',
+  'compare',
+  'viewOnBlockchain',
+  'rawInput',
+  'previous',
+  'browsePreviousVersions'
 ][number];
 export type CertificateStrings = Record<CertificateKeys, string>;
 
