@@ -40,9 +40,25 @@
   width: 32px;
   height: 32px;
 }
+
 .arrow-down {
   width: 13px;
   height: 6px;
+}
+
+.question-circle {
+  width: 34px;
+  height: 34px;
+}
+
+.eye-large {
+  width: 34px;
+  height: 19px;
+}
+
+.currentColor {
+  width: 33px;
+  height: 19px;
 }
 
 @tailwind base;
