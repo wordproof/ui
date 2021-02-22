@@ -1,9 +1,13 @@
 import { Component, Prop, h, State, Element } from '@stencil/core';
 import { CertificateView, CertificateViewKeys } from './types';
 import { CertificateStrings } from '../../i18n';
-import { getLocaleStrings } from '../../utils/locale';
+import {
+  getLocaleStrings,
+  getComponentClosestLanguage,
+} from '../../utils/locale';
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
+import CompareView from './views/CompareView';
 import { router, Route } from '../w-router-outlet';
 import { fetchContent, WPContent } from './service';
 
@@ -33,9 +37,9 @@ export class WCertificate {
       renderer: () => (
         <OverviewView
           strings={this.strings}
-          lastEdited={new Date('2020-02-16 2:20')}
+          lastEdited={new Date(this.content.date)}
           publishedBy="Sebastiaan van der Lans"
-          locale="en"
+          locale={this.locale}
         />
       ),
       default: true,
@@ -43,6 +47,16 @@ export class WCertificate {
     {
       hash: CertificateView.importance,
       renderer: () => <ImportanceView strings={this.strings} />,
+    },
+    {
+      hash: CertificateView.compare,
+      renderer: () => (
+        <CompareView
+          strings={this.strings}
+          content={this.content}
+          locale={this.locale}
+        />
+      ),
     },
   ] as Route[];
 
@@ -52,10 +66,13 @@ export class WCertificate {
 
   content: WPContent;
 
+  locale: string;
+
   async componentWillLoad(): Promise<void> {
     this.strings = await getLocaleStrings(this.hostElement);
     this.visible = router.isTriggered();
     this.content = await fetchContent();
+    this.locale = getComponentClosestLanguage(this.hostElement);
   }
 
   showModal() {

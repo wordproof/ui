@@ -70,8 +70,16 @@ export namespace Components {
           * placeholder
          */
         "placeholder": string;
+        /**
+          * value
+         */
+        "value": string | number;
     }
     interface WInputSelectOption {
+        /**
+          * disabled
+         */
+        "disabled": boolean;
         /**
           * form element error message
          */
@@ -79,7 +87,7 @@ export namespace Components {
         /**
           * form element error message
          */
-        "value": string;
+        "value": string | number;
     }
     interface WInputText {
         /**
@@ -340,8 +348,16 @@ declare namespace LocalJSX {
           * placeholder
          */
         "placeholder"?: string;
+        /**
+          * value
+         */
+        "value"?: string | number;
     }
     interface WInputSelectOption {
+        /**
+          * disabled
+         */
+        "disabled"?: boolean;
         /**
           * form element error message
          */
@@ -350,7 +366,7 @@ declare namespace LocalJSX {
         /**
           * form element error message
          */
-        "value"?: string;
+        "value"?: string | number;
     }
     interface WInputText {
         /**
