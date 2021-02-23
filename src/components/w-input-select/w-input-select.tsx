@@ -39,6 +39,13 @@ export class WInputSelect {
     this.hostElement.dispatchEvent(emittedEvent);
   }
 
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key === 'Escape') {
+      this.close();
+    }
+  }
+
   options: WInputSelectOption[];
 
   backdropEl: HTMLElement;
