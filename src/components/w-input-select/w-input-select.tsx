@@ -33,13 +33,15 @@ export class WInputSelect {
   @Listen('choose')
   selectHandler(event: CustomEvent<WInputSelectOption>) {
     const { value: data, label } = event.detail;
-    this.open = false;
+    this.close();
     this.displayVallue = label;
     const emittedEvent = new InputEvent('input', { data: String(data) });
     this.hostElement.dispatchEvent(emittedEvent);
   }
 
   options: WInputSelectOption[];
+
+  backdropEl: HTMLElement;
 
   componentWillLoad() {
     this.options = (Array.from(this.hostElement.childNodes).filter(
@@ -51,6 +53,14 @@ export class WInputSelect {
     if (selected) {
       this.displayVallue = selected.label;
     }
+  }
+
+  toggle() {
+    this.open = !this.open;
+  }
+
+  close() {
+    this.open = false;
   }
 
   render() {
@@ -66,10 +76,8 @@ export class WInputSelect {
             aria-haspopup="listbox"
             aria-expanded="true"
             aria-labelledby="listbox-label"
-            class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 h-12 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer"
-            onClick={() => {
-              this.open = !this.open;
-            }}
+            class="z-50 relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 h-12 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer"
+            onClick={this.toggle.bind(this)}
           >
             <span class="flex items-center">
               <span class="ml-3 block text-gray-800 truncate">
@@ -80,25 +88,25 @@ export class WInputSelect {
               <w-icon name="arrow-down" class="text-blue"></w-icon>
             </span>
           </button>
-          <transition name="fade">
+          <div
+            class={cx('absolute mt-1 w-full rounded-md bg-white shadow-lg', {
+              hidden: !this.open,
+            })}
+          >
             <div
-              class={cx(
-                'absolute mt-1 w-full rounded-md bg-white shadow-lg z-10',
-                {
-                  invisible: !this.open,
-                },
-              )}
+              class="fixed w-full h-full top-0 left-0 bg-transparent z-0"
+              ref={el => (this.backdropEl = el as HTMLElement)}
+              onClick={this.close.bind(this)}
+            ></div>
+            <ul
+              tabindex="-1"
+              role="listbox"
+              aria-labelledby="listbox-label"
+              class="z-50 max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none"
             >
-              <ul
-                tabindex="-1"
-                role="listbox"
-                aria-labelledby="listbox-label"
-                class="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none"
-              >
-                <slot />
-              </ul>
-            </div>
-          </transition>
+              <slot />
+            </ul>
+          </div>
         </div>
       </div>
     );
