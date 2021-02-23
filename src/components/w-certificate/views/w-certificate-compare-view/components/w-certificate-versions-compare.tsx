@@ -7,9 +7,9 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core';
-import { WPRevision } from '../../service';
+import { WPRevision } from '../../../service';
 import ContentPreview from './ContentPreview';
-import { RevisionOption } from './types';
+import { RevisionOption } from '../types';
 
 @Component({
   tag: 'w-certificate-versions-compare',
