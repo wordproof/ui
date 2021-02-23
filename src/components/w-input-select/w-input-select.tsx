@@ -83,7 +83,10 @@ export class WInputSelect {
             aria-haspopup="listbox"
             aria-expanded="true"
             aria-labelledby="listbox-label"
-            class="z-50 relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 h-12 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer"
+            class={cx(
+              { ['z-10']: this.open },
+              'relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 h-12 text-left focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer',
+            )}
             onClick={this.toggle.bind(this)}
           >
             <span class="flex items-center">
@@ -96,12 +99,15 @@ export class WInputSelect {
             </span>
           </button>
           <div
-            class={cx('absolute mt-1 w-full rounded-md bg-white shadow-lg', {
-              hidden: !this.open,
-            })}
+            class={cx(
+              'absolute mt-1 w-full rounded-md bg-white shadow-lg z-10',
+              {
+                hidden: !this.open,
+              },
+            )}
           >
             <div
-              class="fixed w-full h-full top-0 left-0 bg-transparent z-0"
+              class="fixed w-full h-full top-0 left-0 bg-transparent"
               ref={el => (this.backdropEl = el as HTMLElement)}
               onClick={this.close.bind(this)}
             ></div>
