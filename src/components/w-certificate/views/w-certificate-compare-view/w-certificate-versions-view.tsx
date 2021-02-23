@@ -77,10 +77,17 @@ export class WCertificateVersionsView {
           </p>
         </w-certificate-header>
 
-        <w-certificate-versions-compare
-          allRevisions={this.allRevisions}
-          allOptions={this.allOptions}
-        ></w-certificate-versions-compare>
+        {this.raw ? (
+          <w-certificate-versions-raw
+            allRevisions={this.allRevisions}
+            allOptions={this.allOptions}
+          ></w-certificate-versions-raw>
+        ) : (
+          <w-certificate-versions-compare
+            allRevisions={this.allRevisions}
+            allOptions={this.allOptions}
+          ></w-certificate-versions-compare>
+        )}
 
         <Footer
           strings={this.strings}

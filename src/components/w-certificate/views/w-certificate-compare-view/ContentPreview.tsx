@@ -93,7 +93,7 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
       class={`w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800 ${classes}`}
       style={{ maxHeight: '280px' }}
     >
-      {revisions && viewInd ? (
+      {revisions && viewInd !== undefined ? (
         <div
           class="w-full break-all"
           innerHTML={
