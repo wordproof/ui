@@ -49,6 +49,7 @@ export namespace Components {
     interface WCertificateCompareView {
         "content": WPContent;
         "locale": string;
+        "raw": boolean;
         "strings": CertificateStrings;
     }
     interface WCertificateHeader {
@@ -339,6 +340,7 @@ declare namespace LocalJSX {
     interface WCertificateCompareView {
         "content"?: WPContent;
         "locale"?: string;
+        "raw"?: boolean;
         "strings"?: CertificateStrings;
     }
     interface WCertificateHeader {

@@ -4,6 +4,7 @@ import { router } from '../../../w-router-outlet';
 import Button from '../../components/Button';
 import { WPContent, WPRevision } from '../../service';
 import { diffWords } from 'diff';
+import Footer from '../../components/Footer';
 
 interface RevisionOption {
   label: string;
@@ -21,6 +22,8 @@ export class WCertificateLink {
   @Prop() content: WPContent;
 
   @Prop() locale: string;
+
+  @Prop() raw: boolean;
 
   formatOptionLabel(dateStr: string, ind: number): string {
     let prefix = '';
@@ -90,6 +93,7 @@ export class WCertificateLink {
       this.oldContent,
       this.cleanUp(this.allRevisions[newValue].content),
     );
+    this.transactionId = this.allRevisions[newValue].transactionId;
   }
 
   allRevisions: WPRevision[];
@@ -102,6 +106,8 @@ export class WCertificateLink {
   @State() oldContent: string;
 
   @State() newContent: string;
+
+  @State() transactionId: string;
 
   componentWillLoad() {
     const { revisions, ...otherProps } = this.content;
@@ -174,6 +180,12 @@ export class WCertificateLink {
             </div>
           </div>
         </div>
+
+        <Footer
+          strings={this.strings}
+          raw={true}
+          transactionId={this.transactionId}
+        />
       </div>
     );
   }
