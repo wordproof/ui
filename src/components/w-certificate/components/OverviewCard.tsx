@@ -1,7 +1,8 @@
 import { FunctionalComponent, h } from '@stencil/core';
+import { IconName } from '../../w-icon/types';
 
 interface OverviewCardProps {
-  icon: string;
+  icon: IconName;
   title: string;
   text: string;
   link: string;

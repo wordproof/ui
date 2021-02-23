@@ -1,5 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
 import cx from 'classnames';
+import { IconName } from '../w-icon/types';
 
 @Component({
   tag: 'w-button',
@@ -35,7 +36,7 @@ export class WButton {
   /**
    * button html "type" attribute
    */
-  @Prop() icon: string;
+  @Prop() icon: IconName;
 
   getIconSizeClasses() {
     if (this.size === 'xs') {

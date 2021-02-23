@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { IconName } from "./components/w-icon/types";
 import { CertificateStrings } from "./i18n";
 import { WPContent } from "./components/w-certificate/service";
 import { Route } from "./components/w-router-outlet";
@@ -17,7 +18,7 @@ export namespace Components {
         /**
           * button html "type" attribute
          */
-        "icon": string;
+        "icon": IconName;
         /**
           * renders button as underlined text
          */
@@ -66,7 +67,7 @@ export namespace Components {
         /**
           * renders the icon with corresponding name
          */
-        "name": string;
+        "name": IconName;
     }
     interface WInputSelect {
         /**
@@ -307,7 +308,7 @@ declare namespace LocalJSX {
         /**
           * button html "type" attribute
          */
-        "icon"?: string;
+        "icon"?: IconName;
         /**
           * renders button as underlined text
          */
@@ -356,7 +357,7 @@ declare namespace LocalJSX {
         /**
           * renders the icon with corresponding name
          */
-        "name"?: string;
+        "name"?: IconName;
     }
     interface WInputSelect {
         /**

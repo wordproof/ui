@@ -1,4 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
+import { IconName } from './types';
 @Component({
   tag: 'w-icon',
   styleUrl: 'w-icon.css',
@@ -8,7 +9,7 @@ export class WIcon {
   /**
    * renders the icon with corresponding name
    */
-  @Prop() name: string = '';
+  @Prop() name: IconName;
 
   /**
    * icon will try to fit into the available space maintainig aspect ratio
