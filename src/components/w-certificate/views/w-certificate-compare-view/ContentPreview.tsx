@@ -68,7 +68,9 @@ function renderContent(
     return JSON.stringify(revisions[viewInd]);
   }
 
-  return cleanUp(revisions[viewInd].content);
+  if (view === 'render') {
+    return revisions[viewInd].content;
+  }
 }
 
 const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
@@ -78,9 +80,17 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
   diffInd,
   classes = '',
 }) => {
-  return (
+  return view === 'raw' ? (
+    <textarea
+      readonly
+      class={`w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800 focus:outline-none ${classes}`}
+      style={{ maxHeight: '280px', resize: 'none' }}
+    >
+      {renderContent(revisions, view, viewInd)}
+    </textarea>
+  ) : (
     <div
-      class={`hidden sm:block w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800 ${classes}`}
+      class={`w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800 ${classes}`}
       style={{ maxHeight: '280px' }}
     >
       {revisions && viewInd ? (
