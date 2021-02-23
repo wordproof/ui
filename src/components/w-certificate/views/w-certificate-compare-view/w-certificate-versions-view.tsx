@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element, State } from '@stencil/core';
+import { Component, Prop, h, Element, State, Listen } from '@stencil/core';
 import { CertificateStrings } from '../../../../i18n';
 import { router } from '../../../w-router-outlet';
 import Button from '../../components/Button';
@@ -25,6 +25,11 @@ export class WCertificateVersionsView {
 
   allRevisions: WPRevision[];
   allOptions: RevisionOption[];
+
+  @Listen('choose')
+  chooseHandler(event: CustomEvent<WPRevision>) {
+    this.transactionId = event.detail.transactionId;
+  }
 
   componentWillLoad() {
     const { revisions, ...otherProps } = this.content;

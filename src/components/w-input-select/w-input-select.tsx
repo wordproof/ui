@@ -32,6 +32,7 @@ export class WInputSelect {
 
   @Listen('choose')
   selectHandler(event: CustomEvent<WInputSelectOption>) {
+    event.stopPropagation();
     const { value: data, label } = event.detail;
     this.close();
     this.displayVallue = label;

@@ -1,4 +1,12 @@
-import { Component, Prop, h, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  State,
+  Watch,
+  Event,
+  EventEmitter,
+} from '@stencil/core';
 import { WPRevision } from '../../service';
 import ContentPreview from './ContentPreview';
 import { RevisionOption } from './types';
@@ -12,7 +20,7 @@ export class WCertificateVersionsCompare {
 
   @Prop() allOptions: RevisionOption[];
 
-  //@State() transactionId: string;
+  @Event() choose: EventEmitter<WPRevision>;
 
   @State() oldOptions: RevisionOption[];
 
@@ -28,7 +36,7 @@ export class WCertificateVersionsCompare {
   @Watch('newRevisionValue')
   watchNewRevisionValue(newValue: number) {
     this.oldOptions = this.allOptions.filter(option => option.value > newValue);
-    //this.transactionId = this.allRevisions[newValue].transactionId;
+    this.choose.emit(this.allRevisions[newValue]);
   }
 
   componentWillLoad() {

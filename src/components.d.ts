@@ -360,6 +360,7 @@ declare namespace LocalJSX {
     interface WCertificateVersionsCompare {
         "allOptions"?: RevisionOption[];
         "allRevisions"?: WPRevision[];
+        "onChoose"?: (event: CustomEvent<WPRevision>) => void;
     }
     interface WCertificateVersionsView {
         "content"?: WPContent;
