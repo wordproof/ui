@@ -98,20 +98,22 @@ export class WCertificateLink {
 
         <div>
           <div class="flex flex-col sm:flex-row mx-3 sm:space-x-4 sm:mx-4 sm:mt-3 sm:mb-4">
-            <w-input-select
-              value={this.oldRevisionValue}
-              class="w-full"
-              onInput={(ev: InputEvent) => {
-                this.oldRevisionValue = Number(ev.data);
-              }}
-            >
-              {this.oldOptions.map(option => (
-                <w-input-select-option
-                  value={option.value}
-                  label={option.label}
-                ></w-input-select-option>
-              ))}
-            </w-input-select>
+            {this.raw ? null : (
+              <w-input-select
+                value={this.oldRevisionValue}
+                class="w-full"
+                onInput={(ev: InputEvent) => {
+                  this.oldRevisionValue = Number(ev.data);
+                }}
+              >
+                {this.oldOptions.map(option => (
+                  <w-input-select-option
+                    value={option.value}
+                    label={option.label}
+                  ></w-input-select-option>
+                ))}
+              </w-input-select>
+            )}
             <w-input-select
               value={this.newRevisionValue}
               class="w-full"
@@ -131,13 +133,13 @@ export class WCertificateLink {
           <div class="flex flex-col mx-3 my-2 sm:flex-row sm:space-x-4 sm:mx-4 sm:mt-3 sm:mb-4">
             <ContentPreview
               revisions={this.allRevisions}
-              view="clean"
+              view={this.raw ? 'raw' : 'clean'}
               viewInd={this.oldRevisionValue}
               classes="hidden sm:block"
             />
             <ContentPreview
               revisions={this.allRevisions}
-              view="diff"
+              view={this.raw ? 'render' : 'diff'}
               viewInd={this.oldRevisionValue}
               diffInd={this.newRevisionValue}
             />
