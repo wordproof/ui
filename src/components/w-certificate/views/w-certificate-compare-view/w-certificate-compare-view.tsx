@@ -75,10 +75,12 @@ export class WCertificateLink {
   watchOldRevisionValue(newValue: number) {
     this.newOptions = this.allOptions.filter(option => option.value < newValue);
     this.oldContent = this.cleanUp(this.allRevisions[newValue].content);
-    this.newContent = this.addDiffStyling(
-      this.oldContent,
-      this.cleanUp(this.allRevisions[this.newRevisionValue].content),
-    );
+    if (this.newRevisionValue !== undefined) {
+      this.newContent = this.addDiffStyling(
+        this.oldContent,
+        this.cleanUp(this.allRevisions[this.newRevisionValue].content),
+      );
+    }
   }
 
   @Watch('newRevisionValue')
