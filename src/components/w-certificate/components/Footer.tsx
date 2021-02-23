@@ -57,43 +57,6 @@ const Footer: FunctionalComponent<FooterProps> = ({
           classes={link.classes}
         />
       ))}
-
-      {/* <a
-        class="text-blue font-sohne-semibold p-3 md:max-w-1/4 md:p-4 text-sm items-center justify-center inline-flex"
-        href=""
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <w-icon name={Icon.questionCircle}></w-icon>
-        {strings.explanation}
-      </a>
-      <a
-        class="text-blue font-sohne-semibold p-3 md:max-w-1/4 md:p-4 text-sm items-center justify-center hidden md:inline-flex"
-        href="https://wordproof.io/check/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <w-icon name={Icon.closeCircle}></w-icon>
-        {strings.timestampCheck}
-      </a>
-      <a
-        class="text-blue font-sohne-semibold p-3 md:max-w-1/4 md:p-4 text-sm items-center justify-center hidden md:inline-flex"
-        href=""
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <w-icon name={Icon.eyeLarge}></w-icon>
-        {strings.rawInput}
-      </a>
-      <a
-        class="text-blue font-sohne-semibold p-3 md:max-w-1/4 md:p-4 text-sm items-center justify-center inline-flex"
-        href="https://bloks.io/transaction/4cbf491c3d0d28e3b0ad2848f0fa5769afb31fc609390ae5fe06893e4730c018"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <w-icon name={Icon.blockchain}></w-icon>
-        {strings.viewOnBlockchain}
-      </a> */}
     </div>
   );
 };
