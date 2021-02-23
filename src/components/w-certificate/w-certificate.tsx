@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Element } from '@stencil/core';
+import { Component, Prop, h, State, Element, Listen } from '@stencil/core';
 import { CertificateView, CertificateViewKeys } from './types';
 import { CertificateStrings } from '../../i18n';
 import {
@@ -78,6 +78,13 @@ export class WCertificate {
   content: WPContent;
 
   locale: string;
+
+  @Listen('keydown', { target: 'body' })
+  handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key === 'Escape') {
+      this.hideModal();
+    }
+  }
 
   async componentWillLoad(): Promise<void> {
     this.strings = await getLocaleStrings(this.hostElement);
