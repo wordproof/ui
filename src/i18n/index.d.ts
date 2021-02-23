@@ -16,6 +16,7 @@ type CertificateKeys = [
   'importanceParagraph2',
   'importanceParagraph3',
   'importanceParagraph4',
+  'checkYourself',
   'ariaModalTitle',
   'ariaModalDescription',
   'recent',

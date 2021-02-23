@@ -130,7 +130,11 @@ export class WCertificateLink {
           <div slot="left">
             <Button onClick={router.back} text={this.strings.previous} />
           </div>
-          <p slot="right">{this.strings.browsePreviousVersions}</p>
+          <p slot="right">
+            {this.raw
+              ? this.strings.checkYourself
+              : this.strings.browsePreviousVersions}
+          </p>
         </w-certificate-header>
 
         <div>
@@ -183,7 +187,7 @@ export class WCertificateLink {
 
         <Footer
           strings={this.strings}
-          raw={true}
+          raw={this.raw}
           transactionId={this.transactionId}
         />
       </div>

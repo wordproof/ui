@@ -54,6 +54,18 @@ export class WCertificate {
           strings={this.strings}
           content={this.content}
           locale={this.locale}
+          raw={false}
+        ></w-certificate-compare-view>
+      ),
+    },
+    {
+      hash: CertificateView.raw,
+      renderer: () => (
+        <w-certificate-compare-view
+          strings={this.strings}
+          content={this.content}
+          locale={this.locale}
+          raw={true}
         ></w-certificate-compare-view>
       ),
     },

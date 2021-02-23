@@ -32,9 +32,9 @@ const Footer: FunctionalComponent<FooterProps> = ({
     {
       icon: Icon.eyeLarge,
       href: raw
-        ? router.getHref(CertificateView.raw)
-        : router.getHref(CertificateView.compare),
-      label: raw ? strings.rawInput : strings.compare,
+        ? router.getHref(CertificateView.compare)
+        : router.getHref(CertificateView.raw),
+      label: raw ? strings.compare : strings.rawInput,
       classes: 'hidden md:inline-flex',
     },
     {
