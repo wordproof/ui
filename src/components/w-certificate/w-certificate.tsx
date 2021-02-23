@@ -50,23 +50,23 @@ export class WCertificate {
     {
       hash: CertificateView.compare,
       renderer: () => (
-        <w-certificate-compare-view
+        <w-certificate-versions-view
           strings={this.strings}
           content={this.content}
           locale={this.locale}
           raw={false}
-        ></w-certificate-compare-view>
+        ></w-certificate-versions-view>
       ),
     },
     {
       hash: CertificateView.raw,
       renderer: () => (
-        <w-certificate-compare-view
+        <w-certificate-versions-view
           strings={this.strings}
           content={this.content}
           locale={this.locale}
           raw={true}
-        ></w-certificate-compare-view>
+        ></w-certificate-versions-view>
       ),
     },
   ] as Route[];

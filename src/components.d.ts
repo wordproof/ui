@@ -46,12 +46,6 @@ export namespace Components {
          */
         "noIcon": boolean;
     }
-    interface WCertificateCompareView {
-        "content": WPContent;
-        "locale": string;
-        "raw": boolean;
-        "strings": CertificateStrings;
-    }
     interface WCertificateHeader {
     }
     interface WCertificateLink {
@@ -59,6 +53,12 @@ export namespace Components {
           * hides icon
          */
         "noIcon": boolean;
+    }
+    interface WCertificateVersionsView {
+        "content": WPContent;
+        "locale": string;
+        "raw": boolean;
+        "strings": CertificateStrings;
     }
     interface WIcon {
         /**
@@ -225,12 +225,6 @@ declare global {
         prototype: HTMLWCertificateElement;
         new (): HTMLWCertificateElement;
     };
-    interface HTMLWCertificateCompareViewElement extends Components.WCertificateCompareView, HTMLStencilElement {
-    }
-    var HTMLWCertificateCompareViewElement: {
-        prototype: HTMLWCertificateCompareViewElement;
-        new (): HTMLWCertificateCompareViewElement;
-    };
     interface HTMLWCertificateHeaderElement extends Components.WCertificateHeader, HTMLStencilElement {
     }
     var HTMLWCertificateHeaderElement: {
@@ -242,6 +236,12 @@ declare global {
     var HTMLWCertificateLinkElement: {
         prototype: HTMLWCertificateLinkElement;
         new (): HTMLWCertificateLinkElement;
+    };
+    interface HTMLWCertificateVersionsViewElement extends Components.WCertificateVersionsView, HTMLStencilElement {
+    }
+    var HTMLWCertificateVersionsViewElement: {
+        prototype: HTMLWCertificateVersionsViewElement;
+        new (): HTMLWCertificateVersionsViewElement;
     };
     interface HTMLWIconElement extends Components.WIcon, HTMLStencilElement {
     }
@@ -288,9 +288,9 @@ declare global {
     interface HTMLElementTagNameMap {
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
-        "w-certificate-compare-view": HTMLWCertificateCompareViewElement;
         "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
+        "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
         "w-icon": HTMLWIconElement;
         "w-input-select": HTMLWInputSelectElement;
         "w-input-select-option": HTMLWInputSelectOptionElement;
@@ -337,12 +337,6 @@ declare namespace LocalJSX {
          */
         "noIcon"?: boolean;
     }
-    interface WCertificateCompareView {
-        "content"?: WPContent;
-        "locale"?: string;
-        "raw"?: boolean;
-        "strings"?: CertificateStrings;
-    }
     interface WCertificateHeader {
     }
     interface WCertificateLink {
@@ -350,6 +344,12 @@ declare namespace LocalJSX {
           * hides icon
          */
         "noIcon"?: boolean;
+    }
+    interface WCertificateVersionsView {
+        "content"?: WPContent;
+        "locale"?: string;
+        "raw"?: boolean;
+        "strings"?: CertificateStrings;
     }
     interface WIcon {
         /**
@@ -509,9 +509,9 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "w-button": WButton;
         "w-certificate": WCertificate;
-        "w-certificate-compare-view": WCertificateCompareView;
         "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
+        "w-certificate-versions-view": WCertificateVersionsView;
         "w-icon": WIcon;
         "w-input-select": WInputSelect;
         "w-input-select-option": WInputSelectOption;
@@ -527,9 +527,9 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
-            "w-certificate-compare-view": LocalJSX.WCertificateCompareView & JSXBase.HTMLAttributes<HTMLWCertificateCompareViewElement>;
             "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
+            "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-select": LocalJSX.WInputSelect & JSXBase.HTMLAttributes<HTMLWInputSelectElement>;
             "w-input-select-option": LocalJSX.WInputSelectOption & JSXBase.HTMLAttributes<HTMLWInputSelectOptionElement>;

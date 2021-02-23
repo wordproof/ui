@@ -11,10 +11,10 @@ interface RevisionOption {
   value: number;
 }
 @Component({
-  tag: 'w-certificate-compare-view',
+  tag: 'w-certificate-versions-view',
   shadow: true,
 })
-export class WCertificateLink {
+export class WCertificateVersionsView {
   @Element() hostElement: HTMLElement;
 
   @Prop() strings: CertificateStrings;
