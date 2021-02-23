@@ -3,8 +3,8 @@ import { CertificateStrings } from '../../../../i18n';
 import { router } from '../../../w-router-outlet';
 import Button from '../../components/Button';
 import { WPContent, WPRevision } from '../../service';
-import { diffWords } from 'diff';
 import Footer from '../../components/Footer';
+import ContentPreview from './ContentPreview';
 
 interface RevisionOption {
   label: string;
@@ -25,6 +25,42 @@ export class WCertificateLink {
 
   @Prop() raw: boolean;
 
+  @State() transactionId: string;
+
+  @State() oldOptions: RevisionOption[];
+
+  @State() newOptions: RevisionOption[];
+
+  @State() oldRevisionValue: number;
+  @Watch('oldRevisionValue')
+  watchOldRevisionValue(newValue: number) {
+    this.newOptions = this.allOptions.filter(option => option.value < newValue);
+  }
+
+  @State() newRevisionValue: number;
+  @Watch('newRevisionValue')
+  watchNewRevisionValue(newValue: number) {
+    this.oldOptions = this.allOptions.filter(option => option.value > newValue);
+    this.transactionId = this.allRevisions[newValue].transactionId;
+  }
+
+  allRevisions: WPRevision[];
+  allOptions: RevisionOption[];
+
+  componentWillLoad() {
+    const { revisions, ...otherProps } = this.content;
+
+    this.allRevisions = [otherProps, ...revisions];
+
+    this.allOptions = this.allRevisions.map((revision, ind) => ({
+      label: `${this.formatOptionLabel(revision.date, ind)}`,
+      value: ind,
+    }));
+
+    this.oldRevisionValue = 1;
+    this.newRevisionValue = 0;
+  }
+
   formatOptionLabel(dateStr: string, ind: number): string {
     let prefix = '';
     if (ind === 0) {
@@ -44,83 +80,6 @@ export class WCertificateLink {
     });
 
     return `${prefix}${date}`;
-  }
-
-  cleanUp(htmlStr: string) {
-    const PARAGRAPH_DIVIDER = '!!WORDPROOF_RETURN!!';
-    return htmlStr
-      .replace(/<!-- \/wp:paragraph -->/gi, PARAGRAPH_DIVIDER)
-      .replace(/(<([^>]+)>)/gi, '')
-      .replace(new RegExp(PARAGRAPH_DIVIDER, 'gi'), '<br /><br />');
-  }
-
-  addDiffStyling(oldStr: string, newStr: string): string {
-    return diffWords(oldStr, newStr)
-      .map(change => {
-        if (change.removed) {
-          return `<span class="bg-red-200 text-red-600">${change.value}</span>`;
-        }
-
-        if (change.added) {
-          return `<span class="bg-green-200 text-green-600">${change.value}</span>`;
-        }
-
-        return change.value;
-      })
-      .join('');
-  }
-
-  @State() oldRevisionValue: number;
-
-  @State() newRevisionValue: number;
-
-  @Watch('oldRevisionValue')
-  watchOldRevisionValue(newValue: number) {
-    this.newOptions = this.allOptions.filter(option => option.value < newValue);
-    this.oldContent = this.cleanUp(this.allRevisions[newValue].content);
-    if (this.newRevisionValue !== undefined) {
-      this.newContent = this.addDiffStyling(
-        this.oldContent,
-        this.cleanUp(this.allRevisions[this.newRevisionValue].content),
-      );
-    }
-  }
-
-  @Watch('newRevisionValue')
-  watchNewRevisionValue(newValue: number) {
-    this.oldOptions = this.allOptions.filter(option => option.value > newValue);
-    this.newContent = this.addDiffStyling(
-      this.oldContent,
-      this.cleanUp(this.allRevisions[newValue].content),
-    );
-    this.transactionId = this.allRevisions[newValue].transactionId;
-  }
-
-  allRevisions: WPRevision[];
-  allOptions: RevisionOption[];
-
-  @State() oldOptions: RevisionOption[];
-
-  @State() newOptions: RevisionOption[];
-
-  @State() oldContent: string;
-
-  @State() newContent: string;
-
-  @State() transactionId: string;
-
-  componentWillLoad() {
-    const { revisions, ...otherProps } = this.content;
-
-    this.allRevisions = [otherProps, ...revisions];
-
-    this.allOptions = this.allRevisions.map((revision, ind) => ({
-      label: `${this.formatOptionLabel(revision.date, ind)}`,
-      value: ind,
-    }));
-
-    this.oldRevisionValue = 1;
-    this.newRevisionValue = 0;
   }
 
   render() {
@@ -170,18 +129,18 @@ export class WCertificateLink {
           </div>
 
           <div class="flex flex-col mx-3 my-2 sm:flex-row sm:space-x-4 sm:mx-4 sm:mt-3 sm:mb-4">
-            <div
-              class="hidden sm:block w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800"
-              style={{ maxHeight: '280px' }}
-            >
-              <div class="w-full break-all" innerHTML={this.oldContent}></div>
-            </div>
-            <div
-              class="w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800"
-              style={{ maxHeight: '280px' }}
-            >
-              <div class="w-full break-all" innerHTML={this.newContent}></div>
-            </div>
+            <ContentPreview
+              revisions={this.allRevisions}
+              view="clean"
+              viewInd={this.oldRevisionValue}
+              classes="hidden sm:block"
+            />
+            <ContentPreview
+              revisions={this.allRevisions}
+              view="diff"
+              viewInd={this.oldRevisionValue}
+              diffInd={this.newRevisionValue}
+            />
           </div>
         </div>
 
