@@ -6,8 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IconName } from "./components/w-icon/types";
+import { WPContent, WPRevision } from "./components/w-certificate/service";
+import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
 import { CertificateStrings } from "./i18n";
-import { WPContent } from "./components/w-certificate/service";
 import { Route } from "./components/w-router-outlet";
 export namespace Components {
     interface WButton {
@@ -53,6 +54,10 @@ export namespace Components {
           * hides icon
          */
         "noIcon": boolean;
+    }
+    interface WCertificateVersionsCompare {
+        "allOptions": RevisionOption[];
+        "allRevisions": WPRevision[];
     }
     interface WCertificateVersionsView {
         "content": WPContent;
@@ -237,6 +242,12 @@ declare global {
         prototype: HTMLWCertificateLinkElement;
         new (): HTMLWCertificateLinkElement;
     };
+    interface HTMLWCertificateVersionsCompareElement extends Components.WCertificateVersionsCompare, HTMLStencilElement {
+    }
+    var HTMLWCertificateVersionsCompareElement: {
+        prototype: HTMLWCertificateVersionsCompareElement;
+        new (): HTMLWCertificateVersionsCompareElement;
+    };
     interface HTMLWCertificateVersionsViewElement extends Components.WCertificateVersionsView, HTMLStencilElement {
     }
     var HTMLWCertificateVersionsViewElement: {
@@ -290,6 +301,7 @@ declare global {
         "w-certificate": HTMLWCertificateElement;
         "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
+        "w-certificate-versions-compare": HTMLWCertificateVersionsCompareElement;
         "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
         "w-icon": HTMLWIconElement;
         "w-input-select": HTMLWInputSelectElement;
@@ -344,6 +356,10 @@ declare namespace LocalJSX {
           * hides icon
          */
         "noIcon"?: boolean;
+    }
+    interface WCertificateVersionsCompare {
+        "allOptions"?: RevisionOption[];
+        "allRevisions"?: WPRevision[];
     }
     interface WCertificateVersionsView {
         "content"?: WPContent;
@@ -511,6 +527,7 @@ declare namespace LocalJSX {
         "w-certificate": WCertificate;
         "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
+        "w-certificate-versions-compare": WCertificateVersionsCompare;
         "w-certificate-versions-view": WCertificateVersionsView;
         "w-icon": WIcon;
         "w-input-select": WInputSelect;
@@ -529,6 +546,7 @@ declare module "@stencil/core" {
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
             "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
+            "w-certificate-versions-compare": LocalJSX.WCertificateVersionsCompare & JSXBase.HTMLAttributes<HTMLWCertificateVersionsCompareElement>;
             "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-select": LocalJSX.WInputSelect & JSXBase.HTMLAttributes<HTMLWInputSelectElement>;
