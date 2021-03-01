@@ -3,9 +3,8 @@ import {
   Prop,
   h,
   Host,
-  EventEmitter,
-  Event,
   State,
+  Element,
 } from '@stencil/core';
 import cx from 'classnames';
 
@@ -15,6 +14,8 @@ import cx from 'classnames';
   shadow: false,
 })
 export class WInputText {
+  @Element() hostElement: HTMLElement;
+
   /**
    * input html tag "type" attribute, defaults to "text"
    */
@@ -80,19 +81,21 @@ export class WInputText {
    */
   @Prop() strip: string = '';
 
-  @Event() change: EventEmitter<string>;
-
-  @Event() input: EventEmitter<string>;
-
   handleChange(ev: Event) {
     if (this.handleValueChange(ev)) {
-      this.change.emit(this.value);
+      const emittedEvent = new InputEvent('change', {
+        data: String(this.value),
+      });
+      this.hostElement.dispatchEvent(emittedEvent);
     }
   }
 
   handleInput(ev: Event) {
     if (this.handleValueChange(ev)) {
-      this.input.emit(this.value);
+      const emittedEvent = new InputEvent('input', {
+        data: String(this.value),
+      });
+      this.hostElement.dispatchEvent(emittedEvent);
     }
   }
 

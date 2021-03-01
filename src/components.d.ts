@@ -444,8 +444,6 @@ declare namespace LocalJSX {
           * label for the form group, defaults to ""
          */
         "label"?: string;
-        "onChange"?: (event: CustomEvent<string>) => void;
-        "onInput"?: (event: CustomEvent<string>) => void;
         /**
           * input html tag "placeholder" attribute, if not set defaults to "label" prop value
          */
