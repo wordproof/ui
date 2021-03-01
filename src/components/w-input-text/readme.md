@@ -22,14 +22,6 @@
 | `value`        | `value`        | value, defaults to ""                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `string`  | `undefined` |
 
 
-## Events
-
-| Event    | Description | Type                  |
-| -------- | ----------- | --------------------- |
-| `change` |             | `CustomEvent<string>` |
-| `input`  |             | `CustomEvent<string>` |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
