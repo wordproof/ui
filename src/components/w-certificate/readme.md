@@ -17,6 +17,7 @@
 
 ### Depends on
 
+- [w-certificate-versions-view](./views/w-certificate-compare-view)
 - [w-certificate-link](../w-certificate-link)
 - [w-modal](../w-modal)
 - [w-button](../w-button)
@@ -28,6 +29,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  w-certificate --> w-certificate-versions-view
   w-certificate --> w-certificate-link
   w-certificate --> w-modal
   w-certificate --> w-button
@@ -35,6 +37,15 @@ graph TD;
   w-certificate --> w-certificate-header
   w-certificate --> w-logo
   w-certificate --> w-icon
+  w-certificate-versions-view --> w-certificate-header
+  w-certificate-versions-view --> w-certificate-versions-raw
+  w-certificate-versions-view --> w-certificate-versions-compare
+  w-certificate-versions-view --> w-icon
+  w-certificate-versions-raw --> w-input-select
+  w-certificate-versions-raw --> w-input-select-option
+  w-input-select --> w-icon
+  w-certificate-versions-compare --> w-input-select
+  w-certificate-versions-compare --> w-input-select-option
   w-modal --> w-button
   w-button --> w-icon
   style w-certificate fill:#f9f,stroke:#333,stroke-width:4px
