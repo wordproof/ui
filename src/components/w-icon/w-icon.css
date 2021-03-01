@@ -1,6 +1,5 @@
 :host {
   display: block;
-  height: 50px;
 }
 
 .eye {
@@ -40,6 +39,26 @@
 .ink-pen {
   width: 32px;
   height: 32px;
+}
+
+.arrow-down {
+  width: 13px;
+  height: 6px;
+}
+
+.question-circle {
+  width: 34px;
+  height: 34px;
+}
+
+.eye-large {
+  width: 34px;
+  height: 19px;
+}
+
+.blockchain {
+  width: 33px;
+  height: 34px;
 }
 
 @tailwind base;

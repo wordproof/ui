@@ -28,6 +28,7 @@
     "@stencil/core": "^2.0.1",
     "autoprefixer": "^10.2.3",
     "classnames": "^2.2.6",
+    "diff": "^5.0.0",
     "postcss": "^8.2.4",
     "tailwindcss": "^2.0.2"
   },
@@ -36,6 +37,7 @@
     "@fullhuman/postcss-purgecss": "^4.0.0",
     "@stencil/postcss": "^2.0.0",
     "@types/classnames": "^2.2.11",
+    "@types/diff": "^5.0.0",
     "@types/faker": "^5.1.6",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",

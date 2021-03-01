@@ -36,13 +36,15 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         <Banner />
       </div>
 
-      <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left">
+      <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left space-y-4">
         <OverviewCard
           icon="ink-pen"
           title={strings.contentHasNotChangedTitle}
           text={strings.contentHasNotChangedText}
           link={strings.whyIsThisImportnat}
-          onLinkClick={() => {router.go(CertificateView.importance)}}
+          onLinkClick={() => {
+            router.go(CertificateView.importance);
+          }}
           checked={true}
           checkedText={`${strings.lastEdit} ${lastEdited.toLocaleDateString(
             locale,
@@ -61,7 +63,9 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
           title={strings.discoverHowTitle}
           text={strings.discoverHowText}
           link={strings.viewPreviousVersions}
-          onLinkClick={() => {}}
+          onLinkClick={() => {
+            router.go(CertificateView.compare);
+          }}
           checked={true}
           checkedText={`${strings.publishedBy} ${publishedBy}`}
         />

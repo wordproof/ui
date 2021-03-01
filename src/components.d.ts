@@ -5,6 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { IconName } from "./components/w-icon/types";
+import { WPContent, WPRevision } from "./components/w-certificate/service";
+import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
+import { CertificateStrings } from "./i18n";
 import { Route } from "./components/w-router-outlet";
 export namespace Components {
     interface WButton {
@@ -15,7 +19,7 @@ export namespace Components {
         /**
           * button html "type" attribute
          */
-        "icon": string;
+        "icon": IconName;
         /**
           * renders button as underlined text
          */
@@ -51,6 +55,20 @@ export namespace Components {
          */
         "noIcon": boolean;
     }
+    interface WCertificateVersionsCompare {
+        "allOptions": RevisionOption[];
+        "allRevisions": WPRevision[];
+    }
+    interface WCertificateVersionsRaw {
+        "allOptions": RevisionOption[];
+        "allRevisions": WPRevision[];
+    }
+    interface WCertificateVersionsView {
+        "content": WPContent;
+        "locale": string;
+        "raw": boolean;
+        "strings": CertificateStrings;
+    }
     interface WIcon {
         /**
           * icon will try to fit into the available space maintainig aspect ratio
@@ -59,7 +77,35 @@ export namespace Components {
         /**
           * renders the icon with corresponding name
          */
-        "name": string;
+        "name": IconName;
+    }
+    interface WInputSelect {
+        /**
+          * form element error message
+         */
+        "error": string;
+        /**
+          * placeholder
+         */
+        "placeholder": string;
+        /**
+          * value
+         */
+        "value": string | number;
+    }
+    interface WInputSelectOption {
+        /**
+          * disabled
+         */
+        "disabled": boolean;
+        /**
+          * form element error message
+         */
+        "label": string;
+        /**
+          * form element error message
+         */
+        "value": string | number;
     }
     interface WInputText {
         /**
@@ -200,11 +246,41 @@ declare global {
         prototype: HTMLWCertificateLinkElement;
         new (): HTMLWCertificateLinkElement;
     };
+    interface HTMLWCertificateVersionsCompareElement extends Components.WCertificateVersionsCompare, HTMLStencilElement {
+    }
+    var HTMLWCertificateVersionsCompareElement: {
+        prototype: HTMLWCertificateVersionsCompareElement;
+        new (): HTMLWCertificateVersionsCompareElement;
+    };
+    interface HTMLWCertificateVersionsRawElement extends Components.WCertificateVersionsRaw, HTMLStencilElement {
+    }
+    var HTMLWCertificateVersionsRawElement: {
+        prototype: HTMLWCertificateVersionsRawElement;
+        new (): HTMLWCertificateVersionsRawElement;
+    };
+    interface HTMLWCertificateVersionsViewElement extends Components.WCertificateVersionsView, HTMLStencilElement {
+    }
+    var HTMLWCertificateVersionsViewElement: {
+        prototype: HTMLWCertificateVersionsViewElement;
+        new (): HTMLWCertificateVersionsViewElement;
+    };
     interface HTMLWIconElement extends Components.WIcon, HTMLStencilElement {
     }
     var HTMLWIconElement: {
         prototype: HTMLWIconElement;
         new (): HTMLWIconElement;
+    };
+    interface HTMLWInputSelectElement extends Components.WInputSelect, HTMLStencilElement {
+    }
+    var HTMLWInputSelectElement: {
+        prototype: HTMLWInputSelectElement;
+        new (): HTMLWInputSelectElement;
+    };
+    interface HTMLWInputSelectOptionElement extends Components.WInputSelectOption, HTMLStencilElement {
+    }
+    var HTMLWInputSelectOptionElement: {
+        prototype: HTMLWInputSelectOptionElement;
+        new (): HTMLWInputSelectOptionElement;
     };
     interface HTMLWInputTextElement extends Components.WInputText, HTMLStencilElement {
     }
@@ -235,7 +311,12 @@ declare global {
         "w-certificate": HTMLWCertificateElement;
         "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
+        "w-certificate-versions-compare": HTMLWCertificateVersionsCompareElement;
+        "w-certificate-versions-raw": HTMLWCertificateVersionsRawElement;
+        "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
         "w-icon": HTMLWIconElement;
+        "w-input-select": HTMLWInputSelectElement;
+        "w-input-select-option": HTMLWInputSelectOptionElement;
         "w-input-text": HTMLWInputTextElement;
         "w-logo": HTMLWLogoElement;
         "w-modal": HTMLWModalElement;
@@ -251,7 +332,7 @@ declare namespace LocalJSX {
         /**
           * button html "type" attribute
          */
-        "icon"?: string;
+        "icon"?: IconName;
         /**
           * renders button as underlined text
          */
@@ -287,6 +368,22 @@ declare namespace LocalJSX {
          */
         "noIcon"?: boolean;
     }
+    interface WCertificateVersionsCompare {
+        "allOptions"?: RevisionOption[];
+        "allRevisions"?: WPRevision[];
+        "onChoose"?: (event: CustomEvent<WPRevision>) => void;
+    }
+    interface WCertificateVersionsRaw {
+        "allOptions"?: RevisionOption[];
+        "allRevisions"?: WPRevision[];
+        "onChoose"?: (event: CustomEvent<WPRevision>) => void;
+    }
+    interface WCertificateVersionsView {
+        "content"?: WPContent;
+        "locale"?: string;
+        "raw"?: boolean;
+        "strings"?: CertificateStrings;
+    }
     interface WIcon {
         /**
           * icon will try to fit into the available space maintainig aspect ratio
@@ -295,7 +392,36 @@ declare namespace LocalJSX {
         /**
           * renders the icon with corresponding name
          */
-        "name"?: string;
+        "name"?: IconName;
+    }
+    interface WInputSelect {
+        /**
+          * form element error message
+         */
+        "error"?: string;
+        /**
+          * placeholder
+         */
+        "placeholder"?: string;
+        /**
+          * value
+         */
+        "value"?: string | number;
+    }
+    interface WInputSelectOption {
+        /**
+          * disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * form element error message
+         */
+        "label"?: string;
+        "onChoose"?: (event: CustomEvent<HTMLElement>) => void;
+        /**
+          * form element error message
+         */
+        "value"?: string | number;
     }
     interface WInputText {
         /**
@@ -418,7 +544,12 @@ declare namespace LocalJSX {
         "w-certificate": WCertificate;
         "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
+        "w-certificate-versions-compare": WCertificateVersionsCompare;
+        "w-certificate-versions-raw": WCertificateVersionsRaw;
+        "w-certificate-versions-view": WCertificateVersionsView;
         "w-icon": WIcon;
+        "w-input-select": WInputSelect;
+        "w-input-select-option": WInputSelectOption;
         "w-input-text": WInputText;
         "w-logo": WLogo;
         "w-modal": WModal;
@@ -433,7 +564,12 @@ declare module "@stencil/core" {
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
             "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
+            "w-certificate-versions-compare": LocalJSX.WCertificateVersionsCompare & JSXBase.HTMLAttributes<HTMLWCertificateVersionsCompareElement>;
+            "w-certificate-versions-raw": LocalJSX.WCertificateVersionsRaw & JSXBase.HTMLAttributes<HTMLWCertificateVersionsRawElement>;
+            "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
+            "w-input-select": LocalJSX.WInputSelect & JSXBase.HTMLAttributes<HTMLWInputSelectElement>;
+            "w-input-select-option": LocalJSX.WInputSelectOption & JSXBase.HTMLAttributes<HTMLWInputSelectOptionElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
             "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
             "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;

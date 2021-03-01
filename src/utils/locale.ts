@@ -1,4 +1,4 @@
-const getComponentClosestLanguage = (element: HTMLElement): string => {
+export const getComponentClosestLanguage = (element: HTMLElement): string => {
   let closestElement = element.closest('[lang]') as HTMLElement;
   return closestElement ? closestElement.lang : 'en';
 };

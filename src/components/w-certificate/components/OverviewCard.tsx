@@ -1,7 +1,8 @@
 import { FunctionalComponent, h } from '@stencil/core';
+import { IconName } from '../../w-icon/types';
 
 interface OverviewCardProps {
-  icon: string;
+  icon: IconName;
   title: string;
   text: string;
   link: string;
@@ -18,7 +19,7 @@ const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
   checked,
   checkedText,
 }) => (
-  <div class="border-2 border-solid border-gray-300 rounded-lg p-4 md:px-4 md:py-5 mb-3">
+  <div class="border-2 border-solid border-gray-300 rounded-lg p-4 md:px-4 md:py-5">
     <div class="flex flex-col">
       <div class="flex flex-col md:flex-row text-base text-gray-700">
         <div class="mb-2 md:m-0 md:w-1/12">
@@ -28,7 +29,7 @@ const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
           <h3 class="text-lg text-black font-medium">{title}</h3>
           <p class="mb-2">{text}</p>
           <button
-            class="text-darkblue font-medium focus:outline-none"
+            class="text-blue font-medium focus:outline-none"
             onClick={() => onLinkClick()}
           >
             &gt; {link}

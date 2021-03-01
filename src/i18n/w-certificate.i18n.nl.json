@@ -12,5 +12,15 @@
   "importanceParagraph1": "De unieke vingerafdruk (\"hash\") van de laatste versie is opgeslagen in de blockchain en kan niet worden aangepast of verwijderd.",
   "importanceParagraph2": "Zowel jij als de website hebben toegang tot de hash en invoer die hoort bij de hash.",
   "importanceParagraph3": "Jij hebt bewijs dat de eigenaar deze inhoud creëerde en dat het niet is aangepast sinds de timestamp.",
-  "importanceParagraph4": "De website heeft bewijs dat het over deze inhoud beschikt, wat gebruikt kan worden voor schendingen van auteursrecht."
+  "importanceParagraph4": "De website heeft bewijs dat het over deze inhoud beschikt, wat gebruikt kan worden voor schendingen van auteursrecht.",
+  "checkYourself": "Blader door vorige versies",
+  "recent": "recent",
+  "firstTimestamp": "eerste timestamp",
+  "explanation": "Uitleg",
+  "timestampCheck": "Timestamp Checker",
+  "compare": "Vergelijk",
+  "viewOnBlockchain": "Bekijk op de blockchain",
+  "rawInput": "Invoer",
+  "previous": "Vorige",
+  "browsePreviousVersions": "Blader door vorige versies"
 }

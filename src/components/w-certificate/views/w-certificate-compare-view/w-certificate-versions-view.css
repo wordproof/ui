@@ -1,5 +1,5 @@
 :host {
-  display: inline;
+  /* display: block; */
 }
 
 @tailwind base;
