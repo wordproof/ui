@@ -5,7 +5,7 @@ import { IconName } from '../w-icon/types';
 @Component({
   tag: 'w-button',
   styleUrl: 'w-button.css',
-  shadow: false,
+  shadow: true,
 })
 export class WButton {
   /**
