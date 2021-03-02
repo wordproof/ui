@@ -79,6 +79,20 @@ export namespace Components {
          */
         "name": IconName;
     }
+    interface WInputCheckbox {
+        /**
+          * form element checked property
+         */
+        "checked": boolean;
+        /**
+          * disabled
+         */
+        "disabled": boolean;
+        /**
+          * form error message
+         */
+        "error": string;
+    }
     interface WInputSelect {
         /**
           * form element error message
@@ -270,6 +284,12 @@ declare global {
         prototype: HTMLWIconElement;
         new (): HTMLWIconElement;
     };
+    interface HTMLWInputCheckboxElement extends Components.WInputCheckbox, HTMLStencilElement {
+    }
+    var HTMLWInputCheckboxElement: {
+        prototype: HTMLWInputCheckboxElement;
+        new (): HTMLWInputCheckboxElement;
+    };
     interface HTMLWInputSelectElement extends Components.WInputSelect, HTMLStencilElement {
     }
     var HTMLWInputSelectElement: {
@@ -315,6 +335,7 @@ declare global {
         "w-certificate-versions-raw": HTMLWCertificateVersionsRawElement;
         "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
         "w-icon": HTMLWIconElement;
+        "w-input-checkbox": HTMLWInputCheckboxElement;
         "w-input-select": HTMLWInputSelectElement;
         "w-input-select-option": HTMLWInputSelectOptionElement;
         "w-input-text": HTMLWInputTextElement;
@@ -393,6 +414,20 @@ declare namespace LocalJSX {
           * renders the icon with corresponding name
          */
         "name"?: IconName;
+    }
+    interface WInputCheckbox {
+        /**
+          * form element checked property
+         */
+        "checked"?: boolean;
+        /**
+          * disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * form error message
+         */
+        "error"?: string;
     }
     interface WInputSelect {
         /**
@@ -546,6 +581,7 @@ declare namespace LocalJSX {
         "w-certificate-versions-raw": WCertificateVersionsRaw;
         "w-certificate-versions-view": WCertificateVersionsView;
         "w-icon": WIcon;
+        "w-input-checkbox": WInputCheckbox;
         "w-input-select": WInputSelect;
         "w-input-select-option": WInputSelectOption;
         "w-input-text": WInputText;
@@ -566,6 +602,7 @@ declare module "@stencil/core" {
             "w-certificate-versions-raw": LocalJSX.WCertificateVersionsRaw & JSXBase.HTMLAttributes<HTMLWCertificateVersionsRawElement>;
             "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
+            "w-input-checkbox": LocalJSX.WInputCheckbox & JSXBase.HTMLAttributes<HTMLWInputCheckboxElement>;
             "w-input-select": LocalJSX.WInputSelect & JSXBase.HTMLAttributes<HTMLWInputSelectElement>;
             "w-input-select-option": LocalJSX.WInputSelectOption & JSXBase.HTMLAttributes<HTMLWInputSelectOptionElement>;
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;

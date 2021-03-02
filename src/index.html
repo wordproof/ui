@@ -86,6 +86,17 @@
     </div>
     <div class="mt-4" id="inputSelectValue"></div> -->
 
+    <w-input-checkbox id="input4" class="w-80 mt-6 mx-auto" label="Website URL" error="" checked="false">
+      <p class="text-sm">
+        I agree to the
+        <a href="https://wordproof.com/user-terms/" target="_blank" rel="noopener noreferrer"
+          class="text-black underline">Terms and Conditions</a>
+        and
+        <a href="https://wordproof.com/privacy-statement/" target="_blank" rel="noopener noreferrer"
+          class="text-black underline">Privacy Policy</a>.
+      </p>
+    </w-input-checkbox>
+    <div class="mt-4" id="value4"></div>
 
   </div>
   <script>
@@ -117,6 +128,13 @@
     // inputSelect.addEventListener('input', ev => {
     //   inputSelectValue.innerText = ev.data
     // });
+
+    const input4 = document.getElementById("input4");
+    const value4 = document.getElementById("value4");
+    input4.addEventListener('change', ev => {
+      value4.innerText = ev.target.checked;
+    });
+
   </script>
 </body>
 
