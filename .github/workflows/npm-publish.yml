@@ -1,7 +1,5 @@
 name: Node.js Package
 on:
-  # release:
-  #   types: [created]
   push:
     branches: [main]
   pull_request:
@@ -37,4 +35,4 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          args: 💅🏻 UIKit; version xx published
+          args: 💅🏻 UIKit; new version published
