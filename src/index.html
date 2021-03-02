@@ -29,28 +29,28 @@
 
 <body>
   <div class="max-w-3xl mx-auto mt-4">
-    <!-- <h3>Buttons</h3>
+    <h3>Buttons</h3>
     <div class="mt-2">
       <w-button id="btn1">+ website</w-button>
-      <w-button class="ml-8" outline>+ website</w-button>
-      <w-button class="ml-8" text size="xs">+ website</w-button>
+      <!-- <w-button class="ml-8" outline>+ website</w-button>
+      <w-button class="ml-8" text size="xs">+ website</w-button> -->
     </div>
     <h3 class="mt-6">Inputs</h3>
     <div class="mt-4">
-      <w-input-text id="input1" class="w-64 mx-auto" label="Email" type="email"></w-input-text>
-      <div class="mt-4" id="value1"></div>
+      <!-- <w-input-text id="input1" class="w-64 mx-auto" label="Email" type="email"></w-input-text>
+      <div class="mt-4" id="value1"></div> -->
 
       <w-input-text id="input2" class="w-full mt-6 mx-auto" label="Website URL"
-        error="Name should start with capital letter" placeholder="examplestore" suffix=".shopify.com"
+        error="Name should start with capital letter" placeholder="examplestore" suffix=".myshopify.com"
         strip="^http[s]?:\/\/|\/$|\.myshopify\.com.*" />
       </w-input-text>
-      <div class="mt-4" id="value2"></div> -->
+      <div class="mt-4" id="value2"></div>
 
-    <div class="my-10">
+      <!-- <div class="my-10">
       <w-certificate></w-certificate>
-    </div>
+    </div> -->
 
-    <!-- <div class="my-10 flex flex-wrap p-10 bg-gray-400">
+      <!-- <div class="my-10 flex flex-wrap p-10 bg-gray-400">
       <w-logo text fit class="h-10 m-5"></w-logo>
       <w-logo white-on-blue text fit class="h-10 m-5"></w-logo>
       <w-logo teal-on-white text fit class="h-10 m-5"></w-logo>
@@ -65,14 +65,14 @@
       <w-logo blue-on-white fit class="h-10 m-5"></w-logo>
     </div> -->
 
-    <!-- <div class="my-10 flex p-10">
+      <!-- <div class="my-10 flex p-10">
       <w-button icon="close" size="xs" class="ml-4 text-teal"></w-button>
       <w-icon name="eye" class="ml-4 h-10 w-10 text-teal"></w-icon>
       <w-icon name="comment" class="ml-4 text-purple"></w-icon>
       <w-icon name="close-circle" fit class="ml-4 w-5 h-5 text-teal"></w-icon>
     </div> -->
 
-    <!-- <div class="my-10">
+      <!-- <div class="my-10">
       <w-input-select id="inputSelect" error="error" placeholder="Select a blockchain">
         <w-input-select-option value="1" label="Option 1">
           <div class="flex">
@@ -86,56 +86,63 @@
     </div>
     <div class="mt-4" id="inputSelectValue"></div> -->
 
-    <w-input-checkbox id="input4" class="w-80 mt-6 mx-auto" label="Website URL" error="" checked="false">
-      <p class="text-sm">
-        I agree to the
-        <a href="https://wordproof.com/user-terms/" target="_blank" rel="noopener noreferrer"
-          class="text-black underline">Terms and Conditions</a>
-        and
-        <a href="https://wordproof.com/privacy-statement/" target="_blank" rel="noopener noreferrer"
-          class="text-black underline">Privacy Policy</a>.
-      </p>
-    </w-input-checkbox>
-    <div class="mt-4" id="value4"></div>
+      <w-input-checkbox id="input4" class="w-80 mt-6 mx-auto" label="Website URL" error="" checked="false">
+        <p class="text-sm">
+          I agree to the
+          <a href="https://wordproof.com/user-terms/" target="_blank" rel="noopener noreferrer"
+            class="text-black underline">Terms and Conditions</a>
+          and
+          <a href="https://wordproof.com/privacy-statement/" target="_blank" rel="noopener noreferrer"
+            class="text-black underline">Privacy Policy</a>.
+        </p>
+      </w-input-checkbox>
+      <div class="mt-4" id="value4"></div>
 
-  </div>
-  <script>
-    // const input1 = document.getElementById("input1");
-    // const value1 = document.getElementById("value1");
-    // input1.addEventListener('change', ev => {
-    //   value1.innerText = ev.target.value;
-    // });
-    // input1.addEventListener('input', ev => {
-    //   value1.innerText = ev.target.value;
-    // });
+    </div>
+    <script>
+      // const input1 = document.getElementById("input1");
+      // const value1 = document.getElementById("value1");
+      // input1.addEventListener('change', ev => {
+      //   value1.innerText = ev.target.value;
+      // });
+      // input1.addEventListener('input', ev => {
+      //   value1.innerText = ev.target.value;
+      // });
 
-    // const input2 = document.getElementById("input2");
-    // const value2 = document.getElementById("value2");
-    // input2.addEventListener('change', ev => {
-    //   value2.innerText = ev.target.value;
-    // });
-    // input2.addEventListener('input', ev => {
-    //   value2.innerText = ev.target.value;
-    // });
+      const input2 = document.getElementById("input2");
+      const value2 = document.getElementById("value2");
+      input2.addEventListener('change', ev => {
+        value2.innerText = ev.target.value;
+      });
+      input2.addEventListener('input', ev => {
+        value2.innerText = ev.target.value;
+      });
 
-    // const btn1 = document.getElementById("btn1");
-    // btn1.addEventListener('click', ev => {
-    //   input2.setAttribute('placeholder', 'email@google.com')
-    // });
+      const btn1 = document.getElementById("btn1");
+      btn1.addEventListener('click', ev => {
+        const oldStrip = input2.getAttribute('strip')
+        if (!oldStrip) {
+          input2.setAttribute('suffix', ".myshopify.com")
+          input2.setAttribute('strip', "^http[s]?:\/\/|\/$|\.myshopify\.com.*")
+        } else {
+          input2.setAttribute('suffix', '')
+          input2.setAttribute('strip', '')
+        }
+      });
 
-    // const inputSelect = document.getElementById("inputSelect");
-    // const inputSelectValue = document.getElementById("inputSelectValue");
-    // inputSelect.addEventListener('input', ev => {
-    //   inputSelectValue.innerText = ev.data
-    // });
+      // const inputSelect = document.getElementById("inputSelect");
+      // const inputSelectValue = document.getElementById("inputSelectValue");
+      // inputSelect.addEventListener('input', ev => {
+      //   inputSelectValue.innerText = ev.data
+      // });
 
-    const input4 = document.getElementById("input4");
-    const value4 = document.getElementById("value4");
-    input4.addEventListener('change', ev => {
-      value4.innerText = ev.target.checked;
-    });
+      const input4 = document.getElementById("input4");
+      const value4 = document.getElementById("value4");
+      input4.addEventListener('change', ev => {
+        value4.innerText = ev.target.checked;
+      });
 
-  </script>
+    </script>
 </body>
 
 </html>
