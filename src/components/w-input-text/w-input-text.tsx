@@ -1,11 +1,4 @@
-import {
-  Component,
-  Prop,
-  h,
-  Host,
-  State,
-  Element,
-} from '@stencil/core';
+import { Component, Prop, h, Host, State, Element, Watch } from '@stencil/core';
 import cx from 'classnames';
 
 @Component({
@@ -81,56 +74,60 @@ export class WInputText {
    */
   @Prop() strip: string = '';
 
-  handleChange(ev: Event) {
-    if (this.handleValueChange(ev)) {
-      const emittedEvent = new InputEvent('change', {
-        data: String(this.value),
-      });
-      this.hostElement.dispatchEvent(emittedEvent);
-    }
-  }
-
-  handleInput(ev: Event) {
-    if (this.handleValueChange(ev)) {
-      const emittedEvent = new InputEvent('input', {
-        data: String(this.value),
-      });
-      this.hostElement.dispatchEvent(emittedEvent);
+  handleInputChange(ev: Event, eventType: string) {
+    ev.stopPropagation();
+    if (ev.target) {
+      const { value } = ev.target as HTMLInputElement;
+      this.handleValueChange(value, eventType);
     }
   }
 
   @State() localValue: string = '';
 
-  handleValueChange(ev: Event): boolean {
-    if (ev.target) {
-      const { value } = ev.target as HTMLInputElement;
-      this.localValue =
-        this.stripRegex !== null ? value.replace(this.stripRegex, '') : value;
-      this.inputEl.value = this.localValue;
-      this.value =
-        this.localValue.trim() === '' ? '' : `${this.localValue}${this.suffix}`;
-      return true;
-    }
+  handleValueChange(value: string, eventType: string) {
+    this.localValue =
+      this.stripRegex !== null ? value.replace(this.stripRegex, '') : value;
+    this.inputEl.value = this.localValue;
+    this.value =
+      this.localValue.trim() === '' ? '' : `${this.localValue}${this.suffix}`;
 
-    return false;
+    const emittedEvent = new InputEvent(eventType, {
+      data: String(this.value),
+    });
+    this.hostElement.dispatchEvent(emittedEvent);
   }
 
   stripRegex: RegExp | null = null;
 
   inputEl: HTMLInputElement;
 
-  connectedCallback() {
-    this.localValue = this.value;
-
-    if (this.strip) {
+  compileRegex(regexString: string) {
+    if (regexString) {
       try {
-        this.stripRegex = new RegExp(this.strip, 'g');
+        this.stripRegex = new RegExp(regexString, 'g');
       } catch (error) {
         throw new Error(
-          `w-input-text: Can't create a RegExp from "strip" attribute value "${this.strip}"`,
+          `w-input-text: Can't create a RegExp from "strip" attribute value "${regexString}"`,
         );
       }
     }
+  }
+
+  connectedCallback() {
+    this.localValue = this.value;
+    this.compileRegex(this.strip);
+  }
+
+  @Watch('strip')
+  stripWatch(newValue: string) {
+    if (!newValue) {
+      this.stripRegex = null;
+      this.localValue = this.value;
+    } else {
+      this.compileRegex(newValue);
+    }
+
+    this.handleValueChange(this.value, 'input');
   }
 
   render() {
@@ -152,8 +149,8 @@ export class WInputText {
               autocomplete={this.autocomplete}
               inputmode={this.inputmode}
               value={this.localValue}
-              onChange={ev => this.handleChange(ev)}
-              onInput={ev => this.handleInput(ev)}
+              onChange={ev => this.handleInputChange(ev, 'change')}
+              onInput={ev => this.handleInputChange(ev, 'input')}
               ref={el => (this.inputEl = el as HTMLInputElement)}
             />
             <span class="absolute text-blue">{this.label}</span>
