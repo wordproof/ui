@@ -16,13 +16,14 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production stencil build --docs",
+    "build:nodocs": "NODE_ENV=production stencil build",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "release": "npm run test && npm run build && (git add . && git commit -m'auto generate components docs'); npm version patch && npm publish"
+    "release": "npm run test && npm run build && (git add . && git commit -m'auto generate components docs'); npm version patch"
   },
   "dependencies": {
     "@stencil/core": "^2.0.1",
