@@ -1,4 +1,4 @@
-name: Node.js Package
+name: publish to npm
 on:
   # release:
   #   types: [created]
@@ -20,7 +20,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
       - name: publish
-        run: npm release
+        run: npm run release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Send Telegram notification
