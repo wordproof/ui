@@ -1,4 +1,4 @@
-name: Node.js Package
+name: publish to npm
 on:
   push:
     branches: [main]
@@ -18,7 +18,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
       - name: publish
-        run: npm release
+        run: npm run build:nodocs
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Send Telegram notification
@@ -27,7 +28,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          args: 💥 UIKit; Something went wrong while publishing. https://github.com/wordproof/myv2/actions/runs/${{ github.run_id }}
+          args: 💥 UIKit; Something went wrong while publishing. https://github.com/wordproof/ui/actions/runs/${{ github.run_id }}
 
       - name: Send Telegram notification
         if: ${{ success() }}
