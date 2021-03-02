@@ -17,8 +17,8 @@ jobs:
           node-version: '12.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npm install
+      - run: npm run build:nodocs
       - name: publish
-        run: npm run build:nodocs
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
