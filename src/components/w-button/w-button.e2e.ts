@@ -14,7 +14,7 @@ describe('w-button', () => {
 
     await page.setContent('<w-button></w-button>');
     const component = await page.find('w-button');
-    const element = await page.find('w-button > button');
+    const element = await page.find('w-button >>> button');
 
     component.setProperty('type', 'submit');
     await page.waitForChanges();
