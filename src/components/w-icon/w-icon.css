@@ -61,6 +61,11 @@
   height: 34px;
 }
 
+.accessibility {
+  width: 30px;
+  height: 30px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
