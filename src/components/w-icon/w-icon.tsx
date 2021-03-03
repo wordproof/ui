@@ -176,9 +176,16 @@ export class WIcon {
           />
         </symbol>
 
+        <symbol id="dots" viewBox="0 0 5 25">
+          <g fill="currentColor">
+            <circle cx="2.5" cy="2.5" r="2.5" />
+            <circle cx="2.5" cy="12.5" r="2.5" />
+            <circle cx="2.5" cy="22.5" r="2.5" />
+          </g>
+        </symbol>
+
         <symbol id="somename" viewBox="0 0 28 23"></symbol>
       </svg>
     );
   }
 }
-

@@ -81,6 +81,11 @@
   height: 12px;
 }
 
+.dots {
+  width: 5px;
+  height: 25px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
