@@ -66,6 +66,26 @@
   height: 30px;
 }
 
+.hamburger {
+  width: 24px;
+  height: 24px;
+}
+
+.hamburger-close {
+  width: 24px;
+  height: 24px;
+}
+
+.arrow-right {
+  width: 17px;
+  height: 12px;
+}
+
+.dots {
+  width: 5px;
+  height: 25px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
