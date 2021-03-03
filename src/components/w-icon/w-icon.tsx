@@ -169,8 +169,16 @@ export class WIcon {
           />
         </symbol>
 
+        <symbol id="arrow-right" viewBox="0 0 17 12">
+          <path
+            d="M10.046 1.88l3.132 3.262H.333v1.716h12.845l-3.132 3.262 1.166 1.213L16.333 6 11.212.667 10.047 1.88z"
+            fill="currentColor"
+          />
+        </symbol>
+
         <symbol id="somename" viewBox="0 0 28 23"></symbol>
       </svg>
     );
   }
 }
+
