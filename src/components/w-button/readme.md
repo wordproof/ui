@@ -9,6 +9,7 @@
 
 | Property   | Attribute  | Description                       | Type                                                                                                                                                                              | Default     |
 | ---------- | ---------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `color`    | `color`    | button text size                  | `"gray" \| "white"`                                                                                                                                                               | `'gray'`    |
 | `disabled` | `disabled` | button html "disabled" attribute  | `boolean`                                                                                                                                                                         | `false`     |
 | `icon`     | `icon`     | button html "type" attribute      | `"arrow-down" \| "blockchain" \| "check-circle" \| "clock" \| "close" \| "close-circle" \| "comment" \| "eye" \| "eye-large" \| "ink-pen" \| "question-circle" \| "times-circle"` | `undefined` |
 | `outline`  | `outline`  | renders button as underlined text | `boolean`                                                                                                                                                                         | `false`     |
