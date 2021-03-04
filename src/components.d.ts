@@ -13,6 +13,10 @@ import { Route } from "./components/w-router-outlet";
 export namespace Components {
     interface WButton {
         /**
+          * button text size
+         */
+        "color": 'gray' | 'white';
+        /**
           * button html "disabled" attribute
          */
         "disabled": boolean;
@@ -346,6 +350,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface WButton {
+        /**
+          * button text size
+         */
+        "color"?: 'gray' | 'white';
         /**
           * button html "disabled" attribute
          */

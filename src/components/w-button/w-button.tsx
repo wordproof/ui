@@ -38,6 +38,11 @@ export class WButton {
    */
   @Prop() icon: IconName;
 
+  /**
+   * button text size
+   */
+  @Prop() color: 'gray' | 'white' = 'gray';
+
   getIconSizeClasses() {
     if (this.size === 'xs') {
       return 'w-3 h-3';
@@ -67,8 +72,10 @@ export class WButton {
             ['bg-gradient-to-r from-blue to-purple text-white']:
               !this.outline && !this.text && !this.icon,
             ['bg-white border-2 border-blue text-blue']: this.outline,
-            ['text-gray-600 hover:text-gray-800 underline font-sohne']: this
-              .text,
+            ['underline font-sohne']: this.text,
+            ['text-gray-600 hover:text-gray-800']:
+              this.text && this.color === 'gray',
+            ['text-white']: this.text && this.color === 'white',
             ['text-xs']: this.size === 'xs',
             ['text-base']: this.size === 'base',
             ['text-lg']: this.size === 'lg',
