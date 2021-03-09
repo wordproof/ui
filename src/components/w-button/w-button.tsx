@@ -78,6 +78,7 @@ export class WButton {
             ['text-white']: this.text && this.color === 'white',
             ['text-xs']: this.size === 'xs',
             ['text-base']: this.size === 'base',
+            ['text-sm']: this.size === 'sm',
             ['text-lg']: this.size === 'lg',
             ['text-xl']: this.size === 'xl',
             [cx(
