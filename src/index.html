@@ -40,12 +40,19 @@
       <!-- <w-input-text id="input1" class="w-64 mx-auto" label="Email" type="email"></w-input-text>
       <div class="mt-4" id="value1"></div> -->
 
-      <w-input-text id="input2" class="w-full mt-6 mx-auto" label="Website URL"
+      <!-- <w-input-text id="input2" class="w-full mt-6 mx-auto" label="Website URL"
         error="Name should start with capital letter" placeholder="examplestore" suffix=".myshopify.com"
-        strip="^http[s]?:\/\/|\/$|\.myshopify\.com.*" />
-      </w-input-text>
-      <div class="mt-4" id="value2"></div>
+        strip="^http[s]?:\/\/|\/$|\.myshopify\.com.*" value="test" />
+      </w-input-text> -->
+      <form action="http://localhost:3333/">
+        <w-input-text id="input1" class="w-full mt-6 mx-auto" label="Your email" type="text" placeholder="elon@mask.com"
+          value="" />
+        </w-input-text>
 
+        <w-input-text id="input2" class="w-full mt-6 mx-auto" label="Password" type="password" value="" />
+        </w-input-text>
+        <div class="mt-4" id="value2"></div>
+      </form>
       <!-- <div class="my-10">
       <w-certificate></w-certificate>
     </div> -->

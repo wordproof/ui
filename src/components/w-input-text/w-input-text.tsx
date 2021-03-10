@@ -179,7 +179,7 @@ export class WInputText {
             />
             <span
               class={cx('absolute', {
-                ['label-as-placeholder']: !this.showPlaceholder,
+                ['label-as-placeholder']: !this.showPlaceholder && !this.localValue,
                 ['text-blue']: this.showPlaceholder,
               })}
             >
