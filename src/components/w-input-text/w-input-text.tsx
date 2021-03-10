@@ -33,6 +33,11 @@ export class WInputText {
    * value, defaults to ""
    */
   @Prop({ mutable: true }) value: string;
+  @Watch('value')
+  watchValue() {
+    this.localValue = this.value;
+    this.emitValue(this.value, 'change');
+  }
 
   /**
    * error message displayed in the form group, defaults to ""
@@ -91,8 +96,12 @@ export class WInputText {
     this.value =
       this.localValue.trim() === '' ? '' : `${this.localValue}${this.suffix}`;
 
+    this.emitValue(this.value, eventType);
+  }
+
+  emitValue(value: string, eventType: string) {
     const emittedEvent = new InputEvent(eventType, {
-      data: String(this.value),
+      data: String(value),
     });
     this.hostElement.dispatchEvent(emittedEvent);
   }
@@ -179,7 +188,8 @@ export class WInputText {
             />
             <span
               class={cx('absolute', {
-                ['label-as-placeholder']: !this.showPlaceholder && !this.localValue,
+                ['label-as-placeholder']:
+                  !this.showPlaceholder && !this.localValue,
                 ['text-blue']: this.showPlaceholder,
               })}
             >
