@@ -24,15 +24,10 @@ label > span {
 }
 
 input::-webkit-input-placeholder {
-  opacity: 1;
   transition: all 0.3s;
 }
 
-input:placeholder-shown:not(:focus)::-webkit-input-placeholder {
-  opacity: 0;
-}
-
-input:placeholder-shown:not(:focus) + span {
+.label-as-placeholder {
   font-size: 18px;
   top: 50%;
   transform: translate(0%, -50%);
