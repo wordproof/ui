@@ -130,6 +130,28 @@ export class WInputText {
     this.handleValueChange(this.value, 'input');
   }
 
+  @State() showPlaceholder: boolean = false;
+
+  handleInputFocus() {
+    this.showPlaceholder = true;
+  }
+
+  handleInputBlur() {
+    this.showPlaceholder = false;
+  }
+
+  localPlaceholder(): string {
+    if (!this.showPlaceholder) {
+      return '';
+    }
+
+    if (!this.placeholder) {
+      return this.label;
+    }
+
+    return this.placeholder;
+  }
+
   render() {
     return (
       <Host class="block">
@@ -142,7 +164,7 @@ export class WInputText {
                   ['pr-32']: this.suffix,
                 },
               )}
-              placeholder={this.placeholder ? this.placeholder : this.label}
+              placeholder={this.localPlaceholder()}
               required={this.required}
               autofocus={this.autofocus}
               type={this.type}
@@ -151,9 +173,18 @@ export class WInputText {
               value={this.localValue}
               onChange={ev => this.handleInputChange(ev, 'change')}
               onInput={ev => this.handleInputChange(ev, 'input')}
+              onFocus={() => this.handleInputFocus()}
+              onBlur={() => this.handleInputBlur()}
               ref={el => (this.inputEl = el as HTMLInputElement)}
             />
-            <span class="absolute text-blue">{this.label}</span>
+            <span
+              class={cx('absolute', {
+                ['label-as-placeholder']: !this.showPlaceholder,
+                ['text-blue']: this.showPlaceholder,
+              })}
+            >
+              {this.label}
+            </span>
             {this.suffix && (
               <div class="absolute right-0.5 top-1/2 transform -translate-y-1/2 text-gray-800 text-base border-l border-gray-400 bg-gray-200 pl-1 pr-1 py-2 rounder-r-md z-0">
                 {this.suffix}
