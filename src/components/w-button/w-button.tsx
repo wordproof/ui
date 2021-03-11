@@ -97,7 +97,7 @@ export class WButton {
             ['text-xl']: this.size === 'xl',
             [cx(
               'hover:bg-gray-200 rounded-full',
-              ['sm', 'xs'].includes(this.size) ? 'p-1.5' : 'p-2',
+              this.size === 'xs' ? 'p-1.5' : 'p-2',
             )]: this.icon,
           },
         )}
