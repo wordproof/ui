@@ -7,15 +7,16 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                       | Type                                                                                                                                                                              | Default     |
-| ---------- | ---------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `color`    | `color`    | button text size                  | `"gray" \| "white"`                                                                                                                                                               | `'gray'`    |
-| `disabled` | `disabled` | button html "disabled" attribute  | `boolean`                                                                                                                                                                         | `false`     |
-| `icon`     | `icon`     | button html "type" attribute      | `"arrow-down" \| "blockchain" \| "check-circle" \| "clock" \| "close" \| "close-circle" \| "comment" \| "eye" \| "eye-large" \| "ink-pen" \| "question-circle" \| "times-circle"` | `undefined` |
-| `outline`  | `outline`  | renders button as underlined text | `boolean`                                                                                                                                                                         | `false`     |
-| `size`     | `size`     | button text size                  | `"base" \| "lg" \| "sm" \| "xl" \| "xs"`                                                                                                                                          | `'lg'`      |
-| `text`     | `text`     | renders button as underlined text | `boolean`                                                                                                                                                                         | `false`     |
-| `type`     | `type`     | button html "type" attribute      | `string`                                                                                                                                                                          | `'button'`  |
+| Property        | Attribute        | Description                          | Type                                                                                                                                                                              | Default     |
+| --------------- | ---------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `color`         | `color`          | button text size                     | `"gray" \| "white" \| "yellow"`                                                                                                                                                   | `'gray'`    |
+| `disabled`      | `disabled`       | button html "disabled" attribute     | `boolean`                                                                                                                                                                         | `false`     |
+| `icon`          | `icon`           | button html "type" attribute         | `"arrow-down" \| "blockchain" \| "check-circle" \| "clock" \| "close" \| "close-circle" \| "comment" \| "eye" \| "eye-large" \| "ink-pen" \| "question-circle" \| "times-circle"` | `undefined` |
+| `outline`       | `outline`        | renders button as underlined text    | `boolean`                                                                                                                                                                         | `false`     |
+| `size`          | `size`           | button text size                     | `"base" \| "lg" \| "sm" \| "xl" \| "xs"`                                                                                                                                          | `'lg'`      |
+| `text`          | `text`           | renders button as underlined text    | `boolean`                                                                                                                                                                         | `false`     |
+| `type`          | `type`           | button html "type" attribute         | `string`                                                                                                                                                                          | `'button'`  |
+| `underlineNone` | `underline-none` | underline decoration for text button | `boolean`                                                                                                                                                                         | `false`     |
 
 
 ## Dependencies
