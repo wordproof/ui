@@ -15,7 +15,7 @@ export namespace Components {
         /**
           * button text size
          */
-        "color": 'gray' | 'white';
+        "color": 'gray' | 'white' | 'yellow';
         /**
           * button html "disabled" attribute
          */
@@ -40,6 +40,10 @@ export namespace Components {
           * button html "type" attribute
          */
         "type": string;
+        /**
+          * underline decoration for text button
+         */
+        "underlineNone": boolean;
     }
     interface WCertificate {
         /**
@@ -353,7 +357,7 @@ declare namespace LocalJSX {
         /**
           * button text size
          */
-        "color"?: 'gray' | 'white';
+        "color"?: 'gray' | 'white' | 'yellow';
         /**
           * button html "disabled" attribute
          */
@@ -378,6 +382,10 @@ declare namespace LocalJSX {
           * button html "type" attribute
          */
         "type"?: string;
+        /**
+          * underline decoration for text button
+         */
+        "underlineNone"?: boolean;
     }
     interface WCertificate {
         /**
