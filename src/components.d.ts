@@ -11,6 +11,16 @@ import { RevisionOption } from "./components/w-certificate/views/w-certificate-c
 import { CertificateStrings } from "./i18n";
 import { Route } from "./components/w-router-outlet";
 export namespace Components {
+    interface WBadge {
+        /**
+          * color variant
+         */
+        "color": string;
+        /**
+          * size
+         */
+        "size": string;
+    }
     interface WButton {
         /**
           * button text size
@@ -244,6 +254,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLWBadgeElement extends Components.WBadge, HTMLStencilElement {
+    }
+    var HTMLWBadgeElement: {
+        prototype: HTMLWBadgeElement;
+        new (): HTMLWBadgeElement;
+    };
     interface HTMLWButtonElement extends Components.WButton, HTMLStencilElement {
     }
     var HTMLWButtonElement: {
@@ -335,6 +351,7 @@ declare global {
         new (): HTMLWRouterOutletElement;
     };
     interface HTMLElementTagNameMap {
+        "w-badge": HTMLWBadgeElement;
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
         "w-certificate-header": HTMLWCertificateHeaderElement;
@@ -353,6 +370,16 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface WBadge {
+        /**
+          * color variant
+         */
+        "color"?: string;
+        /**
+          * size
+         */
+        "size"?: string;
+    }
     interface WButton {
         /**
           * button text size
@@ -589,6 +616,7 @@ declare namespace LocalJSX {
         "routes"?: Route[];
     }
     interface IntrinsicElements {
+        "w-badge": WBadge;
         "w-button": WButton;
         "w-certificate": WCertificate;
         "w-certificate-header": WCertificateHeader;
@@ -610,6 +638,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "w-badge": LocalJSX.WBadge & JSXBase.HTMLAttributes<HTMLWBadgeElement>;
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
             "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
