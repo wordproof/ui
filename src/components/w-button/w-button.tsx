@@ -34,6 +34,11 @@ export class WButton {
   @Prop() disabled: boolean = false;
 
   /**
+   * underline decoration for text button
+   */
+  @Prop() underlineNone: boolean = false;
+
+  /**
    * button html "type" attribute
    */
   @Prop() icon: IconName;
@@ -41,7 +46,7 @@ export class WButton {
   /**
    * button text size
    */
-  @Prop() color: 'gray' | 'white' = 'gray';
+  @Prop() color: 'gray' | 'white' | 'yellow' = 'gray';
 
   getIconSizeClasses() {
     if (this.size === 'xs') {
@@ -70,9 +75,18 @@ export class WButton {
             ['px-5 py-2 font-sohne-bold focus:ring-blue focus:ring-2 focus:ring-opacity-50 rounded-full']:
               !this.text && !this.icon,
             ['bg-gradient-to-r from-blue to-purple text-white']:
-              !this.outline && !this.text && !this.icon,
+              !this.outline &&
+              !this.text &&
+              !this.icon &&
+              this.color !== 'yellow',
+            ['bg-gradient-to-r from-yellow to-pink text-white']:
+              !this.outline &&
+              !this.text &&
+              !this.icon &&
+              this.color === 'yellow',
             ['bg-white border-2 border-blue text-blue']: this.outline,
-            ['underline font-sohne']: this.text,
+            ['font-sohne']: this.text,
+            ['underline font-sohne']: this.text && !this.underlineNone,
             ['text-gray-600 hover:text-gray-800']:
               this.text && this.color === 'gray',
             ['text-white']: this.text && this.color === 'white',
