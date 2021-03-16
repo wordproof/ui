@@ -87,7 +87,7 @@ export class WCertificate {
   }
 
   async componentWillLoad(): Promise<void> {
-    this.strings = await getLocaleStrings(this.hostElement);
+    this.strings = await getLocaleStrings(this.hostElement) as CertificateStrings;
     this.visible = router.isTriggered();
     this.content = await fetchContent();
     this.locale = getComponentClosestLanguage(this.hostElement);
