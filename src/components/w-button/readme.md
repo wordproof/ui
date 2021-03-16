@@ -23,7 +23,6 @@
 
 ### Used by
 
- - [w-certificate](../w-certificate)
  - [w-modal](../w-modal)
 
 ### Depends on
@@ -34,7 +33,6 @@
 ```mermaid
 graph TD;
   w-button --> w-icon
-  w-certificate --> w-button
   w-modal --> w-button
   style w-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
