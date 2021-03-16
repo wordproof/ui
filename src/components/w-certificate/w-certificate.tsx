@@ -87,7 +87,9 @@ export class WCertificate {
   }
 
   async componentWillLoad(): Promise<void> {
-    this.strings = await getLocaleStrings(this.hostElement) as CertificateStrings;
+    this.strings = (await getLocaleStrings(
+      this.hostElement,
+    )) as CertificateStrings;
     this.visible = router.isTriggered();
     this.content = await fetchContent();
     this.locale = getComponentClosestLanguage(this.hostElement);
@@ -118,11 +120,11 @@ export class WCertificate {
           visible={this.visible}
           onClose={() => this.hideModal()}
         >
-          <w-button
+          {/* <w-button
             slot="close"
             icon="close-circle"
             class="text-teal mr-3 w-6 h-6"
-          ></w-button>
+          ></w-button> */}
 
           <w-router-outlet routes={this.routes} />
         </w-modal>

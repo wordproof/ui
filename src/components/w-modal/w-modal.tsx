@@ -79,7 +79,6 @@ export class WModal {
   onClose(ev: MouseEvent) {
     ev.stopPropagation();
     this.close.emit('close');
-    console.warn('close');
   }
 
   render() {
@@ -128,12 +127,10 @@ export class WModal {
             aria-label={this.strings.ariaClose}
             tabindex="0"
           >
-            <slot name="close">
-              <w-button
-                icon="close"
-                class="block text-blue mr-2 mt-2"
-              ></w-button>
-            </slot>
+            <w-button
+              icon="close-circle"
+              class="block text-teal mr-2 mt-2"
+            ></w-button>
           </div>
 
           <div class={this.contentClassName}>
