@@ -121,7 +121,7 @@ export class WCertificate {
           <w-button
             slot="close"
             icon="close-circle"
-            class="text-teal mr-2 mt-2"
+            class="text-teal mr-3 w-6 h-6"
           ></w-button>
 
           <w-router-outlet routes={this.routes} />
