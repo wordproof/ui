@@ -1,4 +1,4 @@
-import { getLocaleStrings } from './locale';
+import { getLocaleStrings, BASE_URL } from './locale';
 import fetchMock, { enableFetchMocks } from 'jest-fetch-mock';
 import faker from 'faker';
 
@@ -16,7 +16,9 @@ describe('getComponentClosestLanguage', () => {
 
     const strings = await getLocaleStrings(el);
 
-    expect(fetchMock.mock.calls[0][0]).toEqual('/i18n/div.i18n.nl.json');
+    expect(fetchMock.mock.calls[0][0]).toEqual(
+      `${BASE_URL}/i18n/div.i18n.nl.json`,
+    );
     expect(strings[key]).toEqual(value);
   });
 });
