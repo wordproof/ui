@@ -1,3 +1,5 @@
+export const BASE_URL = 'https://unpkg.com/@wordproof/uikit/dist/uikit';
+
 export const getComponentClosestLanguage = (element: HTMLElement): string => {
   let closestElement = element.closest('[lang]') as HTMLElement;
   return closestElement ? closestElement.lang : 'en';
@@ -8,7 +10,7 @@ const fetchLocaleStringsForComponent = (
   locale: string,
 ): Promise<any> => {
   return new Promise((resolve, reject): void => {
-    fetch(`/i18n/${componentName}.i18n.${locale}.json`).then(
+    fetch(`${BASE_URL}/i18n/${componentName}.i18n.${locale}.json`).then(
       result => {
         if (result.ok) resolve(result.json());
         else reject();
