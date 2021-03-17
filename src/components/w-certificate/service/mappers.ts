@@ -13,3 +13,18 @@ export const oldDataMapper = (src: any): WPRevision => {
       : {}),
   };
 };
+export const newDataMapper = (src: any): WPRevision => {
+  const {
+    identifier: transactionId,
+    hash,
+    text: content,
+    dateCreated: date,
+  } = src;
+
+  return {
+    transactionId,
+    hash,
+    content,
+    date,
+  };
+};
