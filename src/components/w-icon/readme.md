@@ -21,6 +21,7 @@
  - [w-certificate](../w-certificate)
  - [w-certificate-versions-view](../w-certificate/views/w-certificate-compare-view)
  - [w-input-select](../w-input-select)
+ - [w-modal](../w-modal)
 
 ### Graph
 ```mermaid
@@ -29,6 +30,7 @@ graph TD;
   w-certificate --> w-icon
   w-certificate-versions-view --> w-icon
   w-input-select --> w-icon
+  w-modal --> w-icon
   style w-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

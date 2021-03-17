@@ -21,10 +21,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [w-modal](../w-modal)
-
 ### Depends on
 
 - [w-icon](../w-icon)
@@ -33,7 +29,6 @@
 ```mermaid
 graph TD;
   w-button --> w-icon
-  w-modal --> w-button
   style w-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

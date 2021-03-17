@@ -34,13 +34,12 @@
 
 ### Depends on
 
-- [w-button](../w-button)
+- [w-icon](../w-icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  w-modal --> w-button
-  w-button --> w-icon
+  w-modal --> w-icon
   w-certificate --> w-modal
   style w-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```
