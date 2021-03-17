@@ -6,10 +6,12 @@ import Button from '../components/Button';
 
 interface ImportanceViewProps {
   strings: CertificateStrings;
+  hasChanged: boolean;
 }
 
 const ImportanceView: FunctionalComponent<ImportanceViewProps> = ({
   strings,
+  hasChanged,
 }) => {
   return (
     <div>
@@ -22,7 +24,7 @@ const ImportanceView: FunctionalComponent<ImportanceViewProps> = ({
 
       <div class="flex flex-row">
         <div class="hidden md:block md:w-1/3 overflow-hidden rounded-bl-lg">
-          <Banner />
+          <Banner hasChanged={hasChanged} />
         </div>
         <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left">
           <div class="p-3 md:py-4 md:px-6 text-left border-2 border-gray-300 rounded-lg">

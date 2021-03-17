@@ -1,6 +1,10 @@
 import { FunctionalComponent, h } from '@stencil/core';
 
-const Banner:FunctionalComponent = () => (
+interface BannerProps {
+  hasChanged: boolean;
+}
+
+const Banner: FunctionalComponent<BannerProps> = ({ hasChanged }) => (
   <div class="relative h-full">
     <div
       class="bg-yellowAccent w-full h-full absolute"
@@ -24,8 +28,8 @@ const Banner:FunctionalComponent = () => (
       </g>
     </svg>
     <svg
-      viewBox="0 0 87 115"
-      width="174"
+      viewBox="0 0 131 115"
+      width="262"
       height="230"
       class="absolute"
       style={{
@@ -36,11 +40,19 @@ const Banner:FunctionalComponent = () => (
       }}
     >
       <g transform="translate(0 8)" fill="none" fill-rule="evenodd">
-        <path
-          d="M21 38V26C21 11.64 32.64 0 47 0c14.328.044 25.92 11.672 25.92 26v12"
-          stroke="#032BC4"
-          stroke-width="14.17"
-        ></path>
+        {hasChanged ? (
+          <path
+            d="M72 38V26C72 11.66 83.61.028 97.95 0c14.336.033 25.94 11.664 25.94 26v12"
+            stroke="#032BC4"
+            stroke-width="14.17"
+          ></path>
+        ) : (
+          <path
+            d="M21 38V26C21 11.64 32.64 0 47 0c14.328.044 25.92 11.672 25.92 26v12"
+            stroke="#032BC4"
+            stroke-width="14.17"
+          ></path>
+        )}
         <path
           d="M86.91 34v33A39.94 39.94 0 0 1 47 107 39.94 39.94 0 0 1 7 67V34h79.91z"
           fill="#032BC4"
@@ -50,12 +62,26 @@ const Banner:FunctionalComponent = () => (
           fill="#000"
           d="M57.05 83.69H36.89l10.08-20.17zM7.02 31.42h79.89V38H7.02z"
         ></path>
-        <circle fill="#01DCC6" cx="10.99" cy="89.97" r="10.97"></circle>
-        <path
-          stroke="#FFF"
-          stroke-width="2.59"
-          d="M3.99 90.94l4.77 4.88 8.23-11.14"
-        ></path>
+        <circle
+          fill={hasChanged ? '#FF4343' : '#01DCC6'}
+          cx={hasChanged ? '11.93' : '10.99'}
+          cy={hasChanged ? '89.7' : '89.97'}
+          r="10.97"
+        ></circle>
+        {hasChanged ? (
+          <path
+            d="M6.93 84.98l10 10M7.18 95.23l9.75-10.25"
+            stroke="#FFF"
+            stroke-width="3"
+            stroke-linecap="square"
+          ></path>
+        ) : (
+          <path
+            stroke="#FFF"
+            stroke-width="2.59"
+            d="M3.99 90.94l4.77 4.88 8.23-11.14"
+          ></path>
+        )}
       </g>
     </svg>
   </div>
