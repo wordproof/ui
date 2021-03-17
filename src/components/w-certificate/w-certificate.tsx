@@ -39,7 +39,7 @@ export class WCertificate {
         <OverviewView
           strings={this.strings}
           lastEdited={new Date(this.content.date)}
-          publishedBy="Sebastiaan van der Lans"
+          publishedBy=""
           locale={this.locale}
           hasRevisions={this.content.revisions !== undefined}
         />

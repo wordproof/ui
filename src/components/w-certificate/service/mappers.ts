@@ -14,17 +14,12 @@ export const mapOldData = (src: any): WPRevision => {
   };
 };
 export const mapNewData = (src: any): WPRevision => {
-  const {
-    identifier: transactionId,
-    hash,
-    text: content,
-    dateCreated: date,
-  } = src;
+  const { identifier: transactionId, hash, text, dateCreated: date } = src;
 
   return {
     transactionId,
     hash,
-    content,
+    content: text ? text : 'Failed to fetch raw content',
     date,
   };
 };
