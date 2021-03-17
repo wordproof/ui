@@ -8,7 +8,8 @@ import {
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
 import { router, Route } from '../w-router-outlet';
-import { fetchContent, WPContent } from './service';
+// import { fetchContent, WPContent } from './service';
+import { WPContent } from './service';
 import { parsePage } from './service/parsers';
 
 @Component({

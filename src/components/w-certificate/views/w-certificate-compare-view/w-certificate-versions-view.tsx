@@ -36,7 +36,6 @@ export class WCertificateVersionsView {
 
   componentWillLoad() {
     const { revisions, ...otherProps } = this.content;
-    console.warn({ raw: this.raw });
 
     if (revisions) {
       this.allRevisions = [otherProps, ...revisions];
