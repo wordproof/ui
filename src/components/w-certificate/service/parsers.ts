@@ -1,7 +1,8 @@
 // const newDataMapper = (src: any): WPRevision => {};
 
 import { WPContent } from '.';
-import { mapNewData, mapOldData } from './mappers';
+import { mapNewData } from './mappers';
+// import { mapNewData, mapOldData } from './mappers';
 
 export const fetchHashData = async (
   url: string,
