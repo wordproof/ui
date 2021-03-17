@@ -1,6 +1,6 @@
 import { WPRevision } from '.';
 
-export const oldDataMapper = (src: any): WPRevision => {
+export const mapOldData = (src: any): WPRevision => {
   const { transactionId, hash, content, date, revisions } = src;
 
   return {
@@ -9,11 +9,11 @@ export const oldDataMapper = (src: any): WPRevision => {
     content,
     date,
     ...(revisions
-      ? { revisions: revisions.map(revision => oldDataMapper(revision)) }
+      ? { revisions: revisions.map(revision => mapOldData(revision)) }
       : {}),
   };
 };
-export const newDataMapper = (src: any): WPRevision => {
+export const mapNewData = (src: any): WPRevision => {
   const {
     identifier: transactionId,
     hash,

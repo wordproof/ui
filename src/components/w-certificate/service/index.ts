@@ -1,4 +1,4 @@
-import { oldDataMapper } from './mappers';
+import { mapOldData } from './mappers';
 export interface WPRevision {
   transactionId: string;
   hash: string;
@@ -195,7 +195,7 @@ const sample = {
 export const fetchContent = async (): Promise<WPContent> => {
   return new Promise(resolve => {
     setTimeout(() => {
-      return resolve(oldDataMapper(sample));
+      return resolve(mapOldData(sample));
     }, 0);
   });
 };

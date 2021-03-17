@@ -9,6 +9,7 @@ import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
 import { router, Route } from '../w-router-outlet';
 import { fetchContent, WPContent } from './service';
+import { parsePage } from './service/parsers';
 
 @Component({
   tag: 'w-certificate',
@@ -93,7 +94,8 @@ export class WCertificate {
     this.visible = router.isTriggered();
     this.content = await fetchContent();
     this.locale = getComponentClosestLanguage(this.hostElement);
-    // parsePage();
+    const content = await parsePage();
+    console.warn({ content });
   }
 
   showModal() {

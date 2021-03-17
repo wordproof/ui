@@ -1,5 +1,8 @@
 // const newDataMapper = (src: any): WPRevision => {};
 
+import { WPContent } from '.';
+import { mapNewData, mapOldData } from './mappers';
+
 export const fetchHashData = async (
   url: string,
 ): Promise<Record<string, unknown>> =>
@@ -11,7 +14,7 @@ export const fetchHashData = async (
     //   },
     //   () => reject(),
     // );
-    console.warn({ url });
+    url;
 
     resolve({
       '@context': 'https://schema.org',
@@ -24,35 +27,40 @@ export const fetchHashData = async (
     });
   });
 
-export const parsePage = async () => {
-  const oldSchemaEl = document.querySelector('script.wordproof-schema');
-  if (oldSchemaEl && oldSchemaEl.innerHTML) {
-    const data = JSON.parse(oldSchemaEl && oldSchemaEl.innerHTML);
-    console.warn({ old: data });
-  }
-
-  const ldJsonScriptElems = document.querySelectorAll(
-    'script[type="application/ld+json"]',
-  );
-
-  const parsedScriptElems = Array.from(ldJsonScriptElems).map(elem => {
-    try {
-      const data = JSON.parse(elem.innerHTML);
-      return data;
-    } catch (e) {
-      return {};
+export const parsePage = async (): Promise<WPContent> =>
+  new Promise(async (resolve, reject) => {
+    const oldSchemaEl = document.querySelector('script.wordproof-schema');
+    if (oldSchemaEl && oldSchemaEl.innerHTML) {
+      try {
+        const data = JSON.parse(oldSchemaEl.innerHTML);
+        resolve(mapOldData(data));
+      } catch (e) {}
     }
+
+    const ldJsonScriptElems = document.querySelectorAll(
+      'script[type="application/ld+json"]',
+    );
+
+    const parsedScriptElems = Array.from(ldJsonScriptElems).map(elem => {
+      try {
+        const data = JSON.parse(elem.innerHTML);
+        return data;
+      } catch (e) {
+        return {};
+      }
+    });
+
+    const newSchemaEl = parsedScriptElems.find(
+      elem => elem['timestamp'] !== undefined,
+    );
+
+    if (newSchemaEl) {
+      const newSchemaData = newSchemaEl.timestamp;
+
+      const data = await fetchHashData(newSchemaData.hashLink);
+
+      resolve(mapNewData({ ...newSchemaData, ...data }));
+    }
+
+    reject();
   });
-
-  const newSchemaEl = parsedScriptElems.find(
-    elem => elem['timestamp'] !== undefined,
-  );
-
-  if (newSchemaEl) {
-    const newSchemaData = newSchemaEl.timestamp;
-
-    const data = await fetchHashData(newSchemaData.hashLink);
-
-    console.warn({ new: { ...newSchemaData, ...data } });
-  }
-};
