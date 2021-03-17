@@ -19,7 +19,7 @@ const FooterLink: FunctionalComponent<FooterLinkProps> = ({
 }) => {
   return disabled ? (
     <span
-      class={`text-blue opacity-50 font-sohne-semibold p-3 md:max-w-1/4 md:p-4 text-sm items-center justify-center ${classes}`}
+      class={`text-gray-800 font-sohne-semibold p-3 md:max-w-1/4 md:p-4 text-sm items-center justify-center ${classes}`}
     >
       <w-icon name={icon} class="mr-2"></w-icon>
       {label}
