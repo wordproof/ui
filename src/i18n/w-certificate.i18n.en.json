@@ -3,7 +3,7 @@
   "contentHasNotChangedTitle": "Content has not changed since the last timestamp",
   "contentHasNotChangedText": "Neither the website nor a third party has modified the content of this page since it was last timestamped on the blockchain.",
   "whyIsThisImportnat": "Why is this important?",
-  "lastEdit": "Last edit on",
+  "lastEdit": "Last timestamp on",
   "discoverHowTitle": "Discover how this content changed over time",
   "discoverHowText": "Because this website timestamps every revision on the blockchain, you can compare the different versions.",
   "viewPreviousVersions": "View previous versions",
