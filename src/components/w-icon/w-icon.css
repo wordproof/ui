@@ -1,5 +1,10 @@
 :host {
-  display: block;
+  display: inline;
+}
+
+.size-inherit {
+  width: inherit;
+  height: inherit;
 }
 
 .eye {
