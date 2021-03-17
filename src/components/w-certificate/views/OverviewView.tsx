@@ -10,6 +10,7 @@ interface OverviewViewProps {
   lastEdited: Date;
   publishedBy: string;
   locale: string;
+  hasRevisions: boolean;
 }
 
 const OverviewView: FunctionalComponent<OverviewViewProps> = ({
@@ -17,6 +18,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   lastEdited,
   publishedBy,
   locale,
+  hasRevisions
 }) => (
   <div>
     <w-certificate-header>
@@ -64,7 +66,11 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
           text={strings.discoverHowText}
           link={strings.viewPreviousVersions}
           onLinkClick={() => {
-            router.go(CertificateView.compare);
+            if (hasRevisions) {
+              router.go(CertificateView.compare);
+              return;
+            }
+            router.go(CertificateView.raw);
           }}
           checked={true}
           checkedText={`${strings.publishedBy} ${publishedBy}`}

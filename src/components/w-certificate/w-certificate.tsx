@@ -8,7 +8,9 @@ import {
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
 import { router, Route } from '../w-router-outlet';
-import { fetchContent, WPContent } from './service';
+// import { fetchContent, WPContent } from './service';
+import { WPContent } from './service';
+import { parsePage } from './service/parsers';
 
 @Component({
   tag: 'w-certificate',
@@ -37,8 +39,9 @@ export class WCertificate {
         <OverviewView
           strings={this.strings}
           lastEdited={new Date(this.content.date)}
-          publishedBy="Sebastiaan van der Lans"
+          publishedBy=""
           locale={this.locale}
+          hasRevisions={this.content.revisions !== undefined}
         />
       ),
       default: true,
@@ -55,6 +58,7 @@ export class WCertificate {
           content={this.content}
           locale={this.locale}
           raw={false}
+          hasRevisions={this.content.revisions !== undefined}
         ></w-certificate-versions-view>
       ),
     },
@@ -66,6 +70,7 @@ export class WCertificate {
           content={this.content}
           locale={this.locale}
           raw={true}
+          hasRevisions={this.content.revisions !== undefined}
         ></w-certificate-versions-view>
       ),
     },
@@ -91,8 +96,9 @@ export class WCertificate {
       this.hostElement,
     )) as CertificateStrings;
     this.visible = router.isTriggered();
-    this.content = await fetchContent();
     this.locale = getComponentClosestLanguage(this.hostElement);
+    // this.content = await fetchContent();
+    this.content = await parsePage();
   }
 
   showModal() {

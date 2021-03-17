@@ -1,24 +1,16 @@
-export interface WPContext {
-  '@type': string;
-  '@version': string;
-}
-
+import { mapOldData } from './mappers';
 export interface WPRevision {
-  '@context': WPContext;
-  'blockchain': string;
-  'transactionId': string;
-  'hash': string;
-  'title': string;
-  'content': string;
-  'date': string;
-  'url': string;
+  transactionId: string;
+  hash: string;
+  content: string;
+  date: string;
 }
 
 export interface WPContent extends WPRevision {
-  revisions: WPRevision[];
+  revisions?: WPRevision[];
 }
 
-const sample: WPContent = {
+const sample = {
   '@context': { '@type': 'ArticleTimestamp', '@version': '0.2.0' },
   'blockchain': 'eos',
   'transactionId':
@@ -203,7 +195,7 @@ const sample: WPContent = {
 export const fetchContent = async (): Promise<WPContent> => {
   return new Promise(resolve => {
     setTimeout(() => {
-      return resolve(sample);
-    }, 100);
+      return resolve(mapOldData(sample));
+    }, 0);
   });
 };

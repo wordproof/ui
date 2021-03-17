@@ -9,11 +9,13 @@ interface FooterProps {
   strings: CertificateStrings;
   raw: boolean;
   transactionId: string;
+  hasRevisions: boolean;
 }
 const Footer: FunctionalComponent<FooterProps> = ({
   strings,
   raw,
   transactionId,
+  hasRevisions,
 }) => {
   const links = [
     {
@@ -36,6 +38,7 @@ const Footer: FunctionalComponent<FooterProps> = ({
         : router.getHref(CertificateView.raw),
       label: raw ? strings.compare : strings.rawInput,
       classes: 'hidden md:inline-flex',
+      disabled: !hasRevisions,
     },
     {
       icon: Icon.blockchain,
@@ -55,6 +58,7 @@ const Footer: FunctionalComponent<FooterProps> = ({
           target={link.target}
           label={link.label}
           classes={link.classes}
+          disabled={link['disabled']}
         />
       ))}
     </div>
