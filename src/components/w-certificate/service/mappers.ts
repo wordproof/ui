@@ -1,3 +1,4 @@
+import { sha256 } from 'js-sha256';
 import { WPRevision } from '.';
 
 export const mapOldData = (src: any): WPRevision => {
@@ -11,17 +12,27 @@ export const mapOldData = (src: any): WPRevision => {
     ...(revisions
       ? { revisions: revisions.map(revision => mapOldData(revision)) }
       : {}),
-    hasChanged: true,
+    hasChanged: false,
   };
 };
 export const mapNewData = (src: any): WPRevision => {
-  const { identifier: transactionId, hash, text, dateCreated: date } = src;
+  const { identifier: transactionId, hash, hashLinkContent } = src;
+
+  const content = hashLinkContent
+    ? hashLinkContent.text
+    : 'Failed to fetch raw content';
+
+  const date = hashLinkContent ? hashLinkContent.dateCreated : 'Invalid date';
+
+  const computedHash = hashLinkContent
+    ? sha256(JSON.stringify(hashLinkContent))
+    : '';
 
   return {
     transactionId,
     hash,
-    content: text ? text : 'Failed to fetch raw content',
+    content,
     date,
-    hasChanged: true,
+    hasChanged: hash !== computedHash,
   };
 };

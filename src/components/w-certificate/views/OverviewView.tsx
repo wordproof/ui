@@ -37,7 +37,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
 
     <div class="flex flex-row">
       <div class="hidden md:block md:w-1/3 overflow-hidden rounded-bl-lg">
-        <Banner />
+        <Banner hasChanged={hasChanged} />
       </div>
 
       <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left space-y-4">

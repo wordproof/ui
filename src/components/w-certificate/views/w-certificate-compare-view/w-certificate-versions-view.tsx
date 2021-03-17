@@ -44,6 +44,8 @@ export class WCertificateVersionsView {
         label: this.formatOptionLabel(revision.date, ind),
         value: ind,
       }));
+
+      this.transactionId = this.allRevisions[0].transactionId;
       return;
     }
 
@@ -54,6 +56,7 @@ export class WCertificateVersionsView {
         value: 0,
       },
     ];
+    this.transactionId = this.allRevisions[0].transactionId;
   }
 
   formatOptionLabel(dateStr: string, ind: number): string {

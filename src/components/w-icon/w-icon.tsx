@@ -101,7 +101,7 @@ export class WIcon {
 
         <symbol id="times-circle" viewBox="0 0 23 23">
           <g fill="none" fill-rule="evenodd">
-            <circle cx="11.5" cy="11.5" r="11.5" fill="#currentColor" />
+            <circle cx="11.5" cy="11.5" r="11.5" fill="currentColor"></circle>
             <path
               d="M6.5 6.75l10 10M6.75 17L16.5 6.75"
               stroke="#FFF"

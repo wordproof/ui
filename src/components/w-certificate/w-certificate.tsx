@@ -49,7 +49,12 @@ export class WCertificate {
     },
     {
       hash: CertificateView.importance,
-      renderer: () => <ImportanceView strings={this.strings} />,
+      renderer: () => (
+        <ImportanceView
+          strings={this.strings}
+          hasChanged={this.content.hasChanged}
+        />
+      ),
     },
     {
       hash: CertificateView.compare,
