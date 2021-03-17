@@ -1,5 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
 import { IconName } from './types';
+
 @Component({
   tag: 'w-icon',
   styleUrl: 'w-icon.css',
@@ -20,7 +21,7 @@ export class WIcon {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class={this.fit ? 'w-full h-full' : this.name}
+        class={this.fit ? 'size-inherit' : this.name}
       >
         <use xlinkHref={`#${this.name}`} />
         <symbol id="comment" viewBox="0 0 28 23">
