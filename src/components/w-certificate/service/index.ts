@@ -4,6 +4,7 @@ export interface WPRevision {
   hash: string;
   content: string;
   date: string;
+  hasChanged:boolean;
 }
 
 export interface WPContent extends WPRevision {

@@ -42,6 +42,7 @@ export class WCertificate {
           publishedBy=""
           locale={this.locale}
           hasRevisions={this.content.revisions !== undefined}
+          hasChanged={this.content.hasChanged}
         />
       ),
       default: true,

@@ -22,5 +22,10 @@
   "viewOnBlockchain": "Bekijk op de blockchain",
   "rawInput": "Invoer",
   "previous": "Vorige",
-  "browsePreviousVersions": "Blader door vorige versies"
+  "browsePreviousVersions": "Blader door vorige versies",
+  "verifyFingerprintTitle":"Verify the fingerprint of this content",
+  "verifyFingerprintText":"See how this unique fingerprint was genrated and verify it in the blockchain.",
+  "viewTimestamp":"View the input of this timestamp",
+  "contentHasChangedTitle":"Content has changed since the last timestamp",
+  "contentHasChangedText":"The website has updated the content of this page since it was last timestamped on the blockchain."
 }

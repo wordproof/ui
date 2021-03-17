@@ -11,6 +11,7 @@ interface OverviewViewProps {
   publishedBy: string;
   locale: string;
   hasRevisions: boolean;
+  hasChanged: boolean;
 }
 
 const OverviewView: FunctionalComponent<OverviewViewProps> = ({
@@ -18,7 +19,8 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   lastEdited,
   publishedBy,
   locale,
-  hasRevisions
+  hasRevisions,
+  hasChanged,
 }) => (
   <div>
     <w-certificate-header>
@@ -41,13 +43,21 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left space-y-4">
         <OverviewCard
           icon="ink-pen"
-          title={strings.contentHasNotChangedTitle}
-          text={strings.contentHasNotChangedText}
+          title={
+            hasChanged
+              ? strings.contentHasChangedTitle
+              : strings.contentHasNotChangedTitle
+          }
+          text={
+            hasChanged
+              ? strings.contentHasChangedText
+              : strings.contentHasNotChangedText
+          }
           link={strings.whyIsThisImportnat}
           onLinkClick={() => {
             router.go(CertificateView.importance);
           }}
-          checked={true}
+          checked={!hasChanged}
           checkedText={`${strings.lastEdit} ${lastEdited.toLocaleDateString(
             locale,
             {
@@ -62,9 +72,19 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         />
         <OverviewCard
           icon="clock"
-          title={strings.discoverHowTitle}
-          text={strings.discoverHowText}
-          link={strings.viewPreviousVersions}
+          title={
+            hasRevisions
+              ? strings.discoverHowTitle
+              : strings.verifyFingerprintTitle
+          }
+          text={
+            hasRevisions
+              ? strings.discoverHowText
+              : strings.verifyFingerprintText
+          }
+          link={
+            hasRevisions ? strings.viewPreviousVersions : strings.viewTimestamp
+          }
           onLinkClick={() => {
             if (hasRevisions) {
               router.go(CertificateView.compare);

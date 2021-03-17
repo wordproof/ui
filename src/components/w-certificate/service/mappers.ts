@@ -11,6 +11,7 @@ export const mapOldData = (src: any): WPRevision => {
     ...(revisions
       ? { revisions: revisions.map(revision => mapOldData(revision)) }
       : {}),
+    hasChanged: true,
   };
 };
 export const mapNewData = (src: any): WPRevision => {
@@ -21,5 +22,6 @@ export const mapNewData = (src: any): WPRevision => {
     hash,
     content: text ? text : 'Failed to fetch raw content',
     date,
+    hasChanged: true,
   };
 };
