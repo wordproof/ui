@@ -27,7 +27,12 @@ type CertificateKeys = [
   'viewOnBlockchain',
   'rawInput',
   'previous',
-  'browsePreviousVersions'
+  'browsePreviousVersions',
+  'verifyFingerprintTitle',
+  'verifyFingerprintText',
+  'viewTimestamp',
+  'contentHasChangedTitle',
+  'contentHasChangedText',
 ][number];
 export type CertificateStrings = Record<CertificateKeys, string>;
 
