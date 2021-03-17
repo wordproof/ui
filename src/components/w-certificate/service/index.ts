@@ -1,19 +1,9 @@
 import { oldDataMapper } from './mappers';
-
-// export interface WPContext {
-//   '@type': string;
-//   '@version': string;
-// }
-
 export interface WPRevision {
-  // '@context': WPContext;
-  // 'blockchain': string;
   transactionId: string;
   hash: string;
-  title: string;
   content: string;
   date: string;
-  //   // 'url': string;
 }
 
 export interface WPContent extends WPRevision {
