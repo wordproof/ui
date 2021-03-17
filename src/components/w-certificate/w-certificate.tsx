@@ -93,6 +93,7 @@ export class WCertificate {
     this.visible = router.isTriggered();
     this.content = await fetchContent();
     this.locale = getComponentClosestLanguage(this.hostElement);
+    // parsePage();
   }
 
   showModal() {
