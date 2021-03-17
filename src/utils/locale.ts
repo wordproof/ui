@@ -74,3 +74,13 @@ export const getLocaleStrings = async (
     },
   });
 };
+
+export const formatDate = (dateStr: string, locale: string): string =>
+  new Date(dateStr).toLocaleDateString(locale, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
+  });
