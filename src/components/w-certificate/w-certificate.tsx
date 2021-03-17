@@ -40,6 +40,7 @@ export class WCertificate {
           lastEdited={new Date(this.content.date)}
           publishedBy="Sebastiaan van der Lans"
           locale={this.locale}
+          hasRevisions={this.content.revisions !== undefined}
         />
       ),
       default: true,
@@ -56,6 +57,7 @@ export class WCertificate {
           content={this.content}
           locale={this.locale}
           raw={false}
+          hasRevisions={this.content.revisions !== undefined}
         ></w-certificate-versions-view>
       ),
     },
@@ -67,6 +69,7 @@ export class WCertificate {
           content={this.content}
           locale={this.locale}
           raw={true}
+          hasRevisions={this.content.revisions !== undefined}
         ></w-certificate-versions-view>
       ),
     },
@@ -92,10 +95,9 @@ export class WCertificate {
       this.hostElement,
     )) as CertificateStrings;
     this.visible = router.isTriggered();
-    this.content = await fetchContent();
     this.locale = getComponentClosestLanguage(this.hostElement);
-    const content = await parsePage();
-    console.warn({ content });
+    // this.content = await fetchContent();
+    this.content = await parsePage();
   }
 
   showModal() {

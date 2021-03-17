@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import { WPContent, WPRevision } from '../../service';
 import Footer from '../../components/Footer';
 import { RevisionOption } from './types';
+import { formatDate } from '../../../../utils/locale';
 @Component({
   tag: 'w-certificate-versions-view',
   styleUrl: 'w-certificate-versions-view.css',
@@ -21,6 +22,8 @@ export class WCertificateVersionsView {
 
   @Prop() raw: boolean;
 
+  @Prop() hasRevisions: boolean;
+
   @State() transactionId: string;
 
   allRevisions: WPRevision[];
@@ -33,13 +36,25 @@ export class WCertificateVersionsView {
 
   componentWillLoad() {
     const { revisions, ...otherProps } = this.content;
+    console.warn({ raw: this.raw });
 
-    this.allRevisions = [otherProps, ...revisions];
+    if (revisions) {
+      this.allRevisions = [otherProps, ...revisions];
 
-    this.allOptions = this.allRevisions.map((revision, ind) => ({
-      label: `${this.formatOptionLabel(revision.date, ind)}`,
-      value: ind,
-    }));
+      this.allOptions = this.allRevisions.map((revision, ind) => ({
+        label: this.formatOptionLabel(revision.date, ind),
+        value: ind,
+      }));
+      return;
+    }
+
+    this.allRevisions = [this.content];
+    this.allOptions = [
+      {
+        label: formatDate(this.content.date, this.locale),
+        value: 0,
+      },
+    ];
   }
 
   formatOptionLabel(dateStr: string, ind: number): string {
@@ -51,16 +66,7 @@ export class WCertificateVersionsView {
       prefix = `${this.strings.firstTimestamp} `;
     }
 
-    const date = new Date(dateStr).toLocaleDateString(this.locale, {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: 'numeric',
-      minute: '2-digit',
-      second: '2-digit',
-    });
-
-    return `${prefix}${date}`;
+    return `${prefix}${formatDate(dateStr, this.locale)}`;
   }
 
   render() {
@@ -93,6 +99,7 @@ export class WCertificateVersionsView {
           strings={this.strings}
           raw={this.raw}
           transactionId={this.transactionId}
+          hasRevisions={this.hasRevisions}
         />
       </div>
     );

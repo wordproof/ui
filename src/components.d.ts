@@ -83,6 +83,7 @@ export namespace Components {
     }
     interface WCertificateVersionsView {
         "content": WPContent;
+        "hasRevisions": boolean;
         "locale": string;
         "raw": boolean;
         "strings": CertificateStrings;
@@ -444,6 +445,7 @@ declare namespace LocalJSX {
     }
     interface WCertificateVersionsView {
         "content"?: WPContent;
+        "hasRevisions"?: boolean;
         "locale"?: string;
         "raw"?: boolean;
         "strings"?: CertificateStrings;
