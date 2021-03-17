@@ -44,8 +44,7 @@ graph TD;
   w-input-select --> w-icon
   w-certificate-versions-compare --> w-input-select
   w-certificate-versions-compare --> w-input-select-option
-  w-modal --> w-button
-  w-button --> w-icon
+  w-modal --> w-icon
   style w-certificate fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -65,7 +65,7 @@ export class WModal {
   strings: ModalStrings;
 
   async componentWillLoad(): Promise<void> {
-    this.strings = await getLocaleStrings(this.hostElement);
+    this.strings = (await getLocaleStrings(this.hostElement)) as ModalStrings;
     this.hostElement.setAttribute('aria-hidden', String(this.visible));
   }
 
@@ -85,7 +85,7 @@ export class WModal {
     return (
       <div
         class={cx(
-          'fixed top-0 left-0 w-full h-full flex items-center justify-center cursor-default',
+          'fixed z-40 top-0 left-0 w-full h-full flex items-center justify-center cursor-default',
           {
             ['hidden']: !this.visible,
           },
@@ -121,17 +121,14 @@ export class WModal {
           aria-labelledby="ariaLabel"
           aria-describedby="ariaDescription"
         >
-          <div
-            class="absolute top-0 right-0"
+          <button
+            class="absolute top-2 right-2 focus:outline-none"
             onClick={ev => this.onClose(ev)}
             aria-label={this.strings.ariaClose}
             tabindex="0"
           >
-            <w-button
-              icon="close-circle"
-              class="block text-teal mr-2 mt-2"
-            ></w-button>
-          </div>
+            <w-icon fit name="close-circle" class="w-6 h-6 text-teal"></w-icon>
+          </button>
 
           <div class={this.contentClassName}>
             <slot />
