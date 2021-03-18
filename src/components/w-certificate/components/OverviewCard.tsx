@@ -16,8 +16,8 @@ const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
   text,
   link,
   onLinkClick,
-  checked,
-  checkedText,
+  // checked,
+  // checkedText,
 }) => (
   <div class="border-2 border-solid border-gray-300 rounded-lg p-4 md:px-4 md:py-5">
     <div class="flex flex-col">
