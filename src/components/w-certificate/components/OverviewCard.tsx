@@ -36,7 +36,7 @@ const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
           </button>
         </div>
       </div>
-      <div class="flex flex-row text-sm mt-4 text-gray-600">
+      {/* <div class="flex flex-row text-sm mt-4 text-gray-600">
         <div class="w-1/12">
           <span class="float-right">
             {checked === null ? null : (
@@ -48,7 +48,7 @@ const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
           </span>
         </div>
         <span class="pl-3">{checkedText}</span>
-      </div>
+      </div> */}
     </div>
   </div>
 );
