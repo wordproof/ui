@@ -13,6 +13,7 @@ export const mapOldData = (src: any): WPRevision => {
       ? { revisions: revisions.map(revision => mapOldData(revision)) }
       : {}),
     hasChanged: false,
+    hashLinkContent: {},
   };
 };
 export const mapNewData = (src: any): WPRevision => {
@@ -34,5 +35,6 @@ export const mapNewData = (src: any): WPRevision => {
     content,
     date,
     hasChanged: hash !== computedHash,
+    hashLinkContent,
   };
 };
