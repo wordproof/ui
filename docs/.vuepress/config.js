@@ -21,6 +21,7 @@ module.exports = {
       '/pages/w-button',
       '/pages/w-text-input',
       '/pages/w-modal',
+      '/pages/w-certificate',
     ],
   },
 };

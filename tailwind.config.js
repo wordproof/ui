@@ -21,7 +21,7 @@ module.exports = {
         },
         'light-blue': '#E2E9F4',
         'sand': '#FFEBCA',
-        'yellowAccent':'#fddd7e'
+        'yellowAccent': '#fddd7e',
       },
       fontSize: {
         'xs': '.75rem',
@@ -44,7 +44,23 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Nunito', ...defaultTheme.fontFamily.sans],
-        'sohne': ['Sohne-Buch'],
+        'sohne': [
+          'Sohne-Buch',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica Neue',
+          'Arial',
+          'Noto Sans',
+          'sans-serif',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
+          'Noto Color Emoji',
+        ],
         'sohne-medium': ['Sohne-Kraftig'],
         'sohne-semibold': ['Sohne-Halbfett'],
         'sohne-bold': ['Sohne-Dreiviertelfett'],

@@ -65,7 +65,7 @@ function renderContent(
   }
 
   if (view === 'raw') {
-    return JSON.stringify(revisions[viewInd]);
+    return JSON.stringify(revisions[viewInd].hashLinkContent);
   }
 
   if (view === 'render') {
