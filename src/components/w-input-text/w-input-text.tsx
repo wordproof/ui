@@ -93,8 +93,8 @@ export class WInputText {
     this.localValue =
       this.stripRegex !== null ? value.replace(this.stripRegex, '') : value;
     this.inputEl.value = this.localValue;
-    this.value =
-      this.localValue.trim() === '' ? '' : `${this.localValue}${this.suffix}`;
+    this.value = this.localValue;
+    // .trim() === '' ? '' : `${this.localValue}${this.suffix}`;
 
     this.emitValue(this.value, eventType);
   }
