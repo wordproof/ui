@@ -1,4 +1,12 @@
-import { Component, Prop, h, State, Element, Listen } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  State,
+  Element,
+  Listen,
+  Host,
+} from '@stencil/core';
 import { CertificateView, CertificateViewKeys } from './types';
 import { CertificateStrings } from '../../i18n';
 import {
@@ -8,7 +16,6 @@ import {
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
 import { router, Route } from '../w-router-outlet';
-// import { fetchContent, WPContent } from './service';
 import { WPContent } from './service';
 import { parsePage } from './service/parsers';
 
@@ -86,7 +93,7 @@ export class WCertificate {
 
   strings: CertificateStrings;
 
-  content: WPContent;
+  @State() content: WPContent;
 
   locale: string;
 
@@ -98,13 +105,16 @@ export class WCertificate {
   }
 
   async componentWillLoad(): Promise<void> {
-    this.strings = (await getLocaleStrings(
-      this.hostElement,
-    )) as CertificateStrings;
-    this.visible = router.isTriggered();
-    this.locale = getComponentClosestLanguage(this.hostElement);
-    // this.content = await fetchContent();
-    this.content = await parsePage();
+    parsePage()
+      .then(async content => {
+        this.content = content;
+        this.strings = (await getLocaleStrings(
+          this.hostElement,
+        )) as CertificateStrings;
+        this.locale = getComponentClosestLanguage(this.hostElement);
+        this.visible = router.isTriggered();
+      })
+      .catch(() => {});
   }
 
   showModal() {
@@ -119,8 +129,8 @@ export class WCertificate {
   }
 
   render() {
-    return (
-      <div>
+    return this.content ? (
+      <Host>
         <w-certificate-link
           noIcon={this.noIcon}
           onClick={() => this.showModal()}
@@ -132,15 +142,13 @@ export class WCertificate {
           visible={this.visible}
           onClose={() => this.hideModal()}
         >
-          {/* <w-button
-            slot="close"
-            icon="close-circle"
-            class="text-teal mr-3 w-6 h-6"
-          ></w-button> */}
-
           <w-router-outlet routes={this.routes} />
         </w-modal>
-      </div>
+      </Host>
+    ) : (
+      <Host
+        innerHTML={'<!-- WordProof: no certificate data found on the page -->'}
+      ></Host>
     );
   }
 }
