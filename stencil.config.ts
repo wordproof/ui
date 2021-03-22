@@ -10,6 +10,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
 
 export const config: Config = {
   namespace: 'uikit',
+  buildEs5: 'prod',
   outputTargets: [
     {
       type: 'dist',
