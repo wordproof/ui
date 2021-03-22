@@ -7,7 +7,7 @@ The modal is also triggered by adding `#wordproof` hash tag to the url of the pa
 <w-certificate></w-certificate>
 ```
 
-<w-certificate></w-certificate>
+<w-certificate v-pre></w-certificate>
 
 ## API
 

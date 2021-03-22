@@ -105,16 +105,15 @@ export class WCertificate {
   }
 
   async componentWillLoad(): Promise<void> {
-    parsePage()
-      .then(async content => {
-        this.content = content;
-        this.strings = (await getLocaleStrings(
-          this.hostElement,
-        )) as CertificateStrings;
-        this.locale = getComponentClosestLanguage(this.hostElement);
-        this.visible = router.isTriggered();
-      })
-      .catch(() => {});
+    const content = await parsePage();
+    if (content !== null) {
+      this.content = content;
+      this.strings = (await getLocaleStrings(
+        this.hostElement,
+      )) as CertificateStrings;
+      this.locale = getComponentClosestLanguage(this.hostElement);
+      this.visible = router.isTriggered();
+    }
   }
 
   showModal() {
