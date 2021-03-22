@@ -116,6 +116,16 @@
   height: 50px;
 }
 
+.gear {
+  width: 26px;
+  height: 25px;
+}
+
+.search {
+  width: 19px;
+  height: 18px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
