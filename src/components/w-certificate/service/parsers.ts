@@ -17,8 +17,8 @@ export const fetchHashData = async (
     );
   });
 
-export const parsePage = async (): Promise<WPContent> =>
-  new Promise(async (resolve, reject) => {
+export const parsePage = async (): Promise<WPContent | null> =>
+  new Promise(async resolve => {
     // const oldSchemaEl = document.querySelector('script.wordproof-schema');
     // if (oldSchemaEl && oldSchemaEl.innerHTML) {
     //   try {
@@ -47,7 +47,11 @@ export const parsePage = async (): Promise<WPContent> =>
     if (newSchemaEl) {
       const newSchemaData = newSchemaEl.timestamp;
 
-      const hashLinkContent = await fetchHashData(newSchemaData.hashLink);
+      const hashLinkContent = await fetchHashData(newSchemaData.hashLink).catch(
+        () => {
+          resolve(null);
+        },
+      );
 
       // const hashLinkContent = {
       //   '@context': 'https://schema.org',
@@ -62,5 +66,5 @@ export const parsePage = async (): Promise<WPContent> =>
       resolve(mapNewData({ ...newSchemaData, hashLinkContent }));
     }
 
-    reject();
+    resolve(null);
   });
