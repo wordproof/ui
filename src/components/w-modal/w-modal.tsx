@@ -85,12 +85,13 @@ export class WModal {
     return (
       <div
         class={cx(
-          'fixed z-40 top-0 left-0 w-full h-full flex items-center justify-center cursor-default',
+          'fixed top-0 left-0 w-full h-full flex items-center justify-center cursor-default',
           {
             ['hidden']: !this.visible,
           },
           this.wrapClassName,
         )}
+        style={{ ['z-index']: '999998' }}
       >
         <div class="sr-only" id="ariaLabel">
           {this.ariaModalTitle}
@@ -109,12 +110,13 @@ export class WModal {
 
         <div
           class={cx(
-            'bg-white z-50 relative w-11/12 md:max-w-4xl',
+            'bg-white relative w-11/12 md:max-w-4xl',
             {
               [`rounded-${this.rounded}`]: this.rounded,
             },
             this.modalClassName,
           )}
+          style={{ ['z-index']: '999999' }}
           onClick={ev => ev.stopPropagation()}
           role="dialog"
           aria-modal="true"
