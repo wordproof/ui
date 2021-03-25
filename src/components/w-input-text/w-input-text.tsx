@@ -123,7 +123,7 @@ export class WInputText {
   connectedCallback() {
     this.localValue = this.value;
     this.compileRegex(this.strip);
-    this.handleValueChange(this.value, 'change');
+    // this.handleValueChange(this.inputEl.value, 'change');
   }
 
   @Watch('strip')
