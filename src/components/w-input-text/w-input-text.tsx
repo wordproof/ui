@@ -94,8 +94,6 @@ export class WInputText {
       this.stripRegex !== null ? value.replace(this.stripRegex, '') : value;
     this.inputEl.value = this.localValue;
     this.value = this.localValue;
-    // .trim() === '' ? '' : `${this.localValue}${this.suffix}`;
-
     this.emitValue(this.value, eventType);
   }
 
@@ -125,6 +123,7 @@ export class WInputText {
   connectedCallback() {
     this.localValue = this.value;
     this.compileRegex(this.strip);
+    // this.handleValueChange(this.inputEl.value, 'change');
   }
 
   @Watch('strip')
