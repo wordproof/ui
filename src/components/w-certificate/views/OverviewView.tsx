@@ -16,9 +16,9 @@ interface OverviewViewProps {
 
 const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   strings,
-  lastEdited,
+  // lastEdited,
   publishedBy,
-  locale,
+  // locale,
   hasRevisions,
   hasChanged,
 }) => (
