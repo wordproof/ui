@@ -114,13 +114,13 @@ export namespace Components {
     }
     interface WInputDate {
         /**
-          * color variant
-         */
-        "color": string;
-        /**
           * size
          */
         "size": string;
+        /**
+          * color variant
+         */
+        "value": string;
     }
     interface WInputSelect {
         /**
@@ -493,13 +493,13 @@ declare namespace LocalJSX {
     }
     interface WInputDate {
         /**
-          * color variant
-         */
-        "color"?: string;
-        /**
           * size
          */
         "size"?: string;
+        /**
+          * color variant
+         */
+        "value"?: string;
     }
     interface WInputSelect {
         /**
