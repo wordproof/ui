@@ -16,9 +16,9 @@ interface OverviewViewProps {
 
 const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   strings,
-  lastEdited,
+  // lastEdited,
   publishedBy,
-  locale,
+  // locale,
   hasRevisions,
   hasChanged,
 }) => (
@@ -40,8 +40,8 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         <Banner hasChanged={hasChanged} />
       </div>
 
-      <div class="w-full md:w-2/3 p-2 md:py-4 md:px-6 text-left space-y-4">
-        <OverviewCard
+      <div class="w-full md:w-2/3 p-2 md:py-7 md:px-6 text-left space-y-4">
+        {/* <OverviewCard
           icon="ink-pen"
           title={
             hasChanged
@@ -69,7 +69,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
               minute: 'numeric',
             },
           )}`}
-        />
+        /> */}
         <OverviewCard
           icon="clock"
           title={

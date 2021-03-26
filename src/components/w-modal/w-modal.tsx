@@ -110,7 +110,7 @@ export class WModal {
 
         <div
           class={cx(
-            'bg-white relative w-11/12 md:max-w-4xl',
+            'bg-white relative w-11/12 md:max-w-3xl',
             {
               [`rounded-${this.rounded}`]: this.rounded,
             },

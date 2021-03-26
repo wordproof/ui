@@ -19,7 +19,7 @@ const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
   // checked,
   // checkedText,
 }) => (
-  <div class="border-2 border-solid border-gray-300 rounded-lg p-4 md:px-4 md:py-5">
+  <div class="border-2 border-solid border-gray-300 rounded-lg p-4 md:px-4 md:py-6">
     <div class="flex flex-col">
       <div class="flex flex-col md:flex-row text-base text-gray-700">
         <div class="mb-2 md:m-0 md:w-1/12">
@@ -27,7 +27,7 @@ const OverviewCard: FunctionalComponent<OverviewCardProps> = ({
         </div>
         <div class="md:pl-3">
           <h3 class="text-lg text-black font-medium">{title}</h3>
-          <p class="mb-2">{text}</p>
+          <p class="mb-2 mt-2">{text}</p>
           <button
             class="text-blue font-medium focus:outline-none"
             onClick={() => onLinkClick()}
