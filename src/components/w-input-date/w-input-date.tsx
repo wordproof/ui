@@ -3,7 +3,7 @@ import DateLabel from './components/DateLabel';
 // import cx from 'classnames';
 import { parseDate } from '../../utils/date';
 
-import { startOfMonth, startOfWeek, add, getMonth, isSameDay } from 'date-fns';
+import { startOfMonth, startOfWeek, add, getMonth, isSameDay, format } from 'date-fns';
 
 @Component({
   tag: 'w-input-date',
@@ -56,11 +56,26 @@ export class WInputDate {
 
   render() {
     return (
-      <div class="">
+      <div class="w-min">
+        <div class="flex justify-between items-center px-4 py-3 bg-blue text-white font-sohne-semibold">
+          <button class="p-2 rounded-full focus:outline-none transform rotate-180">
+            <w-icon name="arrow-right" class=""></w-icon>
+          </button>
+          <div class="text-lg select-none">{format(this.currentDate, 'MMMM yyyy')}</div>
+          <button class="p-2 rounded-full focus:outline-none">
+            <w-icon name="arrow-right"></w-icon>
+          </button>
+        </div>
         <div
-          class="grid grid-cols-7 grid-flow-row gap-x-0.5 gap-y-4"
-          style={{ width: '320px' }}
+          class="mx-2 px-4 pb-6 grid grid-cols-7 grid-flow-row gap-x-0.5 gap-y-4"
+          style={{ width: '356px' }}
         >
+          {this.weekDayNames.map(dayName => (
+            <div class="w-11 h-11 text-center select-none text-blue uppercase text-xs flex items-center justify-center">
+              {dayName}
+            </div>
+          ))}
+
           {this.dislayDates.map(date => (
             <DateLabel
               date={date}
