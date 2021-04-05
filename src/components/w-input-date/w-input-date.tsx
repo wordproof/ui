@@ -1,5 +1,9 @@
 import { Component, Prop, h, State, Listen } from '@stencil/core';
-import cx from 'classnames';
+import DateLabel from './components/DateLabel';
+// import cx from 'classnames';
+import { parseDate } from '../../utils/date';
+
+import { startOfMonth, startOfWeek, add, getMonth, isSameDay } from 'date-fns';
 
 @Component({
   tag: 'w-input-date',
@@ -10,12 +14,14 @@ export class WInputDate {
   /**
    * color variant
    */
-  @Prop() value: string;
+  @Prop() value: string = '2020-09-17';
 
-  /**
-   * size
-   */
-  @Prop() size: string = 'base';
+  weekDayNames: string[] = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
+  currentDate: Date;
+
+  dislayDates: Date[] = [];
+  enabled: Date[];
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
@@ -25,233 +31,46 @@ export class WInputDate {
   }
 
   @State() showDatepicker: boolean = false;
+  @State() selected: Date;
 
   dateEl: HTMLInputElement;
   datepickerValue: string;
-  month: number;
-  year: number;
-  no_of_days: number[] = [];
-  blankdays: number[] = [];
-  days: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   connectedCallback() {
-    console.warn('!!!!');
+    this.currentDate = parseDate(this.value);
+    const startDate = startOfWeek(startOfMonth(this.currentDate));
+    this.dislayDates = new Array(35)
+      .fill(null)
+      .map((_el, ind) => add(startDate, { days: ind }));
+    this.enabled = [
+      '2020-09-02',
+      '2020-09-08',
+      '2020-09-14',
+      '2020-09-15',
+      '2020-09-17',
+      '2020-09-22',
+    ].map(item => parseDate(item));
 
-    this.initDate();
-    this.getNoOfDays();
-  }
-
-  initDate() {
-    const today = new Date();
-    this.month = today.getMonth();
-    this.year = today.getFullYear();
-    this.datepickerValue = new Date(
-      this.year,
-      this.month,
-      today.getDate(),
-    ).toDateString();
-  }
-
-  isToday(day: number) {
-    const today = new Date();
-    const d = new Date(this.year, this.month, day);
-
-    return today.toDateString() === d.toDateString();
-  }
-
-  getDateValue(day: number) {
-    const selectedDate = new Date(this.year, this.month, day);
-    this.datepickerValue = selectedDate.toDateString();
-
-    this.dateEl.value =
-      selectedDate.getFullYear() +
-      '-' +
-      ('0' + selectedDate.getMonth()).slice(-2) +
-      '-' +
-      ('0' + selectedDate.getDate()).slice(-2);
-
-    console.log(this.dateEl.value);
-
-    this.showDatepicker = false;
-  }
-
-  getNoOfDays() {
-    const daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-
-    // find where to start calendar day of week
-    const dayOfWeek = new Date(this.year, this.month).getDay();
-    const blankdaysArray = [];
-    for (var i = 1; i <= dayOfWeek; i++) {
-      blankdaysArray.push(i);
-    }
-
-    const daysArray = [];
-    for (var i = 1; i <= daysInMonth; i++) {
-      daysArray.push(i);
-    }
-
-    this.blankdays = blankdaysArray;
-    this.no_of_days = daysArray;
+    this.selected = parseDate(this.value);
   }
 
   render() {
     return (
-      <div class="mb-5 w-64">
-        <label htmlFor="datepicker" class="font-bold mb-1 text-gray-700 block">
-          Select Date
-        </label>
-        <div class="relative">
-          <input
-            type="hidden"
-            name="date"
-            ref={el => (this.dateEl = el as HTMLInputElement)}
-          />
-          <input
-            type="text"
-            readonly
-            x-model="datepickerValue"
-            onClick={() => {
-              this.showDatepicker = !this.showDatepicker;
-            }}
-            class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
-            placeholder="Select date"
-          />
-          <div class="absolute top-0 right-0 px-3 py-2">
-            <svg
-              class="h-6 w-6 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-          </div>
-          {/* <div x-text="no_of_days.length"></div>
-                        <div x-text="32 - new Date(year, month, 32).getDate()"></div>
-                        <div x-text="new Date(year, month).getDay()"></div> */}
-          (
-          {this.showDatepicker ? (
-            <div
-              class="bg-white mt-12 rounded-lg shadow p-4 absolute top-0 left-0"
-              style={{ width: '17rem' }}
-              // x-show.transition="showDatepicker"
-              // @click.away="showDatepicker = false"
-            >
-              <div class="flex justify-between items-center mb-2">
-                <div>
-                  <span
-                    x-text="MONTH_NAMES[month]"
-                    class="text-lg font-bold text-gray-800"
-                  ></span>
-                  <span
-                    x-text="year"
-                    class="ml-1 text-lg text-gray-600 font-normal"
-                  ></span>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    class={cx(
-                      'transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 rounded-full',
-                      { 'cursor-not-allowed opacity-25': this.month == 0 },
-                    )}
-                    disabled={this.month == 0 ? true : false}
-                    onClick={() => {
-                      this.month--;
-                      this.getNoOfDays();
-                    }}
-                  >
-                    <svg
-                      class="h-6 w-6 text-gray-500 inline-flex"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    class={cx(
-                      'transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 rounded-full',
-                      { 'cursor-not-allowed opacity-25': this.month == 11 },
-                    )}
-                    disabled={this.month == 11}
-                    onClick={() => {
-                      this.month++;
-                      this.getNoOfDays();
-                    }}
-                  >
-                    <svg
-                      class="h-6 w-6 text-gray-500 inline-flex"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap mb-3 -mx-1">
-                <template x-for="(day, index) in DAYS">
-                  <div style={{ width: '14.26%' }} class="px-1">
-                    <div
-                      x-text="day"
-                      class="text-gray-800 font-medium text-center text-xs"
-                    ></div>
-                  </div>
-                </template>
-              </div>
-
-              <div class="flex flex-wrap -mx-1">
-                {/* <template x-for="blankday in blankdays"> */}
-                {this.blankdays.map(() => (
-                  <div
-                    style={{ width: '14.26%' }}
-                    class="text-center border p-1 border-transparent text-sm"
-                  ></div>
-                ))}
-                {/* <template x-for="(date, dateIndex) in no_of_days"> */}
-                {this.no_of_days.map(date => (
-                  <div style={{ width: '14.26%' }} class="px-1 mb-1">
-                    <div
-                      onClick={() => {
-                        this.getDateValue(date);
-                      }}
-                      x-text="date"
-                      class={cx(
-                        'cursor-pointer text-center text-sm rounded-full leading-loose transition ease-in-out duration-100',
-                        {
-                          'bg-blue-500 text-white': this.isToday(date),
-                          'text-gray-700 hover:bg-blue-200': !this.isToday(
-                            date,
-                          ),
-                        },
-                      )}
-                    ></div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
-          )
+      <div class="">
+        <div
+          class="grid grid-cols-7 grid-flow-row gap-x-0.5 gap-y-4"
+          style={{ width: '320px' }}
+        >
+          {this.dislayDates.map(date => (
+            <DateLabel
+              date={date}
+              selected={isSameDay(date, this.selected)}
+              enabled={this.enabled.some(enabledDate =>
+                isSameDay(date, enabledDate),
+              )}
+              grayed={getMonth(this.currentDate) !== getMonth(date)}
+            />
+          ))}
         </div>
       </div>
     );

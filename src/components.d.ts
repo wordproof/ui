@@ -114,10 +114,6 @@ export namespace Components {
     }
     interface WInputDate {
         /**
-          * size
-         */
-        "size": string;
-        /**
           * color variant
          */
         "value": string;
@@ -492,10 +488,6 @@ declare namespace LocalJSX {
         "error"?: string;
     }
     interface WInputDate {
-        /**
-          * size
-         */
-        "size"?: string;
         /**
           * color variant
          */
