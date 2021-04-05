@@ -1,17 +1,14 @@
 import { Component, Prop, h, State, Listen } from '@stencil/core';
-import DateLabel from './components/DateLabel';
 import DateInputButton from './components/DateInputButton';
 import DatePickerHeader from './components/DatePickerHeader';
-// import cx from 'classnames';
+import DatePickerDates from './components/DatePickerDates';
 import { parseDate } from '../../utils/date';
 
 import {
   startOfMonth,
   startOfWeek,
   add,
-  getMonth,
   isSameDay,
-  format,
   endOfWeek,
   endOfMonth,
   differenceInCalendarDays,
@@ -29,8 +26,6 @@ export class WInputDate {
    */
   @Prop() value: string = '2020-09-17';
 
-  weekDayNames: string[] = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-
   enabled: Date[];
 
   @Listen('keydown')
@@ -44,7 +39,7 @@ export class WInputDate {
   @State() selected: Date;
   @State() mostRecent: Date;
   @State() currentMonth: Date;
-  @State() dislayDates: Date[];
+  @State() displayDates: Date[];
 
   dateEl: HTMLInputElement;
   datepickerValue: string;
@@ -72,7 +67,7 @@ export class WInputDate {
     const endDate = endOfWeek(endOfMonth(this.currentMonth));
     const daysToShow = differenceInCalendarDays(endDate, startDate) + 1;
 
-    this.dislayDates = new Array(daysToShow)
+    this.displayDates = new Array(daysToShow)
       .fill(null)
       .map((_el, ind) => add(startDate, { days: ind }));
   }
@@ -110,44 +105,16 @@ export class WInputDate {
           }}
         />
 
-        <div class="mx-2 pb-5 shadow rounded-b">
-          <div
-            class="px-4 pb-6 grid grid-cols-7 grid-flow-row gap-x-0.5 gap-y-4"
-            style={{ width: '356px' }}
-          >
-            {this.weekDayNames.map(dayName => (
-              <div class="w-11 h-11 text-center select-none text-blue uppercase text-xs flex items-center justify-center">
-                {dayName}
-              </div>
-            ))}
-
-            {this.dislayDates.map(date => (
-              <DateLabel
-                date={date}
-                selected={isSameDay(date, this.selected)}
-                enabled={this.enabled.some(enabledDate =>
-                  isSameDay(date, enabledDate),
-                )}
-                grayed={getMonth(this.currentMonth) !== getMonth(date)}
-                onSelect={date => {
-                  this.onDateSelect(date);
-                }}
-              />
-            ))}
-          </div>
-          <div class="border-b border-gray-400 w-full"></div>
-          <div class="flex items-center justify-center my-5">
-            <w-icon name="calendar"></w-icon>
-            <button class="text-blue ml-3">Today</button>
-          </div>
-          <div class="border-b border-gray-400 w-full"></div>
-          <div class="flex items-center justify-center mt-5 text-blue">
-            <div>Most recent</div>
-            <button class="opacity-40 ml-3">
-              {format(this.mostRecent, 'MMMM d, yyyy')}
-            </button>
-          </div>
-        </div>
+        <DatePickerDates
+          displayDates={this.displayDates}
+          enabledDates={this.enabled}
+          selected={this.selected}
+          currentMonth={this.currentMonth}
+          mostRecent={this.mostRecent}
+          onDateSelect={(date: Date) => {
+            this.onDateSelect(date);
+          }}
+        />
       </div>
     );
   }
