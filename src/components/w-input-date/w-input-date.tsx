@@ -46,9 +46,6 @@ export class WInputDate {
   datepickerValue: string;
 
   connectedCallback() {
-    this.currentMonth = startOfMonth(parseDate(this.value));
-    this.refreshDisplayDates();
-
     this.enabled = [
       '2020-09-02',
       '2020-09-08',
@@ -57,8 +54,6 @@ export class WInputDate {
       '2020-09-17',
       '2020-09-22',
     ].map(item => parseDate(item));
-
-    this.selected = parseDate(this.value);
 
     this.mostRecent = parseDate('2020-01-26');
   }
@@ -92,6 +87,16 @@ export class WInputDate {
     }
   }
 
+  toggleDatePicker() {
+    if (!this.showDatepicker) {
+      this.currentMonth = startOfMonth(parseDate(this.value));
+      this.refreshDisplayDates();
+      this.selected = parseDate(this.value);
+    }
+
+    this.showDatepicker = !this.showDatepicker;
+  }
+
   render() {
     return (
       <span class="relative">
@@ -99,7 +104,7 @@ export class WInputDate {
         <DateInputButton
           dateStr={this.value}
           onClick={() => {
-            this.showDatepicker = !this.showDatepicker;
+            this.toggleDatePicker();
           }}
         />
 
@@ -118,16 +123,18 @@ export class WInputDate {
             }}
           />
 
-          <DatePickerDates
-            displayDates={this.displayDates}
-            enabledDates={this.enabled}
-            selected={this.selected}
-            currentMonth={this.currentMonth}
-            mostRecent={this.mostRecent}
-            onDateSelect={(date: Date) => {
-              this.onDateSelect(date);
-            }}
-          />
+          {this.displayDates ? (
+            <DatePickerDates
+              displayDates={this.displayDates}
+              enabledDates={this.enabled}
+              selected={this.selected}
+              currentMonth={this.currentMonth}
+              mostRecent={this.mostRecent}
+              onDateSelect={(date: Date) => {
+                this.onDateSelect(date);
+              }}
+            />
+          ) : null}
         </div>
       </span>
     );

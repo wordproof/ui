@@ -40,7 +40,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
             isSameDay(date, enabledDate),
           )}
           grayed={getMonth(currentMonth) !== getMonth(date)}
-          onSelect={date => {
+          onSelect={(date: Date) => {
             onDateSelect(date);
           }}
         />
@@ -49,12 +49,24 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
     <div class="border-b border-gray-400 w-full"></div>
     <div class="flex items-center justify-center my-5">
       <w-icon name="calendar"></w-icon>
-      <button class="text-blue ml-3">Today</button>
+      <button
+        class="text-blue ml-3"
+        onClick={() => {
+          onDateSelect(new Date());
+        }}
+      >
+        Today
+      </button>
     </div>
     <div class="border-b border-gray-400 w-full"></div>
     <div class="flex items-center justify-center mt-5 text-blue">
       <div>Most recent</div>
-      <button class="opacity-40 ml-3">
+      <button
+        class="opacity-40 ml-3"
+        onClick={() => {
+          onDateSelect(mostRecent);
+        }}
+      >
         {format(mostRecent, 'MMMM d, yyyy')}
       </button>
     </div>
