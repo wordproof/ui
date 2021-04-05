@@ -13,6 +13,7 @@ import {
   endOfWeek,
   endOfMonth,
   differenceInCalendarDays,
+  differenceInCalendarMonths,
 } from 'date-fns';
 
 @Component({
@@ -79,6 +80,18 @@ export class WInputDate {
     this.refreshDisplayDates();
   }
 
+  onDateSelect(date: Date) {
+    if (this.enabled.some(enabledDate => isSameDay(enabledDate, date))) {
+      this.selected = date;
+    }
+
+    const monthDiff = differenceInCalendarMonths(date, this.currentMonth);
+
+    if (monthDiff !== 0) {
+      this.changeMonth(monthDiff);
+    }
+  }
+
   render() {
     return (
       <div class="w-min">
@@ -122,6 +135,9 @@ export class WInputDate {
                   isSameDay(date, enabledDate),
                 )}
                 grayed={getMonth(this.currentMonth) !== getMonth(date)}
+                onSelect={date => {
+                  this.onDateSelect(date);
+                }}
               />
             ))}
           </div>

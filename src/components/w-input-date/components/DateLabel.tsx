@@ -7,18 +7,25 @@ interface DateLabelProps {
   selected?: boolean;
   enabled?: boolean;
   grayed?: boolean;
+  onSelect?:Function;
 }
 const DateLabel: FunctionalComponent<DateLabelProps> = ({
   date,
   selected,
   enabled,
   grayed,
+  onSelect=()=>{},
 }) => (
   <div
     class={cx('w-11 h-11 relative', {
       'bg-gray-200': grayed,
       'cursor-pointer': enabled,
     })}
+    onClick={() => {
+      if (enabled || grayed) {
+        onSelect(date);
+      }
+    }}
   >
     {selected ? (
       <div class="absolute -top-1.5 left-0 w-11 h-11 bg-yellow rounded-full"></div>
