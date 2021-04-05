@@ -1,5 +1,7 @@
 import { Component, Prop, h, State, Listen } from '@stencil/core';
 import DateLabel from './components/DateLabel';
+import DateInputButton from './components/DateInputButton';
+import DatePickerHeader from './components/DatePickerHeader';
 // import cx from 'classnames';
 import { parseDate } from '../../utils/date';
 
@@ -23,7 +25,7 @@ import {
 })
 export class WInputDate {
   /**
-   * color variant
+   * value, date as a string in "YYYY-MM-DD" format
    */
   @Prop() value: string = '2020-09-17';
 
@@ -94,28 +96,20 @@ export class WInputDate {
 
   render() {
     return (
-      <div class="w-min">
-        <div class="flex justify-between items-center px-4 py-3 bg-blue text-white font-sohne-semibold">
-          <button
-            class="p-2 rounded-full focus:outline-none transform rotate-180"
-            onClick={() => {
-              this.changeMonth(-1);
-            }}
-          >
-            <w-icon name="arrow-right" class=""></w-icon>
-          </button>
-          <div class="text-lg select-none">
-            {format(this.currentMonth, 'MMMM yyyy')}
-          </div>
-          <button
-            class="p-2 rounded-full focus:outline-none"
-            onClick={() => {
-              this.changeMonth(1);
-            }}
-          >
-            <w-icon name="arrow-right"></w-icon>
-          </button>
-        </div>
+      <div class="w-min relative">
+        <input type="hidden" value={this.value} />
+        <DateInputButton />
+
+        <DatePickerHeader
+          date={this.currentMonth}
+          onLeftArrowClick={() => {
+            this.changeMonth(-1);
+          }}
+          onRightArrowClick={() => {
+            this.changeMonth(1);
+          }}
+        />
+
         <div class="mx-2 pb-5 shadow rounded-b">
           <div
             class="px-4 pb-6 grid grid-cols-7 grid-flow-row gap-x-0.5 gap-y-4"

@@ -114,7 +114,7 @@ export namespace Components {
     }
     interface WInputDate {
         /**
-          * color variant
+          * value, date as a string in "YYYY-MM-DD" format
          */
         "value": string;
     }
@@ -489,7 +489,7 @@ declare namespace LocalJSX {
     }
     interface WInputDate {
         /**
-          * color variant
+          * value, date as a string in "YYYY-MM-DD" format
          */
         "value"?: string;
     }
