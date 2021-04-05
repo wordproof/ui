@@ -25,6 +25,7 @@ export const Icon = {
   'wordpress': 'wordpress',
   'gear': 'gear',
   'search': 'search',
+  'calendar': 'calendar',
 } as const;
 
 export type IconName = Values<typeof Icon>;
