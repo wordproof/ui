@@ -10,6 +10,9 @@ import {
   getMonth,
   isSameDay,
   format,
+  endOfWeek,
+  endOfMonth,
+  differenceInCalendarDays,
 } from 'date-fns';
 
 @Component({
@@ -25,9 +28,6 @@ export class WInputDate {
 
   weekDayNames: string[] = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-  currentDate: Date;
-
-  dislayDates: Date[] = [];
   enabled: Date[];
 
   @Listen('keydown')
@@ -40,16 +40,16 @@ export class WInputDate {
   @State() showDatepicker: boolean = false;
   @State() selected: Date;
   @State() mostRecent: Date;
+  @State() currentMonth: Date;
+  @State() dislayDates: Date[];
 
   dateEl: HTMLInputElement;
   datepickerValue: string;
 
   connectedCallback() {
-    this.currentDate = parseDate(this.value);
-    const startDate = startOfWeek(startOfMonth(this.currentDate));
-    this.dislayDates = new Array(35)
-      .fill(null)
-      .map((_el, ind) => add(startDate, { days: ind }));
+    this.currentMonth = startOfMonth(parseDate(this.value));
+    this.refreshDisplayDates();
+
     this.enabled = [
       '2020-09-02',
       '2020-09-08',
@@ -64,17 +64,42 @@ export class WInputDate {
     this.mostRecent = parseDate('2020-01-26');
   }
 
+  refreshDisplayDates() {
+    const startDate = startOfWeek(startOfMonth(this.currentMonth));
+    const endDate = endOfWeek(endOfMonth(this.currentMonth));
+    const daysToShow = differenceInCalendarDays(endDate, startDate) + 1;
+
+    this.dislayDates = new Array(daysToShow)
+      .fill(null)
+      .map((_el, ind) => add(startDate, { days: ind }));
+  }
+
+  changeMonth(offset: number) {
+    this.currentMonth = add(this.currentMonth, { months: offset });
+    this.refreshDisplayDates();
+  }
+
   render() {
     return (
       <div class="w-min">
         <div class="flex justify-between items-center px-4 py-3 bg-blue text-white font-sohne-semibold">
-          <button class="p-2 rounded-full focus:outline-none transform rotate-180">
+          <button
+            class="p-2 rounded-full focus:outline-none transform rotate-180"
+            onClick={() => {
+              this.changeMonth(-1);
+            }}
+          >
             <w-icon name="arrow-right" class=""></w-icon>
           </button>
           <div class="text-lg select-none">
-            {format(this.currentDate, 'MMMM yyyy')}
+            {format(this.currentMonth, 'MMMM yyyy')}
           </div>
-          <button class="p-2 rounded-full focus:outline-none">
+          <button
+            class="p-2 rounded-full focus:outline-none"
+            onClick={() => {
+              this.changeMonth(1);
+            }}
+          >
             <w-icon name="arrow-right"></w-icon>
           </button>
         </div>
@@ -96,7 +121,7 @@ export class WInputDate {
                 enabled={this.enabled.some(enabledDate =>
                   isSameDay(date, enabledDate),
                 )}
-                grayed={getMonth(this.currentDate) !== getMonth(date)}
+                grayed={getMonth(this.currentMonth) !== getMonth(date)}
               />
             ))}
           </div>
@@ -108,7 +133,9 @@ export class WInputDate {
           <div class="border-b border-gray-400 w-full"></div>
           <div class="flex items-center justify-center mt-5 text-blue">
             <div>Most recent</div>
-            <button class="opacity-40 ml-3">{format(this.mostRecent, 'MMMM d, yyyy')}</button>
+            <button class="opacity-40 ml-3">
+              {format(this.mostRecent, 'MMMM d, yyyy')}
+            </button>
           </div>
         </div>
       </div>
