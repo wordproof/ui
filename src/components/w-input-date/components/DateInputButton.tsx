@@ -28,7 +28,7 @@ const DateInputButton: FunctionalComponent<DateInputButtonProps> = ({
 }) => (
   <button
     class={cx(
-      'flex pl-4 pr-7 py-3 items-center rounded-full focus:outline-none focus:ring-2',
+      'inline-flex pl-4 pr-7 py-3 items-center rounded-full focus:outline-none focus:ring-2',
       {
         'bg-gradient-to-r from-blue to-purple text-white':
           dateStr === '',

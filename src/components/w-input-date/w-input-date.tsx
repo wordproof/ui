@@ -3,7 +3,7 @@ import DateInputButton from './components/DateInputButton';
 import DatePickerHeader from './components/DatePickerHeader';
 import DatePickerDates from './components/DatePickerDates';
 import { parseDate } from '../../utils/date';
-
+import cx from 'classnames';
 import {
   startOfMonth,
   startOfWeek,
@@ -13,6 +13,7 @@ import {
   endOfMonth,
   differenceInCalendarDays,
   differenceInCalendarMonths,
+  format,
 } from 'date-fns';
 
 @Component({
@@ -80,6 +81,8 @@ export class WInputDate {
   onDateSelect(date: Date) {
     if (this.enabled.some(enabledDate => isSameDay(enabledDate, date))) {
       this.selected = date;
+      this.showDatepicker = false;
+      this.value = format(this.selected, 'yyyy-MM-dd');
     }
 
     const monthDiff = differenceInCalendarMonths(date, this.currentMonth);
@@ -91,31 +94,42 @@ export class WInputDate {
 
   render() {
     return (
-      <div class="w-min relative">
+      <span class="relative">
         <input type="hidden" value={this.value} />
-        <DateInputButton />
-
-        <DatePickerHeader
-          date={this.currentMonth}
-          onLeftArrowClick={() => {
-            this.changeMonth(-1);
-          }}
-          onRightArrowClick={() => {
-            this.changeMonth(1);
+        <DateInputButton
+          dateStr={this.value}
+          onClick={() => {
+            this.showDatepicker = !this.showDatepicker;
           }}
         />
 
-        <DatePickerDates
-          displayDates={this.displayDates}
-          enabledDates={this.enabled}
-          selected={this.selected}
-          currentMonth={this.currentMonth}
-          mostRecent={this.mostRecent}
-          onDateSelect={(date: Date) => {
-            this.onDateSelect(date);
-          }}
-        />
-      </div>
+        <div
+          class={cx('absolute transform -translate-x-1/2 left-1/2 top-10', {
+            hidden: !this.showDatepicker,
+          })}
+        >
+          <DatePickerHeader
+            date={this.currentMonth}
+            onLeftArrowClick={() => {
+              this.changeMonth(-1);
+            }}
+            onRightArrowClick={() => {
+              this.changeMonth(1);
+            }}
+          />
+
+          <DatePickerDates
+            displayDates={this.displayDates}
+            enabledDates={this.enabled}
+            selected={this.selected}
+            currentMonth={this.currentMonth}
+            mostRecent={this.mostRecent}
+            onDateSelect={(date: Date) => {
+              this.onDateSelect(date);
+            }}
+          />
+        </div>
+      </span>
     );
   }
 }
