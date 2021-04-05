@@ -3,7 +3,14 @@ import DateLabel from './components/DateLabel';
 // import cx from 'classnames';
 import { parseDate } from '../../utils/date';
 
-import { startOfMonth, startOfWeek, add, getMonth, isSameDay, format } from 'date-fns';
+import {
+  startOfMonth,
+  startOfWeek,
+  add,
+  getMonth,
+  isSameDay,
+  format,
+} from 'date-fns';
 
 @Component({
   tag: 'w-input-date',
@@ -32,6 +39,7 @@ export class WInputDate {
 
   @State() showDatepicker: boolean = false;
   @State() selected: Date;
+  @State() mostRecent: Date;
 
   dateEl: HTMLInputElement;
   datepickerValue: string;
@@ -52,6 +60,8 @@ export class WInputDate {
     ].map(item => parseDate(item));
 
     this.selected = parseDate(this.value);
+
+    this.mostRecent = parseDate('2020-01-26');
   }
 
   render() {
@@ -61,31 +71,45 @@ export class WInputDate {
           <button class="p-2 rounded-full focus:outline-none transform rotate-180">
             <w-icon name="arrow-right" class=""></w-icon>
           </button>
-          <div class="text-lg select-none">{format(this.currentDate, 'MMMM yyyy')}</div>
+          <div class="text-lg select-none">
+            {format(this.currentDate, 'MMMM yyyy')}
+          </div>
           <button class="p-2 rounded-full focus:outline-none">
             <w-icon name="arrow-right"></w-icon>
           </button>
         </div>
-        <div
-          class="mx-2 px-4 pb-6 grid grid-cols-7 grid-flow-row gap-x-0.5 gap-y-4"
-          style={{ width: '356px' }}
-        >
-          {this.weekDayNames.map(dayName => (
-            <div class="w-11 h-11 text-center select-none text-blue uppercase text-xs flex items-center justify-center">
-              {dayName}
-            </div>
-          ))}
+        <div class="mx-2 pb-5 shadow rounded-b">
+          <div
+            class="px-4 pb-6 grid grid-cols-7 grid-flow-row gap-x-0.5 gap-y-4"
+            style={{ width: '356px' }}
+          >
+            {this.weekDayNames.map(dayName => (
+              <div class="w-11 h-11 text-center select-none text-blue uppercase text-xs flex items-center justify-center">
+                {dayName}
+              </div>
+            ))}
 
-          {this.dislayDates.map(date => (
-            <DateLabel
-              date={date}
-              selected={isSameDay(date, this.selected)}
-              enabled={this.enabled.some(enabledDate =>
-                isSameDay(date, enabledDate),
-              )}
-              grayed={getMonth(this.currentDate) !== getMonth(date)}
-            />
-          ))}
+            {this.dislayDates.map(date => (
+              <DateLabel
+                date={date}
+                selected={isSameDay(date, this.selected)}
+                enabled={this.enabled.some(enabledDate =>
+                  isSameDay(date, enabledDate),
+                )}
+                grayed={getMonth(this.currentDate) !== getMonth(date)}
+              />
+            ))}
+          </div>
+          <div class="border-b border-gray-400 w-full"></div>
+          <div class="flex items-center justify-center my-5">
+            <w-icon name="calendar"></w-icon>
+            <button class="text-blue ml-3">Today</button>
+          </div>
+          <div class="border-b border-gray-400 w-full"></div>
+          <div class="flex items-center justify-center mt-5 text-blue">
+            <div>Most recent</div>
+            <button class="opacity-40 ml-3">{format(this.mostRecent, 'MMMM d, yyyy')}</button>
+          </div>
         </div>
       </div>
     );
