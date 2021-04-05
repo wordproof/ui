@@ -21,7 +21,7 @@ const DateLabel: FunctionalComponent<DateLabelProps> = ({
     })}
   >
     {selected ? (
-      <div class="absolute -top-1 left-0 w-11 h-11 bg-yellow rounded-full"></div>
+      <div class="absolute -top-1.5 left-0 w-11 h-11 bg-yellow rounded-full"></div>
     ) : null}
 
     <div
@@ -36,7 +36,7 @@ const DateLabel: FunctionalComponent<DateLabelProps> = ({
 
     <div
       class={cx(
-        'absolute text-center text-black top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 select-none',
+        'absolute text-center text-xs text-black top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 select-none',
         {
           'opacity-50': !enabled,
         },
