@@ -7,7 +7,11 @@ import {
   Listen,
   Host,
 } from '@stencil/core';
-import { CertificateView, CertificateViewKeys } from './types';
+import {
+  CertificateView,
+  CertificateViewKeys,
+  NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT,
+} from './types';
 import { CertificateStrings } from '../../i18n';
 import {
   getLocaleStrings,
@@ -145,9 +149,7 @@ export class WCertificate {
         </w-modal>
       </Host>
     ) : (
-      <Host
-        innerHTML={'<!-- WordProof: no certificate data found on the page -->'}
-      ></Host>
+      <Host innerHTML={`<!--${NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT}-->`}></Host>
     );
   }
 }

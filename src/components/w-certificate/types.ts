@@ -10,3 +10,5 @@ export const CertificateView = {
 export type CertificateViewKeys = Values<typeof CertificateView>;
 
 export type CertificateViews = Record<CertificateViewKeys, Function>;
+
+export const NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT = 'WordProof: no certificate data found on the page' as const;
