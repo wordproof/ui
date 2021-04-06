@@ -1,8 +1,5 @@
-// const newDataMapper = (src: any): WPRevision => {};
-
 import { WPContent } from '.';
-import { mapNewData } from './mappers';
-// import { mapNewData, mapOldData } from './mappers';
+import { mapNewData, mapOldData } from './mappers';
 
 export const fetchHashData = async (
   url: string,
@@ -72,13 +69,13 @@ const parseGraphSchema = async (
 
 export const parsePage = async (): Promise<WPContent | null> =>
   new Promise(async resolve => {
-    // const oldSchemaEl = document.querySelector('script.wordproof-schema');
-    // if (oldSchemaEl && oldSchemaEl.innerHTML) {
-    //   try {
-    //     const data = JSON.parse(oldSchemaEl.innerHTML);
-    //     resolve(mapOldData(data));
-    //   } catch (e) {}
-    // }
+    const oldSchemaEl = document.querySelector('script.wordproof-schema');
+    if (oldSchemaEl && oldSchemaEl.innerHTML) {
+      try {
+        const data = JSON.parse(oldSchemaEl.innerHTML);
+        resolve(mapOldData(data));
+      } catch (e) {}
+    }
 
     const ldJsonScriptElems = document.querySelectorAll(
       'script[type="application/ld+json"]',
