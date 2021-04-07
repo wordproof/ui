@@ -1,1 +1,8 @@
-{}
+{
+  "compareVersions": "Compare Versions",
+  "thatIsImportantText": "That is important, because it proofs that the content has not been tampered with and can be trusted.",
+  "aboutWordproof": "About WordProof",
+  "todaysRevision": "Today’s version",
+  "selectDayToCompare": "Select day to compare",
+  "contentCertificate": "Content Certificate"
+}

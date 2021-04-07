@@ -40,6 +40,11 @@ type ModalStringKeys = ['ariaClose'][number];
 export type ModalStrings = Record<ModalStringKeys, string>;
 
 type CertificateV4Keys = [
-
+  'compareVersions',
+  'thatIsImportantText',
+  'aboutWordproof',
+  'todaysRevision',
+  'selectDayToCompare',
+  'contentCertificate'
 ][number];
 export type CertificateV4Strings = Record<CertificateKeys, string>;
