@@ -15,7 +15,11 @@ import {
 import OverviewView from './views/OverviewView';
 import { router, Route } from '../w-router-outlet';
 import { WPContent, parsePage } from '../../utils/certificate-data/index';
-import { CertificateView, CertificateViewKeys, NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT } from './types';
+import {
+  CertificateView,
+  CertificateViewKeys,
+  NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT,
+} from './types';
 
 @Component({
   tag: 'w-certificate-v4',
@@ -42,12 +46,12 @@ export class WCertificateV4 {
       hash: CertificateView.overview,
       renderer: () => (
         <OverviewView
-          // strings={this.strings}
-          // lastEdited={new Date(this.content.date)}
-          // publishedBy=""
-          // locale={this.locale}
-          // hasRevisions={this.content.revisions !== undefined}
-          // hasChanged={this.content.hasChanged}
+        strings={this.strings}
+        lastEdited={new Date(this.content.date)}
+        publishedBy=""
+        locale={this.locale}
+        // hasRevisions={this.content.revisions !== undefined}
+        hasChanged={this.content.hasChanged}
         />
       ),
       default: true,
@@ -101,11 +105,8 @@ export class WCertificateV4 {
         >
           {this.linkText ? this.linkText : null}
         </w-certificate-link>
-        <w-modal
-          rounded="lg"
-          visible={this.visible}
-          onClose={() => this.hideModal()}
-        >
+        <w-modal rounded visible={this.visible} onClose={() => this.hideModal()} modalClassName="md:max-w-4xl">
+          <w-icon slot="close" name="close" class="mr-8 mt-8 inline-block"></w-icon>
           <w-router-outlet routes={this.routes} />
         </w-modal>
       </Host>
