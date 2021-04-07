@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IconName } from "./components/w-icon/types";
-import { WPContent, WPRevision } from "./components/w-certificate/service";
+import { WPContent, WPRevision } from "./utils/certificate-data";
 import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
 import { CertificateStrings } from "./i18n";
 import { Route } from "./components/w-router-outlet";

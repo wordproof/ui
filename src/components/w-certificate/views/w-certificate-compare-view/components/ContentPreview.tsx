@@ -1,5 +1,5 @@
 import { FunctionalComponent, h } from '@stencil/core';
-import { WPRevision } from '../../../service';
+import { WPRevision } from '../../../../../utils/certificate-data';
 import { diffWords } from 'diff';
 
 export type ContentPreviewType = 'clean' | 'diff' | 'raw' | 'render';

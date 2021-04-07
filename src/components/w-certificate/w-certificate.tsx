@@ -20,8 +20,8 @@ import {
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
 import { router, Route } from '../w-router-outlet';
-import { WPContent } from './service';
-import { parsePage } from './service/parsers';
+import { WPContent } from '../../utils/certificate-data/index';
+import { parsePage } from '../../utils/certificate-data/parsers';
 
 @Component({
   tag: 'w-certificate',

@@ -1,5 +1,5 @@
 import { newE2EPage } from '@stencil/core/testing';
-import { scriptTagContent } from './service/w-certificate.service.old-schema.spec';
+import { scriptTagContent } from '../../utils/certificate-data/w-certificate.service.old-schema.spec';
 import { NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT } from './types';
 
 describe('w-certificate', () => {
@@ -30,6 +30,7 @@ describe('w-certificate', () => {
       </script>
       <w-certificate></w-certificate>
     `);
+
     const linkElement = await page.find('w-certificate >>> w-certificate-link');
     const modalElement = await page.find('w-certificate >>> w-modal');
 

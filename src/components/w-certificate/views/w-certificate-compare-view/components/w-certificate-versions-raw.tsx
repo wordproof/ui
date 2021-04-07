@@ -7,7 +7,7 @@ import {
   Event,
   EventEmitter,
 } from '@stencil/core';
-import { WPRevision } from '../../../service';
+import { WPRevision } from '../../../../../utils/certificate-data';
 import ContentPreview from './ContentPreview';
 import { RevisionOption } from '../types';
 
