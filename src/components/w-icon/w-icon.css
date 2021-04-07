@@ -131,6 +131,11 @@
   height: 15px;
 }
 
+.shield {
+  width: 44px;
+  height: 58px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
