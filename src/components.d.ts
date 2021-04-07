@@ -256,7 +256,7 @@ export namespace Components {
         /**
           * controls visibility of the modal
          */
-        "rounded": string | boolean;
+        "rounded": 'sm' | 'md' | 'lg' | boolean;
         /**
           * controls visibility of the modal
          */
@@ -650,7 +650,7 @@ declare namespace LocalJSX {
         /**
           * controls visibility of the modal
          */
-        "rounded"?: string | boolean;
+        "rounded"?: 'sm' | 'md' | 'lg' | boolean;
         /**
           * controls visibility of the modal
          */

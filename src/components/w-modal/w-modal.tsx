@@ -25,7 +25,7 @@ export class WModal {
   /**
    * controls visibility of the modal
    */
-  @Prop() rounded: string | boolean = false;
+  @Prop() rounded: 'sm' | 'md' | 'lg' | boolean = false;
 
   /**
    * class names added to wrapper element of the modal
@@ -67,6 +67,7 @@ export class WModal {
   async componentWillLoad(): Promise<void> {
     this.strings = (await getLocaleStrings(this.hostElement)) as ModalStrings;
     this.hostElement.setAttribute('aria-hidden', String(this.visible));
+    console.warn({ rounded: this.rounded });
   }
 
   onBackdropClick(ev: MouseEvent) {
@@ -112,7 +113,10 @@ export class WModal {
           class={cx(
             'bg-white relative w-11/12 md:max-w-3xl',
             {
-              [`rounded-${this.rounded}`]: this.rounded,
+              [`rounded-${this.rounded}`]: ['sm', 'md', 'lg'].includes(
+                String(this.rounded),
+              ),
+              [`rounded`]: this.rounded === true,
             },
             this.modalClassName,
           )}
