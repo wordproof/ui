@@ -38,3 +38,8 @@ export type CertificateStrings = Record<CertificateKeys, string>;
 
 type ModalStringKeys = ['ariaClose'][number];
 export type ModalStrings = Record<ModalStringKeys, string>;
+
+type CertificateV4Keys = [
+
+][number];
+export type CertificateV4Strings = Record<CertificateKeys, string>;

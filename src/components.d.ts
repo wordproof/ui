@@ -73,6 +73,16 @@ export namespace Components {
          */
         "noIcon": boolean;
     }
+    interface WCertificateV4 {
+        /**
+          * custom certificate link text
+         */
+        "linkText": string;
+        /**
+          * hides icon on certificate link
+         */
+        "noIcon": boolean;
+    }
     interface WCertificateVersionsCompare {
         "allOptions": RevisionOption[];
         "allRevisions": WPRevision[];
@@ -291,6 +301,12 @@ declare global {
         prototype: HTMLWCertificateLinkElement;
         new (): HTMLWCertificateLinkElement;
     };
+    interface HTMLWCertificateV4Element extends Components.WCertificateV4, HTMLStencilElement {
+    }
+    var HTMLWCertificateV4Element: {
+        prototype: HTMLWCertificateV4Element;
+        new (): HTMLWCertificateV4Element;
+    };
     interface HTMLWCertificateVersionsCompareElement extends Components.WCertificateVersionsCompare, HTMLStencilElement {
     }
     var HTMLWCertificateVersionsCompareElement: {
@@ -369,6 +385,7 @@ declare global {
         "w-certificate": HTMLWCertificateElement;
         "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
+        "w-certificate-v4": HTMLWCertificateV4Element;
         "w-certificate-versions-compare": HTMLWCertificateVersionsCompareElement;
         "w-certificate-versions-raw": HTMLWCertificateVersionsRawElement;
         "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
@@ -443,6 +460,16 @@ declare namespace LocalJSX {
     interface WCertificateLink {
         /**
           * hides icon
+         */
+        "noIcon"?: boolean;
+    }
+    interface WCertificateV4 {
+        /**
+          * custom certificate link text
+         */
+        "linkText"?: string;
+        /**
+          * hides icon on certificate link
          */
         "noIcon"?: boolean;
     }
@@ -642,6 +669,7 @@ declare namespace LocalJSX {
         "w-certificate": WCertificate;
         "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
+        "w-certificate-v4": WCertificateV4;
         "w-certificate-versions-compare": WCertificateVersionsCompare;
         "w-certificate-versions-raw": WCertificateVersionsRaw;
         "w-certificate-versions-view": WCertificateVersionsView;
@@ -665,6 +693,7 @@ declare module "@stencil/core" {
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
             "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
+            "w-certificate-v4": LocalJSX.WCertificateV4 & JSXBase.HTMLAttributes<HTMLWCertificateV4Element>;
             "w-certificate-versions-compare": LocalJSX.WCertificateVersionsCompare & JSXBase.HTMLAttributes<HTMLWCertificateVersionsCompareElement>;
             "w-certificate-versions-raw": LocalJSX.WCertificateVersionsRaw & JSXBase.HTMLAttributes<HTMLWCertificateVersionsRawElement>;
             "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
