@@ -129,7 +129,13 @@ export class WModal {
             aria-label={this.strings.ariaClose}
             tabindex="0"
           >
-            <w-icon fit name="close-circle" class="w-6 h-6 text-teal"></w-icon>
+            <slot name="close">
+              <w-icon
+                fit
+                name="close-circle"
+                class="w-6 h-6 text-teal"
+              ></w-icon>
+            </slot>
           </button>
 
           <div class={this.contentClassName}>
