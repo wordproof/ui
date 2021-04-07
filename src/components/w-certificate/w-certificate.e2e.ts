@@ -22,6 +22,7 @@ describe('w-certificate', () => {
   });
 
   it('renders w-certificate-link and w-modal elements inside shadow DOM if there is old schema data on the page', async () => {
+    jest.setTimeout(5000);
     const page = await newE2EPage();
 
     await page.setContent(/*html*/ `
