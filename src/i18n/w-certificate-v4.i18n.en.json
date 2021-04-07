@@ -4,5 +4,11 @@
   "aboutWordproof": "About WordProof",
   "todaysRevision": "Today’s version",
   "selectDayToCompare": "Select day to compare",
-  "contentCertificate": "Content Certificate"
+  "contentCertificate": "Content Certificate",
+  "thisContent": "This content",
+  "hasNotChanged": "has not changed",
+  "hasChanged": "has changed",
+  "lastEdited": "Last edited",
+  "publishedBy": "Published by",
+  "explainThis": "Explain this"
 }

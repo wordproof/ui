@@ -45,6 +45,12 @@ type CertificateV4Keys = [
   'aboutWordproof',
   'todaysRevision',
   'selectDayToCompare',
-  'contentCertificate'
+  'contentCertificate',
+  'thisContent',
+  'hasNotChanged',
+  'hasChanged',
+  'lastEdited',
+  'publishedBy',
+  'explainThis',
 ][number];
-export type CertificateV4Strings = Record<CertificateKeys, string>;
+export type CertificateV4Strings = Record<CertificateV4Keys, string>;
