@@ -20,8 +20,7 @@ import {
 import OverviewView from './views/OverviewView';
 import ImportanceView from './views/ImportanceView';
 import { router, Route } from '../w-router-outlet';
-import { WPContent } from '../../utils/certificate-data/index';
-import { parsePage } from '../../utils/certificate-data/parsers';
+import { WPContent, parsePage } from '../../utils/certificate-data/index';
 
 @Component({
   tag: 'w-certificate',
@@ -149,7 +148,9 @@ export class WCertificate {
         </w-modal>
       </Host>
     ) : (
-      <Host innerHTML={`<!--${NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT}-->`}></Host>
+      <Host
+        innerHTML={`<!--${NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT}-->`}
+      ></Host>
     );
   }
 }

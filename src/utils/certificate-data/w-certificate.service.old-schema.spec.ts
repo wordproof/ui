@@ -1,5 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { parsePage } from './parsers';
+import { parsePage } from '.';
 import { WPRevision } from '.';
 
 export const scriptTagContent = {

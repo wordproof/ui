@@ -1,5 +1,5 @@
 import { WPContent } from '.';
-import { mapNewData, mapOldData } from './mappers';
+import { mapNewData } from './mappers';
 
 export const fetchHashData = async (
   url: string,
@@ -14,7 +14,7 @@ export const fetchHashData = async (
     );
   });
 
-const parseNewSchema = async (
+export const parseNewSchema = async (
   parsedScriptElems: unknown[],
 ): Promise<WPContent | null> =>
   new Promise(async resolve => {
@@ -37,7 +37,7 @@ const parseNewSchema = async (
     resolve(null);
   });
 
-const parseGraphSchema = async (
+export const parseGraphSchema = async (
   parsedScriptElems: unknown[],
 ): Promise<WPContent | null> =>
   new Promise(async resolve => {
@@ -62,42 +62,6 @@ const parseGraphSchema = async (
       );
 
       resolve(mapNewData({ ...timestamp, hashLinkContent }));
-    }
-
-    resolve(null);
-  });
-
-export const parsePage = async (): Promise<WPContent | null> =>
-  new Promise(async resolve => {
-    const oldSchemaEl = document.querySelector('script.wordproof-schema');
-    if (oldSchemaEl && oldSchemaEl.innerHTML) {
-      try {
-        const data = JSON.parse(oldSchemaEl.innerHTML);
-        resolve(mapOldData(data));
-      } catch (e) {}
-    }
-
-    const ldJsonScriptElems = document.querySelectorAll(
-      'script[type="application/ld+json"]',
-    );
-
-    const parsedScriptElems = Array.from(ldJsonScriptElems).map(elem => {
-      try {
-        const data = JSON.parse(elem.innerHTML);
-        return data;
-      } catch (e) {
-        return {};
-      }
-    });
-
-    const newSchemaData = await parseNewSchema(parsedScriptElems);
-    if (newSchemaData) {
-      resolve(newSchemaData);
-    }
-
-    const graphSchemaData = await parseGraphSchema(parsedScriptElems);
-    if (graphSchemaData) {
-      resolve(graphSchemaData);
     }
 
     resolve(null);
