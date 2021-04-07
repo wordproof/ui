@@ -1,4 +1,7 @@
-export const BASE_URL = 'https://unpkg.com/@wordproof/uikit/dist/uikit';
+export const BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://unpkg.com/@wordproof/uikit/dist/uikit'
+    : '';
 
 export const getComponentClosestLanguage = (element: HTMLElement): string => {
   let closestElement = element.closest('[lang]') as HTMLElement;
