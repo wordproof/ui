@@ -1,5 +1,5 @@
 import { newE2EPage } from '@stencil/core/testing';
-import { scriptTagContent } from './service/w-certificate.service.graph-schema.spec';
+import { scriptTagContent } from './service/w-certificate.service.old-schema.spec';
 import { NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT } from './types';
 
 describe('w-certificate', () => {
@@ -21,11 +21,11 @@ describe('w-certificate', () => {
     expect(commentText).toEqual(NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT);
   });
 
-  it('renders w-certificate-link and w-modal elements inside shadow DOM if there is graph schema data on the page', async () => {
+  it('renders w-certificate-link and w-modal elements inside shadow DOM if there is old schema data on the page', async () => {
     const page = await newE2EPage();
 
     await page.setContent(/*html*/ `
-      <script type="application/ld+json" data-json-ld-for-pagemetadata>
+    <script type="application/ld+json" class="wordproof-schema">
         ${JSON.stringify(scriptTagContent)}
       </script>
       <w-certificate></w-certificate>

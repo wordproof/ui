@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { parsePage } from './parsers';
 import { WPRevision } from '.';
 
-const scriptTagContent = {
+export const scriptTagContent = {
   '@context': { '@type': 'ArticleTimestamp', '@version': '0.2.0' },
   'blockchain': 'eos',
   'transactionId':
