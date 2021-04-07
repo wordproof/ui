@@ -67,7 +67,6 @@ export class WModal {
   async componentWillLoad(): Promise<void> {
     this.strings = (await getLocaleStrings(this.hostElement)) as ModalStrings;
     this.hostElement.setAttribute('aria-hidden', String(this.visible));
-    console.warn({ rounded: this.rounded });
   }
 
   onBackdropClick(ev: MouseEvent) {
