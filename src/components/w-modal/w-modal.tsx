@@ -91,7 +91,7 @@ export class WModal {
           },
           this.wrapClassName,
         )}
-        style={{ ['z-index']: '999998' }}
+        style={{ ['z-index']: '999997' }}
       >
         <div class="sr-only" id="ariaLabel">
           {this.ariaModalTitle}
@@ -119,7 +119,7 @@ export class WModal {
             },
             this.modalClassName,
           )}
-          style={{ ['z-index']: '999999' }}
+          style={{ ['z-index']: '999998' }}
           onClick={ev => ev.stopPropagation()}
           role="dialog"
           aria-modal="true"
@@ -128,6 +128,7 @@ export class WModal {
         >
           <button
             class="absolute top-2 right-2 focus:outline-none"
+            style={{ ['z-index']: '999999' }}
             onClick={ev => this.onClose(ev)}
             aria-label={this.strings.ariaClose}
             tabindex="0"
