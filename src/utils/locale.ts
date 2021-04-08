@@ -78,12 +78,24 @@ export const getLocaleStrings = async (
   });
 };
 
-export const formatDate = (dateStr: string, locale: string): string =>
-  new Date(dateStr).toLocaleDateString(locale, {
+export interface DateTimeFormatOptions {
+  month?: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow';
+  day?: 'numeric' | '2-digit';
+  hour?: 'numeric' | '2-digit';
+  minute?: 'numeric' | '2-digit';
+  second?: 'numeric' | '2-digit';
+  year?: 'numeric' | '2-digit';
+}
+
+export const formatDate = (
+  dateStr: string,
+  locale: string,
+  options: DateTimeFormatOptions = {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
     hour: 'numeric',
     minute: '2-digit',
     second: '2-digit',
-  });
+  },
+): string => new Date(dateStr).toLocaleDateString(locale, options);
