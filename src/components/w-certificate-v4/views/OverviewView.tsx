@@ -5,6 +5,8 @@ import BaseButton from '../components/base-button';
 import cx from 'classnames';
 import { DateTimeFormatOptions, formatDate } from '../../../utils/locale';
 import TabLabel from '../components/tab-label';
+import { router } from '../../w-router-outlet';
+import { CertificateView } from '../types';
 
 // import { router } from '../../w-router-outlet';
 
@@ -98,10 +100,13 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
     <div class="flex justify-center mt-8">
       {hasChanged ? null : (
         <span class="mr-4">
-          <BaseButton text={strings.compareVersions} />
+          <BaseButton
+            text={strings.compareVersions}
+            onClick={() => router.go(CertificateView.compare)}
+          />
         </span>
       )}
-      <BaseButton outlined text={strings.explainThis} />
+      <BaseButton outlined text={strings.explainThis} onClick={() => {}} />
     </div>
   </div>
 );

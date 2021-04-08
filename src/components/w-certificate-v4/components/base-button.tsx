@@ -2,18 +2,18 @@ import { FunctionalComponent, h } from '@stencil/core';
 import cx from 'classnames';
 
 interface BaseButtonProps {
-  onClick?: Function;
+  onClick: Function;
   outlined?: boolean;
   text: string;
 }
 
 const BaseButton: FunctionalComponent<BaseButtonProps> = ({
-  onClick = () => {},
+  onClick,
   outlined = false,
   text,
 }) => (
   <button
-    onClick={onClick()}
+    onClick={() => onClick()}
     class={cx(
       'rounded-full px-6 pt-3 pb-3 font-sohne-semibold text-base focus:outline-none focus:ring-blue',
       {
