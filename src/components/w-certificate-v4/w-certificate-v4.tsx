@@ -56,6 +56,18 @@ export class WCertificateV4 {
       ),
       default: true,
     },
+    {
+      hash: CertificateView.compare,
+      renderer: () => (
+        <w-compare-versions-view
+          strings={this.strings}
+          content={this.content}
+          locale={this.locale}
+          raw={false}
+          hasRevisions={this.content.revisions !== undefined}
+        ></w-compare-versions-view>
+      ),
+    },
   ] as Route[];
 
   currentView: CertificateViewKeys = CertificateView.overview;

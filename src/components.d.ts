@@ -8,7 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IconName } from "./components/w-icon/types";
 import { WPContent, WPRevision } from "./utils/certificate-data";
 import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
-import { CertificateStrings } from "./i18n";
+import { CertificateStrings, CertificateV4Strings } from "./i18n";
+import { RevisionOption as RevisionOption1 } from "./components/w-certificate-v4/views/w-compare-versions-view/types";
 import { Route } from "./components/w-router-outlet";
 export namespace Components {
     interface WBadge {
@@ -97,6 +98,21 @@ export namespace Components {
         "locale": string;
         "raw": boolean;
         "strings": CertificateStrings;
+    }
+    interface WCompareVersionsCompare {
+        "allOptions": RevisionOption[];
+        "allRevisions": WPRevision[];
+    }
+    interface WCompareVersionsRaw {
+        "allOptions": RevisionOption[];
+        "allRevisions": WPRevision[];
+    }
+    interface WCompareVersionsView {
+        "content": WPContent;
+        "hasRevisions": boolean;
+        "locale": string;
+        "raw": boolean;
+        "strings": CertificateV4Strings;
     }
     interface WIcon {
         /**
@@ -325,6 +341,24 @@ declare global {
         prototype: HTMLWCertificateVersionsViewElement;
         new (): HTMLWCertificateVersionsViewElement;
     };
+    interface HTMLWCompareVersionsCompareElement extends Components.WCompareVersionsCompare, HTMLStencilElement {
+    }
+    var HTMLWCompareVersionsCompareElement: {
+        prototype: HTMLWCompareVersionsCompareElement;
+        new (): HTMLWCompareVersionsCompareElement;
+    };
+    interface HTMLWCompareVersionsRawElement extends Components.WCompareVersionsRaw, HTMLStencilElement {
+    }
+    var HTMLWCompareVersionsRawElement: {
+        prototype: HTMLWCompareVersionsRawElement;
+        new (): HTMLWCompareVersionsRawElement;
+    };
+    interface HTMLWCompareVersionsViewElement extends Components.WCompareVersionsView, HTMLStencilElement {
+    }
+    var HTMLWCompareVersionsViewElement: {
+        prototype: HTMLWCompareVersionsViewElement;
+        new (): HTMLWCompareVersionsViewElement;
+    };
     interface HTMLWIconElement extends Components.WIcon, HTMLStencilElement {
     }
     var HTMLWIconElement: {
@@ -389,6 +423,9 @@ declare global {
         "w-certificate-versions-compare": HTMLWCertificateVersionsCompareElement;
         "w-certificate-versions-raw": HTMLWCertificateVersionsRawElement;
         "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
+        "w-compare-versions-compare": HTMLWCompareVersionsCompareElement;
+        "w-compare-versions-raw": HTMLWCompareVersionsRawElement;
+        "w-compare-versions-view": HTMLWCompareVersionsViewElement;
         "w-icon": HTMLWIconElement;
         "w-input-checkbox": HTMLWInputCheckboxElement;
         "w-input-date": HTMLWInputDateElement;
@@ -489,6 +526,23 @@ declare namespace LocalJSX {
         "locale"?: string;
         "raw"?: boolean;
         "strings"?: CertificateStrings;
+    }
+    interface WCompareVersionsCompare {
+        "allOptions"?: RevisionOption[];
+        "allRevisions"?: WPRevision[];
+        "onChoose"?: (event: CustomEvent<WPRevision>) => void;
+    }
+    interface WCompareVersionsRaw {
+        "allOptions"?: RevisionOption[];
+        "allRevisions"?: WPRevision[];
+        "onChoose"?: (event: CustomEvent<WPRevision>) => void;
+    }
+    interface WCompareVersionsView {
+        "content"?: WPContent;
+        "hasRevisions"?: boolean;
+        "locale"?: string;
+        "raw"?: boolean;
+        "strings"?: CertificateV4Strings;
     }
     interface WIcon {
         /**
@@ -673,6 +727,9 @@ declare namespace LocalJSX {
         "w-certificate-versions-compare": WCertificateVersionsCompare;
         "w-certificate-versions-raw": WCertificateVersionsRaw;
         "w-certificate-versions-view": WCertificateVersionsView;
+        "w-compare-versions-compare": WCompareVersionsCompare;
+        "w-compare-versions-raw": WCompareVersionsRaw;
+        "w-compare-versions-view": WCompareVersionsView;
         "w-icon": WIcon;
         "w-input-checkbox": WInputCheckbox;
         "w-input-date": WInputDate;
@@ -697,6 +754,9 @@ declare module "@stencil/core" {
             "w-certificate-versions-compare": LocalJSX.WCertificateVersionsCompare & JSXBase.HTMLAttributes<HTMLWCertificateVersionsCompareElement>;
             "w-certificate-versions-raw": LocalJSX.WCertificateVersionsRaw & JSXBase.HTMLAttributes<HTMLWCertificateVersionsRawElement>;
             "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
+            "w-compare-versions-compare": LocalJSX.WCompareVersionsCompare & JSXBase.HTMLAttributes<HTMLWCompareVersionsCompareElement>;
+            "w-compare-versions-raw": LocalJSX.WCompareVersionsRaw & JSXBase.HTMLAttributes<HTMLWCompareVersionsRawElement>;
+            "w-compare-versions-view": LocalJSX.WCompareVersionsView & JSXBase.HTMLAttributes<HTMLWCompareVersionsViewElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-checkbox": LocalJSX.WInputCheckbox & JSXBase.HTMLAttributes<HTMLWInputCheckboxElement>;
             "w-input-date": LocalJSX.WInputDate & JSXBase.HTMLAttributes<HTMLWInputDateElement>;
