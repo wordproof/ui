@@ -27,6 +27,7 @@ export const Icon = {
   'search': 'search',
   'calendar': 'calendar',
   'shield': 'shield',
+  'info': 'info',
 } as const;
 
 export type IconName = Values<typeof Icon>;

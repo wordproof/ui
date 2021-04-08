@@ -136,6 +136,11 @@
   height: 58px;
 }
 
+.info {
+  width: 24px;
+  height: 24px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
