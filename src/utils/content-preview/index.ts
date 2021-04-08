@@ -19,15 +19,20 @@ const defaultStyleAsAdded: StyleContentFunction = str =>
 const defaultStyleAsRemoved: StyleContentFunction = str =>
   `<span class="bg-red-200 text-red-600">${str}</span>`;
 
-const addDiffStyling = (oldStr: string, newStr: string): string => {
+const addDiffStyling = (
+  oldStr: string,
+  newStr: string,
+  styleAsAdded: StyleContentFunction = defaultStyleAsAdded,
+  styleAsRemoved: StyleContentFunction = defaultStyleAsRemoved,
+): string => {
   return diffWords(oldStr, newStr)
     .map(change => {
       if (change.removed) {
-        return defaultStyleAsRemoved(change.value);
+        return styleAsRemoved(change.value);
       }
 
       if (change.added) {
-        return defaultStyleAsAdded(change.value);
+        return styleAsAdded(change.value);
       }
 
       return change.value;
