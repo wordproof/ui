@@ -4,6 +4,7 @@ import CheckBullet from '../components/check-bullet';
 import BaseButton from '../components/base-button';
 import cx from 'classnames';
 import { DateTimeFormatOptions, formatDate } from '../../../utils/locale';
+import TabLabel from '../components/tab-label';
 
 // import { router } from '../../w-router-outlet';
 
@@ -30,7 +31,8 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   locale,
   hasChanged,
 }) => (
-  <div class="px-56 py-10 flex flex-col items-center">
+  <div class="px-56 py-10 flex flex-col items-center relative">
+    <TabLabel onClick={() => {}} />
     <div
       class={cx(
         ' mx-auto w-20 h-20 rounded-full flex items-center justify-center',
