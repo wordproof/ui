@@ -47,7 +47,7 @@ export class WCertificateV4 {
       renderer: () => (
         <OverviewView
         strings={this.strings}
-        lastEdited={new Date(this.content.date)}
+        lastEdited={this.content.date}
         publishedBy=""
         locale={this.locale}
         // hasRevisions={this.content.revisions !== undefined}
