@@ -3,6 +3,7 @@ import { CertificateV4Strings } from '../../../../i18n';
 import { WPContent, WPRevision } from '../../../../utils/certificate-data';
 import { RevisionOption } from './types';
 import { formatDate } from '../../../../utils/locale';
+import CertificateHeader from '../../components/certificate-header';
 @Component({
   tag: 'w-compare-versions-view',
   styleUrl: 'w-compare-versions-view.css',
@@ -70,9 +71,10 @@ export class WCertificateVersionsView {
 
   render() {
     return (
-      <div>
+      <div class="px-10 pt-7 pb-10 flex flex-col items-center relative">
+        <CertificateHeader strings={this.strings} />
 
-        {this.raw ? (
+        {/* {this.raw ? (
           <w-certificate-versions-raw
             allRevisions={this.allRevisions}
             allOptions={this.allOptions}
@@ -82,7 +84,7 @@ export class WCertificateVersionsView {
             allRevisions={this.allRevisions}
             allOptions={this.allOptions}
           ></w-certificate-versions-compare>
-        )}
+        )} */}
       </div>
     );
   }
