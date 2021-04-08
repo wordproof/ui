@@ -46,12 +46,12 @@ export class WCertificateV4 {
       hash: CertificateView.overview,
       renderer: () => (
         <OverviewView
-        strings={this.strings}
-        lastEdited={this.content.date}
-        publishedBy=""
-        locale={this.locale}
-        // hasRevisions={this.content.revisions !== undefined}
-        hasChanged={this.content.hasChanged}
+          strings={this.strings}
+          lastEdited={this.content.date}
+          publishedBy=""
+          locale={this.locale}
+          // hasRevisions={this.content.revisions !== undefined}
+          hasChanged={this.content.hasChanged}
         />
       ),
       default: true,
@@ -105,9 +105,28 @@ export class WCertificateV4 {
         >
           {this.linkText ? this.linkText : null}
         </w-certificate-link>
-        <w-modal rounded visible={this.visible} onClose={() => this.hideModal()} modalClassName="md:max-w-4xl">
-          <w-icon slot="close" name="close" class="mr-8 mt-8 inline-block"></w-icon>
+        <w-modal
+          rounded
+          visible={this.visible}
+          onClose={() => this.hideModal()}
+          modalClassName="md:max-w-4xl"
+        >
+          <w-icon
+            slot="close"
+            name="close"
+            class="mr-8 mt-8 inline-block"
+          ></w-icon>
           <w-router-outlet routes={this.routes} />
+          <div class="w-full flex">
+            <w-logo
+              fit
+              text
+              whiteOnBlue
+              textLarge
+              class="mb-10 h-6 mx-auto block"
+            ></w-logo>
+            {/* <div class="mx-auto text-blue opacity-40">{strings.contentCertificate}</div> */}
+          </div>
         </w-modal>
       </Host>
     ) : (

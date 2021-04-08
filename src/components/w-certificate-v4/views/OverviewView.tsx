@@ -103,15 +103,6 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       )}
       <BaseButton outlined text={strings.explainThis} />
     </div>
-
-    <w-logo
-      fit
-      text
-      whiteOnBlue
-      textLarge
-      class="mt-10 h-6 mx-auto inline-block"
-    ></w-logo>
-    {/* <div class="mx-auto text-blue opacity-40">{strings.contentCertificate}</div> */}
   </div>
 );
 
