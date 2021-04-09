@@ -45,6 +45,7 @@ export class WInputDate {
   @State() displayDates: Date[];
 
   dateEl: HTMLInputElement;
+  triggerButtonElement: HTMLButtonElement;
   datepickerValue: string;
 
   connectedCallback() {
@@ -96,6 +97,10 @@ export class WInputDate {
       this.selected = parseDate(this.value);
     }
 
+    if (this.showDatepicker) {
+      this.triggerButtonElement.blur();
+    }
+
     this.showDatepicker = !this.showDatepicker;
   }
 
@@ -108,6 +113,7 @@ export class WInputDate {
           onClick={() => {
             this.toggleDatePicker();
           }}
+          ref={el => (this.triggerButtonElement = el as HTMLButtonElement)}
         />
         <div
           class={cx({
