@@ -22,8 +22,8 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
 }) => {
   return (
     <div class="w-full relative">
-      <div class="absolute w-full h-10 bg-white right-4"></div>
-      <div class="absolute bottom-0 w-full h-6 bg-white right-4"></div>
+      <div class="absolute w-full h-10 bg-white right-5"></div>
+      <div class="absolute bottom-0 w-full h-6 bg-white right-5"></div>
       <textarea
         readonly
         class={`block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`}
