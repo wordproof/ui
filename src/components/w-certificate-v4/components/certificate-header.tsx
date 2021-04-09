@@ -25,7 +25,13 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
       {strings.compareVersions}
     </h2>
 
-    <w-dropdown-menu options={[]}></w-dropdown-menu>
+    <w-dropdown-menu
+      options={[
+        { label: strings.explainThis, action: () => {} },
+        { label: strings.timestampChecker, href: '#' },
+        { label: strings.viewOnTheBlockchain, href: '#' },
+      ]}
+    ></w-dropdown-menu>
   </div>
 );
 
