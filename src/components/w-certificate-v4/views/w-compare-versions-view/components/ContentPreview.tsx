@@ -26,8 +26,8 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
       <div class="absolute bottom-0 w-full h-6 bg-white right-4"></div>
       <textarea
         readonly
-        class={`w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`}
-        style={{ resize: 'none', marginBottom: '-6px' }}
+        class={`block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`}
+        style={{ resize: 'none' }}
       >
         {renderContent(revisions, 'clean', viewInd)}
       </textarea>
