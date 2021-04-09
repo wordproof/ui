@@ -25,9 +25,7 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
       {strings.compareVersions}
     </h2>
 
-    <button class="p-1 hover:bg-light-blue rounded-full focus:outline-none focus:ring inline-flex items-center justify-center">
-      <w-icon name="dots" class="text-black  hover:text-blue"></w-icon>
-    </button>
+    <w-dropdown-menu options={[]}></w-dropdown-menu>
   </div>
 );
 

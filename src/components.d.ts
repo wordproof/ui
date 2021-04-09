@@ -9,6 +9,7 @@ import { IconName } from "./components/w-icon/types";
 import { WPContent, WPRevision } from "./utils/certificate-data";
 import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
 import { CertificateStrings, CertificateV4Strings } from "./i18n";
+import { DropdownMenuOption } from "./components/w-dropdown-menu/w-dropdown-menu";
 import { Route } from "./components/w-router-outlet";
 export namespace Components {
     interface WBadge {
@@ -104,6 +105,12 @@ export namespace Components {
         "locale": string;
         "raw": boolean;
         "strings": CertificateV4Strings;
+    }
+    interface WDropdownMenu {
+        /**
+          * Array of menu items options
+         */
+        "options": DropdownMenuOption[];
     }
     interface WIcon {
         /**
@@ -339,6 +346,12 @@ declare global {
         prototype: HTMLWCompareVersionsViewElement;
         new (): HTMLWCompareVersionsViewElement;
     };
+    interface HTMLWDropdownMenuElement extends Components.WDropdownMenu, HTMLStencilElement {
+    }
+    var HTMLWDropdownMenuElement: {
+        prototype: HTMLWDropdownMenuElement;
+        new (): HTMLWDropdownMenuElement;
+    };
     interface HTMLWIconElement extends Components.WIcon, HTMLStencilElement {
     }
     var HTMLWIconElement: {
@@ -404,6 +417,7 @@ declare global {
         "w-certificate-versions-raw": HTMLWCertificateVersionsRawElement;
         "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
         "w-compare-versions-view": HTMLWCompareVersionsViewElement;
+        "w-dropdown-menu": HTMLWDropdownMenuElement;
         "w-icon": HTMLWIconElement;
         "w-input-checkbox": HTMLWInputCheckboxElement;
         "w-input-date": HTMLWInputDateElement;
@@ -511,6 +525,12 @@ declare namespace LocalJSX {
         "locale"?: string;
         "raw"?: boolean;
         "strings"?: CertificateV4Strings;
+    }
+    interface WDropdownMenu {
+        /**
+          * Array of menu items options
+         */
+        "options"?: DropdownMenuOption[];
     }
     interface WIcon {
         /**
@@ -697,6 +717,7 @@ declare namespace LocalJSX {
         "w-certificate-versions-raw": WCertificateVersionsRaw;
         "w-certificate-versions-view": WCertificateVersionsView;
         "w-compare-versions-view": WCompareVersionsView;
+        "w-dropdown-menu": WDropdownMenu;
         "w-icon": WIcon;
         "w-input-checkbox": WInputCheckbox;
         "w-input-date": WInputDate;
@@ -722,6 +743,7 @@ declare module "@stencil/core" {
             "w-certificate-versions-raw": LocalJSX.WCertificateVersionsRaw & JSXBase.HTMLAttributes<HTMLWCertificateVersionsRawElement>;
             "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
             "w-compare-versions-view": LocalJSX.WCompareVersionsView & JSXBase.HTMLAttributes<HTMLWCompareVersionsViewElement>;
+            "w-dropdown-menu": LocalJSX.WDropdownMenu & JSXBase.HTMLAttributes<HTMLWDropdownMenuElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-checkbox": LocalJSX.WInputCheckbox & JSXBase.HTMLAttributes<HTMLWInputCheckboxElement>;
             "w-input-date": LocalJSX.WInputDate & JSXBase.HTMLAttributes<HTMLWInputDateElement>;
