@@ -33,6 +33,7 @@ export class WInputDate {
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'Escape') {
+      ev.stopPropagation();
       this.showDatepicker = false;
     }
   }
