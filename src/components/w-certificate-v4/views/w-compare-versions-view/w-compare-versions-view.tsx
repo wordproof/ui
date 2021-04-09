@@ -64,7 +64,7 @@ export class WCertificateVersionsView {
           <ContentPreview revisions={this.allRevisions} viewInd={0} />
         </div>
 
-        <w-input-date class="mt-9" />
+        <w-input-date class="mt-9" openToTop={true} />
       </div>
     );
   }

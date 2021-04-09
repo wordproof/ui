@@ -26,6 +26,7 @@ export class WInputDate {
    * value, date as a string in "YYYY-MM-DD" format
    */
   @Prop() value: string = '2020-09-17';
+  @Prop() openToTop: boolean = false;
 
   enabled: Date[];
 
@@ -109,8 +110,10 @@ export class WInputDate {
         />
 
         <div
-          class={cx('absolute transform -translate-x-1/2 left-1/2 top-10', {
-            hidden: !this.showDatepicker,
+          class={cx('absolute transform -translate-x-1/2 left-1/2 z-10', {
+            'hidden': !this.showDatepicker,
+            'top-10': !this.openToTop,
+            '-top-10 -translate-y-full': this.openToTop,
           })}
         >
           <DatePickerHeader

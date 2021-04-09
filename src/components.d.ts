@@ -130,6 +130,7 @@ export namespace Components {
         "error": string;
     }
     interface WInputDate {
+        "openToTop": boolean;
         /**
           * value, date as a string in "YYYY-MM-DD" format
          */
@@ -536,6 +537,7 @@ declare namespace LocalJSX {
         "error"?: string;
     }
     interface WInputDate {
+        "openToTop"?: boolean;
         /**
           * value, date as a string in "YYYY-MM-DD" format
          */
