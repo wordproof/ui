@@ -12,5 +12,7 @@
   "publishedBy": "Published by",
   "explainThis": "Explain this",
   "timestampChecker": "Timestamp checker",
-  "viewOnTheBlockchain": "View on the Blockchain"
+  "viewOnTheBlockchain": "View on the Blockchain",
+  "changed": "Changed",
+  "removed": "Removed"
 }

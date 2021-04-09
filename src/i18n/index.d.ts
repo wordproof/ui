@@ -53,6 +53,8 @@ type CertificateV4Keys = [
   'publishedBy',
   'explainThis',
   'timestampChecker',
-  'viewOnTheBlockchain'
+  'viewOnTheBlockchain',
+  'changed',
+  'removed'
 ][number];
 export type CertificateV4Strings = Record<CertificateV4Keys, string>;
