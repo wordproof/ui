@@ -10,5 +10,7 @@
   "hasChanged": "has changed",
   "lastEdited": "Last edited",
   "publishedBy": "Published by",
-  "explainThis": "Explain this"
+  "explainThis": "Explain this",
+  "timestampChecker": "Timestamp checker",
+  "viewOnTheBlockchain": "View on the Blockchain"
 }
