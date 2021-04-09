@@ -108,36 +108,44 @@ export class WInputDate {
             this.toggleDatePicker();
           }}
         />
-
         <div
-          class={cx('absolute transform -translate-x-1/2 left-1/2 z-10', {
-            'hidden': !this.showDatepicker,
-            'top-10': !this.openToTop,
-            '-top-10 -translate-y-full': this.openToTop,
+          class={cx({
+            hidden: !this.showDatepicker,
           })}
         >
-          <DatePickerHeader
-            date={this.currentMonth}
-            onLeftArrowClick={() => {
-              this.changeMonth(-1);
-            }}
-            onRightArrowClick={() => {
-              this.changeMonth(1);
-            }}
-          />
-
-          {this.displayDates ? (
-            <DatePickerDates
-              displayDates={this.displayDates}
-              enabledDates={this.enabled}
-              selected={this.selected}
-              currentMonth={this.currentMonth}
-              mostRecent={this.mostRecent}
-              onDateSelect={(date: Date) => {
-                this.onDateSelect(date);
+          <div
+            class="fixed w-screen h-screen top-0 left-0 bg-black opacity-40"
+            onClick={() => this.toggleDatePicker()}
+          ></div>
+          <div
+            class={cx('absolute transform -translate-x-1/2 left-1/2 z-10', {
+              'top-10': !this.openToTop,
+              '-top-10 -translate-y-full': this.openToTop,
+            })}
+          >
+            <DatePickerHeader
+              date={this.currentMonth}
+              onLeftArrowClick={() => {
+                this.changeMonth(-1);
+              }}
+              onRightArrowClick={() => {
+                this.changeMonth(1);
               }}
             />
-          ) : null}
+
+            {this.displayDates ? (
+              <DatePickerDates
+                displayDates={this.displayDates}
+                enabledDates={this.enabled}
+                selected={this.selected}
+                currentMonth={this.currentMonth}
+                mostRecent={this.mostRecent}
+                onDateSelect={(date: Date) => {
+                  this.onDateSelect(date);
+                }}
+              />
+            ) : null}
+          </div>
         </div>
       </span>
     );
