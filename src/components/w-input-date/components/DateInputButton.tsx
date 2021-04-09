@@ -40,7 +40,7 @@ const DateInputButton: FunctionalComponent<DateInputButtonProps> = ({
     }}
   >
     <div class="p-1.5 bg-blue border border-blue rounded-full">
-      <w-icon name="calendar" class="text-black"></w-icon>
+      <w-icon name="calendar" class="text-white"></w-icon>
     </div>
     <div
       class={cx('ml-4', {
