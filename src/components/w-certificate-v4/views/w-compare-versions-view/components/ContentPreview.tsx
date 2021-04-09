@@ -1,48 +1,36 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { WPRevision } from '../../../../../utils/certificate-data';
 import {
-  ContentPreviewType,
+  // ContentPreviewType,
   renderContent,
 } from '../../../../../utils/content-preview';
 
 interface ContentPreviewProps {
   revisions: WPRevision[];
-  view: ContentPreviewType;
+  // view: ContentPreviewType;
   viewInd: number;
-  diffInd?: number;
+  // diffInd?: number;
   classes?: string;
 }
 
 const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
   revisions,
-  view,
+  // view,
   viewInd,
-  diffInd,
+  // diffInd,
   classes = '',
 }) => {
-  return view === 'raw' ? (
-    <textarea
-      readonly
-      class={`w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800 focus:outline-none ${classes}`}
-      style={{ maxHeight: '280px', resize: 'none' }}
-    >
-      {renderContent(revisions, view, viewInd)}
-    </textarea>
-  ) : (
-    <div
-      class={`w-full max-w-full py-5 px-4 rounded-lg border border-gray-300 overflow-y-scroll text-gray-800 ${classes}`}
-      style={{ maxHeight: '280px' }}
-    >
-      {revisions && viewInd !== undefined ? (
-        <div
-          class="w-full break-all"
-          innerHTML={
-            view === 'diff'
-              ? renderContent(revisions, view, viewInd, diffInd)
-              : renderContent(revisions, view, viewInd)
-          }
-        ></div>
-      ) : null}
+  return (
+    <div class="w-full relative">
+      <div class="absolute w-full h-10 bg-white right-4"></div>
+      <div class="absolute bottom-0 w-full h-6 bg-white right-4"></div>
+      <textarea
+        readonly
+        class={`w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`}
+        style={{ resize: 'none', marginBottom: '-6px' }}
+      >
+        {renderContent(revisions, 'clean', viewInd)}
+      </textarea>
     </div>
   );
 };
