@@ -6,6 +6,7 @@ import {
   renderContent,
 } from '../../../../../utils/content-preview';
 import LegendButton from './LegendButton';
+import cx from 'classnames';
 
 interface ContentPreviewProps {
   revisions: WPRevision[];
@@ -25,7 +26,12 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
   strings,
 }) => {
   return (
-    <div class="w-full rounded border border-light-blue flex">
+    <div
+      class={cx('w-full rounded border flex', {
+        'border-light-blue bg-white': view !== 'raw',
+        'bg-black': view === 'raw',
+      })}
+    >
       <div class="w-40 px-4 pt-10 pb-6 flex">
         {view === 'diff' ? (
           <div class="flex flex-wrap content-evenly">
@@ -35,14 +41,30 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
         ) : null}
       </div>
       <div class="w-full relative">
-        <div class="absolute w-full h-10 bg-white right-5"></div>
-        <div class="absolute bottom-0 w-full h-6 bg-white right-5"></div>
+        <div
+          class={cx('absolute w-full h-10 right-5', {
+            'bg-white': view !== 'raw',
+            'bg-black': view === 'raw',
+          })}
+        ></div>
+        <div
+          class={cx('absolute bottom-0 w-full h-6 right-5', {
+            'bg-white': view !== 'raw',
+            'bg-black': view === 'raw',
+          })}
+        ></div>
         <textarea
           readonly
-          class={`block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`}
-          style={{ resize: 'none' }}
+          class={cx(
+            `resize-none block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
+            {
+              'bg-white text-black': view !== 'raw',
+              'bg-black text-white font-mono': view === 'raw',
+            },
+          )}
         >
           {view === 'clean' ? renderContent(revisions, 'clean', viewInd) : null}
+          {view === 'raw' ? renderContent(revisions, 'raw', viewInd) : null}
         </textarea>
       </div>
     </div>
