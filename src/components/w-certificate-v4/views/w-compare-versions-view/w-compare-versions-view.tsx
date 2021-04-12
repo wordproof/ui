@@ -3,7 +3,6 @@ import { CertificateV4Strings } from '../../../../i18n';
 import { WPContent, WPRevision } from '../../../../utils/certificate-data';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from './components/ContentPreview';
-import LegendButton from './components/LegendButton';
 @Component({
   tag: 'w-compare-versions-view',
   styleUrl: 'w-compare-versions-view.css',
@@ -60,13 +59,12 @@ export class WCertificateVersionsView {
 
         <w-input-date class="mt-2 relative top-7 z-10" />
 
-        <div class="w-full rounded border border-light-blue flex">
-          <div class="w-40 px-4 pt-10 pb-6 flex flex-wrap content-evenly">
-            <LegendButton color="blue" label={this.strings.changed} />
-            <LegendButton color="pink" label={this.strings.removed} />
-          </div>
-          <ContentPreview revisions={this.allRevisions} viewInd={0} />
-        </div>
+        <ContentPreview
+          revisions={this.allRevisions}
+          viewInd={0}
+          view="clean"
+          strings={this.strings}
+        />
 
         <w-input-date class="mt-9" openToTop={true} />
       </div>
