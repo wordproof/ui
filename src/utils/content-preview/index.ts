@@ -49,13 +49,17 @@ export function renderContent(
   revisions: WPRevision[],
   view: Extract<ContentPreviewType, 'diff'>,
   viewInd: number,
-  diffInd?: number,
+  diffInd: number,
+  styleAsAdded?: StyleContentFunction,
+  styleAsRemoved?: StyleContentFunction,
 ): string;
 export function renderContent(
   revisions: WPRevision[],
   view: ContentPreviewType,
   viewInd: number,
   diffInd?: number,
+  styleAsAdded?: StyleContentFunction,
+  styleAsRemoved?: StyleContentFunction,
 ): string {
   if (view === 'clean') {
     return cleanUp(revisions[viewInd].content);
@@ -65,6 +69,8 @@ export function renderContent(
     return addDiffStyling(
       cleanUp(revisions[viewInd].content),
       cleanUp(revisions[diffInd].content),
+      styleAsAdded,
+      styleAsRemoved,
     );
   }
 

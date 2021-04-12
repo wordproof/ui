@@ -62,7 +62,8 @@ export class WCertificateVersionsView {
         <ContentPreview
           revisions={this.allRevisions}
           viewInd={0}
-          view="clean"
+          diffInd={5}
+          view="diff"
           strings={this.strings}
         />
 

@@ -4,6 +4,7 @@ import { WPRevision } from '../../../../../utils/certificate-data';
 import {
   ContentPreviewType,
   renderContent,
+  StyleContentFunction,
 } from '../../../../../utils/content-preview';
 import LegendButton from './LegendButton';
 import cx from 'classnames';
@@ -12,19 +13,27 @@ interface ContentPreviewProps {
   revisions: WPRevision[];
   view: ContentPreviewType;
   viewInd: number;
-  // diffInd?: number;
+  diffInd?: number;
   classes?: string;
   strings: CertificateV4Strings;
 }
+
+const styleAsAdded: StyleContentFunction = str =>
+  `<span class="bg-light-blue text-black">${str}</span>`;
+
+const styleAsRemoved: StyleContentFunction = str =>
+  `<span class="text-pink line-through">${str}</span>`;
 
 const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
   revisions,
   view,
   viewInd,
-  // diffInd,
+  diffInd,
   classes = '',
   strings,
 }) => {
+  console.warn({ revisions });
+
   return (
     <div
       class={cx('w-full rounded border flex', {
@@ -74,6 +83,19 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
           <div
             class="block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll"
             innerHTML={renderContent(revisions, view as 'render', viewInd)}
+          ></div>
+        ) : null}
+        {view === 'diff' && diffInd !== undefined ? (
+          <div
+            class="block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll"
+            innerHTML={renderContent(
+              revisions,
+              view as 'diff',
+              viewInd,
+              diffInd,
+              styleAsAdded,
+              styleAsRemoved,
+            )}
           ></div>
         ) : null}
       </div>
