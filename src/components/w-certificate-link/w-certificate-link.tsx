@@ -18,7 +18,7 @@ export class WCertificateLink {
   @Prop() noIcon: boolean = false;
 
   async componentWillLoad(): Promise<void> {
-    this.strings = await getLocaleStrings(this.hostElement);
+    this.strings = await getLocaleStrings(this.hostElement) as CertificateLinkStrings;
   }
 
   onTriggerClick(ev: MouseEvent) {
