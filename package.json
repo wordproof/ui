@@ -23,7 +23,8 @@
     "generate": "stencil generate",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "release": "npm run test && npm run build && (git add . && git commit -m'auto generate components docs'); npm version patch"
+    "release": "npm run test && npm run build && (git add . && git commit -m'auto generate components docs'); npm version patch",
+    "mock": "json-server src/mocks/db.json"
   },
   "dependencies": {
     "@stencil/core": "^2.0.1",
@@ -51,6 +52,7 @@
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "jest-fetch-mock": "^3.0.3",
+    "json-server": "^0.16.3",
     "markdown-it-include": "^2.0.0",
     "puppeteer": "^5.4.1",
     "vuepress": "^1.8.0",
