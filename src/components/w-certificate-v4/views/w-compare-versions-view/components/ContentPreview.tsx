@@ -26,9 +26,13 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
 }) => {
   return (
     <div class="w-full rounded border border-light-blue flex">
-      <div class="w-40 px-4 pt-10 pb-6 flex flex-wrap content-evenly">
-        <LegendButton color="blue" label={strings.changed} />
-        <LegendButton color="pink" label={strings.removed} />
+      <div class="w-40 px-4 pt-10 pb-6 flex">
+        {view === 'diff' ? (
+          <div class="flex flex-wrap content-evenly">
+            <LegendButton color="blue" label={strings.changed} />
+            <LegendButton color="pink" label={strings.removed} />
+          </div>
+        ) : null}
       </div>
       <div class="w-full relative">
         <div class="absolute w-full h-10 bg-white right-5"></div>
