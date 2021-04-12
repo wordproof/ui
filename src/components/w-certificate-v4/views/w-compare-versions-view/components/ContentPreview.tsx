@@ -53,19 +53,29 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
             'bg-black': view === 'raw',
           })}
         ></div>
-        <textarea
-          readonly
-          class={cx(
-            `resize-none block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
-            {
-              'bg-white text-black': view !== 'raw',
-              'bg-black text-white font-mono': view === 'raw',
-            },
-          )}
-        >
-          {view === 'clean' ? renderContent(revisions, 'clean', viewInd) : null}
-          {view === 'raw' ? renderContent(revisions, 'raw', viewInd) : null}
-        </textarea>
+        {view === 'raw' || view === 'clean' ? (
+          <textarea
+            readonly
+            class={cx(
+              `resize-none block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
+              {
+                'bg-white text-black': view !== 'raw',
+                'bg-black text-white font-mono': view === 'raw',
+              },
+            )}
+          >
+            {view === 'clean'
+              ? renderContent(revisions, 'clean', viewInd)
+              : null}
+            {view === 'raw' ? renderContent(revisions, 'raw', viewInd) : null}
+          </textarea>
+        ) : null}
+        {view === 'render' ? (
+          <div
+            class="block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll"
+            innerHTML={renderContent(revisions, view as 'render', viewInd)}
+          ></div>
+        ) : null}
       </div>
     </div>
   );
