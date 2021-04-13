@@ -14,6 +14,23 @@ export const fetchHashData = async (
     );
   });
 
+const fetchRevisions = async revisions => {
+  if (Array.isArray(revisions)) {
+    return Promise.all(
+      revisions.map(async revision => {
+        const hashLinkContent = await fetchHashData(revision.hashLink).catch(
+          () => {
+            return null;
+          },
+        );
+        return mapNewData({ ...revision, hashLinkContent });
+      }),
+    );
+  }
+
+  return null;
+};
+
 export const parseNewSchema = async (
   parsedScriptElems: unknown[],
 ): Promise<WPContent | null> =>
@@ -24,14 +41,24 @@ export const parseNewSchema = async (
 
     if (newSchemaEl) {
       const newSchemaData = newSchemaEl['timestamp'];
+      const { revisions } = newSchemaData;
+      const fetchedRevisions = await fetchRevisions(revisions);
 
       const hashLinkContent = await fetchHashData(newSchemaData.hashLink).catch(
         () => {
           resolve(null);
         },
       );
-
-      resolve(mapNewData({ ...newSchemaData, hashLinkContent }));
+      const data = mapNewData({
+        ...newSchemaData,
+        hashLinkContent,
+      });
+      resolve({
+        ...data,
+        ...(Array.isArray(fetchedRevisions)
+          ? { revisions: fetchedRevisions.map(item => mapNewData(item)) }
+          : {}),
+      });
     }
 
     resolve(null);

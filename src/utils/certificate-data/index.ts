@@ -40,11 +40,13 @@ export const parsePage = async (): Promise<WPContent | null> =>
     const newSchemaData = await parseNewSchema(parsedScriptElems);
     if (newSchemaData) {
       resolve(newSchemaData);
+      return
     }
 
     const graphSchemaData = await parseGraphSchema(parsedScriptElems);
     if (graphSchemaData) {
       resolve(graphSchemaData);
+      return
     }
 
     resolve(null);
