@@ -21,7 +21,7 @@ import {
   styleUrl: 'w-date-time-select.css',
   shadow: true,
 })
-export class WDateTimeSekect {
+export class WDateTimeSelect {
   /**
    * value, date as a string in "YYYY-MM-DD" format
    */
