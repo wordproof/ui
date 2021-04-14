@@ -107,7 +107,14 @@ export namespace Components {
         "strings": CertificateV4Strings;
     }
     interface WDateTimeSelect {
+        /**
+          * by default the date picker opens to the bottom of the trigger elemnt if set to true opens it to the top
+         */
         "openToTop": boolean;
+        /**
+          * on array of Date objects to select from
+         */
+        "options": Date[];
         /**
           * value, date as a string in "YYYY-MM-DD" format
          */
@@ -541,7 +548,14 @@ declare namespace LocalJSX {
         "strings"?: CertificateV4Strings;
     }
     interface WDateTimeSelect {
+        /**
+          * by default the date picker opens to the bottom of the trigger elemnt if set to true opens it to the top
+         */
         "openToTop"?: boolean;
+        /**
+          * on array of Date objects to select from
+         */
+        "options"?: Date[];
         /**
           * value, date as a string in "YYYY-MM-DD" format
          */

@@ -26,9 +26,17 @@ export class WDateTimeSelect {
    * value, date as a string in "YYYY-MM-DD" format
    */
   @Prop() value: string = '2020-09-17';
+
+  /**
+   * by default the date picker opens to the bottom of the trigger elemnt
+   * if set to true opens it to the top
+   */
   @Prop() openToTop: boolean = false;
 
-  enabled: Date[];
+  /**
+   * on array of Date objects to select from
+   */
+  @Prop() options: Date[];
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
@@ -49,15 +57,6 @@ export class WDateTimeSelect {
   datepickerValue: string;
 
   connectedCallback() {
-    this.enabled = [
-      '2020-09-02',
-      '2020-09-08',
-      '2020-09-14',
-      '2020-09-15',
-      '2020-09-17',
-      '2020-09-22',
-    ].map(item => parseDate(item));
-
     this.mostRecent = parseDate('2020-01-26');
   }
 
@@ -77,7 +76,7 @@ export class WDateTimeSelect {
   }
 
   onDateSelect(date: Date) {
-    if (this.enabled.some(enabledDate => isSameDay(enabledDate, date))) {
+    if (this.options.some(enabledDate => isSameDay(enabledDate, date))) {
       this.selected = date;
       this.showDatepicker = false;
       this.value = format(this.selected, 'yyyy-MM-dd');
@@ -143,7 +142,7 @@ export class WDateTimeSelect {
             {this.displayDates ? (
               <DatePickerDates
                 displayDates={this.displayDates}
-                enabledDates={this.enabled}
+                enabledDates={this.options}
                 selected={this.selected}
                 currentMonth={this.currentMonth}
                 mostRecent={this.mostRecent}

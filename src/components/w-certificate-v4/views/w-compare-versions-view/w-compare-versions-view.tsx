@@ -33,14 +33,22 @@ export class WCertificateVersionsView {
 
   @State() allRevisions: WPRevision[];
 
+  @State() selectedRevisionId: number = 0;
+
+  @State() diffRevisionId: number | null = null;
+
+  revisionDates: Date[];
+
   @Listen('choose')
-  chooseHandler(event: CustomEvent<WPRevision>) {
-    this.transactionId = event.detail.transactionId;
+  chooseHandler(event: CustomEvent<number>) {
+    this.selectedRevisionId = event.detail;
+    console.warn({ selectedRevisionId: this.selectedRevisionId });
   }
 
   async componentWillLoad() {
     this.allRevisions = [this.content];
     this.transactionId = this.allRevisions[0].transactionId;
+    this.revisionDates = [new Date(this.content.date)];
   }
 
   async componentDidLoad() {
@@ -52,7 +60,7 @@ export class WCertificateVersionsView {
       this.allRevisions = [otherProps, ...revisions];
 
       this.transactionId = this.allRevisions[0].transactionId;
-      return;
+      this.revisionDates = revisions.map(revision => new Date(revision.date));
     }
   }
 
@@ -75,7 +83,7 @@ export class WCertificateVersionsView {
           {this.strings.thatIsImportantText}
         </p>
 
-        <w-date-time-select class="mt-2 relative top-7 z-10" />
+        <w-date-time-select class="mt-2 relative top-7 z-10" options={this.revisionDates} />
 
         <ContentPreview
           revisions={this.allRevisions}
