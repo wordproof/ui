@@ -26,7 +26,7 @@ const scriptTagContent = {
           'd5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec',
         'hashLink':
           'http://wordproof-drupal.web.dev.swis.nl/wordproof/hashinput/15',
-        'recordedln': {
+        'recordedIn': {
           '@type': 'Blockchain',
           'name': 'wp',
         },
