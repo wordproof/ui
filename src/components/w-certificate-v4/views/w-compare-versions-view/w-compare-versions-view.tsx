@@ -75,7 +75,7 @@ export class WCertificateVersionsView {
           {this.strings.thatIsImportantText}
         </p>
 
-        <w-input-date class="mt-2 relative top-7 z-10" />
+        <w-date-time-select class="mt-2 relative top-7 z-10" />
 
         <ContentPreview
           revisions={this.allRevisions}
@@ -85,7 +85,7 @@ export class WCertificateVersionsView {
         />
 
         {this.allRevisions.length > 1 ? (
-          <w-input-date class="mt-9" openToTop={true} />
+          <w-date-time-select class="mt-9" openToTop={true} />
         ) : null}
       </div>
     );

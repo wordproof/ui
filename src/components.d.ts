@@ -106,6 +106,13 @@ export namespace Components {
         "raw": boolean;
         "strings": CertificateV4Strings;
     }
+    interface WDateTimeSelect {
+        "openToTop": boolean;
+        /**
+          * value, date as a string in "YYYY-MM-DD" format
+         */
+        "value": string;
+    }
     interface WDropdownMenu {
         /**
           * Array of menu items options
@@ -346,6 +353,12 @@ declare global {
         prototype: HTMLWCompareVersionsViewElement;
         new (): HTMLWCompareVersionsViewElement;
     };
+    interface HTMLWDateTimeSelectElement extends Components.WDateTimeSelect, HTMLStencilElement {
+    }
+    var HTMLWDateTimeSelectElement: {
+        prototype: HTMLWDateTimeSelectElement;
+        new (): HTMLWDateTimeSelectElement;
+    };
     interface HTMLWDropdownMenuElement extends Components.WDropdownMenu, HTMLStencilElement {
     }
     var HTMLWDropdownMenuElement: {
@@ -417,6 +430,7 @@ declare global {
         "w-certificate-versions-raw": HTMLWCertificateVersionsRawElement;
         "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
         "w-compare-versions-view": HTMLWCompareVersionsViewElement;
+        "w-date-time-select": HTMLWDateTimeSelectElement;
         "w-dropdown-menu": HTMLWDropdownMenuElement;
         "w-icon": HTMLWIconElement;
         "w-input-checkbox": HTMLWInputCheckboxElement;
@@ -525,6 +539,13 @@ declare namespace LocalJSX {
         "locale"?: string;
         "raw"?: boolean;
         "strings"?: CertificateV4Strings;
+    }
+    interface WDateTimeSelect {
+        "openToTop"?: boolean;
+        /**
+          * value, date as a string in "YYYY-MM-DD" format
+         */
+        "value"?: string;
     }
     interface WDropdownMenu {
         /**
@@ -717,6 +738,7 @@ declare namespace LocalJSX {
         "w-certificate-versions-raw": WCertificateVersionsRaw;
         "w-certificate-versions-view": WCertificateVersionsView;
         "w-compare-versions-view": WCompareVersionsView;
+        "w-date-time-select": WDateTimeSelect;
         "w-dropdown-menu": WDropdownMenu;
         "w-icon": WIcon;
         "w-input-checkbox": WInputCheckbox;
@@ -743,6 +765,7 @@ declare module "@stencil/core" {
             "w-certificate-versions-raw": LocalJSX.WCertificateVersionsRaw & JSXBase.HTMLAttributes<HTMLWCertificateVersionsRawElement>;
             "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
             "w-compare-versions-view": LocalJSX.WCompareVersionsView & JSXBase.HTMLAttributes<HTMLWCompareVersionsViewElement>;
+            "w-date-time-select": LocalJSX.WDateTimeSelect & JSXBase.HTMLAttributes<HTMLWDateTimeSelectElement>;
             "w-dropdown-menu": LocalJSX.WDropdownMenu & JSXBase.HTMLAttributes<HTMLWDropdownMenuElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-checkbox": LocalJSX.WInputCheckbox & JSXBase.HTMLAttributes<HTMLWInputCheckboxElement>;
