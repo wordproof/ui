@@ -3,7 +3,7 @@ import { format, isSameDay } from 'date-fns';
 import { parseDate } from '../../../utils/date';
 import cx from 'classnames';
 
-interface DateInputButtonProps {
+interface OpenButtonProps {
   dateStr?: string;
   onClick?: Function;
   ref?: Function;
@@ -23,7 +23,7 @@ const getButtonText = (dateStr: string): string => {
   return format(date, 'MMMM d, yyyy');
 };
 
-const DateInputButton: FunctionalComponent<DateInputButtonProps> = ({
+const OpenButton: FunctionalComponent<OpenButtonProps> = ({
   dateStr = '',
   onClick = () => {},
   ref,
@@ -55,4 +55,4 @@ const DateInputButton: FunctionalComponent<DateInputButtonProps> = ({
   </button>
 );
 
-export default DateInputButton;
+export default OpenButton;

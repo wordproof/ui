@@ -1,5 +1,5 @@
 import { Component, Prop, h, State, Listen } from '@stencil/core';
-import DateInputButton from './components/DateInputButton';
+import OpenButton from './components/OpenButton';
 import DatePickerHeader from './components/DatePickerHeader';
 import DatePickerDates from './components/DatePickerDates';
 import { parseDate } from '../../utils/date';
@@ -108,7 +108,7 @@ export class WDateTimeSekect {
     return (
       <span class="relative">
         <input type="hidden" value={this.value} />
-        <DateInputButton
+        <OpenButton
           dateStr={this.value}
           onClick={() => {
             this.toggleDatePicker();
