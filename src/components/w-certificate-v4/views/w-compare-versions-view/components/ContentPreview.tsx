@@ -32,8 +32,6 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
   classes = '',
   strings,
 }) => {
-  console.warn({ revisions });
-
   return (
     <div
       class={cx('w-full rounded border flex', {
