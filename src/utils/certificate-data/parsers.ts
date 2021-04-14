@@ -1,4 +1,4 @@
-import { WPContent, WPRevision } from '.';
+import { WPContent } from '.';
 import { mapNewData } from './mappers';
 
 export const fetchHashData = async (
@@ -24,7 +24,10 @@ export const parseNewSchema = async (
 
     if (newSchemaEl) {
       const newSchemaData = newSchemaEl['timestamp'];
-      const { revisions: rawRevisions } = newSchemaData;
+      const {
+        revisions: rawRevisions,
+        recordedIn: { name: blockchain },
+      } = newSchemaData;
 
       const hashLinkContent = await fetchHashData(newSchemaData.hashLink).catch(
         () => {
@@ -34,6 +37,7 @@ export const parseNewSchema = async (
       const data = mapNewData({
         ...newSchemaData,
         hashLinkContent,
+        blockchain,
       });
       resolve({
         ...data,
@@ -48,7 +52,7 @@ export const parseGraphSchema = async (
   parsedScriptElems: unknown[],
 ): Promise<WPContent | null> =>
   new Promise(async resolve => {
-    let timestamp: Record<string, string>;
+    let timestamp: Record<string, string | Record<string, string>>;
 
     parsedScriptElems.find(elem => {
       if (elem['@graph'] !== undefined && Array.isArray(elem['@graph'])) {
@@ -62,13 +66,16 @@ export const parseGraphSchema = async (
     });
 
     if (timestamp && timestamp.hashLink) {
-      const hashLinkContent = await fetchHashData(timestamp.hashLink).catch(
+      const { hashLink, recordedIn } = timestamp;
+      const blockchain = recordedIn['name'];
+
+      const hashLinkContent = await fetchHashData(hashLink as string).catch(
         () => {
           resolve(null);
         },
       );
 
-      resolve(mapNewData({ ...timestamp, hashLinkContent }));
+      resolve(mapNewData({ ...timestamp, hashLinkContent, blockchain }));
     }
 
     resolve(null);

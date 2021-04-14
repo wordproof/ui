@@ -1,3 +1,4 @@
+import { Blockchain } from '../../config/blockchain.config';
 import { mapNewData, mapOldData } from './mappers';
 import { fetchHashData, parseGraphSchema, parseNewSchema } from './parsers';
 
@@ -8,6 +9,7 @@ export interface WPRevision {
   date: string;
   hasChanged: boolean;
   hashLinkContent: Record<string, unknown>;
+  blockchain: Blockchain;
 }
 
 export type RawRevision = Record<string | 'hashLink', string>;
@@ -55,20 +57,22 @@ export const parsePage = async (): Promise<WPContent | null> =>
     resolve(null);
   });
 
-  export const fetchRevisions = async (content: WPContent): Promise<WPRevision[]> => {
-    const { rawRevisions } = content;
-    if (Array.isArray(rawRevisions)) {
-      return Promise.all(
-        rawRevisions.map(async rawRevision => {
-          const hashLinkContent = await fetchHashData(rawRevision.hashLink).catch(
-            () => {
-              return null;
-            },
-          );
-          return mapNewData({ ...rawRevision, hashLinkContent });
-        }),
-      );
-    }
+export const fetchRevisions = async (
+  content: WPContent,
+): Promise<WPRevision[]> => {
+  const { rawRevisions } = content;
+  if (Array.isArray(rawRevisions)) {
+    return Promise.all(
+      rawRevisions.map(async rawRevision => {
+        const hashLinkContent = await fetchHashData(rawRevision.hashLink).catch(
+          () => {
+            return null;
+          },
+        );
+        return mapNewData({ ...rawRevision, hashLinkContent });
+      }),
+    );
+  }
 
-    return null;
-  };
+  return null;
+};

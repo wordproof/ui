@@ -2,6 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { parsePage } from '.';
 import fetchMock from 'fetch-mock-jest';
 import { WPRevision } from '.';
+import { Blockchain } from '../../config/blockchain.config';
 
 const hashLinkContent = {
   '@context': 'https://schema.org',
@@ -42,6 +43,7 @@ const expectedData: WPRevision = {
   date: hashLinkContent.dateCreated,
   hasChanged: false,
   hashLinkContent,
+  blockchain: scriptTagContent['@graph'][0].timestamp.recordedIn.name as Blockchain,
 };
 
 describe('w-certificate.service', () => {
