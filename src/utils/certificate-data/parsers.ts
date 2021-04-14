@@ -1,4 +1,4 @@
-import { WPContent } from '.';
+import { WPContent, WPRevision } from '.';
 import { mapNewData } from './mappers';
 
 export const fetchHashData = async (
@@ -14,23 +14,6 @@ export const fetchHashData = async (
     );
   });
 
-const fetchRevisions = async revisions => {
-  if (Array.isArray(revisions)) {
-    return Promise.all(
-      revisions.map(async revision => {
-        const hashLinkContent = await fetchHashData(revision.hashLink).catch(
-          () => {
-            return null;
-          },
-        );
-        return mapNewData({ ...revision, hashLinkContent });
-      }),
-    );
-  }
-
-  return null;
-};
-
 export const parseNewSchema = async (
   parsedScriptElems: unknown[],
 ): Promise<WPContent | null> =>
@@ -41,8 +24,7 @@ export const parseNewSchema = async (
 
     if (newSchemaEl) {
       const newSchemaData = newSchemaEl['timestamp'];
-      const { revisions } = newSchemaData;
-      const fetchedRevisions = await fetchRevisions(revisions);
+      const { revisions: rawRevisions } = newSchemaData;
 
       const hashLinkContent = await fetchHashData(newSchemaData.hashLink).catch(
         () => {
@@ -55,9 +37,7 @@ export const parseNewSchema = async (
       });
       resolve({
         ...data,
-        ...(Array.isArray(fetchedRevisions)
-          ? { revisions: fetchedRevisions.map(item => mapNewData(item)) }
-          : {}),
+        ...(Array.isArray(rawRevisions) ? { rawRevisions } : {}),
       });
     }
 

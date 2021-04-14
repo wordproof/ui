@@ -1,6 +1,10 @@
 import { Component, Prop, h, Element, State, Listen } from '@stencil/core';
 import { CertificateV4Strings } from '../../../../i18n';
-import { WPContent, WPRevision } from '../../../../utils/certificate-data';
+import {
+  fetchRevisions,
+  WPContent,
+  WPRevision,
+} from '../../../../utils/certificate-data';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from './components/ContentPreview';
 @Component({
@@ -30,7 +34,9 @@ export class WCertificateVersionsView {
     this.transactionId = event.detail.transactionId;
   }
 
-  componentWillLoad() {
+  async componentWillLoad() {
+    this.content.revisions = await fetchRevisions(this.content);
+
     const { revisions, ...otherProps } = this.content;
 
     if (revisions) {

@@ -1,5 +1,5 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { parsePage } from '.';
+import { fetchRevisions, parsePage } from '.';
 import fetchMock from 'fetch-mock-jest';
 
 const revisions = [
@@ -239,17 +239,18 @@ describe('w-certificate.service', () => {
       );
     });
 
-    const parsedData = await parsePage();
+    const content = await parsePage();
+    content.revisions = await fetchRevisions(content)
 
-    expect(parsedData).toHaveProperty('transactionId');
-    expect(parsedData).toHaveProperty('hash');
-    expect(parsedData).toHaveProperty('content');
-    expect(parsedData).toHaveProperty('date');
-    expect(parsedData).toHaveProperty('hasChanged');
-    expect(parsedData).toHaveProperty('hashLinkContent');
-    expect(parsedData).toHaveProperty('revisions');
+    expect(content).toHaveProperty('transactionId');
+    expect(content).toHaveProperty('hash');
+    expect(content).toHaveProperty('content');
+    expect(content).toHaveProperty('date');
+    expect(content).toHaveProperty('hasChanged');
+    expect(content).toHaveProperty('hashLinkContent');
+    expect(content).toHaveProperty('revisions');
 
-    parsedData.revisions.forEach(revision => {
+    content.revisions.forEach(revision => {
       expect(revision).toHaveProperty('transactionId');
       expect(revision).toHaveProperty('hash');
       expect(revision).toHaveProperty('content');

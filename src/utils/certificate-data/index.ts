@@ -1,5 +1,5 @@
-import { mapOldData } from "./mappers";
-import { parseGraphSchema, parseNewSchema } from "./parsers";
+import { mapNewData, mapOldData } from './mappers';
+import { fetchHashData, parseGraphSchema, parseNewSchema } from './parsers';
 
 export interface WPRevision {
   transactionId: string;
@@ -10,8 +10,11 @@ export interface WPRevision {
   hashLinkContent: Record<string, unknown>;
 }
 
+export type RawRevision = Record<string | 'hashLink', string>;
+
 export interface WPContent extends WPRevision {
   revisions?: WPRevision[];
+  rawRevisions?: RawRevision[];
 }
 
 export const parsePage = async (): Promise<WPContent | null> =>
@@ -40,14 +43,32 @@ export const parsePage = async (): Promise<WPContent | null> =>
     const newSchemaData = await parseNewSchema(parsedScriptElems);
     if (newSchemaData) {
       resolve(newSchemaData);
-      return
+      return;
     }
 
     const graphSchemaData = await parseGraphSchema(parsedScriptElems);
     if (graphSchemaData) {
       resolve(graphSchemaData);
-      return
+      return;
     }
 
     resolve(null);
   });
+
+  export const fetchRevisions = async (content: WPContent): Promise<WPRevision[]> => {
+    const { rawRevisions } = content;
+    if (Array.isArray(rawRevisions)) {
+      return Promise.all(
+        rawRevisions.map(async rawRevision => {
+          const hashLinkContent = await fetchHashData(rawRevision.hashLink).catch(
+            () => {
+              return null;
+            },
+          );
+          return mapNewData({ ...rawRevision, hashLinkContent });
+        }),
+      );
+    }
+
+    return null;
+  };
