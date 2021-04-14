@@ -1,3 +1,5 @@
+export const TIMESTAMP_CHECK_URL = 'https://wordproof.com/check/';
+
 export const BLOCKCHAIN_CONFIG: Record<Blockchain, BlockChainData> = {
   eth_main: {
     contract: '0x96E1258049049D4A0D6054FBcd0D9951AbdEe9E1',
@@ -49,3 +51,4 @@ interface BlockChainData {
   action: string;
   explorer: string;
 }
+

@@ -1,5 +1,8 @@
 import { Component, Prop, h, Element, State, Listen } from '@stencil/core';
-import { BLOCKCHAIN_CONFIG } from '../../../../config/blockchain.config';
+import {
+  BLOCKCHAIN_CONFIG,
+  TIMESTAMP_CHECK_URL,
+} from '../../../../config/blockchain.config';
 import { CertificateV4Strings } from '../../../../i18n';
 import {
   fetchRevisions,
@@ -62,6 +65,7 @@ export class WCertificateVersionsView {
             viewBlockchainUrl={`${
               BLOCKCHAIN_CONFIG[this.content.blockchain].explorer
             }${this.content.transactionId}`}
+            timestampCheckUrl={`${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`}
           />
         </div>
         <p
