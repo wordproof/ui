@@ -27,7 +27,7 @@ export class WCertificateVersionsView {
 
   @State() transactionId: string;
 
-  allRevisions: WPRevision[];
+  @State() allRevisions: WPRevision[];
 
   @Listen('choose')
   chooseHandler(event: CustomEvent<WPRevision>) {
@@ -35,6 +35,11 @@ export class WCertificateVersionsView {
   }
 
   async componentWillLoad() {
+    this.allRevisions = [this.content];
+    this.transactionId = this.allRevisions[0].transactionId;
+  }
+
+  async componentDidLoad() {
     this.content.revisions = await fetchRevisions(this.content);
 
     const { revisions, ...otherProps } = this.content;
@@ -45,9 +50,6 @@ export class WCertificateVersionsView {
       this.transactionId = this.allRevisions[0].transactionId;
       return;
     }
-
-    this.allRevisions = [this.content];
-    this.transactionId = this.allRevisions[0].transactionId;
   }
 
   render() {
@@ -68,12 +70,13 @@ export class WCertificateVersionsView {
         <ContentPreview
           revisions={this.allRevisions}
           viewInd={0}
-          diffInd={5}
-          view="diff"
+          view="clean"
           strings={this.strings}
         />
 
-        <w-input-date class="mt-9" openToTop={true} />
+        {this.allRevisions.length > 1 ? (
+          <w-input-date class="mt-9" openToTop={true} />
+        ) : null}
       </div>
     );
   }
