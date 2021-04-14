@@ -5,10 +5,12 @@ import { router } from '../../w-router-outlet';
 
 interface CertificateHeaderProps {
   strings: CertificateV4Strings;
+  viewBlockchainUrl: string;
 }
 
 const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
   strings,
+  viewBlockchainUrl,
 }) => (
   <div class="flex justify-between w-full pr-12">
     <button
@@ -29,7 +31,7 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
       options={[
         { label: strings.explainThis, action: () => {} },
         { label: strings.timestampChecker, href: '#' },
-        { label: strings.viewOnTheBlockchain, href: '#' },
+        { label: strings.viewOnTheBlockchain, href: viewBlockchainUrl },
       ]}
     ></w-dropdown-menu>
   </div>
