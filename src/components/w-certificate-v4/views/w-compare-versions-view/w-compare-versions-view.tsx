@@ -60,7 +60,9 @@ export class WCertificateVersionsView {
       this.allRevisions = [otherProps, ...revisions];
 
       this.transactionId = this.allRevisions[0].transactionId;
-      this.revisionDates = revisions.map(revision => new Date(revision.date));
+      this.revisionDates = revisions
+        .map(revision => new Date(revision.date))
+        .sort((dateA, dateB) => dateB.getTime() - dateA.getTime());
     }
   }
 
@@ -83,7 +85,10 @@ export class WCertificateVersionsView {
           {this.strings.thatIsImportantText}
         </p>
 
-        <w-date-time-select class="mt-2 relative top-7 z-10" options={this.revisionDates} />
+        <w-date-time-select
+          class="mt-2 relative top-7 z-10"
+          options={this.revisionDates}
+        />
 
         <ContentPreview
           revisions={this.allRevisions}
