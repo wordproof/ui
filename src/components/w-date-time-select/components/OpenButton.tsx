@@ -1,22 +1,19 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { format, isSameDay } from 'date-fns';
-import { parseDate } from '../../../utils/date';
 import cx from 'classnames';
 
 interface OpenButtonProps {
-  dateStr?: string;
+  date: Date | null;
   onClick?: Function;
   ref?: Function;
 }
 
-const getButtonText = (dateStr: string): string => {
-  const date = parseDate(dateStr);
-
+const getButtonText = (date: Date): string => {
   if (isSameDay(date, new Date())) {
     return 'Today’s version';
   }
 
-  if (dateStr === '') {
+  if (date === null) {
     return 'Select day to compare';
   }
 
@@ -24,7 +21,7 @@ const getButtonText = (dateStr: string): string => {
 };
 
 const OpenButton: FunctionalComponent<OpenButtonProps> = ({
-  dateStr = '',
+  date = null,
   onClick = () => {},
   ref,
 }) => (
@@ -32,8 +29,8 @@ const OpenButton: FunctionalComponent<OpenButtonProps> = ({
     class={cx(
       'inline-flex pl-4 pr-7 py-3 items-center rounded-full focus:outline-none focus:ring-2',
       {
-        'bg-gradient-to-r from-blue to-purple text-white': dateStr === '',
-        'bg-white shadow text-blue': dateStr !== '',
+        'bg-gradient-to-r from-blue to-purple text-white': date === null,
+        'bg-white shadow text-blue': date !== null,
       },
     )}
     onClick={() => {
@@ -46,11 +43,11 @@ const OpenButton: FunctionalComponent<OpenButtonProps> = ({
     </div>
     <div
       class={cx('ml-4', {
-        'font-sohne-semibold': dateStr === '',
-        'font-sohne border-b border-blue': dateStr !== '',
+        'font-sohne-semibold': date === null,
+        'font-sohne border-b border-blue': date !== null,
       })}
     >
-      {getButtonText(dateStr)}
+      {getButtonText(date)}
     </div>
   </button>
 );

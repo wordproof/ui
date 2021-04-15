@@ -25,7 +25,7 @@ export class WDateTimeSelect {
   /**
    * value, date as a string in "YYYY-MM-DD" format
    */
-  @Prop() value: string = '2020-09-17';
+  @Prop() value: string = '2020-02-12';
 
   /**
    * by default the date picker opens to the bottom of the trigger elemnt
@@ -36,7 +36,7 @@ export class WDateTimeSelect {
   /**
    * on array of Date objects to select from
    */
-  @Prop() options: Date[];
+  @Prop() options: Date[] = [];
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
@@ -108,7 +108,7 @@ export class WDateTimeSelect {
       <span class="relative">
         <input type="hidden" value={this.value} />
         <OpenButton
-          dateStr={this.value}
+          date={this.options.length > 0 ? this.options[0] : null}
           onClick={() => {
             this.toggleDatePicker();
           }}
