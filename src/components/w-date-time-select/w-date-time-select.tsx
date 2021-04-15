@@ -56,11 +56,12 @@ export class WDateTimeSelect {
 
   @State() showDatepicker: boolean = false;
   @State() mostRecent: Date;
+  @State() selectedDate: Date;
   @State() currentMonth: Date;
   @State() displayDates: Date[];
   @State() showTimeOptions: boolean = false;
+  @State() sameDayOptions: DateTimeOption[] = [];
 
-  sameDayOptions: DateTimeOption[] = [];
   dateEl: HTMLInputElement;
   triggerButtonElement: HTMLButtonElement;
   datepickerValue: string;
@@ -96,15 +97,19 @@ export class WDateTimeSelect {
       isSameDay(option.value, date),
     );
 
+    // console.warn({ sameDay: this.sameDayOptions, options: this.options });
+
     if (this.sameDayOptions.length === 1) {
       this.selected = this.sameDayOptions[0].index;
+      this.selectedDate = this.getSelectedDate(this.selected);
       this.showDatepicker = false;
-      console.warn('selected: ', this.sameDayOptions[0]);
+      // console.warn('selected: ', this.sameDayOptions[0]);
     }
 
     if (this.sameDayOptions.length > 1) {
-      console.warn('several otion on the same date');
+      this.selectedDate = this.getSelectedDate(this.sameDayOptions[0].index);
       this.showTimeOptions = true;
+      // console.warn('several otion on the same date');
     }
 
     const monthDiff = differenceInCalendarMonths(date, this.currentMonth);
@@ -139,6 +144,22 @@ export class WDateTimeSelect {
     this.refreshDisplayDates();
     this.showTimeOptions = false;
     this.showDatepicker = true;
+  }
+
+  getSelectedDate(optionIndex): null | Date {
+    if (optionIndex === null) {
+      return null;
+    }
+
+    const foundOption = this.options.find(
+      option => option.index === optionIndex,
+    );
+
+    if (foundOption === undefined) {
+      return null;
+    }
+
+    return foundOption.value;
   }
 
   render() {
@@ -199,11 +220,7 @@ export class WDateTimeSelect {
               <DatePickerDates
                 displayDates={this.displayDates}
                 enabledDates={this.options}
-                selected={
-                  this.selected === null
-                    ? null
-                    : this.options[this.selected].value
-                }
+                selected={this.selectedDate}
                 currentMonth={this.currentMonth}
                 mostRecent={this.mostRecent}
                 onDateSelect={(date: Date) => {

@@ -63,7 +63,7 @@ export class WCertificateVersionsView {
       this.allRevisions = [otherProps, ...revisions];
 
       this.transactionId = this.allRevisions[0].transactionId;
-      this.revisionDateOptions = revisions
+      this.revisionDateOptions = this.allRevisions
         .map(revision => new Date(revision.date))
         .sort((dateA, dateB) => dateB.getTime() - dateA.getTime())
         .map((date, index) => ({
