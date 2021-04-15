@@ -13,10 +13,10 @@ import {
   endOfMonth,
   differenceInCalendarDays,
   differenceInCalendarMonths,
-  format,
 } from 'date-fns';
 import { DateTimeSelectStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
+import TimeLabel from './components/TimeLabel';
 
 export interface DateTimeOption {
   value: Date;
@@ -31,9 +31,9 @@ export class WDateTimeSelect {
   @Element() hostElement: HTMLElement;
 
   /**
-   * value, date as a string in "YYYY-MM-DD" format
+   * index of the selected DateTimeOption
    */
-  @Prop() value: string = '2020-02-12';
+  @Prop({ mutable: true }) selected: number | null = null;
 
   /**
    * by default the date picker opens to the bottom of the trigger elemnt
@@ -55,11 +55,12 @@ export class WDateTimeSelect {
   }
 
   @State() showDatepicker: boolean = false;
-  @State() selected: Date;
   @State() mostRecent: Date;
   @State() currentMonth: Date;
   @State() displayDates: Date[];
+  @State() showTimeOptions: boolean = false;
 
+  sameDayOptions: DateTimeOption[] = [];
   dateEl: HTMLInputElement;
   triggerButtonElement: HTMLButtonElement;
   datepickerValue: string;
@@ -91,10 +92,19 @@ export class WDateTimeSelect {
   }
 
   onDateSelect(date: Date) {
-    if (this.options.some(enabledDate => isSameDay(enabledDate.value, date))) {
-      this.selected = date;
+    this.sameDayOptions = this.options.filter(option =>
+      isSameDay(option.value, date),
+    );
+
+    if (this.sameDayOptions.length === 1) {
+      this.selected = this.sameDayOptions[0].index;
       this.showDatepicker = false;
-      this.value = format(this.selected, 'yyyy-MM-dd');
+      console.warn('selected: ', this.sameDayOptions[0]);
+    }
+
+    if (this.sameDayOptions.length > 1) {
+      console.warn('several otion on the same date');
+      this.showTimeOptions = true;
     }
 
     const monthDiff = differenceInCalendarMonths(date, this.currentMonth);
@@ -104,24 +114,36 @@ export class WDateTimeSelect {
     }
   }
 
-  toggleDatePicker() {
-    if (!this.showDatepicker) {
-      this.currentMonth = startOfMonth(parseDate(this.value));
-      this.refreshDisplayDates();
-      this.selected = parseDate(this.value);
+  onTimeOptionSelect(option: DateTimeOption) {
+    this.selected = option.index;
+    console.warn('selected: ', option);
+  }
+
+  getStartOfMonth(): Date {
+    if (this.selected === null) {
+      return startOfMonth(new Date());
     }
+    return startOfMonth(this.options[0].value);
+  }
+
+  toggleDatePicker() {
+    this.showTimeOptions = false;
 
     if (this.showDatepicker) {
       this.triggerButtonElement.blur();
+      this.showDatepicker = false;
+      return;
     }
 
-    this.showDatepicker = !this.showDatepicker;
+    this.currentMonth = this.getStartOfMonth();
+    this.refreshDisplayDates();
+    this.showTimeOptions = false;
+    this.showDatepicker = true;
   }
 
   render() {
     return (
       <span class="relative">
-        <input type="hidden" value={this.value} />
         <OpenButton
           dateOption={this.options.length > 0 ? this.options[0] : null}
           onClick={() => {
@@ -155,11 +177,33 @@ export class WDateTimeSelect {
               }}
             />
 
+            <ul
+              class={cx(
+                'bg-white px-4 py-3 absolute rounded right-2 transform translate-x-full divide-y divide-gray-400 cursor-pointer',
+                {
+                  hidden: !this.showTimeOptions,
+                },
+              )}
+            >
+              {this.sameDayOptions.map(option => (
+                <TimeLabel
+                  dateTimeOption={option}
+                  onSelect={() => {
+                    this.onTimeOptionSelect(option);
+                  }}
+                />
+              ))}
+            </ul>
+
             {this.displayDates ? (
               <DatePickerDates
                 displayDates={this.displayDates}
                 enabledDates={this.options}
-                selected={this.selected}
+                selected={
+                  this.selected === null
+                    ? null
+                    : this.options[this.selected].value
+                }
                 currentMonth={this.currentMonth}
                 mostRecent={this.mostRecent}
                 onDateSelect={(date: Date) => {

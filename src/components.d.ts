@@ -117,9 +117,9 @@ export namespace Components {
          */
         "options": DateTimeOption[];
         /**
-          * value, date as a string in "YYYY-MM-DD" format
+          * index of the selected DateTimeOption
          */
-        "value": string;
+        "selected": number | null;
     }
     interface WDropdownMenu {
         /**
@@ -558,9 +558,9 @@ declare namespace LocalJSX {
          */
         "options"?: DateTimeOption[];
         /**
-          * value, date as a string in "YYYY-MM-DD" format
+          * index of the selected DateTimeOption
          */
-        "value"?: string;
+        "selected"?: number | null;
     }
     interface WDropdownMenu {
         /**

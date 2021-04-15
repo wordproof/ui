@@ -95,6 +95,7 @@ export class WCertificateVersionsView {
         <w-date-time-select
           class="mt-2 relative top-7 z-10"
           options={this.revisionDateOptions}
+          selected={0}
         />
 
         <ContentPreview
