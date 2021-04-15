@@ -5,40 +5,54 @@ import { DateTimeOption } from '../w-date-time-select';
 import { DateTimeSelectStrings } from '../../../i18n';
 
 interface OpenButtonProps {
-  dateOption: DateTimeOption | null;
+  options: DateTimeOption[];
+  selected: number | null;
   onClick?: Function;
   ref?: Function;
-  strings: DateTimeSelectStrings
+  strings: DateTimeSelectStrings;
 }
 
-const getButtonText = (dateOption: DateTimeOption | null, strings:DateTimeSelectStrings): string => {
-  if (dateOption === null) {
+const getButtonText = (
+  options: DateTimeOption[],
+  selected: number | null,
+  strings: DateTimeSelectStrings,
+): string => {
+  if (selected === null) {
     return strings.selectDayToCompare;
   }
 
-  if (dateOption.index === 0) {
+  if (selected === 0) {
     return strings.todaysVersion;
   }
 
-  if (isSameDay(dateOption.value, new Date())) {
+  const foundOption = options.find(
+    option => option.index === selected,
+  );
+
+  if (foundOption === undefined) {
+    return strings.selectDayToCompare;
+  }
+
+  if (isSameDay(foundOption.value, new Date())) {
     return strings.todaysVersion;
   }
 
-  return format(dateOption.value, 'MMMM d, yyyy');
+  return format(foundOption.value, 'MMMM d, yyyy');
 };
 
 const OpenButton: FunctionalComponent<OpenButtonProps> = ({
-  dateOption = null,
+  options,
+  selected,
   onClick = () => {},
   ref,
-  strings
+  strings,
 }) => (
   <button
     class={cx(
       'inline-flex pl-4 pr-7 py-3 items-center rounded-full focus:outline-none focus:ring-2',
       {
-        'bg-gradient-to-r from-blue to-purple text-white': dateOption === null,
-        'bg-white shadow text-blue': dateOption !== null,
+        'bg-gradient-to-r from-blue to-purple text-white': selected === null,
+        'bg-white shadow text-blue': selected !== null,
       },
     )}
     onClick={() => {
@@ -51,11 +65,12 @@ const OpenButton: FunctionalComponent<OpenButtonProps> = ({
     </div>
     <div
       class={cx('ml-4', {
-        'font-sohne-semibold': dateOption === null,
-        'font-sohne border-b border-blue': dateOption !== null,
+        'font-sohne-semibold': selected === null,
+        'font-sohne border-b border-blue': selected !== null,
       })}
     >
-      {getButtonText(dateOption, strings)}
+      {getButtonText(options,
+  selected, strings)}
     </div>
   </button>
 );

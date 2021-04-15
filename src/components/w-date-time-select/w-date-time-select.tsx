@@ -166,7 +166,8 @@ export class WDateTimeSelect {
     return (
       <span class="relative">
         <OpenButton
-          dateOption={this.options.length > 0 ? this.options[0] : null}
+          options={this.options}
+          selected={this.selected}
           onClick={() => {
             this.toggleDatePicker();
           }}
