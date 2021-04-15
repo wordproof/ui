@@ -9,6 +9,7 @@ import {
   WPContent,
   WPRevision,
 } from '../../../../utils/certificate-data';
+import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from './components/ContentPreview';
 @Component({
@@ -37,7 +38,7 @@ export class WCertificateVersionsView {
 
   @State() diffRevisionId: number | null = null;
 
-  revisionDates: Date[];
+  revisionDateOptions: DateTimeOption[];
 
   @Listen('choose')
   chooseHandler(event: CustomEvent<number>) {
@@ -48,7 +49,9 @@ export class WCertificateVersionsView {
   async componentWillLoad() {
     this.allRevisions = [this.content];
     this.transactionId = this.allRevisions[0].transactionId;
-    this.revisionDates = [new Date(this.content.date)];
+    this.revisionDateOptions = [
+      { value: new Date(this.content.date), index: 0 },
+    ];
   }
 
   async componentDidLoad() {
@@ -60,9 +63,13 @@ export class WCertificateVersionsView {
       this.allRevisions = [otherProps, ...revisions];
 
       this.transactionId = this.allRevisions[0].transactionId;
-      this.revisionDates = revisions
+      this.revisionDateOptions = revisions
         .map(revision => new Date(revision.date))
-        .sort((dateA, dateB) => dateB.getTime() - dateA.getTime());
+        .sort((dateA, dateB) => dateB.getTime() - dateA.getTime())
+        .map((date, index) => ({
+          value: date,
+          index,
+        }));
     }
   }
 
@@ -87,7 +94,7 @@ export class WCertificateVersionsView {
 
         <w-date-time-select
           class="mt-2 relative top-7 z-10"
-          options={this.revisionDates}
+          options={this.revisionDateOptions}
         />
 
         <ContentPreview

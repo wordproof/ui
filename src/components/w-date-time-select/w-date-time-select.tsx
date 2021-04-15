@@ -16,6 +16,10 @@ import {
   format,
 } from 'date-fns';
 
+export interface DateTimeOption {
+  value: Date;
+  index: number;
+}
 @Component({
   tag: 'w-date-time-select',
   styleUrl: 'w-date-time-select.css',
@@ -36,7 +40,7 @@ export class WDateTimeSelect {
   /**
    * on array of Date objects to select from
    */
-  @Prop() options: Date[] = [];
+  @Prop() options: DateTimeOption[] = [];
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
@@ -76,7 +80,7 @@ export class WDateTimeSelect {
   }
 
   onDateSelect(date: Date) {
-    if (this.options.some(enabledDate => isSameDay(enabledDate, date))) {
+    if (this.options.some(enabledDate => isSameDay(enabledDate.value, date))) {
       this.selected = date;
       this.showDatepicker = false;
       this.value = format(this.selected, 'yyyy-MM-dd');
@@ -108,7 +112,7 @@ export class WDateTimeSelect {
       <span class="relative">
         <input type="hidden" value={this.value} />
         <OpenButton
-          date={this.options.length > 0 ? this.options[0] : null}
+          dateOption={this.options.length > 0 ? this.options[0] : null}
           onClick={() => {
             this.toggleDatePicker();
           }}

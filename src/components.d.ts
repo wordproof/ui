@@ -9,6 +9,7 @@ import { IconName } from "./components/w-icon/types";
 import { WPContent, WPRevision } from "./utils/certificate-data";
 import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
 import { CertificateStrings, CertificateV4Strings } from "./i18n";
+import { DateTimeOption } from "./components/w-date-time-select/w-date-time-select";
 import { DropdownMenuOption } from "./components/w-dropdown-menu/w-dropdown-menu";
 import { Route } from "./components/w-router-outlet";
 export namespace Components {
@@ -114,7 +115,7 @@ export namespace Components {
         /**
           * on array of Date objects to select from
          */
-        "options": Date[];
+        "options": DateTimeOption[];
         /**
           * value, date as a string in "YYYY-MM-DD" format
          */
@@ -555,7 +556,7 @@ declare namespace LocalJSX {
         /**
           * on array of Date objects to select from
          */
-        "options"?: Date[];
+        "options"?: DateTimeOption[];
         /**
           * value, date as a string in "YYYY-MM-DD" format
          */

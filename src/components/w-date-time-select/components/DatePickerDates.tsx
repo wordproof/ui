@@ -1,10 +1,11 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { format, getMonth, isSameDay } from 'date-fns';
+import { DateTimeOption } from '../w-date-time-select';
 import DateLabel from './DateLabel';
 
 interface DatePickerDatesProps {
   displayDates: Date[];
-  enabledDates: Date[];
+  enabledDates: DateTimeOption[];
   selected: Date;
   currentMonth: Date;
   mostRecent: Date;
@@ -37,7 +38,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
           date={date}
           selected={isSameDay(date, selected)}
           enabled={enabledDates.some(enabledDate =>
-            isSameDay(date, enabledDate),
+            isSameDay(date, enabledDate.value),
           )}
           grayed={getMonth(currentMonth) !== getMonth(date)}
           onSelect={(date: Date) => {
