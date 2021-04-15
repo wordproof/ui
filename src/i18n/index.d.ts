@@ -55,6 +55,13 @@ type CertificateV4Keys = [
   'timestampChecker',
   'viewOnTheBlockchain',
   'changed',
-  'removed'
+  'removed',
 ][number];
 export type CertificateV4Strings = Record<CertificateV4Keys, string>;
+
+type DateTimeSelectStringKeys = [
+  'todaysVersion',
+  'mostRecent',
+  'selectDayToCompare',
+][number];
+export type DateTimeSelectStrings = Record<DateTimeSelectStringKeys, string>;

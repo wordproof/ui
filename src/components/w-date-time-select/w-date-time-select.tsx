@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Listen, Element } from '@stencil/core';
 import OpenButton from './components/OpenButton';
 import DatePickerHeader from './components/DatePickerHeader';
 import DatePickerDates from './components/DatePickerDates';
@@ -15,6 +15,8 @@ import {
   differenceInCalendarMonths,
   format,
 } from 'date-fns';
+import { DateTimeSelectStrings } from '../../i18n';
+import { getLocaleStrings } from '../../utils/locale';
 
 export interface DateTimeOption {
   value: Date;
@@ -26,6 +28,8 @@ export interface DateTimeOption {
   shadow: true,
 })
 export class WDateTimeSelect {
+  @Element() hostElement: HTMLElement;
+
   /**
    * value, date as a string in "YYYY-MM-DD" format
    */
@@ -59,9 +63,16 @@ export class WDateTimeSelect {
   dateEl: HTMLInputElement;
   triggerButtonElement: HTMLButtonElement;
   datepickerValue: string;
+  strings: DateTimeSelectStrings;
 
   connectedCallback() {
     this.mostRecent = parseDate('2020-01-26');
+  }
+
+  async componentWillLoad(): Promise<void> {
+    this.strings = (await getLocaleStrings(
+      this.hostElement,
+    )) as DateTimeSelectStrings;
   }
 
   refreshDisplayDates() {
@@ -117,6 +128,7 @@ export class WDateTimeSelect {
             this.toggleDatePicker();
           }}
           ref={el => (this.triggerButtonElement = el as HTMLButtonElement)}
+          strings={this.strings}
         />
         <div
           class={cx({
