@@ -40,7 +40,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         ' mx-auto w-20 h-20 rounded-full flex items-center justify-center',
         {
           'bg-gradient-to-r from-blue to-purple text-white': !hasChanged,
-          'font-sohne-bold text-black': hasChanged,
+          'font-sohne-bold text-black bg-gray-200': hasChanged,
         },
       )}
     >
