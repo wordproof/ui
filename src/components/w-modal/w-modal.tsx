@@ -127,8 +127,8 @@ export class WModal {
           aria-describedby="ariaDescription"
         >
           <button
-            class="absolute top-2 right-2 focus:outline-none"
-            style={{ ['z-index']: '999999' }}
+            class="absolute top-2 right-2 focus:outline-none z-30"
+            // style={{ ['z-index']: '999999' }}
             onClick={ev => this.onClose(ev)}
             aria-label={this.strings.ariaClose}
             tabindex="0"

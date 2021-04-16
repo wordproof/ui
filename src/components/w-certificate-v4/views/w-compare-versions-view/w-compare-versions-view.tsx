@@ -114,7 +114,7 @@ export class WCertificateVersionsView {
         </p>
 
         <w-date-time-select
-          class="mt-2 relative top-7 z-10"
+          class="mt-2 relative top-7 z-40"
           options={this.revisionDateOptions}
           selected={this.currentRevisionIndex}
           onChange={(ev: InputEvent) => {

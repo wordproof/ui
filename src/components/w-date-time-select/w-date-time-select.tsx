@@ -198,7 +198,7 @@ export class WDateTimeSelect {
             onClick={() => this.toggleDatePicker()}
           ></div>
           <div
-            class={cx('absolute transform -translate-x-1/2 left-1/2 z-10', {
+            class={cx('absolute transform -translate-x-1/2 left-1/2 z-50', {
               'top-10': !this.openToTop,
               '-top-10 -translate-y-full': this.openToTop,
             })}
