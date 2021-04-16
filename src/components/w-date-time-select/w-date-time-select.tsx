@@ -208,33 +208,37 @@ export class WDateTimeSelect {
               }}
             />
 
-            <ul
+            <div
               class={cx(
-                'bg-white px-4 py-3 absolute rounded right-2 transform translate-x-full  cursor-pointer',
-                'grid grid-flow-col cell-border-top cell-border-left',
+                'bg-white px-4 py-3 absolute rounded right-1.5 transform translate-x-full overflow-x-auto',
                 {
                   hidden: !this.showTimeOptions,
                 },
               )}
-              style={{ gridTemplateRows: 'repeat(5, minmax(0,auto))' }}
+              style={{ maxWidth: '21.5rem' }}
             >
-              {this.sameDayOptions.map(option => (
-                <TimeLabel
-                  dateTimeOption={option}
-                  onSelect={() => {
-                    this.onTimeOptionSelect(option);
-                  }}
-                />
-              ))}
-              {this.dummySameDayOptions.map((dummy, ind) => (
-                <li
-                  class="px-12 py-5 border-gray-400 cursor-default select-none"
-                  style={ind === 0 ? {} : { borderTopWidth: '0' }}
-                >
-                  {dummy}
-                </li>
-              ))}
-            </ul>
+              <ul
+                class="grid grid-flow-col cell-border-top cell-border-left"
+                style={{ gridTemplateRows: 'repeat(5, minmax(0,auto))' }}
+              >
+                {this.sameDayOptions.map(option => (
+                  <TimeLabel
+                    dateTimeOption={option}
+                    onSelect={() => {
+                      this.onTimeOptionSelect(option);
+                    }}
+                  />
+                ))}
+                {this.dummySameDayOptions.map((dummy, ind) => (
+                  <li
+                    class="px-12 py-5 border-gray-400 cursor-default select-none"
+                    style={ind === 0 ? {} : { borderTopWidth: '0' }}
+                  >
+                    {dummy}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             {this.displayDates ? (
               <DatePickerDates
