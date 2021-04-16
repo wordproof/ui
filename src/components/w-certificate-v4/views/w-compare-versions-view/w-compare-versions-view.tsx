@@ -27,10 +27,6 @@ export class WCertificateVersionsView {
 
   @Prop() locale: string;
 
-  @Prop() raw: boolean;
-
-  @Prop() hasRevisions: boolean;
-
   @State() transactionId: string;
 
   @State() allRevisions: WPRevision[];

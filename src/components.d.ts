@@ -102,9 +102,7 @@ export namespace Components {
     }
     interface WCompareVersionsView {
         "content": WPContent;
-        "hasRevisions": boolean;
         "locale": string;
-        "raw": boolean;
         "strings": CertificateV4Strings;
     }
     interface WDateTimeSelect {
@@ -543,9 +541,7 @@ declare namespace LocalJSX {
     }
     interface WCompareVersionsView {
         "content"?: WPContent;
-        "hasRevisions"?: boolean;
         "locale"?: string;
-        "raw"?: boolean;
         "strings"?: CertificateV4Strings;
     }
     interface WDateTimeSelect {

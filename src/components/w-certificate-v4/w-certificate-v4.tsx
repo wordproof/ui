@@ -63,8 +63,6 @@ export class WCertificateV4 {
           strings={this.strings}
           content={this.content}
           locale={this.locale}
-          raw={false}
-          hasRevisions={this.content.revisions !== undefined}
         ></w-compare-versions-view>
       ),
     },
