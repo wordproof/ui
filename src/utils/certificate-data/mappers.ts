@@ -30,6 +30,8 @@ export const mapNewData = (src: any): WPRevision => {
     ? sha256(JSON.stringify(hashLinkContent))
     : '';
 
+  // console.warn({ hash, computedHash });
+
   return {
     transactionId,
     hash,
