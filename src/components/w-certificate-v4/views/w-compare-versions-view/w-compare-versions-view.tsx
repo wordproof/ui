@@ -10,6 +10,7 @@ import {
   WPRevision,
 } from '../../../../utils/certificate-data';
 import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
+import BaseButton from '../../components/base-button';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from './components/ContentPreview';
 @Component({
@@ -159,6 +160,17 @@ export class WCertificateVersionsView {
             view="diff"
             strings={this.strings}
           />
+        ) : null}
+
+        {this.allRevisions.length == 1 || this.diffRevisionIndex !== null ? (
+          <div class="mt-10">
+            <BaseButton
+              text={this.strings.viewCode}
+              onClick={() => {
+                console.warn('View code!');
+              }}
+            />
+          </div>
         ) : null}
       </div>
     );
