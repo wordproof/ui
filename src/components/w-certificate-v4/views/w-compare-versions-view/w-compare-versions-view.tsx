@@ -136,7 +136,7 @@ export class WCertificateVersionsView {
 
         {this.allRevisions.length > 1 ? (
           <w-date-time-select
-            class="mt-9"
+            class="mt-2 relative top-7 z-40"
             openToTop={true}
             options={this.revisionDateOptions}
             selected={this.diffRevisionIndex}
@@ -146,8 +146,18 @@ export class WCertificateVersionsView {
                 revision: this.allRevisions[ev.data],
               });
 
-              // this.setCurrentRevisionIndex(Number(ev.data));
+              this.setDiffRevisionIndex(Number(ev.data));
             }}
+          />
+        ) : null}
+
+        {this.diffRevisionIndex !== null ? (
+          <ContentPreview
+            revisions={this.allRevisions}
+            viewInd={this.currentRevisionIndex}
+            diffInd={this.diffRevisionIndex}
+            view="diff"
+            strings={this.strings}
           />
         ) : null}
       </div>
