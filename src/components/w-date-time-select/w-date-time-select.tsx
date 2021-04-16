@@ -2,7 +2,6 @@ import { Component, Prop, h, State, Listen, Element } from '@stencil/core';
 import OpenButton from './components/OpenButton';
 import DatePickerHeader from './components/DatePickerHeader';
 import DatePickerDates from './components/DatePickerDates';
-import { parseDate } from '../../utils/date';
 import cx from 'classnames';
 import {
   startOfMonth,
