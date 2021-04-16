@@ -66,6 +66,7 @@ export class WDateTimeSelect {
   triggerButtonElement: HTMLButtonElement;
   datepickerValue: string;
   strings: DateTimeSelectStrings;
+  dummySameDayOptions: string[] = [];
 
   connectedCallback() {
     this.mostRecent = parseDate('2020-01-26');
@@ -97,7 +98,10 @@ export class WDateTimeSelect {
       isSameDay(option.value, date),
     );
 
-    // console.warn({ sameDay: this.sameDayOptions, options: this.options });
+    const dummyCount =
+      this.sameDayOptions.length > 5 ? 5 - (this.sameDayOptions.length % 5) : 0;
+
+    this.dummySameDayOptions = new Array(dummyCount).fill(' ');
 
     if (this.sameDayOptions.length === 1) {
       this.selected = this.sameDayOptions[0].index;
@@ -206,11 +210,13 @@ export class WDateTimeSelect {
 
             <ul
               class={cx(
-                'bg-white px-4 py-3 absolute rounded right-2 transform translate-x-full divide-y divide-gray-400 cursor-pointer',
+                'bg-white px-4 py-3 absolute rounded right-2 transform translate-x-full  cursor-pointer',
+                'grid grid-flow-col cell-border-top cell-border-left',
                 {
                   hidden: !this.showTimeOptions,
                 },
               )}
+              style={{ gridTemplateRows: 'repeat(5, minmax(0,auto))' }}
             >
               {this.sameDayOptions.map(option => (
                 <TimeLabel
@@ -219,6 +225,14 @@ export class WDateTimeSelect {
                     this.onTimeOptionSelect(option);
                   }}
                 />
+              ))}
+              {this.dummySameDayOptions.map((dummy, ind) => (
+                <li
+                  class="px-12 py-5 border-gray-400 cursor-default select-none"
+                  style={ind === 0 ? {} : { borderTopWidth: '0' }}
+                >
+                  {dummy}
+                </li>
               ))}
             </ul>
 

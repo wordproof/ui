@@ -1,7 +1,5 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { DateTimeOption } from '../w-date-time-select';
-// import { format } from 'date-fns';
-// import cx from 'classnames';
 
 interface TimeLabelProps {
   dateTimeOption: DateTimeOption;
@@ -14,7 +12,7 @@ const TimeLabel: FunctionalComponent<TimeLabelProps> = ({
   locale = 'en',
 }) => (
   <li
-    class="text-blue px-12 py-5 hover:bg-gray-200"
+    class="text-blue px-12 py-5 hover:bg-gray-200 border-gray-400"
     onClick={() => {
       onSelect();
     }}

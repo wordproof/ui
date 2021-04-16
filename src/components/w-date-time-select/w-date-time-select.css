@@ -7,11 +7,28 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Sohne-Dreiviertelfett";
-  src: url("../../global/fonts/Sohne-Dreiviertelfett.otf");
+  font-family: 'Sohne-Dreiviertelfett';
+  src: url('../../global/fonts/Sohne-Dreiviertelfett.otf');
 }
 
 @font-face {
-  font-family: "Sohne-Buch";
-  src: url("../../global/fonts/Sohne-Buch.otf");
+  font-family: 'Sohne-Buch';
+  src: url('../../global/fonts/Sohne-Buch.otf');
+}
+
+.cell-border-top li:nth-child(5n + 2),
+.cell-border-top li:nth-child(5n + 3),
+.cell-border-top li:nth-child(5n + 4),
+.cell-border-top li:nth-child(5n + 5) {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+.cell-border-left li:nth-child(5n + 6),
+.cell-border-left li:nth-child(5n + 7),
+.cell-border-left li:nth-child(5n + 8),
+.cell-border-left li:nth-child(5n + 9),
+.cell-border-left li:nth-child(5n + 10) {
+  border-left-width: 1px;
+  border-left-style: solid;
 }
