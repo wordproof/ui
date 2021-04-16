@@ -103,13 +103,12 @@ export class WDateTimeSelect {
       this.selected = this.sameDayOptions[0].index;
       this.selectedDate = this.getSelectedDate(this.selected);
       this.showDatepicker = false;
-      // console.warn('selected: ', this.sameDayOptions[0]);
+      this.emitValue(this.selected);
     }
 
     if (this.sameDayOptions.length > 1) {
       this.selectedDate = this.getSelectedDate(this.sameDayOptions[0].index);
       this.showTimeOptions = true;
-      // console.warn('several otion on the same date');
     }
 
     const monthDiff = differenceInCalendarMonths(date, this.currentMonth);
@@ -121,7 +120,8 @@ export class WDateTimeSelect {
 
   onTimeOptionSelect(option: DateTimeOption) {
     this.selected = option.index;
-    console.warn('selected: ', option);
+    this.emitValue(option.index);
+    this.showDatepicker = false;
   }
 
   getStartOfMonth(): Date {
@@ -160,6 +160,11 @@ export class WDateTimeSelect {
     }
 
     return foundOption.value;
+  }
+
+  emitValue(selected: number) {
+    const emittedEvent = new InputEvent('change', { data: String(selected) });
+    this.hostElement.dispatchEvent(emittedEvent);
   }
 
   render() {

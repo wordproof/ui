@@ -96,6 +96,9 @@ export class WCertificateVersionsView {
           class="mt-2 relative top-7 z-10"
           options={this.revisionDateOptions}
           selected={0}
+          onChange={(ev: InputEvent) => {
+            console.warn(ev.data);
+          }}
         />
 
         <ContentPreview
