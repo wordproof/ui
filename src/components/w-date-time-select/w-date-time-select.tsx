@@ -194,7 +194,7 @@ export class WDateTimeSelect {
           })}
         >
           <div
-            class="fixed w-screen h-screen top-0 left-0 bg-black opacity-40"
+            class="fixed w-screen h-screen top-0 left-0 bg-black opacity-40 z-10"
             onClick={() => this.toggleDatePicker()}
           ></div>
           <div
