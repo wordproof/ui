@@ -14,5 +14,7 @@
   "timestampChecker": "Timestamp checker",
   "viewOnTheBlockchain": "View on the Blockchain",
   "changed": "Changed",
-  "removed": "Removed"
+  "removed": "Removed",
+  "viewCode": "View code",
+  "viewContent": "View content"
 }

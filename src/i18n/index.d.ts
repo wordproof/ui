@@ -56,6 +56,8 @@ type CertificateV4Keys = [
   'viewOnTheBlockchain',
   'changed',
   'removed',
+  'viewCode',
+  'viewContent',
 ][number];
 export type CertificateV4Strings = Record<CertificateV4Keys, string>;
 
