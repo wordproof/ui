@@ -69,7 +69,7 @@ export class WDateTimeSelect {
   dummySameDayOptions: string[] = [];
 
   connectedCallback() {
-    this.mostRecent = parseDate('2020-01-26');
+    this.mostRecent = this.options[0].value;
   }
 
   async componentWillLoad(): Promise<void> {
@@ -129,9 +129,14 @@ export class WDateTimeSelect {
   }
 
   getStartOfMonth(): Date {
-    if (this.selected === null) {
-      return startOfMonth(new Date());
+    const selectedOption = this.options.find(
+      option => option.index === this.selected,
+    );
+
+    if (selectedOption !== undefined) {
+      return startOfMonth(selectedOption.value);
     }
+
     return startOfMonth(this.options[0].value);
   }
 

@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element, State, Listen } from '@stencil/core';
+import { Component, Prop, h, Element, State } from '@stencil/core';
 import {
   BLOCKCHAIN_CONFIG,
   TIMESTAMP_CHECK_URL,
@@ -34,24 +34,22 @@ export class WCertificateVersionsView {
 
   @State() allRevisions: WPRevision[];
 
-  @State() selectedRevisionId: number = 0;
+  @State() currentRevisionIndex: number = 0;
 
-  @State() diffRevisionId: number | null = null;
+  @State() diffRevisionIndex: number | null = null;
 
   revisionDateOptions: DateTimeOption[];
-
-  @Listen('choose')
-  chooseHandler(event: CustomEvent<number>) {
-    this.selectedRevisionId = event.detail;
-    console.warn({ selectedRevisionId: this.selectedRevisionId });
-  }
+  @State() currentRevisionOptions: DateTimeOption[];
+  @State() diffRevisionOptions: DateTimeOption[];
 
   async componentWillLoad() {
     this.allRevisions = [this.content];
-    this.transactionId = this.allRevisions[0].transactionId;
     this.revisionDateOptions = [
       { value: new Date(this.content.date), index: 0 },
     ];
+    this.currentRevisionOptions = this.revisionDateOptions;
+    this.diffRevisionOptions = [];
+    this.transactionId = this.allRevisions[0].transactionId;
   }
 
   async componentDidLoad() {
@@ -60,17 +58,40 @@ export class WCertificateVersionsView {
     const { revisions, ...otherProps } = this.content;
 
     if (revisions) {
-      this.allRevisions = [otherProps, ...revisions];
+      this.allRevisions = [otherProps, ...revisions].sort(
+        (revisionA, revisionB) =>
+          new Date(revisionB.date).getTime() -
+          new Date(revisionA.date).getTime(),
+      );
 
       this.transactionId = this.allRevisions[0].transactionId;
-      this.revisionDateOptions = this.allRevisions
-        .map(revision => new Date(revision.date))
-        .sort((dateA, dateB) => dateB.getTime() - dateA.getTime())
-        .map((date, index) => ({
-          value: date,
-          index,
-        }));
+      this.revisionDateOptions = this.allRevisions.map((revision, index) => ({
+        value: new Date(revision.date),
+        index,
+      }));
+
+      this.setCurrentRevisionIndex(0);
+      this.setDiffRevisionIndex(null);
     }
+  }
+
+  setCurrentRevisionIndex(revisionIndex: number) {
+    this.currentRevisionIndex = revisionIndex;
+    this.currentRevisionOptions = this.revisionDateOptions.slice(
+      revisionIndex + 1,
+    );
+    this.diffRevisionOptions = this.revisionDateOptions.slice(
+      revisionIndex + 1,
+    );
+  }
+
+  setDiffRevisionIndex(revisionIndex: number) {
+    this.diffRevisionIndex = revisionIndex;
+    this.currentRevisionOptions = this.revisionDateOptions.slice(
+      0,
+      revisionIndex,
+    );
+    this.diffRevisionOptions = this.revisionDateOptions.slice(revisionIndex);
   }
 
   render() {
@@ -95,21 +116,39 @@ export class WCertificateVersionsView {
         <w-date-time-select
           class="mt-2 relative top-7 z-10"
           options={this.revisionDateOptions}
-          selected={0}
+          selected={this.currentRevisionIndex}
           onChange={(ev: InputEvent) => {
-            console.warn(ev.data);
+            console.warn({
+              index: ev.data,
+              revision: this.allRevisions[ev.data],
+            });
+
+            this.setCurrentRevisionIndex(Number(ev.data));
           }}
         />
 
         <ContentPreview
           revisions={this.allRevisions}
-          viewInd={0}
+          viewInd={this.currentRevisionIndex}
           view="clean"
           strings={this.strings}
         />
 
         {this.allRevisions.length > 1 ? (
-          <w-date-time-select class="mt-9" openToTop={true} />
+          <w-date-time-select
+            class="mt-9"
+            openToTop={true}
+            options={this.revisionDateOptions}
+            selected={this.diffRevisionIndex}
+            onChange={(ev: InputEvent) => {
+              console.warn({
+                index: ev.data,
+                revision: this.allRevisions[ev.data],
+              });
+
+              // this.setCurrentRevisionIndex(Number(ev.data));
+            }}
+          />
         ) : null}
       </div>
     );
