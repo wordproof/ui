@@ -60,6 +60,7 @@ module.exports = {
       '/pages/w-text-input',
       '/pages/w-modal',
       '/pages/w-certificate',
+      '/pages/w-certificate-v4',
     ],
   },
 };
