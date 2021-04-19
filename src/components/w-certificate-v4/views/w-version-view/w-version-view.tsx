@@ -105,7 +105,7 @@ export class WVersionView {
             <ContentPreview
               revisions={this.allRevisions}
               viewInd={this.currentRevisionIndex}
-              view="raw"
+              view={this.view}
               strings={this.strings}
             />
           </div>

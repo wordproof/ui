@@ -78,6 +78,18 @@ export class WCertificateV4 {
         ></w-version-view>
       ),
     },
+    {
+      hash: CertificateView.content,
+      renderer: (params: URLSearchParams) => (
+        <w-version-view
+          strings={this.strings}
+          content={this.content}
+          locale={this.locale}
+          view="render"
+          revision={parseInt(params.get('revision'))}
+        ></w-version-view>
+      ),
+    },
   ] as Route[];
 
   currentView: CertificateViewKeys = CertificateView.overview;
