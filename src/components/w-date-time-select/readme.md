@@ -7,12 +7,20 @@
 
 ## Properties
 
-| Property | Attribute | Description                                    | Type     | Default        |
-| -------- | --------- | ---------------------------------------------- | -------- | -------------- |
-| `value`  | `value`   | value, date as a string in "YYYY-MM-DD" format | `string` | `'2020-09-17'` |
+| Property        | Attribute     | Description                                                                                             | Type                                                     | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------------- | ------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getButtonText` | --            | optional: returns a string displayed on the button openong the dropdown                                 | `(options: DateTimeOption[], selected: number) => VNode` | `(     options: DateTimeOption[],     selected: number \| null,   ): VNode => {     if (selected === null) {       return <span>{this.strings.selectDayToCompare}</span>;     }      if (selected === 0) {       return <span>{this.strings.todaysVersion}</span>;     }      const foundOption = options.find(option => option.index === selected);      if (foundOption === undefined) {       return <span>{this.strings.selectDayToCompare}</span>;     }      if (isSameDay(foundOption.value, new Date())) {       return <span>{this.strings.todaysVersion}</span>;     }      return <span>{format(foundOption.value, 'MMMM d, yyyy')}</span>;   }` |
+| `openToTop`     | `open-to-top` | by default the date picker opens to the bottom of the trigger elemnt if set to true opens it to the top | `boolean`                                                | `false`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `options`       | --            | on array of Date objects to select from                                                                 | `DateTimeOption[]`                                       | `[]`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `selected`      | `selected`    | index of the selected DateTimeOption                                                                    | `number`                                                 | `null`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 
 ## Dependencies
+
+### Used by
+
+ - [w-compare-versions-view](../w-certificate-v4/views/w-compare-versions-view)
+ - [w-version-view](../w-certificate-v4/views/w-version-view)
 
 ### Depends on
 
@@ -21,8 +29,10 @@
 ### Graph
 ```mermaid
 graph TD;
-  w-input-date --> w-icon
-  style w-input-date fill:#f9f,stroke:#333,stroke-width:4px
+  w-date-time-select --> w-icon
+  w-compare-versions-view --> w-date-time-select
+  w-version-view --> w-date-time-select
+  style w-date-time-select fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

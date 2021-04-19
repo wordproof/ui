@@ -7,42 +7,35 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Default     |
-| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `content`      | --              |             | `WPContent`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | `undefined` |
-| `hasRevisions` | `has-revisions` |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `undefined` |
-| `locale`       | `locale`        |             | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | `undefined` |
-| `raw`          | `raw`           |             | `boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `undefined` |
-| `strings`      | --              |             | `{ contentIsWordProof: string; contentHasNotChangedTitle: string; contentHasNotChangedText: string; whyIsThisImportnat: string; lastEdit: string; discoverHowTitle: string; discoverHowText: string; viewPreviousVersions: string; publishedBy: string; importanceTitle: string; importanceParagraph1: string; importanceParagraph2: string; importanceParagraph3: string; importanceParagraph4: string; checkYourself: string; ariaModalTitle: string; ariaModalDescription: string; recent: string; firstTimestamp: string; explanation: string; timestampCheck: string; compare: string; viewOnBlockchain: string; rawInput: string; previous: string; browsePreviousVersions: string; verifyFingerprintTitle: string; verifyFingerprintText: string; viewTimestamp: string; contentHasChangedTitle: string; contentHasChangedText: string; }` | `undefined` |
+| Property  | Attribute | Description | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Default     |
+| --------- | --------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `content` | --        |             | `WPContent`                                                                                                                                                                                                                                                                                                                                                                                                                                           | `undefined` |
+| `locale`  | `locale`  |             | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                              | `undefined` |
+| `strings` | --        |             | `{ publishedBy: string; compareVersions: string; thatIsImportantText: string; aboutWordproof: string; todaysRevision: string; selectDayToCompare: string; contentCertificate: string; thisContent: string; hasNotChanged: string; hasChanged: string; lastEdited: string; explainThis: string; timestampChecker: string; viewOnTheBlockchain: string; changed: string; removed: string; viewCode: string; viewContent: string; mostRecent: string; }` | `undefined` |
 
 
 ## Dependencies
 
 ### Used by
 
- - [w-certificate](../..)
+ - [w-certificate-v4](../..)
 
 ### Depends on
 
-- [w-certificate-header](../../components)
-- [w-certificate-versions-raw](components)
-- [w-certificate-versions-compare](components)
+- [w-date-time-select](../../../w-date-time-select)
 - [w-icon](../../../w-icon)
+- [w-dropdown-menu](../../../w-dropdown-menu)
 
 ### Graph
 ```mermaid
 graph TD;
-  w-certificate-versions-view --> w-certificate-header
-  w-certificate-versions-view --> w-certificate-versions-raw
-  w-certificate-versions-view --> w-certificate-versions-compare
-  w-certificate-versions-view --> w-icon
-  w-certificate-versions-raw --> w-input-select
-  w-certificate-versions-raw --> w-input-select-option
-  w-input-select --> w-icon
-  w-certificate-versions-compare --> w-input-select
-  w-certificate-versions-compare --> w-input-select-option
-  w-certificate --> w-certificate-versions-view
-  style w-certificate-versions-view fill:#f9f,stroke:#333,stroke-width:4px
+  w-compare-versions-view --> w-date-time-select
+  w-compare-versions-view --> w-icon
+  w-compare-versions-view --> w-dropdown-menu
+  w-date-time-select --> w-icon
+  w-dropdown-menu --> w-icon
+  w-certificate-v4 --> w-compare-versions-view
+  style w-compare-versions-view fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
