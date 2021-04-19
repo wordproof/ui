@@ -33,7 +33,10 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   locale,
   hasChanged,
 }) => (
-  <div class="px-56 py-10 flex flex-col items-center relative">
+  <div
+    class="px-56 py-10 flex flex-col items-center relative"
+    style={{ lineHeight: '1.5' }}
+  >
     <TabLabel onClick={() => {}} />
     <div
       class={cx(
