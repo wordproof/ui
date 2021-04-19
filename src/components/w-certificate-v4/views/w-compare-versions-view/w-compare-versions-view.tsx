@@ -10,9 +10,11 @@ import {
   WPRevision,
 } from '../../../../utils/certificate-data';
 import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
+import { router } from '../../../w-router-outlet';
 import BaseButton from '../../components/base-button';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from '../../components/ContentPreview';
+import { CertificateView } from '../../types';
 @Component({
   tag: 'w-compare-versions-view',
   styleUrl: 'w-compare-versions-view.css',
@@ -115,11 +117,6 @@ export class WCertificateVersionsView {
           options={this.revisionDateOptions}
           selected={this.currentRevisionIndex}
           onChange={(ev: InputEvent) => {
-            console.warn({
-              index: ev.data,
-              revision: this.allRevisions[ev.data],
-            });
-
             this.setCurrentRevisionIndex(Number(ev.data));
           }}
         />
@@ -138,11 +135,6 @@ export class WCertificateVersionsView {
             options={this.revisionDateOptions}
             selected={this.diffRevisionIndex}
             onChange={(ev: InputEvent) => {
-              console.warn({
-                index: ev.data,
-                revision: this.allRevisions[ev.data],
-              });
-
               this.setDiffRevisionIndex(Number(ev.data));
             }}
           />
@@ -163,7 +155,9 @@ export class WCertificateVersionsView {
             <BaseButton
               text={this.strings.viewCode}
               onClick={() => {
-                console.warn('View code!');
+                router.go(
+                  `${CertificateView.raw}?revision=${this.diffRevisionIndex}`,
+                );
               }}
             />
           </div>
