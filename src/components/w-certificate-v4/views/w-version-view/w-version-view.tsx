@@ -1,4 +1,5 @@
 import { Component, h, Element, Prop, State } from '@stencil/core';
+import { format } from 'date-fns';
 import {
   BLOCKCHAIN_CONFIG,
   TIMESTAMP_CHECK_URL,
@@ -10,6 +11,7 @@ import {
   WPRevision,
 } from '../../../../utils/certificate-data';
 import { ContentPreviewType } from '../../../../utils/content-preview';
+import { getButtonTextFunction } from '../../../w-date-time-select/components/OpenButton';
 import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
 import { router } from '../../../w-router-outlet';
 import BaseButton from '../../components/base-button';
@@ -101,6 +103,26 @@ export class WVersionView {
     router.replace(`${this.view}?revision=${this.currentRevisionIndex}`);
   }
 
+  getOpenButtonText: getButtonTextFunction = (
+    options: DateTimeOption[],
+    selected: number | null,
+  ): string => {
+    if (selected === 0) {
+      return `${this.strings.mostRecent} ${format(
+        options[0].value,
+        'MMMM d, yyyy',
+      )}`;
+    }
+
+    const foundOption = options.find(option => option.index === selected);
+
+    if (foundOption !== undefined) {
+      return format(foundOption.value, 'MMMM d, yyyy');
+    }
+
+    return this.strings.mostRecent;
+  };
+
   render() {
     return (
       <div class="px-3 pt-7 pb-10 flex flex-col items-center relative">
@@ -133,6 +155,7 @@ export class WVersionView {
 
                 this.setCurrentRevisionIndex(Number(ev.data));
               }}
+              getButtonText={this.getOpenButtonText.bind(this)}
             />
 
             <ContentPreview

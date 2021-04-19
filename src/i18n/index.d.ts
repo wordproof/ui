@@ -58,12 +58,9 @@ type CertificateV4Keys = [
   'removed',
   'viewCode',
   'viewContent',
+  'mostRecent',
 ][number];
 export type CertificateV4Strings = Record<CertificateV4Keys, string>;
 
-type DateTimeSelectStringKeys = [
-  'todaysVersion',
-  'mostRecent',
-  'selectDayToCompare',
-][number];
+type DateTimeSelectStringKeys = ['todaysVersion', 'selectDayToCompare'][number];
 export type DateTimeSelectStrings = Record<DateTimeSelectStringKeys, string>;
