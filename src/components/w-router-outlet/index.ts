@@ -32,4 +32,8 @@ export const router = {
   go(view: string = '') {
     window.location.hash = `${TRIGGER_HASH}${view ? '-' + view : ''}`;
   },
+
+  replace(view: string = '') {
+    window.location.replace(router.getHref(view));
+  },
 };

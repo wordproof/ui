@@ -11,6 +11,11 @@ export class MyEmbeddedComponent {
 
   @State() matchedRoute: Route;
 
+  extractParams() {
+    const [_, search] = location.hash.split('?');
+    return new URLSearchParams(search);
+  }
+
   getMatchedRoute() {
     return this.routes.find(route =>
       location.hash.includes(`${TRIGGER_HASH}-${route.hash}`),
@@ -28,11 +33,11 @@ export class MyEmbeddedComponent {
 
   render() {
     if (this.matchedRoute) {
-      return this.matchedRoute.renderer();
+      return this.matchedRoute.renderer(this.extractParams());
     }
 
     if (this.defaultRoute) {
-      return this.defaultRoute.renderer();
+      return this.defaultRoute.renderer(this.extractParams());
     }
 
     return null;

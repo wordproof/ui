@@ -6,6 +6,7 @@ import cx from 'classnames';
 interface DateInputButtonProps {
   dateStr?: string;
   onClick?: Function;
+  ref?: Function;
 }
 
 const getButtonText = (dateStr: string): string => {
@@ -25,22 +26,23 @@ const getButtonText = (dateStr: string): string => {
 const DateInputButton: FunctionalComponent<DateInputButtonProps> = ({
   dateStr = '',
   onClick = () => {},
+  ref,
 }) => (
   <button
     class={cx(
       'inline-flex pl-4 pr-7 py-3 items-center rounded-full focus:outline-none focus:ring-2',
       {
-        'bg-gradient-to-r from-blue to-purple text-white':
-          dateStr === '',
+        'bg-gradient-to-r from-blue to-purple text-white': dateStr === '',
         'bg-white shadow text-blue': dateStr !== '',
       },
     )}
     onClick={() => {
       onClick();
     }}
+    ref={el => ref(el)}
   >
     <div class="p-1.5 bg-blue border border-blue rounded-full">
-      <w-icon name="calendar" class="text-black"></w-icon>
+      <w-icon name="calendar" class="text-white"></w-icon>
     </div>
     <div
       class={cx('ml-4', {

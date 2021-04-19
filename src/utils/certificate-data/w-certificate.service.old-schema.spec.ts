@@ -1,6 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { parsePage } from './parsers';
+import { parsePage } from '.';
 import { WPRevision } from '.';
+import { Blockchain } from '../../config/blockchain.config';
 
 export const scriptTagContent = {
   '@context': { '@type': 'ArticleTimestamp', '@version': '0.2.0' },
@@ -24,6 +25,7 @@ const expectedData: WPRevision = {
   date: scriptTagContent.date,
   hasChanged: false,
   hashLinkContent: {},
+  blockchain: scriptTagContent.blockchain as Blockchain,
 };
 
 describe('w-certificate.service', () => {

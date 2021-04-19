@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                                    | Type     | Default        |
-| -------- | --------- | ---------------------------------------------- | -------- | -------------- |
-| `value`  | `value`   | value, date as a string in "YYYY-MM-DD" format | `string` | `'2020-09-17'` |
+| Property    | Attribute     | Description                                    | Type      | Default        |
+| ----------- | ------------- | ---------------------------------------------- | --------- | -------------- |
+| `openToTop` | `open-to-top` |                                                | `boolean` | `false`        |
+| `value`     | `value`       | value, date as a string in "YYYY-MM-DD" format | `string`  | `'2020-09-17'` |
 
 
 ## Dependencies

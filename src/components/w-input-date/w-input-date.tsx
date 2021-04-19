@@ -26,12 +26,14 @@ export class WInputDate {
    * value, date as a string in "YYYY-MM-DD" format
    */
   @Prop() value: string = '2020-09-17';
+  @Prop() openToTop: boolean = false;
 
   enabled: Date[];
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'Escape') {
+      ev.stopPropagation();
       this.showDatepicker = false;
     }
   }
@@ -43,6 +45,7 @@ export class WInputDate {
   @State() displayDates: Date[];
 
   dateEl: HTMLInputElement;
+  triggerButtonElement: HTMLButtonElement;
   datepickerValue: string;
 
   connectedCallback() {
@@ -94,6 +97,10 @@ export class WInputDate {
       this.selected = parseDate(this.value);
     }
 
+    if (this.showDatepicker) {
+      this.triggerButtonElement.blur();
+    }
+
     this.showDatepicker = !this.showDatepicker;
   }
 
@@ -106,35 +113,46 @@ export class WInputDate {
           onClick={() => {
             this.toggleDatePicker();
           }}
+          ref={el => (this.triggerButtonElement = el as HTMLButtonElement)}
         />
-
         <div
-          class={cx('absolute transform -translate-x-1/2 left-1/2 top-10', {
+          class={cx({
             hidden: !this.showDatepicker,
           })}
         >
-          <DatePickerHeader
-            date={this.currentMonth}
-            onLeftArrowClick={() => {
-              this.changeMonth(-1);
-            }}
-            onRightArrowClick={() => {
-              this.changeMonth(1);
-            }}
-          />
-
-          {this.displayDates ? (
-            <DatePickerDates
-              displayDates={this.displayDates}
-              enabledDates={this.enabled}
-              selected={this.selected}
-              currentMonth={this.currentMonth}
-              mostRecent={this.mostRecent}
-              onDateSelect={(date: Date) => {
-                this.onDateSelect(date);
+          <div
+            class="fixed w-screen h-screen top-0 left-0 bg-black opacity-40"
+            onClick={() => this.toggleDatePicker()}
+          ></div>
+          <div
+            class={cx('absolute transform -translate-x-1/2 left-1/2 z-10', {
+              'top-10': !this.openToTop,
+              '-top-10 -translate-y-full': this.openToTop,
+            })}
+          >
+            <DatePickerHeader
+              date={this.currentMonth}
+              onLeftArrowClick={() => {
+                this.changeMonth(-1);
+              }}
+              onRightArrowClick={() => {
+                this.changeMonth(1);
               }}
             />
-          ) : null}
+
+            {this.displayDates ? (
+              <DatePickerDates
+                displayDates={this.displayDates}
+                enabledDates={this.enabled}
+                selected={this.selected}
+                currentMonth={this.currentMonth}
+                mostRecent={this.mostRecent}
+                onDateSelect={(date: Date) => {
+                  this.onDateSelect(date);
+                }}
+              />
+            ) : null}
+          </div>
         </div>
       </span>
     );

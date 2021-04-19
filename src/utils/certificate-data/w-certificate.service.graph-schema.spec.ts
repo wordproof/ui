@@ -1,7 +1,8 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { parsePage } from './parsers';
+import { parsePage } from '.';
 import fetchMock from 'fetch-mock-jest';
 import { WPRevision } from '.';
+import { Blockchain } from '../../config/blockchain.config';
 
 const hashLinkContent = {
   '@context': 'https://schema.org',
@@ -14,81 +15,39 @@ const hashLinkContent = {
 };
 
 const scriptTagContent = {
-  '@context': 'http://schema.org',
-  '@type': 'NewsArticle',
-  'headline': 'Rechtspraak niet beter na hervorming',
-  'description':
-    'De vermindering van het aantal rechtbanken, parketten van het Openbaar Ministerie en gerechtshoven in 2013 heeft de rechtspraak niet aanwijsbaar verbeterd. Dat concluderen vier hoogleraren en een burgemeester (van Gouda) na twee jaar onderzoek naar deze zogenoemde \u2018herziening van de gerechtelijke kaart\u2019. Zij leverden hun evaluatie maandag in bij minister Dekker (Rechtsbescherming, VVD). In totaal\u2026',
-  'dateCreated': '2017-12-18T19:48:52+02:00',
-  'datePublished': '2017-12-18T19:48:52+02:00',
-  'dateModified': '2017-12-18T19:48:52+02:00',
-  'url':
-    'https://www.nrc.nl/nieuws/2017/12/18/evaluatie-rechtspraak-niet-beter-na-hervorming-a1585427',
-  'mainEntityOfPage':
-    'https://www.nrc.nl/nieuws/2017/12/18/evaluatie-rechtspraak-niet-beter-na-hervorming-a1585427',
-  'author': [{ '@type': 'Person', 'name': 'Victor Pak' }],
-  'publisher': {
-    '@type': 'Organization',
-    'name': 'NRC',
-    'logo': {
-      '@type': 'ImageObject',
-      'url': 'https://www.nrc.nl/static/front/img/nrc-organization-logo.png',
-      'width': 183,
-      'height': 60,
-    },
-  },
-  'articleSection': null,
-  'keywords': [
-    'leeuwarden',
-    'politie, recht en criminaliteit',
-    'type:nieuwsbericht',
-    'personeel',
-    'vvd',
-    'herziening',
-    'economie',
-    'utrecht',
-    'de gelderlander',
-    'winkels',
-    'rechtbanken',
-  ],
-  'isAccessibleForFree': false,
-  'isPartOf': {
-    '@type': ['CreativeWork', 'Product'],
-    'name': 'NRC',
-    'productID': 'nrc.nl:basic',
-  },
-  'hasPart': [
+  '@context': 'https://schema.org',
+  '@graph': [
     {
-      '@type': 'WebPageElement',
-      'isAccessibleForFree': false,
-      'cssSelector': '.article__content',
+      '@type': 'Article',
+      'timestamp': {
+        '@type': 'BlockchainTransaction',
+        'identifier':
+          '829df958e5c5f9159d4fb52d71ddc9993cafb509884cb2ae590ec7ellec6428b',
+        'hash':
+          'd5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec',
+        'hashLink':
+          'http://wordproof-drupal.web.dev.swis.nl/wordproof/hashinput/15',
+        'recordedIn': {
+          '@type': 'Blockchain',
+          'name': 'wp',
+        },
+      },
     },
   ],
-  'creator': ['Victor Pak'],
-  'timestamp': {
-    '@type': 'BlockchainTransaction',
-    'identifier':
-      'f2a26d7d02a4a078cf0b4dd9f1cf42ac45ab89d445e66dd72e4a781496e55020',
-    'hash': 'd5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec',
-    'hashLink': 'https://www.nrc.nl/api/wordproof/hashinput?id=1689373',
-    'recordedIn': {
-      '@type': 'Blockchain',
-      'name': 'eosio_main',
-    },
-  },
 };
 
 const expectedData: WPRevision = {
-  transactionId: scriptTagContent.timestamp.identifier,
-  hash: scriptTagContent.timestamp.hash,
+  transactionId: scriptTagContent['@graph'][0].timestamp.identifier,
+  hash: scriptTagContent['@graph'][0].timestamp.hash,
   content: hashLinkContent.text,
   date: hashLinkContent.dateCreated,
   hasChanged: false,
   hashLinkContent,
+  blockchain: scriptTagContent['@graph'][0].timestamp.recordedIn.name as Blockchain,
 };
 
 describe('w-certificate.service', () => {
-  it('parses a page with a ld+json script tag with the new schema', async () => {
+  it('parses a page with a ld+json script tag with the graph schema', async () => {
     await newSpecPage({
       components: [],
       html: /*html*/ `<script type="application/ld+json" data-json-ld-for-pagemetadata>
@@ -97,7 +56,7 @@ describe('w-certificate.service', () => {
     });
 
     fetchMock.get(
-      scriptTagContent.timestamp.hashLink,
+      scriptTagContent['@graph'][0].timestamp.hashLink,
       JSON.stringify(hashLinkContent),
     );
 

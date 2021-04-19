@@ -6,10 +6,15 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IconName } from "./components/w-icon/types";
-import { WPContent, WPRevision } from "./components/w-certificate/service";
+import { WPContent, WPRevision } from "./utils/certificate-data";
 import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
-import { CertificateStrings } from "./i18n";
+import { CertificateStrings, CertificateV4Strings } from "./i18n";
+import { DateTimeOption } from "./components/w-date-time-select/w-date-time-select";
+import { getButtonTextFunction } from "./components/w-date-time-select/components/OpenButton";
+import { VNode } from "@stencil/core";
+import { DropdownMenuOption } from "./components/w-dropdown-menu/w-dropdown-menu";
 import { Route } from "./components/w-router-outlet";
+import { ContentPreviewType } from "./utils/content-preview";
 export namespace Components {
     interface WBadge {
         /**
@@ -73,6 +78,16 @@ export namespace Components {
          */
         "noIcon": boolean;
     }
+    interface WCertificateV4 {
+        /**
+          * custom certificate link text
+         */
+        "linkText": string;
+        /**
+          * hides icon on certificate link
+         */
+        "noIcon": boolean;
+    }
     interface WCertificateVersionsCompare {
         "allOptions": RevisionOption[];
         "allRevisions": WPRevision[];
@@ -87,6 +102,35 @@ export namespace Components {
         "locale": string;
         "raw": boolean;
         "strings": CertificateStrings;
+    }
+    interface WCompareVersionsView {
+        "content": WPContent;
+        "locale": string;
+        "strings": CertificateV4Strings;
+    }
+    interface WDateTimeSelect {
+        /**
+          * optional: returns a string displayed on the button openong the dropdown
+         */
+        "getButtonText": getButtonTextFunction;
+        /**
+          * by default the date picker opens to the bottom of the trigger elemnt if set to true opens it to the top
+         */
+        "openToTop": boolean;
+        /**
+          * on array of Date objects to select from
+         */
+        "options": DateTimeOption[];
+        /**
+          * index of the selected DateTimeOption
+         */
+        "selected": number | null;
+    }
+    interface WDropdownMenu {
+        /**
+          * Array of menu items options
+         */
+        "options": DropdownMenuOption[];
     }
     interface WIcon {
         /**
@@ -113,6 +157,7 @@ export namespace Components {
         "error": string;
     }
     interface WInputDate {
+        "openToTop": boolean;
         /**
           * value, date as a string in "YYYY-MM-DD" format
          */
@@ -246,7 +291,7 @@ export namespace Components {
         /**
           * controls visibility of the modal
          */
-        "rounded": string | boolean;
+        "rounded": 'sm' | 'md' | 'lg' | boolean;
         /**
           * controls visibility of the modal
          */
@@ -258,6 +303,13 @@ export namespace Components {
     }
     interface WRouterOutlet {
         "routes": Route[];
+    }
+    interface WVersionView {
+        "content": WPContent;
+        "locale": string;
+        "revision": number;
+        "strings": CertificateV4Strings;
+        "view": Exclude<ContentPreviewType, 'diff'>;
     }
 }
 declare global {
@@ -291,6 +343,12 @@ declare global {
         prototype: HTMLWCertificateLinkElement;
         new (): HTMLWCertificateLinkElement;
     };
+    interface HTMLWCertificateV4Element extends Components.WCertificateV4, HTMLStencilElement {
+    }
+    var HTMLWCertificateV4Element: {
+        prototype: HTMLWCertificateV4Element;
+        new (): HTMLWCertificateV4Element;
+    };
     interface HTMLWCertificateVersionsCompareElement extends Components.WCertificateVersionsCompare, HTMLStencilElement {
     }
     var HTMLWCertificateVersionsCompareElement: {
@@ -308,6 +366,24 @@ declare global {
     var HTMLWCertificateVersionsViewElement: {
         prototype: HTMLWCertificateVersionsViewElement;
         new (): HTMLWCertificateVersionsViewElement;
+    };
+    interface HTMLWCompareVersionsViewElement extends Components.WCompareVersionsView, HTMLStencilElement {
+    }
+    var HTMLWCompareVersionsViewElement: {
+        prototype: HTMLWCompareVersionsViewElement;
+        new (): HTMLWCompareVersionsViewElement;
+    };
+    interface HTMLWDateTimeSelectElement extends Components.WDateTimeSelect, HTMLStencilElement {
+    }
+    var HTMLWDateTimeSelectElement: {
+        prototype: HTMLWDateTimeSelectElement;
+        new (): HTMLWDateTimeSelectElement;
+    };
+    interface HTMLWDropdownMenuElement extends Components.WDropdownMenu, HTMLStencilElement {
+    }
+    var HTMLWDropdownMenuElement: {
+        prototype: HTMLWDropdownMenuElement;
+        new (): HTMLWDropdownMenuElement;
     };
     interface HTMLWIconElement extends Components.WIcon, HTMLStencilElement {
     }
@@ -363,15 +439,25 @@ declare global {
         prototype: HTMLWRouterOutletElement;
         new (): HTMLWRouterOutletElement;
     };
+    interface HTMLWVersionViewElement extends Components.WVersionView, HTMLStencilElement {
+    }
+    var HTMLWVersionViewElement: {
+        prototype: HTMLWVersionViewElement;
+        new (): HTMLWVersionViewElement;
+    };
     interface HTMLElementTagNameMap {
         "w-badge": HTMLWBadgeElement;
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
         "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
+        "w-certificate-v4": HTMLWCertificateV4Element;
         "w-certificate-versions-compare": HTMLWCertificateVersionsCompareElement;
         "w-certificate-versions-raw": HTMLWCertificateVersionsRawElement;
         "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
+        "w-compare-versions-view": HTMLWCompareVersionsViewElement;
+        "w-date-time-select": HTMLWDateTimeSelectElement;
+        "w-dropdown-menu": HTMLWDropdownMenuElement;
         "w-icon": HTMLWIconElement;
         "w-input-checkbox": HTMLWInputCheckboxElement;
         "w-input-date": HTMLWInputDateElement;
@@ -381,6 +467,7 @@ declare global {
         "w-logo": HTMLWLogoElement;
         "w-modal": HTMLWModalElement;
         "w-router-outlet": HTMLWRouterOutletElement;
+        "w-version-view": HTMLWVersionViewElement;
     }
 }
 declare namespace LocalJSX {
@@ -446,6 +533,16 @@ declare namespace LocalJSX {
          */
         "noIcon"?: boolean;
     }
+    interface WCertificateV4 {
+        /**
+          * custom certificate link text
+         */
+        "linkText"?: string;
+        /**
+          * hides icon on certificate link
+         */
+        "noIcon"?: boolean;
+    }
     interface WCertificateVersionsCompare {
         "allOptions"?: RevisionOption[];
         "allRevisions"?: WPRevision[];
@@ -462,6 +559,35 @@ declare namespace LocalJSX {
         "locale"?: string;
         "raw"?: boolean;
         "strings"?: CertificateStrings;
+    }
+    interface WCompareVersionsView {
+        "content"?: WPContent;
+        "locale"?: string;
+        "strings"?: CertificateV4Strings;
+    }
+    interface WDateTimeSelect {
+        /**
+          * optional: returns a string displayed on the button openong the dropdown
+         */
+        "getButtonText"?: getButtonTextFunction;
+        /**
+          * by default the date picker opens to the bottom of the trigger elemnt if set to true opens it to the top
+         */
+        "openToTop"?: boolean;
+        /**
+          * on array of Date objects to select from
+         */
+        "options"?: DateTimeOption[];
+        /**
+          * index of the selected DateTimeOption
+         */
+        "selected"?: number | null;
+    }
+    interface WDropdownMenu {
+        /**
+          * Array of menu items options
+         */
+        "options"?: DropdownMenuOption[];
     }
     interface WIcon {
         /**
@@ -488,6 +614,7 @@ declare namespace LocalJSX {
         "error"?: string;
     }
     interface WInputDate {
+        "openToTop"?: boolean;
         /**
           * value, date as a string in "YYYY-MM-DD" format
          */
@@ -623,7 +750,7 @@ declare namespace LocalJSX {
         /**
           * controls visibility of the modal
          */
-        "rounded"?: string | boolean;
+        "rounded"?: 'sm' | 'md' | 'lg' | boolean;
         /**
           * controls visibility of the modal
          */
@@ -636,15 +763,26 @@ declare namespace LocalJSX {
     interface WRouterOutlet {
         "routes"?: Route[];
     }
+    interface WVersionView {
+        "content"?: WPContent;
+        "locale"?: string;
+        "revision"?: number;
+        "strings"?: CertificateV4Strings;
+        "view"?: Exclude<ContentPreviewType, 'diff'>;
+    }
     interface IntrinsicElements {
         "w-badge": WBadge;
         "w-button": WButton;
         "w-certificate": WCertificate;
         "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
+        "w-certificate-v4": WCertificateV4;
         "w-certificate-versions-compare": WCertificateVersionsCompare;
         "w-certificate-versions-raw": WCertificateVersionsRaw;
         "w-certificate-versions-view": WCertificateVersionsView;
+        "w-compare-versions-view": WCompareVersionsView;
+        "w-date-time-select": WDateTimeSelect;
+        "w-dropdown-menu": WDropdownMenu;
         "w-icon": WIcon;
         "w-input-checkbox": WInputCheckbox;
         "w-input-date": WInputDate;
@@ -654,6 +792,7 @@ declare namespace LocalJSX {
         "w-logo": WLogo;
         "w-modal": WModal;
         "w-router-outlet": WRouterOutlet;
+        "w-version-view": WVersionView;
     }
 }
 export { LocalJSX as JSX };
@@ -665,9 +804,13 @@ declare module "@stencil/core" {
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
             "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
+            "w-certificate-v4": LocalJSX.WCertificateV4 & JSXBase.HTMLAttributes<HTMLWCertificateV4Element>;
             "w-certificate-versions-compare": LocalJSX.WCertificateVersionsCompare & JSXBase.HTMLAttributes<HTMLWCertificateVersionsCompareElement>;
             "w-certificate-versions-raw": LocalJSX.WCertificateVersionsRaw & JSXBase.HTMLAttributes<HTMLWCertificateVersionsRawElement>;
             "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
+            "w-compare-versions-view": LocalJSX.WCompareVersionsView & JSXBase.HTMLAttributes<HTMLWCompareVersionsViewElement>;
+            "w-date-time-select": LocalJSX.WDateTimeSelect & JSXBase.HTMLAttributes<HTMLWDateTimeSelectElement>;
+            "w-dropdown-menu": LocalJSX.WDropdownMenu & JSXBase.HTMLAttributes<HTMLWDropdownMenuElement>;
             "w-icon": LocalJSX.WIcon & JSXBase.HTMLAttributes<HTMLWIconElement>;
             "w-input-checkbox": LocalJSX.WInputCheckbox & JSXBase.HTMLAttributes<HTMLWInputCheckboxElement>;
             "w-input-date": LocalJSX.WInputDate & JSXBase.HTMLAttributes<HTMLWInputDateElement>;
@@ -677,6 +820,7 @@ declare module "@stencil/core" {
             "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
             "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;
             "w-router-outlet": LocalJSX.WRouterOutlet & JSXBase.HTMLAttributes<HTMLWRouterOutletElement>;
+            "w-version-view": LocalJSX.WVersionView & JSXBase.HTMLAttributes<HTMLWVersionViewElement>;
         }
     }
 }

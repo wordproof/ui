@@ -1,0 +1,76 @@
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "timestamp": {
+    "@type": "BlockchainTransaction",
+    "identifier": "f2a26d7d02a4a078cf0b4dd9f1cf42ac45ab89d445e66dd72e4a781496e55020",
+    "hash": "d5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec",
+    "hashLink": "http://localhost:3000/revisions/deb8cea7-8bbb-4c8f-9b8b-e289a685eb20",
+    "recordedIn": {
+      "@type": "Blockchain",
+      "name": "eosio_main"
+    },
+    "revisions": [
+      {
+        "@type": "BlockchainTransaction",
+        "identifier": "f2a26d7d02a4a078cf0b4dd9f1cf42ac45ab89d445e66dd72e4a781496e55021",
+        "hash": "d5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec",
+        "hashLink": "http://localhost:3000/revisions/43438acf-f196-42eb-84a8-b4073d3c2ff3",
+        "recordedIn": {
+          "@type": "Blockchain",
+          "name": "eosio_main"
+        }
+      },
+      {
+        "@type": "BlockchainTransaction",
+        "identifier": "f2a26d7d02a4a078cf0b4dd9f1cf42ac45ab89d445e66dd72e4a781496e55021",
+        "hash": "d5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec",
+        "hashLink": "http://localhost:3000/revisions/e5993597-fe7d-4bd5-b97c-2da1b6020d1a",
+        "recordedIn": {
+          "@type": "Blockchain",
+          "name": "eosio_main"
+        }
+      },
+      {
+        "@type": "BlockchainTransaction",
+        "identifier": "f2a26d7d02a4a078cf0b4dd9f1cf42ac45ab89d445e66dd72e4a781496e55021",
+        "hash": "d5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec",
+        "hashLink": "http://localhost:3000/revisions/0eee0ca1-9c72-4ead-8bcd-e6d3db35a3c9",
+        "recordedIn": {
+          "@type": "Blockchain",
+          "name": "eosio_main"
+        }
+      },
+      {
+        "@type": "BlockchainTransaction",
+        "identifier": "f2a26d7d02a4a078cf0b4dd9f1cf42ac45ab89d445e66dd72e4a781496e55021",
+        "hash": "d5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec",
+        "hashLink": "http://localhost:3000/revisions/bb972ef3-88ba-472b-8589-63029ff3ed3b",
+        "recordedIn": {
+          "@type": "Blockchain",
+          "name": "eosio_main"
+        }
+      },
+      {
+        "@type": "BlockchainTransaction",
+        "identifier": "f2a26d7d02a4a078cf0b4dd9f1cf42ac45ab89d445e66dd72e4a781496e55021",
+        "hash": "d5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec",
+        "hashLink": "http://localhost:3000/revisions/a247a4da-8301-4eb8-a55c-e40265318042",
+        "recordedIn": {
+          "@type": "Blockchain",
+          "name": "eosio_main"
+        }
+      },
+      {
+        "@type": "BlockchainTransaction",
+        "identifier": "f2a26d7d02a4a078cf0b4dd9f1cf42ac45ab89d445e66dd72e4a781496e55021",
+        "hash": "d5d9a958ee822617c3f8ab43fac8afefc4bcb9420878819f22df985e973355ec",
+        "hashLink": "http://localhost:3000/revisions/cf9fc24a-9395-423f-a700-9e4aacd13110",
+        "recordedIn": {
+          "@type": "Blockchain",
+          "name": "eosio_main"
+        }
+      }
+    ]
+  }
+}

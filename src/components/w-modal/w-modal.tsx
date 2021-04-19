@@ -25,7 +25,7 @@ export class WModal {
   /**
    * controls visibility of the modal
    */
-  @Prop() rounded: string | boolean = false;
+  @Prop() rounded: 'sm' | 'md' | 'lg' | boolean = false;
 
   /**
    * class names added to wrapper element of the modal
@@ -91,7 +91,7 @@ export class WModal {
           },
           this.wrapClassName,
         )}
-        style={{ ['z-index']: '999998' }}
+        style={{ ['z-index']: '999997' }}
       >
         <div class="sr-only" id="ariaLabel">
           {this.ariaModalTitle}
@@ -112,11 +112,14 @@ export class WModal {
           class={cx(
             'bg-white relative w-11/12 md:max-w-3xl',
             {
-              [`rounded-${this.rounded}`]: this.rounded,
+              [`rounded-${this.rounded}`]: ['sm', 'md', 'lg'].includes(
+                String(this.rounded),
+              ),
+              [`rounded`]: this.rounded === true,
             },
             this.modalClassName,
           )}
-          style={{ ['z-index']: '999999' }}
+          style={{ ['z-index']: '999998' }}
           onClick={ev => ev.stopPropagation()}
           role="dialog"
           aria-modal="true"
@@ -124,12 +127,19 @@ export class WModal {
           aria-describedby="ariaDescription"
         >
           <button
-            class="absolute top-2 right-2 focus:outline-none"
+            class="absolute top-2 right-2 focus:outline-none z-30"
+            // style={{ ['z-index']: '999999' }}
             onClick={ev => this.onClose(ev)}
             aria-label={this.strings.ariaClose}
             tabindex="0"
           >
-            <w-icon fit name="close-circle" class="w-6 h-6 text-teal"></w-icon>
+            <slot name="close">
+              <w-icon
+                fit
+                name="close-circle"
+                class="w-6 h-6 text-teal"
+              ></w-icon>
+            </slot>
           </button>
 
           <div class={this.contentClassName}>

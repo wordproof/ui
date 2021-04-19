@@ -2,7 +2,7 @@ import { sha256 } from 'js-sha256';
 import { WPRevision } from '.';
 
 export const mapOldData = (src: any): WPRevision => {
-  const { transactionId, hash, content, date, revisions } = src;
+  const { transactionId, hash, content, date, revisions, blockchain } = src;
 
   return {
     transactionId,
@@ -14,10 +14,11 @@ export const mapOldData = (src: any): WPRevision => {
       : {}),
     hasChanged: false,
     hashLinkContent: {},
+    blockchain,
   };
 };
 export const mapNewData = (src: any): WPRevision => {
-  const { identifier: transactionId, hash, hashLinkContent } = src;
+  const { identifier: transactionId, hash, hashLinkContent, blockchain } = src;
 
   const content = hashLinkContent
     ? hashLinkContent.text
@@ -29,6 +30,8 @@ export const mapNewData = (src: any): WPRevision => {
     ? sha256(JSON.stringify(hashLinkContent))
     : '';
 
+  // console.warn({ hash, computedHash });
+
   return {
     transactionId,
     hash,
@@ -36,5 +39,6 @@ export const mapNewData = (src: any): WPRevision => {
     date,
     hasChanged: hash !== computedHash,
     hashLinkContent,
+    blockchain,
   };
 };

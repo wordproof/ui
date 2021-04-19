@@ -38,3 +38,29 @@ export type CertificateStrings = Record<CertificateKeys, string>;
 
 type ModalStringKeys = ['ariaClose'][number];
 export type ModalStrings = Record<ModalStringKeys, string>;
+
+type CertificateV4Keys = [
+  'compareVersions',
+  'thatIsImportantText',
+  'aboutWordproof',
+  'todaysRevision',
+  'selectDayToCompare',
+  'contentCertificate',
+  'thisContent',
+  'hasNotChanged',
+  'hasChanged',
+  'lastEdited',
+  'publishedBy',
+  'explainThis',
+  'timestampChecker',
+  'viewOnTheBlockchain',
+  'changed',
+  'removed',
+  'viewCode',
+  'viewContent',
+  'mostRecent',
+][number];
+export type CertificateV4Strings = Record<CertificateV4Keys, string>;
+
+type DateTimeSelectStringKeys = ['todaysVersion', 'selectDayToCompare'][number];
+export type DateTimeSelectStrings = Record<DateTimeSelectStringKeys, string>;

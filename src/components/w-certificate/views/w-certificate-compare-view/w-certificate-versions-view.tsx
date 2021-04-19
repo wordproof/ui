@@ -2,7 +2,7 @@ import { Component, Prop, h, Element, State, Listen } from '@stencil/core';
 import { CertificateStrings } from '../../../../i18n';
 import { router } from '../../../w-router-outlet';
 import Button from '../../components/Button';
-import { WPContent, WPRevision } from '../../service';
+import { WPContent, WPRevision } from '../../../../utils/certificate-data';
 import Footer from '../../components/Footer';
 import { RevisionOption } from './types';
 import { formatDate } from '../../../../utils/locale';
