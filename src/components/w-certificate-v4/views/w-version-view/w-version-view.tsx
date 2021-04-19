@@ -11,8 +11,11 @@ import {
 } from '../../../../utils/certificate-data';
 import { ContentPreviewType } from '../../../../utils/content-preview';
 import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
+import { router } from '../../../w-router-outlet';
+import BaseButton from '../../components/base-button';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from '../../components/ContentPreview';
+import { CertificateView } from '../../types';
 @Component({
   tag: 'w-version-view',
   styleUrl: 'w-version-view.css',
@@ -68,6 +71,30 @@ export class WVersionView {
     }
   }
 
+  getButtonText(): string {
+    if (this.view === 'raw') {
+      return this.strings.viewContent;
+    }
+
+    if (this.view === 'render') {
+      return this.strings.viewCode;
+    }
+
+    return '';
+  }
+
+  getRoute(): string {
+    if (this.view === 'raw') {
+      return `${CertificateView.content}?revision=${this.currentRevisionIndex}`;
+    }
+
+    if (this.view === 'render') {
+      return `${CertificateView.raw}?revision=${this.currentRevisionIndex}`;
+    }
+
+    return '';
+  }
+
   render() {
     return (
       <div class="px-3 pt-7 pb-10 flex flex-col items-center relative">
@@ -108,6 +135,15 @@ export class WVersionView {
               view={this.view}
               strings={this.strings}
             />
+
+            <div class="mt-10">
+              <BaseButton
+                text={this.getButtonText()}
+                onClick={() => {
+                  router.go(this.getRoute())
+                }}
+              />
+            </div>
           </div>
         ) : null}
       </div>
