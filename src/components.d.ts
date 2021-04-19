@@ -10,6 +10,7 @@ import { WPContent, WPRevision } from "./utils/certificate-data";
 import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
 import { CertificateStrings, CertificateV4Strings } from "./i18n";
 import { DateTimeOption } from "./components/w-date-time-select/w-date-time-select";
+import { getButtonTextFunction } from "./components/w-date-time-select/components/OpenButton";
 import { DropdownMenuOption } from "./components/w-dropdown-menu/w-dropdown-menu";
 import { Route } from "./components/w-router-outlet";
 import { ContentPreviewType } from "./utils/content-preview";
@@ -107,6 +108,10 @@ export namespace Components {
         "strings": CertificateV4Strings;
     }
     interface WDateTimeSelect {
+        /**
+          * optional: returns a string displayed on the button openong the dropdown
+         */
+        "getButtonText": getButtonTextFunction;
         /**
           * by default the date picker opens to the bottom of the trigger elemnt if set to true opens it to the top
          */
@@ -560,6 +565,10 @@ declare namespace LocalJSX {
         "strings"?: CertificateV4Strings;
     }
     interface WDateTimeSelect {
+        /**
+          * optional: returns a string displayed on the button openong the dropdown
+         */
+        "getButtonText"?: getButtonTextFunction;
         /**
           * by default the date picker opens to the bottom of the trigger elemnt if set to true opens it to the top
          */

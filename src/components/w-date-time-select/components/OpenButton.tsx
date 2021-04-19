@@ -1,5 +1,4 @@
 import { FunctionalComponent, h } from '@stencil/core';
-import { format, isSameDay } from 'date-fns';
 import cx from 'classnames';
 import { DateTimeOption } from '../w-date-time-select';
 import { DateTimeSelectStrings } from '../../../i18n';
@@ -10,42 +9,20 @@ interface OpenButtonProps {
   onClick?: Function;
   ref?: Function;
   strings: DateTimeSelectStrings;
+  getButtonText: getButtonTextFunction;
 }
 
-const getButtonText = (
+export type getButtonTextFunction = (
   options: DateTimeOption[],
   selected: number | null,
-  strings: DateTimeSelectStrings,
-): string => {
-  if (selected === null) {
-    return strings.selectDayToCompare;
-  }
-
-  if (selected === 0) {
-    return strings.todaysVersion;
-  }
-
-  const foundOption = options.find(
-    option => option.index === selected,
-  );
-
-  if (foundOption === undefined) {
-    return strings.selectDayToCompare;
-  }
-
-  if (isSameDay(foundOption.value, new Date())) {
-    return strings.todaysVersion;
-  }
-
-  return format(foundOption.value, 'MMMM d, yyyy');
-};
+) => string;
 
 const OpenButton: FunctionalComponent<OpenButtonProps> = ({
   options,
   selected,
   onClick = () => {},
   ref,
-  strings,
+  getButtonText,
 }) => (
   <button
     class={cx(
@@ -69,8 +46,7 @@ const OpenButton: FunctionalComponent<OpenButtonProps> = ({
         'font-sohne border-b border-blue': selected !== null,
       })}
     >
-      {getButtonText(options,
-  selected, strings)}
+      {getButtonText(options, selected)}
     </div>
   </button>
 );

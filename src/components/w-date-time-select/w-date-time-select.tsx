@@ -1,5 +1,5 @@
 import { Component, Prop, h, State, Listen, Element } from '@stencil/core';
-import OpenButton from './components/OpenButton';
+import OpenButton, { getButtonTextFunction } from './components/OpenButton';
 import DatePickerHeader from './components/DatePickerHeader';
 import DatePickerDates from './components/DatePickerDates';
 import cx from 'classnames';
@@ -12,6 +12,7 @@ import {
   endOfMonth,
   differenceInCalendarDays,
   differenceInCalendarMonths,
+  format,
 } from 'date-fns';
 import { DateTimeSelectStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
@@ -44,6 +45,34 @@ export class WDateTimeSelect {
    * on array of Date objects to select from
    */
   @Prop() options: DateTimeOption[] = [];
+
+  /**
+   * optional: returns a string displayed on the button openong the dropdown
+   */
+  @Prop() getButtonText: getButtonTextFunction = (
+    options: DateTimeOption[],
+    selected: number | null,
+  ): string => {
+    if (selected === null) {
+      return this.strings.selectDayToCompare;
+    }
+
+    if (selected === 0) {
+      return this.strings.todaysVersion;
+    }
+
+    const foundOption = options.find(option => option.index === selected);
+
+    if (foundOption === undefined) {
+      return this.strings.selectDayToCompare;
+    }
+
+    if (isSameDay(foundOption.value, new Date())) {
+      return this.strings.todaysVersion;
+    }
+
+    return format(foundOption.value, 'MMMM d, yyyy');
+  };
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
@@ -190,6 +219,7 @@ export class WDateTimeSelect {
           }}
           ref={el => (this.triggerButtonElement = el as HTMLButtonElement)}
           strings={this.strings}
+          getButtonText={this.getButtonText.bind(this)}
         />
         <div
           class={cx({
