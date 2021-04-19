@@ -1,11 +1,11 @@
 import { FunctionalComponent, h } from '@stencil/core';
-import { CertificateV4Strings } from '../../../../../i18n';
-import { WPRevision } from '../../../../../utils/certificate-data';
+import { CertificateV4Strings } from '../../../i18n';
+import { WPRevision } from '../../../utils/certificate-data';
 import {
   ContentPreviewType,
   renderContent,
   StyleContentFunction,
-} from '../../../../../utils/content-preview';
+} from '../../../utils/content-preview';
 import LegendButton from './LegendButton';
 import cx from 'classnames';
 

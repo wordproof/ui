@@ -12,7 +12,7 @@ import {
 import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
 import BaseButton from '../../components/base-button';
 import CertificateHeader from '../../components/certificate-header';
-import ContentPreview from './components/ContentPreview';
+import ContentPreview from '../../components/ContentPreview';
 @Component({
   tag: 'w-compare-versions-view',
   styleUrl: 'w-compare-versions-view.css',
