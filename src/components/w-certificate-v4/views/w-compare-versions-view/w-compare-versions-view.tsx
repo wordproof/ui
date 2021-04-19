@@ -95,7 +95,10 @@ export class WCertificateVersionsView {
 
   render() {
     return (
-      <div class="px-3 pt-7 pb-10 flex flex-col items-center relative">
+      <div
+        class="px-3 pt-7 pb-10 flex flex-col items-center relative"
+        style={{ lineHeight: '1.5' }}
+      >
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}
