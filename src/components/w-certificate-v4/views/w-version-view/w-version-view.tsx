@@ -109,10 +109,12 @@ export class WVersionView {
   ): VNode => {
     if (selected === 0) {
       return (
-        <span>{`${this.strings.mostRecent} ${format(
-          options[0].value,
-          'MMMM d, yyyy',
-        )}`}</span>
+        <span>
+          {this.strings.mostRecent}
+          <span class="opacity-40 ml-2">
+            {format(options[0].value, 'MMMM d, yyyy')}
+          </span>
+        </span>
       );
     }
 
