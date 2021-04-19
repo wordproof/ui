@@ -47,6 +47,8 @@ export class WVersionView {
       revisionIndex >= 0 && revisionIndex < this.allRevisions.length
         ? revisionIndex
         : 0;
+
+    this.updateUrl();
   }
 
   async componentDidLoad() {
@@ -85,7 +87,7 @@ export class WVersionView {
 
   getRoute(): string {
     if (this.view === 'raw') {
-      return `${CertificateView.content}?revision=${this.currentRevisionIndex}`;
+      return `${CertificateView.render}?revision=${this.currentRevisionIndex}`;
     }
 
     if (this.view === 'render') {
@@ -93,6 +95,10 @@ export class WVersionView {
     }
 
     return '';
+  }
+
+  updateUrl() {
+    router.replace(`${this.view}?revision=${this.currentRevisionIndex}`);
   }
 
   render() {
@@ -140,7 +146,7 @@ export class WVersionView {
               <BaseButton
                 text={this.getButtonText()}
                 onClick={() => {
-                  router.go(this.getRoute())
+                  router.replace(this.getRoute());
                 }}
               />
             </div>

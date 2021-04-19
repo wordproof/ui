@@ -79,7 +79,7 @@ export class WCertificateV4 {
       ),
     },
     {
-      hash: CertificateView.content,
+      hash: CertificateView.render,
       renderer: (params: URLSearchParams) => (
         <w-version-view
           strings={this.strings}
