@@ -9,6 +9,7 @@ import {
   WPContent,
   WPRevision,
 } from '../../../../utils/certificate-data';
+import { ContentPreviewType } from '../../../../utils/content-preview';
 import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from '../../components/ContentPreview';
@@ -26,6 +27,10 @@ export class WVersionView {
 
   @Prop() locale: string;
 
+  @Prop() view: Exclude<ContentPreviewType, 'diff'>;
+
+  @Prop() revision: number;
+
   @State() transactionId: string;
 
   @State() allRevisions: WPRevision[];
@@ -35,7 +40,10 @@ export class WVersionView {
   revisionDateOptions: DateTimeOption[];
 
   setCurrentRevisionIndex(revisionIndex: number) {
-    this.currentRevisionIndex = revisionIndex;
+    this.currentRevisionIndex =
+      revisionIndex >= 0 && revisionIndex < this.allRevisions.length
+        ? revisionIndex
+        : 0;
   }
 
   async componentDidLoad() {
@@ -56,7 +64,7 @@ export class WVersionView {
         index,
       }));
 
-      this.setCurrentRevisionIndex(0);
+      this.setCurrentRevisionIndex(this.revision);
     }
   }
 

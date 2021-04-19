@@ -12,6 +12,7 @@ import { CertificateStrings, CertificateV4Strings } from "./i18n";
 import { DateTimeOption } from "./components/w-date-time-select/w-date-time-select";
 import { DropdownMenuOption } from "./components/w-dropdown-menu/w-dropdown-menu";
 import { Route } from "./components/w-router-outlet";
+import { ContentPreviewType } from "./utils/content-preview";
 export namespace Components {
     interface WBadge {
         /**
@@ -300,7 +301,9 @@ export namespace Components {
     interface WVersionView {
         "content": WPContent;
         "locale": string;
+        "revision": number;
         "strings": CertificateV4Strings;
+        "view": Exclude<ContentPreviewType, 'diff'>;
     }
 }
 declare global {
@@ -753,7 +756,9 @@ declare namespace LocalJSX {
     interface WVersionView {
         "content"?: WPContent;
         "locale"?: string;
+        "revision"?: number;
         "strings"?: CertificateV4Strings;
+        "view"?: Exclude<ContentPreviewType, 'diff'>;
     }
     interface IntrinsicElements {
         "w-badge": WBadge;
