@@ -297,6 +297,11 @@ export namespace Components {
     interface WRouterOutlet {
         "routes": Route[];
     }
+    interface WVersionView {
+        "content": WPContent;
+        "locale": string;
+        "strings": CertificateV4Strings;
+    }
 }
 declare global {
     interface HTMLWBadgeElement extends Components.WBadge, HTMLStencilElement {
@@ -425,6 +430,12 @@ declare global {
         prototype: HTMLWRouterOutletElement;
         new (): HTMLWRouterOutletElement;
     };
+    interface HTMLWVersionViewElement extends Components.WVersionView, HTMLStencilElement {
+    }
+    var HTMLWVersionViewElement: {
+        prototype: HTMLWVersionViewElement;
+        new (): HTMLWVersionViewElement;
+    };
     interface HTMLElementTagNameMap {
         "w-badge": HTMLWBadgeElement;
         "w-button": HTMLWButtonElement;
@@ -447,6 +458,7 @@ declare global {
         "w-logo": HTMLWLogoElement;
         "w-modal": HTMLWModalElement;
         "w-router-outlet": HTMLWRouterOutletElement;
+        "w-version-view": HTMLWVersionViewElement;
     }
 }
 declare namespace LocalJSX {
@@ -738,6 +750,11 @@ declare namespace LocalJSX {
     interface WRouterOutlet {
         "routes"?: Route[];
     }
+    interface WVersionView {
+        "content"?: WPContent;
+        "locale"?: string;
+        "strings"?: CertificateV4Strings;
+    }
     interface IntrinsicElements {
         "w-badge": WBadge;
         "w-button": WButton;
@@ -760,6 +777,7 @@ declare namespace LocalJSX {
         "w-logo": WLogo;
         "w-modal": WModal;
         "w-router-outlet": WRouterOutlet;
+        "w-version-view": WVersionView;
     }
 }
 export { LocalJSX as JSX };
@@ -787,6 +805,7 @@ declare module "@stencil/core" {
             "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
             "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;
             "w-router-outlet": LocalJSX.WRouterOutlet & JSXBase.HTMLAttributes<HTMLWRouterOutletElement>;
+            "w-version-view": LocalJSX.WVersionView & JSXBase.HTMLAttributes<HTMLWVersionViewElement>;
         }
     }
 }

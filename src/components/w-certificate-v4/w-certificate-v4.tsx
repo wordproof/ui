@@ -44,11 +44,11 @@ export class WCertificateV4 {
   routes = [
     {
       hash: CertificateView.overview,
-      renderer: () => (
+      renderer: (params:URLSearchParams) => (
         <OverviewView
           strings={this.strings}
           lastEdited={this.content.date}
-          publishedBy=""
+          publishedBy={params.get('content')}
           locale={this.locale}
           // hasRevisions={this.content.revisions !== undefined}
           hasChanged={this.content.hasChanged}
@@ -64,6 +64,16 @@ export class WCertificateV4 {
           content={this.content}
           locale={this.locale}
         ></w-compare-versions-view>
+      ),
+    },
+    {
+      hash: CertificateView.raw,
+      renderer: () => (
+        <w-version-view
+          strings={this.strings}
+          content={this.content}
+          locale={this.locale}
+        ></w-version-view>
       ),
     },
   ] as Route[];
