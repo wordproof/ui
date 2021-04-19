@@ -1,4 +1,4 @@
-import { Component, Prop, h, State, Listen, Element } from '@stencil/core';
+import { Component, Prop, h, State, Listen, Element, VNode } from '@stencil/core';
 import OpenButton, { getButtonTextFunction } from './components/OpenButton';
 import DatePickerHeader from './components/DatePickerHeader';
 import DatePickerDates from './components/DatePickerDates';
@@ -52,26 +52,26 @@ export class WDateTimeSelect {
   @Prop() getButtonText: getButtonTextFunction = (
     options: DateTimeOption[],
     selected: number | null,
-  ): string => {
+  ): VNode => {
     if (selected === null) {
-      return this.strings.selectDayToCompare;
+      return <span>{this.strings.selectDayToCompare}</span>;
     }
 
     if (selected === 0) {
-      return this.strings.todaysVersion;
+      return <span>{this.strings.todaysVersion}</span>;
     }
 
     const foundOption = options.find(option => option.index === selected);
 
     if (foundOption === undefined) {
-      return this.strings.selectDayToCompare;
+      return <span>{this.strings.selectDayToCompare}</span>;
     }
 
     if (isSameDay(foundOption.value, new Date())) {
-      return this.strings.todaysVersion;
+      return <span>{this.strings.todaysVersion}</span>;
     }
 
-    return format(foundOption.value, 'MMMM d, yyyy');
+    return <span>{format(foundOption.value, 'MMMM d, yyyy')}</span>;
   };
 
   @Listen('keydown')

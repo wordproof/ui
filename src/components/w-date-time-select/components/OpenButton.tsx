@@ -1,4 +1,4 @@
-import { FunctionalComponent, h } from '@stencil/core';
+import { FunctionalComponent, h, VNode } from '@stencil/core';
 import cx from 'classnames';
 import { DateTimeOption } from '../w-date-time-select';
 import { DateTimeSelectStrings } from '../../../i18n';
@@ -15,7 +15,7 @@ interface OpenButtonProps {
 export type getButtonTextFunction = (
   options: DateTimeOption[],
   selected: number | null,
-) => string;
+) => VNode;
 
 const OpenButton: FunctionalComponent<OpenButtonProps> = ({
   options,

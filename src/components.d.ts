@@ -11,6 +11,7 @@ import { RevisionOption } from "./components/w-certificate/views/w-certificate-c
 import { CertificateStrings, CertificateV4Strings } from "./i18n";
 import { DateTimeOption } from "./components/w-date-time-select/w-date-time-select";
 import { getButtonTextFunction } from "./components/w-date-time-select/components/OpenButton";
+import { VNode } from "@stencil/core";
 import { DropdownMenuOption } from "./components/w-dropdown-menu/w-dropdown-menu";
 import { Route } from "./components/w-router-outlet";
 import { ContentPreviewType } from "./utils/content-preview";

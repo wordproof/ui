@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State } from '@stencil/core';
+import { Component, h, Element, Prop, State, VNode } from '@stencil/core';
 import { format } from 'date-fns';
 import {
   BLOCKCHAIN_CONFIG,
@@ -106,21 +106,23 @@ export class WVersionView {
   getOpenButtonText: getButtonTextFunction = (
     options: DateTimeOption[],
     selected: number | null,
-  ): string => {
+  ): VNode => {
     if (selected === 0) {
-      return `${this.strings.mostRecent} ${format(
-        options[0].value,
-        'MMMM d, yyyy',
-      )}`;
+      return (
+        <span>{`${this.strings.mostRecent} ${format(
+          options[0].value,
+          'MMMM d, yyyy',
+        )}`}</span>
+      );
     }
 
     const foundOption = options.find(option => option.index === selected);
 
     if (foundOption !== undefined) {
-      return format(foundOption.value, 'MMMM d, yyyy');
+      return <span>{format(foundOption.value, 'MMMM d, yyyy')}</span>;
     }
 
-    return this.strings.mostRecent;
+    return <span>{this.strings.mostRecent}</span>;
   };
 
   render() {
