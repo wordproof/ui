@@ -36,6 +36,10 @@ export class WVersionView {
 
   @Prop() revision: number;
 
+  @Prop() viewBlockchainUrl: string;
+
+  @Prop() timestampCheckUrl: string;
+
   @State() transactionId: string;
 
   @State() allRevisions: WPRevision[];
@@ -136,10 +140,8 @@ export class WVersionView {
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}
-            viewBlockchainUrl={`${
-              BLOCKCHAIN_CONFIG[this.content.blockchain].explorer
-            }${this.content.transactionId}`}
-            timestampCheckUrl={`${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`}
+            viewBlockchainUrl={this.viewBlockchainUrl}
+            timestampCheckUrl={this.timestampCheckUrl}
           />
         </div>
         <p

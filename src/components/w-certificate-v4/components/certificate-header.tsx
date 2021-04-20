@@ -12,7 +12,7 @@ interface CertificateHeaderProps {
 const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
   strings,
   viewBlockchainUrl,
-  timestampCheckUrl
+  timestampCheckUrl,
 }) => (
   <div class="flex justify-between w-full pr-12">
     <button
@@ -32,8 +32,13 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
     <w-dropdown-menu
       options={[
         { label: strings.explainThis, action: () => {} },
-        { label: strings.timestampChecker, href: timestampCheckUrl },
-        { label: strings.viewOnTheBlockchain, href: viewBlockchainUrl },
+        ...(timestampCheckUrl
+          ? [{ label: strings.timestampChecker, href: timestampCheckUrl }]
+          : []),
+        ,
+        ...(viewBlockchainUrl
+          ? [{ label: strings.viewOnTheBlockchain, href: viewBlockchainUrl }]
+          : []),
       ]}
     ></w-dropdown-menu>
   </div>
