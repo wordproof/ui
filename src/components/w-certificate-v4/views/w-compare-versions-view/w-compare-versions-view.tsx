@@ -1,8 +1,4 @@
 import { Component, Prop, h, Element, State } from '@stencil/core';
-import {
-  BLOCKCHAIN_CONFIG,
-  TIMESTAMP_CHECK_URL,
-} from '../../../../config/blockchain.config';
 import { CertificateV4Strings } from '../../../../i18n';
 import {
   fetchRevisions,
@@ -28,6 +24,10 @@ export class WCertificateVersionsView {
   @Prop() content: WPContent;
 
   @Prop() locale: string;
+
+  @Prop() viewBlockchainUrl: string;
+
+  @Prop() timestampCheckUrl: string;
 
   @State() transactionId: string;
 
@@ -102,10 +102,8 @@ export class WCertificateVersionsView {
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}
-            viewBlockchainUrl={`${
-              BLOCKCHAIN_CONFIG[this.content.blockchain].explorer
-            }${this.content.transactionId}`}
-            timestampCheckUrl={`${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`}
+            viewBlockchainUrl={this.viewBlockchainUrl}
+            timestampCheckUrl={this.timestampCheckUrl}
           />
         </div>
         <p

@@ -107,6 +107,8 @@ export namespace Components {
         "content": WPContent;
         "locale": string;
         "strings": CertificateV4Strings;
+        "timestampCheckUrl": string;
+        "viewBlockchainUrl": string;
     }
     interface WDateTimeSelect {
         /**
@@ -309,7 +311,9 @@ export namespace Components {
         "locale": string;
         "revision": number;
         "strings": CertificateV4Strings;
+        "timestampCheckUrl": string;
         "view": Exclude<ContentPreviewType, 'diff'>;
+        "viewBlockchainUrl": string;
     }
 }
 declare global {
@@ -564,6 +568,8 @@ declare namespace LocalJSX {
         "content"?: WPContent;
         "locale"?: string;
         "strings"?: CertificateV4Strings;
+        "timestampCheckUrl"?: string;
+        "viewBlockchainUrl"?: string;
     }
     interface WDateTimeSelect {
         /**
@@ -768,7 +774,9 @@ declare namespace LocalJSX {
         "locale"?: string;
         "revision"?: number;
         "strings"?: CertificateV4Strings;
+        "timestampCheckUrl"?: string;
         "view"?: Exclude<ContentPreviewType, 'diff'>;
+        "viewBlockchainUrl"?: string;
     }
     interface IntrinsicElements {
         "w-badge": WBadge;

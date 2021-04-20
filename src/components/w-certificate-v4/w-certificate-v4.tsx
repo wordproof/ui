@@ -20,6 +20,10 @@ import {
   CertificateViewKeys,
   NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT,
 } from './types';
+import {
+  BLOCKCHAIN_CONFIG,
+  TIMESTAMP_CHECK_URL,
+} from '../../config/blockchain.config';
 
 @Component({
   tag: 'w-certificate-v4',
@@ -50,7 +54,6 @@ export class WCertificateV4 {
           lastEdited={this.content.date}
           publishedBy=""
           locale={this.locale}
-          // hasRevisions={this.content.revisions !== undefined}
           hasChanged={this.content.hasChanged}
         />
       ),
@@ -63,6 +66,8 @@ export class WCertificateV4 {
           strings={this.strings}
           content={this.content}
           locale={this.locale}
+          viewBlockchainUrl={this.viewBlockchainUrl}
+          timestampCheckUrl={this.timestampCheckUrl}
         ></w-compare-versions-view>
       ),
     },
@@ -75,6 +80,8 @@ export class WCertificateV4 {
           locale={this.locale}
           view="raw"
           revision={parseInt(params.get('revision'))}
+          viewBlockchainUrl={this.viewBlockchainUrl}
+          timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
     },
@@ -87,6 +94,8 @@ export class WCertificateV4 {
           locale={this.locale}
           view="render"
           revision={parseInt(params.get('revision'))}
+          viewBlockchainUrl={this.viewBlockchainUrl}
+          timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
     },
@@ -97,6 +106,10 @@ export class WCertificateV4 {
   strings: CertificateV4Strings;
 
   @State() content: WPContent;
+
+  @State() viewBlockchainUrl: string;
+
+  @State() timestampCheckUrl: string;
 
   locale: string;
 
@@ -116,6 +129,12 @@ export class WCertificateV4 {
       )) as CertificateV4Strings;
       this.locale = getComponentClosestLanguage(this.hostElement);
       this.visible = router.isTriggered();
+
+      this.viewBlockchainUrl = `${
+        BLOCKCHAIN_CONFIG[this.content.blockchain].explorer
+      }${this.content.transactionId}`;
+
+      this.timestampCheckUrl = `${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`;
     }
   }
 
