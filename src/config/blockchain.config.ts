@@ -13,6 +13,12 @@ export const BLOCKCHAIN_CONFIG: Record<Blockchain, BlockChainData> = {
     explorer: 'https://ropsten.etherscan.io/tx/',
   },
 
+  eos: {
+    contract: 'wordproofcom',
+    action: 'stamp',
+    explorer: 'https://bloks.io/transaction/',
+  },
+
   eosio_main: {
     contract: 'wordproofcom',
     action: 'stamp',
@@ -40,6 +46,7 @@ export const BLOCKCHAIN_CONFIG: Record<Blockchain, BlockChainData> = {
 
 export type Blockchain =
   | 'eth_main'
+  | 'eos'
   | 'eth_ropsten'
   | 'eosio_main'
   | 'eosio_jungle3'
