@@ -60,7 +60,12 @@ export const parsePage = async (): Promise<WPContent | null> =>
 export const fetchRevisions = async (
   content: WPContent,
 ): Promise<WPRevision[]> => {
-  const { rawRevisions } = content;
+  const { rawRevisions, revisions } = content;
+
+  if (Array.isArray(revisions)) {
+    return revisions;
+  }
+
   if (Array.isArray(rawRevisions)) {
     return Promise.all(
       rawRevisions.map(async rawRevision => {
