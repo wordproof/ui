@@ -1,0 +1,21 @@
+{
+  "compareVersions": "Compare Versions",
+  "thatIsImportantText": "That is important, because it proofs that the content has not been tampered with and can be trusted.",
+  "aboutWordproof": "About WordProof",
+  "todaysRevision": "Today’s version",
+  "selectDayToCompare": "Select day to compare",
+  "contentCertificate": "Content Certificate",
+  "thisContent": "This content",
+  "hasNotChanged": "has not changed",
+  "hasChanged": "has changed",
+  "lastEdited": "Last edited",
+  "publishedBy": "Published by",
+  "explainThis": "Explain this",
+  "timestampChecker": "Timestamp checker",
+  "viewOnTheBlockchain": "View on the Blockchain",
+  "changed": "Changed",
+  "removed": "Removed",
+  "viewCode": "View code",
+  "viewContent": "View content",
+  "mostRecent": "Most recent"
+}
