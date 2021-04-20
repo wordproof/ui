@@ -1,9 +1,5 @@
 import { Component, h, Element, Prop, State, VNode } from '@stencil/core';
 import { format } from 'date-fns';
-import {
-  BLOCKCHAIN_CONFIG,
-  TIMESTAMP_CHECK_URL,
-} from '../../../../config/blockchain.config';
 import { CertificateV4Strings } from '../../../../i18n';
 import {
   fetchRevisions,
