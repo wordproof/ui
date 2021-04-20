@@ -131,7 +131,7 @@ export class WCertificateVersionsView {
 
         {this.allRevisions.length > 1 ? (
           <w-date-time-select
-            class="mt-2 relative top-7 z-40"
+            class="mt-2 relative top-7"
             openToTop={true}
             options={this.revisionDateOptions}
             selected={this.diffRevisionIndex}
