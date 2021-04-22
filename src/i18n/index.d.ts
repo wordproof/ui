@@ -3,6 +3,7 @@ export type CertificateLinkStrings = Record<CertificateLinkKeys, string>;
 
 type CertificateKeys = [
   'contentIsWordProof',
+  'contentIsNotWordProof',
   'contentHasNotChangedTitle',
   'contentHasNotChangedText',
   'whyIsThisImportnat',

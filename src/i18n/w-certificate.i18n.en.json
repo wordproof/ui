@@ -1,5 +1,6 @@
 {
   "contentIsWordProof": "This content is WordProof",
+  "contentIsNotWordProof": "This content is not WordProof",
   "contentHasNotChangedTitle": "Content has not changed since the last timestamp",
   "contentHasNotChangedText": "Neither the website nor a third party has modified the content of this page since it was last timestamped on the blockchain.",
   "whyIsThisImportnat": "Why is this important?",

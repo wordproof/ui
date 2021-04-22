@@ -32,7 +32,11 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         text-large
         class="h-8"
       ></w-logo>
-      <p slot="right">{strings.contentIsWordProof}</p>
+      <p slot="right">
+        {hasChanged
+          ? strings.contentIsNotWordProof
+          : strings.contentIsWordProof}
+      </p>
     </w-certificate-header>
 
     <div class="flex flex-row">
