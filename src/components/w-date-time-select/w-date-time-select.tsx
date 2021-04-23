@@ -1,4 +1,12 @@
-import { Component, Prop, h, State, Listen, Element, VNode } from '@stencil/core';
+import {
+  Component,
+  Prop,
+  h,
+  State,
+  Listen,
+  Element,
+  VNode,
+} from '@stencil/core';
 import OpenButton, { getButtonTextFunction } from './components/OpenButton';
 import DatePickerHeader from './components/DatePickerHeader';
 import DatePickerDates from './components/DatePickerDates';
@@ -288,6 +296,7 @@ export class WDateTimeSelect {
                 onDateSelect={(date: Date) => {
                   this.onDateSelect(date);
                 }}
+                strings={this.strings}
               />
             ) : null}
           </div>

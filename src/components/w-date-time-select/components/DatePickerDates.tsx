@@ -1,5 +1,6 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { format, getMonth, isSameDay } from 'date-fns';
+import { DateTimeSelectStrings } from '../../../i18n';
 import { DateTimeOption } from '../w-date-time-select';
 import DateLabel from './DateLabel';
 
@@ -10,6 +11,7 @@ interface DatePickerDatesProps {
   currentMonth: Date;
   mostRecent: Date;
   onDateSelect?: Function;
+  strings: DateTimeSelectStrings;
 }
 
 const weekDayNames: string[] = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -21,6 +23,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
   currentMonth,
   mostRecent,
   onDateSelect = () => {},
+  strings,
 }) => (
   <div class="mx-2 pb-5 shadow rounded-b bg-white">
     <div
@@ -56,12 +59,12 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
           onDateSelect(new Date());
         }}
       >
-        Today
+        {strings.today}
       </button>
     </div>
     <div class="border-b border-gray-400 w-full"></div>
     <div class="flex items-center justify-center mt-5 text-blue  font-sohne">
-      <div>Most recent</div>
+      <div>{strings.mostRecent}</div>
       <button
         class="opacity-40 ml-3"
         onClick={() => {
