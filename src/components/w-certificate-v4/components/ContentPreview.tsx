@@ -64,7 +64,7 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
           <textarea
             readonly
             class={cx(
-              `resize-none block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
+              `font-sohne resize-none block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
               {
                 'bg-white text-black': view !== 'raw',
                 'bg-black text-white font-mono': view === 'raw',
@@ -85,7 +85,7 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
         ) : null}
         {view === 'diff' && diffInd !== undefined ? (
           <div
-            class="block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll"
+            class="block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll font-sohne"
             innerHTML={renderContent(
               revisions,
               view as 'diff',

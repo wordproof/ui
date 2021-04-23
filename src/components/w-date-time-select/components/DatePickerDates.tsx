@@ -28,7 +28,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
       style={{ width: '356px' }}
     >
       {weekDayNames.map(dayName => (
-        <div class="w-11 h-11 text-center select-none text-blue uppercase text-xs flex items-center justify-center">
+        <div class="w-11 h-11 text-center select-none text-blue uppercase text-xs flex items-center justify-center font-sohne">
           {dayName}
         </div>
       ))}
@@ -48,7 +48,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
       ))}
     </div>
     <div class="border-b border-gray-400 w-full"></div>
-    <div class="flex items-center justify-center my-5">
+    <div class="flex items-center justify-center my-5 font-sohne">
       <w-icon name="calendar"></w-icon>
       <button
         class="text-blue ml-3"
@@ -60,7 +60,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
       </button>
     </div>
     <div class="border-b border-gray-400 w-full"></div>
-    <div class="flex items-center justify-center mt-5 text-blue">
+    <div class="flex items-center justify-center mt-5 text-blue  font-sohne">
       <div>Most recent</div>
       <button
         class="opacity-40 ml-3"

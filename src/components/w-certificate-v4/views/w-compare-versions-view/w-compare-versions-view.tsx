@@ -107,7 +107,7 @@ export class WCertificateVersionsView {
           />
         </div>
         <p
-          class="text-black text-base text-center mx-auto mt-2"
+          class="text-black text-base font-sohne text-center mx-auto mt-2"
           style={{ width: '26rem' }}
         >
           {this.strings.thatIsImportantText}

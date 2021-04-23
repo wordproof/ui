@@ -61,7 +61,7 @@ export class WCertificateLink {
             </g>
           </svg>
         )}
-        <span class="text-teal hover:text-blue">
+        <span class="text-teal hover:text-blue font-sohne">
           {this.linkText ? this.linkText : this.strings.defaultLinkText}
         </span>
       </button>
