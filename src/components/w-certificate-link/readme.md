@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default |
-| -------- | --------- | ----------- | --------- | ------- |
-| `noIcon` | `no-icon` | hides icon  | `boolean` | `false` |
+| Property   | Attribute   | Description                  | Type      | Default |
+| ---------- | ----------- | ---------------------------- | --------- | ------- |
+| `linkText` | `link-text` | custom certificate link text | `string`  | `''`    |
+| `noIcon`   | `no-icon`   | hides icon                   | `boolean` | `false` |
 
 
 ## Dependencies
