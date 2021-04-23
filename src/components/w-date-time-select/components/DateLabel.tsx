@@ -35,8 +35,8 @@ const DateLabel: FunctionalComponent<DateLabelProps> = ({
       class={cx(
         'absolute w-3 h-3 bg-gradient-to-r from-yellow to-pink border border-sand rounded-full left-1/2 transform -translate-x-1/2',
         {
-          visible: enabled,
-          invisible: !enabled,
+          'visible': enabled,
+          'invisible': !enabled,
         },
       )}
     ></div>
