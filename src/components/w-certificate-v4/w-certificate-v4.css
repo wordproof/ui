@@ -15,3 +15,13 @@
   font-family: 'Sohne-Buch';
   src: url('../../global/fonts/Sohne-Buch.otf');
 }
+
+@font-face {
+  font-family: 'Sohne-Halbfett';
+  src: url('../../global/fonts/Söhne-Halbfett.otf');
+}
+
+@font-face {
+  font-family: 'Sohne-Kraftig';
+  src: url('../../global/fonts/Sohne-Kraftig.otf');
+}
