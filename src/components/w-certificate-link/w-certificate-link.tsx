@@ -17,8 +17,15 @@ export class WCertificateLink {
    */
   @Prop() noIcon: boolean = false;
 
+  /**
+   * custom certificate link text
+   */
+  @Prop() linkText: string = '';
+
   async componentWillLoad(): Promise<void> {
-    this.strings = await getLocaleStrings(this.hostElement) as CertificateLinkStrings;
+    this.strings = (await getLocaleStrings(
+      this.hostElement,
+    )) as CertificateLinkStrings;
   }
 
   onTriggerClick(ev: MouseEvent) {
@@ -32,7 +39,7 @@ export class WCertificateLink {
       <button
         type="button"
         class="flex items-center focus:outline-none relative"
-        onClick={(ev) => this.onTriggerClick(ev)}
+        onClick={ev => this.onTriggerClick(ev)}
       >
         {!this.noIcon && (
           <svg
@@ -55,7 +62,7 @@ export class WCertificateLink {
           </svg>
         )}
         <span class="text-teal hover:text-blue">
-          <slot>{this.strings.defaultLinkText}</slot>
+          {this.linkText ? this.linkText : this.strings.defaultLinkText}
         </span>
       </button>
     );

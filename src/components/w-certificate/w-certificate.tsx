@@ -136,9 +136,8 @@ export class WCertificate {
         <w-certificate-link
           noIcon={this.noIcon}
           onClick={() => this.showModal()}
-        >
-          {this.linkText ? this.linkText : null}
-        </w-certificate-link>
+          linkText={this.linkText}
+        ></w-certificate-link>
         <w-modal
           rounded="lg"
           visible={this.visible}
