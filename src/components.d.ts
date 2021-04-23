@@ -74,6 +74,10 @@ export namespace Components {
     }
     interface WCertificateLink {
         /**
+          * custom certificate link text
+         */
+        "linkText": string;
+        /**
           * hides icon
          */
         "noIcon": boolean;
@@ -532,6 +536,10 @@ declare namespace LocalJSX {
     interface WCertificateHeader {
     }
     interface WCertificateLink {
+        /**
+          * custom certificate link text
+         */
+        "linkText"?: string;
         /**
           * hides icon
          */
