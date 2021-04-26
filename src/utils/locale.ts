@@ -1,3 +1,5 @@
+import { EnglishStrings } from '../i18n';
+
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
     ? 'https://unpkg.com/@wordproof/uikit/dist/uikit'
@@ -27,6 +29,10 @@ const getLocaleComponentStrings = async (
   componentName: string,
   componentLanguage: string,
 ): Promise<Record<string, string>> => {
+  if (componentLanguage.startsWith('en')) {
+    return EnglishStrings[componentName];
+  }
+
   let strings: Record<string, string>;
   try {
     strings = await fetchLocaleStringsForComponent(
@@ -38,10 +44,7 @@ const getLocaleComponentStrings = async (
       `wordproof uikit: no locale for ${componentName} (${componentLanguage}) loading default locale en.`,
     );
     componentLanguage = 'en';
-    strings = await fetchLocaleStringsForComponent(
-      componentName,
-      componentLanguage,
-    );
+    strings = EnglishStrings[componentName];
   }
 
   return strings;
