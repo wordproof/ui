@@ -218,7 +218,7 @@ export class WDateTimeSelect {
 
   render() {
     return (
-      <span class="relative">
+      <span class="relative z-10">
         <OpenButton
           options={this.options}
           selected={this.selected}
