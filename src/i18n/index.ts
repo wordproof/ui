@@ -1,3 +1,17 @@
+import wCertificateLinkStrings from '../i18n/w-certificate-link.i18n.en.json';
+import wCertificateV4Strings from '../i18n/w-certificate-v4.i18n.en.json';
+import wCertificateStrings from '../i18n/w-certificate.i18n.en.json';
+import wDateTimeSelectStrings from '../i18n/w-date-time-select.i18n.en.json';
+import wModalStrings from '../i18n/w-modal.i18n.en.json';
+
+export const EnglishStrings = {
+  'w-certificate-link': wCertificateLinkStrings,
+  'w-certificate-v4': wCertificateV4Strings,
+  'w-certificate': wCertificateStrings,
+  'w-date-time-select': wDateTimeSelectStrings,
+  'w-modal': wModalStrings,
+};
+
 type CertificateLinkKeys = ['defaultLinkText'][number];
 export type CertificateLinkStrings = Record<CertificateLinkKeys, string>;
 
@@ -70,3 +84,5 @@ type DateTimeSelectStringKeys = [
   'mostRecent',
 ][number];
 export type DateTimeSelectStrings = Record<DateTimeSelectStringKeys, string>;
+
+export type i18nStrings = Record<string, unknown>;
