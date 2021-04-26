@@ -43,7 +43,7 @@ const DateLabel: FunctionalComponent<DateLabelProps> = ({
 
     <div
       class={cx(
-        'absolute text-center text-xs text-black top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 select-none',
+        'font-sohne absolute text-center text-xs text-black top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 select-none',
         {
           'opacity-50': !enabled,
         },

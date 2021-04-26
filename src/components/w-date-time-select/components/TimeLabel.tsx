@@ -12,7 +12,7 @@ const TimeLabel: FunctionalComponent<TimeLabelProps> = ({
   locale = 'en',
 }) => (
   <li
-    class="text-blue px-12 py-5 hover:bg-gray-200 border-gray-400 cursor-pointer whitespace-nowrap"
+    class="text-blue px-12 py-5 hover:bg-gray-200 border-gray-400 cursor-pointer whitespace-nowrap font-sohne"
     onClick={() => {
       onSelect();
     }}

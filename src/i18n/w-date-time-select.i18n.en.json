@@ -1,4 +1,6 @@
 {
   "todaysVersion": "Today's version",
-  "selectDayToCompare": "Select day to compare"
+  "selectDayToCompare": "Select day to compare",
+  "today": "Today",
+  "mostRecent": "Most recent"
 }

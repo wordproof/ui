@@ -21,7 +21,7 @@ const DatePickerHeader: FunctionalComponent<DatePickerHeaderProps> = ({
     >
       <w-icon name="arrow-right" class=""></w-icon>
     </button>
-    <div class="text-lg select-none">{format(date, 'MMMM yyyy')}</div>
+    <div class="text-lg select-none font-semibold">{format(date, 'MMMM yyyy')}</div>
     <button
       class="p-2 rounded-full focus:outline-none"
       onClick={() => {

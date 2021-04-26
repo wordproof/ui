@@ -25,7 +25,7 @@ const LegendButton: FunctionalComponent<LegendButtonProps> = ({
         ></span>
       </span>
       <span
-        class={cx('ml-3 border-b border-transparent text-sm', {
+        class={cx('ml-3 border-b border-transparent text-sm font-sohne', {
           'hover:text-blue hover:border-blue': color === 'blue',
           'hover:text-pink hover:border-pink': color === 'pink',
         })}

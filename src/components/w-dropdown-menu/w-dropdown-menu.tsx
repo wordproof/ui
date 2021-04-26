@@ -62,7 +62,7 @@ export class WDropdownMenu {
           <ul class="absolute right-10 mt-1 bg-white border-light-blue divide-y rounded shadow-md z-30">
             {this.options.map(option => (
               <li
-                class="pl-6 pr-12 pt-5 pb-6 whitespace-nowrap select-none hover:bg-gray-200 cursor-pointer"
+                class="pl-6 pr-12 pt-5 pb-6 whitespace-nowrap select-none hover:bg-gray-200 cursor-pointer font-sohne"
                 onClick={() => {
                   this.close();
                   if (option.action) {

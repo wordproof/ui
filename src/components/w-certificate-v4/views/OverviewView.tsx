@@ -64,11 +64,11 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       )}
     </div>
     <h2 class="font-sohne-bold text-center mt-2">
-      <div class="text-black" style={{ fontSize: '3.75rem' }}>
+      <div class="text-black font-bold" style={{ fontSize: '3.75rem' }}>
         {strings.thisContent}
       </div>
       <div
-        class={cx('-mt-4', {
+        class={cx('-mt-4 font-bold', {
           'text-blue': !hasChanged,
           'text-black': hasChanged,
         })}
@@ -79,13 +79,13 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
     </h2>
 
     <p
-      class="text-black text-base text-center mx-auto mt-2"
+      class="text-black text-base text-center mx-auto mt-2 font-sohne"
       style={{ width: '26rem' }}
     >
       {strings.thatIsImportantText}
     </p>
 
-    <div class="shadow-md rounded mx-auto mt-8 p-6" style={{ width: '26rem' }}>
+    <div class="shadow-md rounded mx-auto mt-8 p-6 font-sohne" style={{ width: '26rem' }}>
       <div class="flex items-center">
         <CheckBullet checked={!hasChanged} />
         <div class="text-gray-600 ml-4">{strings.lastEdited}</div>
