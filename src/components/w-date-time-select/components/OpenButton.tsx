@@ -26,7 +26,7 @@ const OpenButton: FunctionalComponent<OpenButtonProps> = ({
 }) => (
   <button
     class={cx(
-      'inline-flex pl-4 pr-7 py-3 items-center rounded-full focus:outline-none focus:ring-2',
+      'h-12 inline-flex pl-4 pr-7 py-3 items-center rounded-full focus:outline-none focus:ring-2',
       {
         'bg-gradient-to-r from-blue to-purple text-white': selected === null,
         'bg-white shadow text-blue': selected !== null,

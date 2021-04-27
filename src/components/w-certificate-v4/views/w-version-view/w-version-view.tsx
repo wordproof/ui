@@ -131,7 +131,7 @@ export class WVersionView {
     return (
       <div
         class="px-3 pt-7 pb-10 flex flex-col items-center relative"
-        style={{ lineHeight: '1.5' }}
+        style={{ lineHeight: '1.5', minHeight: '634px' }}
       >
         <div class="px-7 w-full">
           <CertificateHeader
@@ -141,45 +141,52 @@ export class WVersionView {
           />
         </div>
         <p
-          class="text-black text-base text-center mx-auto mt-2"
+          class="text-black text-base text-center mx-auto mt-2 h-12 font-sohne"
           style={{ width: '26rem' }}
         >
           {this.strings.thatIsImportantText}
         </p>
-        {this.currentRevisionIndex !== undefined ? (
-          <div class="w-full flex flex-col items-center">
-            <w-date-time-select
-              class="mt-2 relative top-7 z-40"
-              options={this.revisionDateOptions}
-              selected={this.currentRevisionIndex}
-              onChange={(ev: InputEvent) => {
-                console.warn({
-                  index: ev.data,
-                  revision: this.allRevisions[ev.data],
-                });
 
-                this.setCurrentRevisionIndex(Number(ev.data));
-              }}
-              getButtonText={this.getOpenButtonText.bind(this)}
-            />
+        <div class="w-full flex flex-col items-center style={{height:'471px'}}">
+          <div class="h-12">
+            {this.currentRevisionIndex !== undefined ? (
+              <w-date-time-select
+                class="mt-2 relative top-7 z-40"
+                options={this.revisionDateOptions}
+                selected={this.currentRevisionIndex}
+                onChange={(ev: InputEvent) => {
+                  console.warn({
+                    index: ev.data,
+                    revision: this.allRevisions[ev.data],
+                  });
 
-            <ContentPreview
-              revisions={this.allRevisions}
-              viewInd={this.currentRevisionIndex}
-              view={this.view}
-              strings={this.strings}
-            />
-
-            <div class="mt-10">
-              <BaseButton
-                text={this.getButtonText()}
-                onClick={() => {
-                  router.replace(this.getRoute());
+                  this.setCurrentRevisionIndex(Number(ev.data));
                 }}
+                getButtonText={this.getOpenButtonText.bind(this)}
               />
-            </div>
+            ) : null}
           </div>
-        ) : null}
+
+          <div class="w-full" style={{ height: '320px' }}>
+            {this.currentRevisionIndex !== undefined ? (
+              <ContentPreview
+                revisions={this.allRevisions}
+                viewInd={this.currentRevisionIndex}
+                view={this.view}
+                strings={this.strings}
+              />
+            ) : null}
+          </div>
+
+          <div class="mt-10">
+            <BaseButton
+              text={this.getButtonText()}
+              onClick={() => {
+                router.replace(this.getRoute());
+              }}
+            />
+          </div>
+        </div>
       </div>
     );
   }

@@ -95,10 +95,7 @@ export class WCertificateVersionsView {
 
   render() {
     return (
-      <div
-        class="px-3 pt-7 pb-10 flex flex-col items-center relative"
-        style={{ lineHeight: '1.5' }}
-      >
+      <div class="px-3 pt-7 pb-10 " style={{ lineHeight: '1.5' }}>
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}
@@ -113,14 +110,15 @@ export class WCertificateVersionsView {
           {this.strings.thatIsImportantText}
         </p>
 
-        <w-date-time-select
-          class="mt-2 relative top-7 z-40"
-          options={this.revisionDateOptions}
-          selected={this.currentRevisionIndex}
-          onChange={(ev: InputEvent) => {
-            this.setCurrentRevisionIndex(Number(ev.data));
-          }}
-        />
+        <div class="mt-2 relative top-7 z-40 h-12 flex justify-center">
+          <w-date-time-select
+            options={this.revisionDateOptions}
+            selected={this.currentRevisionIndex}
+            onChange={(ev: InputEvent) => {
+              this.setCurrentRevisionIndex(Number(ev.data));
+            }}
+          />
+        </div>
 
         <ContentPreview
           revisions={this.allRevisions}
@@ -129,17 +127,27 @@ export class WCertificateVersionsView {
           strings={this.strings}
         />
 
-        {this.allRevisions.length > 1 ? (
-          <w-date-time-select
-            class="mt-2 relative top-7"
-            openToTop={true}
-            options={this.revisionDateOptions}
-            selected={this.diffRevisionIndex}
-            onChange={(ev: InputEvent) => {
-              this.setDiffRevisionIndex(Number(ev.data));
-            }}
-          />
-        ) : null}
+        <div class="mt-2 relative top-7 h-12 flex justify-center">
+          {this.allRevisions.length > 1 ? (
+            <w-date-time-select
+              openToTop={true}
+              options={this.revisionDateOptions}
+              selected={this.diffRevisionIndex}
+              onChange={(ev: InputEvent) => {
+                this.setDiffRevisionIndex(Number(ev.data));
+              }}
+            />
+          ) : (
+            <BaseButton
+              text={this.strings.viewCode}
+              onClick={() => {
+                router.go(
+                  `${CertificateView.raw}?revision=${this.diffRevisionIndex}`,
+                );
+              }}
+            />
+          )}
+        </div>
 
         {this.diffRevisionIndex !== null ? (
           <ContentPreview
@@ -151,8 +159,8 @@ export class WCertificateVersionsView {
           />
         ) : null}
 
-        {this.allRevisions.length == 1 || this.diffRevisionIndex !== null ? (
-          <div class="mt-10">
+        {this.diffRevisionIndex !== null ? (
+          <div class="mt-10 h-12 flex justify-center">
             <BaseButton
               text={this.strings.viewCode}
               onClick={() => {

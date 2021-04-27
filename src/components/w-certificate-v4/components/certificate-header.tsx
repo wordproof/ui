@@ -14,7 +14,7 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
   viewBlockchainUrl,
   timestampCheckUrl,
 }) => (
-  <div class="flex justify-between w-full pr-12">
+  <div class="flex justify-between w-full pr-12 h-11">
     <button
       class="transform rotate-180 w-8 h-8 rounded-full focus:outline-none focus:ring inline-flex items-center justify-center"
       onClick={router.back}
