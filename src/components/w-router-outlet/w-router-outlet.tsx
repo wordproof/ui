@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, h } from '@stencil/core';
 import { TRIGGER_HASH, Route } from '.';
 
 @Component({
@@ -17,9 +17,13 @@ export class MyEmbeddedComponent {
   }
 
   getMatchedRoute() {
-    return this.routes.find(route =>
+    const matchedRouteIndex = this.routes.findIndex(route =>
       location.hash.includes(`${TRIGGER_HASH}-${route.hash}`),
     );
+
+    return matchedRouteIndex === -1
+      ? this.defaultRoute
+      : this.routes[matchedRouteIndex];
   }
 
   componentWillLoad() {
@@ -32,14 +36,10 @@ export class MyEmbeddedComponent {
   }
 
   render() {
-    if (this.matchedRoute) {
-      return this.matchedRoute.renderer(this.extractParams());
-    }
-
-    if (this.defaultRoute) {
-      return this.defaultRoute.renderer(this.extractParams());
-    }
-
-    return null;
+    return (
+      <div style={{ minHeight: this.matchedRoute.height || 'auto' }}>
+        {this.matchedRoute.renderer(this.extractParams())}
+      </div>
+    );
   }
 }

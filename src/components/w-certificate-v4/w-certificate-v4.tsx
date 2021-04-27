@@ -58,6 +58,7 @@ export class WCertificateV4 {
         />
       ),
       default: true,
+      height:'526px'
     },
     {
       hash: CertificateView.compare,
@@ -70,6 +71,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-compare-versions-view>
       ),
+      height:'634px'
     },
     {
       hash: CertificateView.raw,
@@ -84,6 +86,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
+      height:'634px'
     },
     {
       hash: CertificateView.render,
@@ -98,6 +101,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
+      height:'634px'
     },
   ] as Route[];
 
