@@ -2,10 +2,9 @@ import { Blockchain } from '../../config/blockchain.config';
 import { mapNewData, mapOldData } from './mappers';
 import { fetchHashData, parseGraphSchema, parseNewSchema } from './parsers';
 
-// import { enableDebug, getDebugLogFunction } from '../../utils/debug';
+import { getDebugLogFunction, LogSources } from '../../utils/debug';
 
-// enableDebug('certificate-data');
-// const debugLog = getDebugLogFunction('certificate-data');
+const debugLog = getDebugLogFunction(LogSources.parsePage);
 
 export interface WPRevision {
   transactionId: string;
@@ -26,20 +25,20 @@ export interface WPContent extends WPRevision {
 
 export const parsePage = async (): Promise<WPContent | null> =>
   new Promise(async resolve => {
-    console.warn('start');
+    debugLog('start');
     const oldSchemaEl = document.querySelector('script.wordproof-schema');
-    console.warn('trying to apply old schema');
+    debugLog('trying to apply old schema');
     if (oldSchemaEl && oldSchemaEl.innerHTML) {
       try {
-        console.warn('trying to parse old schema');
+        debugLog('trying to parse old schema');
         const data = JSON.parse(oldSchemaEl.innerHTML);
         resolve(mapOldData(data));
       } catch (e) {
-        console.warn(`old schema failed: ${e}`);
+        debugLog(`old schema failed: ${e}`);
       }
     }
 
-    console.warn('trying to find script tags with "application/ld+json" type');
+    debugLog('trying to find script tags with "application/ld+json" type');
     const ldJsonScriptElems = document.querySelectorAll(
       'script[type="application/ld+json"]',
     );
@@ -49,29 +48,29 @@ export const parsePage = async (): Promise<WPContent | null> =>
         const data = JSON.parse(elem.innerHTML);
         return data;
       } catch (e) {
-        console.warn(`JSON parsing of script tag failed: ${e}`);
+        debugLog(`JSON parsing of script tag failed: ${e}`);
         return {};
       }
     });
 
-    console.warn('trying to apply new schema');
+    debugLog('trying to apply new schema');
 
     const newSchemaData = await parseNewSchema(parsedScriptElems);
     if (newSchemaData) {
       resolve(newSchemaData);
-      console.warn(`parsed new schema: ${JSON.stringify(newSchemaData)}`);
+      debugLog(`parsed new schema: ${JSON.stringify(newSchemaData)}`);
       return;
     }
-    console.warn('trying to apply graph schema');
+    debugLog('trying to apply graph schema');
 
     const graphSchemaData = await parseGraphSchema(parsedScriptElems);
     if (graphSchemaData) {
       resolve(graphSchemaData);
-      console.warn(`parsed graph schema: ${JSON.stringify(graphSchemaData)}`);
+      debugLog(`parsed graph schema: ${JSON.stringify(graphSchemaData)}`);
       return;
     }
 
-    console.warn('failed to apply any schema');
+    debugLog('failed to apply any schema');
     resolve(null);
   });
 

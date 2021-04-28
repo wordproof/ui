@@ -24,6 +24,7 @@ import {
   BLOCKCHAIN_CONFIG,
   TIMESTAMP_CHECK_URL,
 } from '../../config/blockchain.config';
+import { disableDebug, enableDebug, LogSources } from '../../utils/debug';
 
 @Component({
   tag: 'w-certificate-v4',
@@ -43,6 +44,11 @@ export class WCertificateV4 {
    */
   @Prop() linkText: string;
 
+  /**
+   * enables debug information logging to the console
+   */
+  @Prop() debug: boolean = false;
+
   @State() visible: boolean = true;
 
   routes = [
@@ -58,7 +64,7 @@ export class WCertificateV4 {
         />
       ),
       default: true,
-      height:'526px'
+      height: '526px',
     },
     {
       hash: CertificateView.compare,
@@ -71,7 +77,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-compare-versions-view>
       ),
-      height:'634px'
+      height: '634px',
     },
     {
       hash: CertificateView.raw,
@@ -86,7 +92,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
-      height:'634px'
+      height: '634px',
     },
     {
       hash: CertificateView.render,
@@ -101,7 +107,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
-      height:'634px'
+      height: '634px',
     },
   ] as Route[];
 
@@ -125,7 +131,16 @@ export class WCertificateV4 {
   }
 
   async componentWillLoad(): Promise<void> {
+    if (this.debug) {
+      enableDebug(LogSources.parsePage);
+    }
+
     const content = await parsePage();
+
+    if (this.debug) {
+      disableDebug(LogSources.parsePage);
+    }
+
     if (content !== null) {
       this.content = content;
       this.strings = (await getLocaleStrings(
