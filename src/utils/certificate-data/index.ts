@@ -25,30 +25,32 @@ export interface WPContent extends WPRevision {
 
 export const parsePage = async (): Promise<WPContent | null> =>
   new Promise(async resolve => {
-    debugLog('start');
     const oldSchemaEl = document.querySelector('script.wordproof-schema');
     debugLog('trying to apply old schema');
     if (oldSchemaEl && oldSchemaEl.innerHTML) {
       try {
-        debugLog('trying to parse old schema');
         const data = JSON.parse(oldSchemaEl.innerHTML);
-        resolve(mapOldData(data));
+        debugLog('old schema parsed successfully');
+        return resolve(mapOldData(data));
       } catch (e) {
-        debugLog(`old schema failed: ${e}`);
+        debugLog(`old schema JSON parsing failed: ${e}`);
       }
     }
+    debugLog('no valid old scema data found');
 
-    debugLog('trying to find script tags with "application/ld+json" type');
     const ldJsonScriptElems = document.querySelectorAll(
       'script[type="application/ld+json"]',
     );
+    debugLog(
+      `found ${ldJsonScriptElems.length}script tags with "application/ld+json" type`,
+    );
 
-    const parsedScriptElems = Array.from(ldJsonScriptElems).map(elem => {
+    const parsedScriptElems = Array.from(ldJsonScriptElems).map((elem, index) => {
       try {
         const data = JSON.parse(elem.innerHTML);
         return data;
       } catch (e) {
-        debugLog(`JSON parsing of script tag failed: ${e}`);
+        debugLog(`JSON parsing of script tag #${index} failed: ${e}`);
         return {};
       }
     });
@@ -58,15 +60,16 @@ export const parsePage = async (): Promise<WPContent | null> =>
     const newSchemaData = await parseNewSchema(parsedScriptElems);
     if (newSchemaData) {
       resolve(newSchemaData);
-      debugLog(`parsed new schema: ${JSON.stringify(newSchemaData)}`);
+      debugLog(`successfully parsed new schema: ${JSON.stringify(newSchemaData)}`);
       return;
     }
+
     debugLog('trying to apply graph schema');
 
     const graphSchemaData = await parseGraphSchema(parsedScriptElems);
     if (graphSchemaData) {
       resolve(graphSchemaData);
-      debugLog(`parsed graph schema: ${JSON.stringify(graphSchemaData)}`);
+      debugLog(`successfully parsed graph schema: ${JSON.stringify(graphSchemaData)}`);
       return;
     }
 
