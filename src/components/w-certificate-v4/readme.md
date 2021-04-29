@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                    | Type      | Default     |
-| ---------- | ----------- | ------------------------------ | --------- | ----------- |
-| `linkText` | `link-text` | custom certificate link text   | `string`  | `undefined` |
-| `noIcon`   | `no-icon`   | hides icon on certificate link | `boolean` | `false`     |
+| Property   | Attribute   | Description                                      | Type      | Default     |
+| ---------- | ----------- | ------------------------------------------------ | --------- | ----------- |
+| `debug`    | `debug`     | enables debug information logging to the console | `boolean` | `false`     |
+| `linkText` | `link-text` | custom certificate link text                     | `string`  | `undefined` |
+| `noIcon`   | `no-icon`   | hides icon on certificate link                   | `boolean` | `false`     |
 
 
 ## Dependencies

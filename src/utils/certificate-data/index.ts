@@ -2,6 +2,10 @@ import { Blockchain } from '../../config/blockchain.config';
 import { mapNewData, mapOldData } from './mappers';
 import { fetchHashData, parseGraphSchema, parseNewSchema } from './parsers';
 
+import { getDebugLogFunction, LogSources } from '../../utils/debug';
+
+const debugLog = getDebugLogFunction(LogSources.parsePage);
+
 export interface WPRevision {
   transactionId: string;
   hash: string;
@@ -22,38 +26,54 @@ export interface WPContent extends WPRevision {
 export const parsePage = async (): Promise<WPContent | null> =>
   new Promise(async resolve => {
     const oldSchemaEl = document.querySelector('script.wordproof-schema');
+    debugLog('trying to apply old schema');
     if (oldSchemaEl && oldSchemaEl.innerHTML) {
       try {
         const data = JSON.parse(oldSchemaEl.innerHTML);
-        resolve(mapOldData(data));
-      } catch (e) {}
+        debugLog('old schema parsed successfully');
+        return resolve(mapOldData(data));
+      } catch (e) {
+        debugLog(`old schema JSON parsing failed: ${e}`);
+      }
     }
+    debugLog('no valid old scema data found');
 
     const ldJsonScriptElems = document.querySelectorAll(
       'script[type="application/ld+json"]',
     );
+    debugLog(
+      `found ${ldJsonScriptElems.length}script tags with "application/ld+json" type`,
+    );
 
-    const parsedScriptElems = Array.from(ldJsonScriptElems).map(elem => {
+    const parsedScriptElems = Array.from(ldJsonScriptElems).map((elem, index) => {
       try {
         const data = JSON.parse(elem.innerHTML);
         return data;
       } catch (e) {
+        debugLog(`JSON parsing of script tag #${index} failed: ${e}`);
         return {};
       }
     });
 
+    debugLog('trying to apply new schema');
+
     const newSchemaData = await parseNewSchema(parsedScriptElems);
     if (newSchemaData) {
       resolve(newSchemaData);
+      debugLog(`successfully parsed new schema: ${JSON.stringify(newSchemaData)}`);
       return;
     }
+
+    debugLog('trying to apply graph schema');
 
     const graphSchemaData = await parseGraphSchema(parsedScriptElems);
     if (graphSchemaData) {
       resolve(graphSchemaData);
+      debugLog(`successfully parsed graph schema: ${JSON.stringify(graphSchemaData)}`);
       return;
     }
 
+    debugLog('failed to apply any schema');
     resolve(null);
   });
 

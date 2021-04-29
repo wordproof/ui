@@ -84,6 +84,10 @@ export namespace Components {
     }
     interface WCertificateV4 {
         /**
+          * enables debug information logging to the console
+         */
+        "debug": boolean;
+        /**
           * custom certificate link text
          */
         "linkText": string;
@@ -546,6 +550,10 @@ declare namespace LocalJSX {
         "noIcon"?: boolean;
     }
     interface WCertificateV4 {
+        /**
+          * enables debug information logging to the console
+         */
+        "debug"?: boolean;
         /**
           * custom certificate link text
          */
