@@ -102,7 +102,6 @@ export class WDateTimeSelect {
   triggerButtonElement: HTMLButtonElement;
   datepickerValue: string;
   strings: DateTimeSelectStrings;
-  dummySameDayOptions: string[] = [];
 
   connectedCallback() {
     this.mostRecent = this.options[0].value;
@@ -133,11 +132,6 @@ export class WDateTimeSelect {
     this.sameDayOptions = this.options.filter(option =>
       isSameDay(option.value, date),
     );
-
-    const dummyCount =
-      this.sameDayOptions.length > 5 ? 5 - (this.sameDayOptions.length % 5) : 0;
-
-    this.dummySameDayOptions = new Array(dummyCount).fill(' ');
 
     if (this.sameDayOptions.length === 1) {
       this.selected = this.sameDayOptions[0].index;
@@ -261,11 +255,15 @@ export class WDateTimeSelect {
                   hidden: !this.showTimeOptions,
                 },
               )}
-              style={{ maxWidth: '21.5rem' }}
+              style={{ maxWidth: '21.5rem', maxHeight: '22rem' }}
             >
               <ul
-                class="grid grid-flow-col cell-border-top cell-border-left"
-                style={{ gridTemplateRows: 'repeat(5, minmax(0,auto))' }}
+                class={cx('grid cell-border-top', {
+                  'grid-cols-2 cell-border-left':
+                    this.sameDayOptions.length > 5,
+                  'grid-cols-1 first-cell-border-top':
+                    this.sameDayOptions.length <= 5,
+                })}
               >
                 {this.sameDayOptions.map(option => (
                   <TimeLabel
@@ -275,14 +273,10 @@ export class WDateTimeSelect {
                     }}
                   />
                 ))}
-                {this.dummySameDayOptions.map((dummy, ind) => (
-                  <li
-                    class="px-12 py-5 border-gray-400 cursor-default select-none"
-                    style={ind === 0 ? {} : { borderTopWidth: '0' }}
-                  >
-                    {dummy}
-                  </li>
-                ))}
+                {this.sameDayOptions.length % 2 !== 0 &&
+                this.sameDayOptions.length > 5 ? (
+                  <li class="px-12 py-5 border-gray-400 cursor-default select-none"></li>
+                ) : null}
               </ul>
             </div>
 
