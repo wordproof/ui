@@ -184,11 +184,16 @@ export class WVersionView {
             {this.currentRevisionIndex !== undefined ? (
               <w-date-time-select
                 class="z-40 mr-3"
-                options={this.revisionDateOptions}
+                options={this.revisionDateOptions.slice(
+                  this.currentRevisionIndex + 1,
+                )}
                 selected={null}
                 openToTop={true}
                 onChange={(ev: InputEvent) => {
-                  this.setCurrentRevisionIndex(Number(ev.data));
+                  const toRevisionIndex = Number(ev.data);
+                  router.replace(
+                    `${CertificateView.compare}?which=${this.currentRevisionIndex}&to=${toRevisionIndex}`,
+                  );
                 }}
               />
             ) : null}

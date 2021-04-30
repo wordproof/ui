@@ -29,6 +29,10 @@ export class WCertificateVersionsView {
 
   @Prop() timestampCheckUrl: string;
 
+  @Prop() which: number;
+
+  @Prop() to: number;
+
   @State() transactionId: string;
 
   @State() allRevisions: WPRevision[];
@@ -69,6 +73,8 @@ export class WCertificateVersionsView {
         index,
       }));
 
+      console.warn({ which: this.which, to: this.to });
+
       this.setCurrentRevisionIndex(0);
       this.setDiffRevisionIndex(null);
     }
@@ -103,7 +109,10 @@ export class WCertificateVersionsView {
 
   render() {
     return (
-      <div class="px-3 pt-7 pb-7 h-full flex flex-col" style={{ lineHeight: '1.5' }}>
+      <div
+        class="px-3 pt-7 pb-7 h-full flex flex-col"
+        style={{ lineHeight: '1.5' }}
+      >
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}

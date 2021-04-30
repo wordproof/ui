@@ -68,14 +68,16 @@ export class WCertificateV4 {
     },
     {
       hash: CertificateView.compare,
-      renderer: () => (
+      renderer: (params: URLSearchParams) => (
         <w-compare-versions-view
           strings={this.strings}
           content={this.content}
           locale={this.locale}
           viewBlockchainUrl={this.viewBlockchainUrl}
           timestampCheckUrl={this.timestampCheckUrl}
-        ></w-compare-versions-view>
+          which={parseInt(params.get('which'))}
+          to={parseInt(params.get('to'))}
+          ></w-compare-versions-view>
       ),
       minHeight: 'calc(634px)',
       height: 'calc(100vh - 2rem)',

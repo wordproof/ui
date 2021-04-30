@@ -116,7 +116,9 @@ export namespace Components {
         "locale": string;
         "strings": CertificateV4Strings;
         "timestampCheckUrl": string;
+        "to": number;
         "viewBlockchainUrl": string;
+        "which": number;
     }
     interface WDateTimeSelect {
         /**
@@ -585,7 +587,9 @@ declare namespace LocalJSX {
         "locale"?: string;
         "strings"?: CertificateV4Strings;
         "timestampCheckUrl"?: string;
+        "to"?: number;
         "viewBlockchainUrl"?: string;
+        "which"?: number;
     }
     interface WDateTimeSelect {
         /**
