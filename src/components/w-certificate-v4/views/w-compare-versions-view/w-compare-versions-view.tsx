@@ -29,6 +29,12 @@ export class WCertificateVersionsView {
 
   @Prop() timestampCheckUrl: string;
 
+  @Prop() which: number;
+
+  @Prop() to: number;
+
+  @Prop() view: string;
+
   @State() transactionId: string;
 
   @State() allRevisions: WPRevision[];
@@ -36,6 +42,8 @@ export class WCertificateVersionsView {
   @State() currentRevisionIndex: number = 0;
 
   @State() diffRevisionIndex: number | null = null;
+
+  @State() showCode: boolean = false;
 
   revisionDateOptions: DateTimeOption[];
   @State() currentRevisionOptions: DateTimeOption[];
@@ -49,6 +57,8 @@ export class WCertificateVersionsView {
     this.currentRevisionOptions = this.revisionDateOptions;
     this.diffRevisionOptions = [];
     this.transactionId = this.allRevisions[0].transactionId;
+
+    this.showCode = this.view === 'raw';
   }
 
   async componentDidLoad() {
@@ -69,8 +79,14 @@ export class WCertificateVersionsView {
         index,
       }));
 
-      this.setCurrentRevisionIndex(0);
-      this.setDiffRevisionIndex(null);
+      this.setCurrentRevisionIndex(
+        this.which < this.allRevisions.length ? this.which : 0,
+      );
+      this.setDiffRevisionIndex(
+        this.to > this.which && this.to < this.allRevisions.length
+          ? this.to
+          : null,
+      );
     }
   }
 
@@ -93,9 +109,20 @@ export class WCertificateVersionsView {
     this.diffRevisionOptions = this.revisionDateOptions.slice(revisionIndex);
   }
 
+  renderFlexibleSpace() {
+    return (
+      <div class="flex-grow" style={{ minHeight: '0.5rem' }}>
+        {' '}
+      </div>
+    );
+  }
+
   render() {
     return (
-      <div class="px-3 pt-7 pb-10 " style={{ lineHeight: '1.5' }}>
+      <div
+        class="px-3 pt-7 pb-7 h-full flex flex-col"
+        style={{ lineHeight: '1.5' }}
+      >
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}
@@ -104,13 +131,15 @@ export class WCertificateVersionsView {
           />
         </div>
         <p
-          class="text-black text-base font-sohne text-center mx-auto mt-2"
+          class="text-black text-base font-sohne text-center mx-auto mt-2 hide-small-height"
           style={{ width: '26rem' }}
         >
           {this.strings.thatIsImportantText}
         </p>
 
-        <div class="mt-2 relative top-7 z-40 h-12 flex justify-center">
+        {this.renderFlexibleSpace()}
+
+        <div class="z-40 h-6 flex justify-center">
           <w-date-time-select
             options={this.revisionDateOptions}
             selected={this.currentRevisionIndex}
@@ -123,12 +152,14 @@ export class WCertificateVersionsView {
         <ContentPreview
           revisions={this.allRevisions}
           viewInd={this.currentRevisionIndex}
-          view="clean"
+          view={this.showCode ? 'raw' : 'clean'}
           strings={this.strings}
         />
 
-        <div class="mt-2 relative top-7 h-12 flex justify-center">
-          {this.allRevisions.length > 1 ? (
+        {this.renderFlexibleSpace()}
+
+        <div class="h-6 flex justify-center">
+          {this.diffRevisionIndex !== null ? (
             <w-date-time-select
               openToTop={true}
               options={this.revisionDateOptions}
@@ -137,40 +168,41 @@ export class WCertificateVersionsView {
                 this.setDiffRevisionIndex(Number(ev.data));
               }}
             />
-          ) : (
-            <BaseButton
-              text={this.strings.viewCode}
-              onClick={() => {
-                router.go(
-                  `${CertificateView.raw}?revision=${this.diffRevisionIndex}`,
-                );
-              }}
-            />
-          )}
+          ) : null}
         </div>
 
-        {this.diffRevisionIndex !== null ? (
-          <ContentPreview
-            revisions={this.allRevisions}
-            viewInd={this.currentRevisionIndex}
-            diffInd={this.diffRevisionIndex}
-            view="diff"
-            strings={this.strings}
-          />
-        ) : null}
-
-        {this.diffRevisionIndex !== null ? (
-          <div class="mt-10 h-12 flex justify-center">
-            <BaseButton
-              text={this.strings.viewCode}
-              onClick={() => {
-                router.go(
-                  `${CertificateView.raw}?revision=${this.diffRevisionIndex}`,
-                );
-              }}
+        <div style={{ height: '322px' }}>
+          {this.diffRevisionIndex !== null ? (
+            <ContentPreview
+              revisions={this.allRevisions}
+              viewInd={this.currentRevisionIndex}
+              diffInd={this.diffRevisionIndex}
+              view={this.showCode ? 'raw' : 'diff'}
+              strings={this.strings}
             />
-          </div>
-        ) : null}
+          ) : null}
+        </div>
+
+        {this.renderFlexibleSpace()}
+
+        <div class="h-12 flex justify-center">
+          <BaseButton
+            outlined
+            text={
+              this.showCode ? this.strings.viewContent : this.strings.viewCode
+            }
+            onClick={() => {
+              this.showCode = !this.showCode;
+              router.replace(
+                `${CertificateView.compare}?which=${
+                  this.currentRevisionIndex
+                }&to=${this.diffRevisionIndex}&view=${
+                  this.showCode ? 'raw' : 'content'
+                }`,
+              );
+            }}
+          />
+        </div>
       </div>
     );
   }

@@ -43,6 +43,8 @@ export class WVersionView {
   @State() currentRevisionIndex: number;
 
   revisionDateOptions: DateTimeOption[];
+  diffRevisionOptions: DateTimeOption[];
+  diffRevisionIndex: number;
 
   setCurrentRevisionIndex(revisionIndex: number) {
     this.currentRevisionIndex =
@@ -80,7 +82,7 @@ export class WVersionView {
       return this.strings.viewContent;
     }
 
-    if (this.view === 'render') {
+    if (this.view === 'clean') {
       return this.strings.viewCode;
     }
 
@@ -89,10 +91,10 @@ export class WVersionView {
 
   getRoute(): string {
     if (this.view === 'raw') {
-      return `${CertificateView.render}?revision=${this.currentRevisionIndex}`;
+      return `${CertificateView.content}?revision=${this.currentRevisionIndex}`;
     }
 
-    if (this.view === 'render') {
+    if (this.view === 'clean') {
       return `${CertificateView.raw}?revision=${this.currentRevisionIndex}`;
     }
 
@@ -127,6 +129,11 @@ export class WVersionView {
     return <span>{this.strings.mostRecent}</span>;
   };
 
+  setDiffRevisionIndex(revisionIndex: number) {
+    this.diffRevisionIndex = revisionIndex;
+    this.diffRevisionOptions = this.revisionDateOptions.slice(revisionIndex);
+  }
+
   render() {
     return (
       <div
@@ -155,11 +162,6 @@ export class WVersionView {
                 options={this.revisionDateOptions}
                 selected={this.currentRevisionIndex}
                 onChange={(ev: InputEvent) => {
-                  console.warn({
-                    index: ev.data,
-                    revision: this.allRevisions[ev.data],
-                  });
-
                   this.setCurrentRevisionIndex(Number(ev.data));
                 }}
                 getButtonText={this.getOpenButtonText.bind(this)}
@@ -178,8 +180,26 @@ export class WVersionView {
             ) : null}
           </div>
 
-          <div class="mt-10">
+          <div class="flex mt-10">
+            {this.currentRevisionIndex !== undefined ? (
+              <w-date-time-select
+                class="z-40 mr-3"
+                options={this.revisionDateOptions.slice(
+                  this.currentRevisionIndex + 1,
+                )}
+                selected={null}
+                openToTop={true}
+                onChange={(ev: InputEvent) => {
+                  const toRevisionIndex = Number(ev.data);
+                  router.replace(
+                    `${CertificateView.compare}?which=${this.currentRevisionIndex}&to=${toRevisionIndex}&view=content`,
+                  );
+                }}
+              />
+            ) : null}
+
             <BaseButton
+              outlined
               text={this.getButtonText()}
               onClick={() => {
                 router.replace(this.getRoute());

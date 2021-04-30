@@ -2,6 +2,8 @@ export type Route = {
   hash: string;
   renderer: Function;
   default?: boolean;
+  minHeight?: string;
+  maxHeight?: string;
   height?: string;
 };
 

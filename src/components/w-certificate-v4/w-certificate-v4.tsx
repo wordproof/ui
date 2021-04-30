@@ -64,20 +64,24 @@ export class WCertificateV4 {
         />
       ),
       default: true,
-      height: '526px',
+      height: '590px',
     },
     {
       hash: CertificateView.compare,
-      renderer: () => (
+      renderer: (params: URLSearchParams) => (
         <w-compare-versions-view
           strings={this.strings}
           content={this.content}
           locale={this.locale}
           viewBlockchainUrl={this.viewBlockchainUrl}
           timestampCheckUrl={this.timestampCheckUrl}
-        ></w-compare-versions-view>
+          which={parseInt(params.get('which'))}
+          to={parseInt(params.get('to'))}
+          view={params.get('view')}
+          ></w-compare-versions-view>
       ),
-      height: '634px',
+      minHeight: 'calc(634px)',
+      height: 'calc(100vh - 2rem)',
     },
     {
       hash: CertificateView.raw,
@@ -92,22 +96,22 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
-      height: '634px',
+      minHeight: '634px',
     },
     {
-      hash: CertificateView.render,
+      hash: CertificateView.content,
       renderer: (params: URLSearchParams) => (
         <w-version-view
           strings={this.strings}
           content={this.content}
           locale={this.locale}
-          view="render"
+          view="clean"
           revision={parseInt(params.get('revision'))}
           viewBlockchainUrl={this.viewBlockchainUrl}
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
-      height: '634px',
+      minHeight: '634px',
     },
   ] as Route[];
 
@@ -189,16 +193,6 @@ export class WCertificateV4 {
             class="mr-8 mt-8 inline-block"
           ></w-icon>
           <w-router-outlet routes={this.routes} />
-          <div class="w-full flex">
-            <w-logo
-              fit
-              text
-              whiteOnBlue
-              textLarge
-              class="mb-10 h-6 mx-auto block"
-            ></w-logo>
-            {/* <div class="mx-auto text-blue opacity-40">{strings.contentCertificate}</div> */}
-          </div>
         </w-modal>
       </Host>
     ) : (

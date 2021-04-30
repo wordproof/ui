@@ -5,7 +5,7 @@ export const CertificateView = {
   importance: 'importance',
   compare: 'compare',
   raw: 'raw',
-  render: 'render',
+  content: 'content',
 } as const;
 
 export type CertificateViewKeys = Values<typeof CertificateView>;

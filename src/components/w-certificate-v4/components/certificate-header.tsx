@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { CertificateV4Strings } from '../../../i18n';
 import { router } from '../../w-router-outlet';
+import { CertificateView } from '../types';
 // import cx from 'classnames';
 
 interface CertificateHeaderProps {
@@ -17,7 +18,9 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
   <div class="flex justify-between w-full pr-12 h-11">
     <button
       class="transform rotate-180 w-8 h-8 rounded-full focus:outline-none focus:ring inline-flex items-center justify-center"
-      onClick={router.back}
+      onClick={() => {
+        router.replace(CertificateView.overview);
+      }}
     >
       <w-icon name="arrow-right" class="text-black w-4"></w-icon>
     </button>

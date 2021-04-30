@@ -15,3 +15,9 @@
   font-family: "Sohne-Buch";
   src: url("../../global/fonts/Sohne-Buch.otf");
 }
+
+@media (max-height: 59rem) {
+  .hide-small-height {
+    display: none;
+  }
+}
