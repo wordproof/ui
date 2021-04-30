@@ -64,7 +64,7 @@ export class WCertificateV4 {
         />
       ),
       default: true,
-      height: '526px',
+      height: '590px',
     },
     {
       hash: CertificateView.compare,
