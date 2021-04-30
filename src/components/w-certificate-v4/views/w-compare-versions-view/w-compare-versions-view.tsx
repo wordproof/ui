@@ -73,10 +73,14 @@ export class WCertificateVersionsView {
         index,
       }));
 
-      console.warn({ which: this.which, to: this.to });
-
-      this.setCurrentRevisionIndex(0);
-      this.setDiffRevisionIndex(null);
+      this.setCurrentRevisionIndex(
+        this.which < this.allRevisions.length ? this.which : 0,
+      );
+      this.setDiffRevisionIndex(
+        this.to > this.which && this.to < this.allRevisions.length
+          ? this.to
+          : null,
+      );
     }
   }
 
