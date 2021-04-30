@@ -159,7 +159,7 @@ export class WCertificateVersionsView {
         {this.renderFlexibleSpace()}
 
         <div class="h-6 flex justify-center">
-          {this.allRevisions.length > 1 ? (
+          {this.diffRevisionIndex !== null ? (
             <w-date-time-select
               openToTop={true}
               options={this.revisionDateOptions}
@@ -168,58 +168,41 @@ export class WCertificateVersionsView {
                 this.setDiffRevisionIndex(Number(ev.data));
               }}
             />
-          ) : (
-            <BaseButton
-              text={this.strings.viewCode}
-              onClick={() => {
-                router.go(
-                  `${CertificateView.raw}?revision=${this.diffRevisionIndex}`,
-                );
-              }}
-            />
-          )}
+          ) : null}
         </div>
 
-        {this.diffRevisionIndex !== null ? (
-          <ContentPreview
-            revisions={this.allRevisions}
-            viewInd={this.currentRevisionIndex}
-            diffInd={this.diffRevisionIndex}
-            view={this.showCode ? 'raw' : 'diff'}
-            strings={this.strings}
-          />
-        ) : null}
+        <div style={{ height: '322px' }}>
+          {this.diffRevisionIndex !== null ? (
+            <ContentPreview
+              revisions={this.allRevisions}
+              viewInd={this.currentRevisionIndex}
+              diffInd={this.diffRevisionIndex}
+              view={this.showCode ? 'raw' : 'diff'}
+              strings={this.strings}
+            />
+          ) : null}
+        </div>
 
         {this.renderFlexibleSpace()}
 
-        {this.diffRevisionIndex !== null ? (
-          <div class="h-12 flex justify-center">
-            <BaseButton
-              outlined
-              text={
-                this.showCode
-                  ? this.strings.viewContent
-                  : this.strings.viewCode
-              }
-              onClick={() => {
-                this.showCode = !this.showCode;
-                router.replace(
-                  `${CertificateView.compare}?which=${
-                    this.currentRevisionIndex
-                  }&to=${this.diffRevisionIndex}&view=${
-                    this.showCode ? 'raw' : 'content'
-                  }`,
-                );
-              }}
-            />
-          </div>
-        ) : null}
-
-        {this.diffRevisionIndex === null ? (
-          <div class="mt-16 flex justify-center">
-            <w-logo fit text whiteOnBlue textLarge class="h-6 mx-auto"></w-logo>
-          </div>
-        ) : null}
+        <div class="h-12 flex justify-center">
+          <BaseButton
+            outlined
+            text={
+              this.showCode ? this.strings.viewContent : this.strings.viewCode
+            }
+            onClick={() => {
+              this.showCode = !this.showCode;
+              router.replace(
+                `${CertificateView.compare}?which=${
+                  this.currentRevisionIndex
+                }&to=${this.diffRevisionIndex}&view=${
+                  this.showCode ? 'raw' : 'content'
+                }`,
+              );
+            }}
+          />
+        </div>
       </div>
     );
   }
