@@ -82,7 +82,7 @@ export class WVersionView {
       return this.strings.viewContent;
     }
 
-    if (this.view === 'render') {
+    if (this.view === 'clean') {
       return this.strings.viewCode;
     }
 
@@ -91,10 +91,10 @@ export class WVersionView {
 
   getRoute(): string {
     if (this.view === 'raw') {
-      return `${CertificateView.render}?revision=${this.currentRevisionIndex}`;
+      return `${CertificateView.content}?revision=${this.currentRevisionIndex}`;
     }
 
-    if (this.view === 'render') {
+    if (this.view === 'clean') {
       return `${CertificateView.raw}?revision=${this.currentRevisionIndex}`;
     }
 

@@ -99,13 +99,13 @@ export class WCertificateV4 {
       minHeight: '634px',
     },
     {
-      hash: CertificateView.render,
+      hash: CertificateView.content,
       renderer: (params: URLSearchParams) => (
         <w-version-view
           strings={this.strings}
           content={this.content}
           locale={this.locale}
-          view="render"
+          view="clean"
           revision={parseInt(params.get('revision'))}
           viewBlockchainUrl={this.viewBlockchainUrl}
           timestampCheckUrl={this.timestampCheckUrl}
