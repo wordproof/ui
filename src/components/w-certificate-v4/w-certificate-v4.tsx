@@ -77,6 +77,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
           which={parseInt(params.get('which'))}
           to={parseInt(params.get('to'))}
+          view={params.get('view')}
           ></w-compare-versions-view>
       ),
       minHeight: 'calc(634px)',

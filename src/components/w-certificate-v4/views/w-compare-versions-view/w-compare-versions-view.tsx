@@ -33,6 +33,8 @@ export class WCertificateVersionsView {
 
   @Prop() to: number;
 
+  @Prop() view: string;
+
   @State() transactionId: string;
 
   @State() allRevisions: WPRevision[];
@@ -40,6 +42,8 @@ export class WCertificateVersionsView {
   @State() currentRevisionIndex: number = 0;
 
   @State() diffRevisionIndex: number | null = null;
+
+  @State() showCode: boolean = false;
 
   revisionDateOptions: DateTimeOption[];
   @State() currentRevisionOptions: DateTimeOption[];
@@ -53,6 +57,8 @@ export class WCertificateVersionsView {
     this.currentRevisionOptions = this.revisionDateOptions;
     this.diffRevisionOptions = [];
     this.transactionId = this.allRevisions[0].transactionId;
+
+    this.showCode = this.view === 'raw';
   }
 
   async componentDidLoad() {
@@ -146,7 +152,7 @@ export class WCertificateVersionsView {
         <ContentPreview
           revisions={this.allRevisions}
           viewInd={this.currentRevisionIndex}
-          view="clean"
+          view={this.showCode ? 'raw' : 'clean'}
           strings={this.strings}
         />
 
@@ -179,7 +185,7 @@ export class WCertificateVersionsView {
             revisions={this.allRevisions}
             viewInd={this.currentRevisionIndex}
             diffInd={this.diffRevisionIndex}
-            view="diff"
+            view={this.showCode ? 'raw' : 'diff'}
             strings={this.strings}
           />
         ) : null}
@@ -189,10 +195,20 @@ export class WCertificateVersionsView {
         {this.diffRevisionIndex !== null ? (
           <div class="h-12 flex justify-center">
             <BaseButton
-              text={this.strings.viewCode}
+              outlined
+              text={
+                this.showCode
+                  ? this.strings.viewContent
+                  : this.strings.viewCode
+              }
               onClick={() => {
-                router.go(
-                  `${CertificateView.raw}?revision=${this.diffRevisionIndex}`,
+                this.showCode = !this.showCode;
+                router.replace(
+                  `${CertificateView.compare}?which=${
+                    this.currentRevisionIndex
+                  }&to=${this.diffRevisionIndex}&view=${
+                    this.showCode ? 'raw' : 'content'
+                  }`,
                 );
               }}
             />

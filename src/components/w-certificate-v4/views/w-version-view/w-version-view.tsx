@@ -192,7 +192,7 @@ export class WVersionView {
                 onChange={(ev: InputEvent) => {
                   const toRevisionIndex = Number(ev.data);
                   router.replace(
-                    `${CertificateView.compare}?which=${this.currentRevisionIndex}&to=${toRevisionIndex}`,
+                    `${CertificateView.compare}?which=${this.currentRevisionIndex}&to=${toRevisionIndex}&view=content`,
                   );
                 }}
               />

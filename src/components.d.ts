@@ -117,6 +117,7 @@ export namespace Components {
         "strings": CertificateV4Strings;
         "timestampCheckUrl": string;
         "to": number;
+        "view": string;
         "viewBlockchainUrl": string;
         "which": number;
     }
@@ -588,6 +589,7 @@ declare namespace LocalJSX {
         "strings"?: CertificateV4Strings;
         "timestampCheckUrl"?: string;
         "to"?: number;
+        "view"?: string;
         "viewBlockchainUrl"?: string;
         "which"?: number;
     }
