@@ -77,8 +77,8 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-compare-versions-view>
       ),
-      minHeight: '634px',
-      maxHeight: 'calc(100vh - 6 rem)',
+      minHeight: 'calc(634px)',
+      maxHeight: 'calc(100vh - 2rem)',
     },
     {
       hash: CertificateView.raw,
@@ -190,16 +190,6 @@ export class WCertificateV4 {
             class="mr-8 mt-8 inline-block"
           ></w-icon>
           <w-router-outlet routes={this.routes} />
-          <div class="w-full flex">
-            <w-logo
-              fit
-              text
-              whiteOnBlue
-              textLarge
-              class="mb-10 h-6 mx-auto block"
-            ></w-logo>
-            {/* <div class="mx-auto text-blue opacity-40">{strings.contentCertificate}</div> */}
-          </div>
         </w-modal>
       </Host>
     ) : (

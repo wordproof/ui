@@ -85,7 +85,10 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       {strings.thatIsImportantText}
     </p>
 
-    <div class="shadow-md rounded mx-auto mt-8 p-6 font-sohne" style={{ width: '26rem' }}>
+    <div
+      class="shadow-md rounded mx-auto mt-8 p-6 font-sohne"
+      style={{ width: '26rem' }}
+    >
       <div class="flex items-center">
         <CheckBullet checked={!hasChanged} />
         <div class="text-gray-600 ml-4">{strings.lastEdited}</div>
@@ -111,6 +114,14 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       )}
       <BaseButton outlined text={strings.explainThis} onClick={() => {}} />
     </div>
+
+    <w-logo
+      fit
+      text
+      whiteOnBlue
+      textLarge
+      class="mt-10 h-6 mx-auto block"
+    ></w-logo>
   </div>
 );
 

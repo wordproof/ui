@@ -171,6 +171,12 @@ export class WCertificateVersionsView {
             />
           </div>
         ) : null}
+
+        {this.diffRevisionIndex === null ? (
+          <div class="mt-16 flex justify-center">
+            <w-logo fit text whiteOnBlue textLarge class="h-6 mx-auto"></w-logo>
+          </div>
+        ) : null}
       </div>
     );
   }
