@@ -93,9 +93,17 @@ export class WCertificateVersionsView {
     this.diffRevisionOptions = this.revisionDateOptions.slice(revisionIndex);
   }
 
+  renderFlexibleSpace() {
+    return (
+      <div class="flex-grow" style={{ minHeight: '0.5rem' }}>
+        {' '}
+      </div>
+    );
+  }
+
   render() {
     return (
-      <div class="px-3 pt-7 pb-7" style={{ lineHeight: '1.5' }}>
+      <div class="px-3 pt-7 pb-7 h-full flex flex-col" style={{ lineHeight: '1.5' }}>
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}
@@ -104,11 +112,13 @@ export class WCertificateVersionsView {
           />
         </div>
         <p
-          class="text-black text-base font-sohne text-center mx-auto mt-2"
+          class="text-black text-base font-sohne text-center mx-auto mt-2 hide-small-height"
           style={{ width: '26rem' }}
         >
           {this.strings.thatIsImportantText}
         </p>
+
+        {this.renderFlexibleSpace()}
 
         <div class="z-40 h-6 flex justify-center">
           <w-date-time-select
@@ -126,6 +136,8 @@ export class WCertificateVersionsView {
           view="clean"
           strings={this.strings}
         />
+
+        {this.renderFlexibleSpace()}
 
         <div class="h-6 flex justify-center">
           {this.allRevisions.length > 1 ? (
@@ -158,6 +170,8 @@ export class WCertificateVersionsView {
             strings={this.strings}
           />
         ) : null}
+
+        {this.renderFlexibleSpace()}
 
         {this.diffRevisionIndex !== null ? (
           <div class="h-12 flex justify-center">
