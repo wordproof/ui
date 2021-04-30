@@ -95,7 +95,7 @@ export class WCertificateVersionsView {
 
   render() {
     return (
-      <div class="px-3 pt-7 pb-10 " style={{ lineHeight: '1.5' }}>
+      <div class="px-3 pt-7 pb-7" style={{ lineHeight: '1.5' }}>
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}
@@ -110,7 +110,7 @@ export class WCertificateVersionsView {
           {this.strings.thatIsImportantText}
         </p>
 
-        <div class="mt-2 relative top-7 z-40 h-12 flex justify-center">
+        <div class="z-40 h-6 flex justify-center">
           <w-date-time-select
             options={this.revisionDateOptions}
             selected={this.currentRevisionIndex}
@@ -127,7 +127,7 @@ export class WCertificateVersionsView {
           strings={this.strings}
         />
 
-        <div class="mt-2 relative top-7 h-12 flex justify-center">
+        <div class="h-6 flex justify-center">
           {this.allRevisions.length > 1 ? (
             <w-date-time-select
               openToTop={true}
@@ -160,7 +160,7 @@ export class WCertificateVersionsView {
         ) : null}
 
         {this.diffRevisionIndex !== null ? (
-          <div class="mt-10 h-12 flex justify-center">
+          <div class="h-12 flex justify-center">
             <BaseButton
               text={this.strings.viewCode}
               onClick={() => {
