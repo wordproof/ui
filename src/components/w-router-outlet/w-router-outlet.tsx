@@ -37,7 +37,12 @@ export class MyEmbeddedComponent {
 
   render() {
     return (
-      <div style={{ minHeight: this.matchedRoute.height || 'auto' }}>
+      <div
+        style={{
+          minHeight: this.matchedRoute.minHeight || 'auto',
+          maxHeight: this.matchedRoute.maxHeight || 'auto',
+        }}
+      >
         {this.matchedRoute.renderer(this.extractParams())}
       </div>
     );

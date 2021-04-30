@@ -2,7 +2,8 @@ export type Route = {
   hash: string;
   renderer: Function;
   default?: boolean;
-  height?: string;
+  minHeight?: string;
+  maxHeight?: string;
 };
 
 export const TRIGGER_HASH = 'wordproof';

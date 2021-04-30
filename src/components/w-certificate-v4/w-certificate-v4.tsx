@@ -77,7 +77,8 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-compare-versions-view>
       ),
-      height: '634px',
+      minHeight: '634px',
+      maxHeight: 'calc(100vh - 6 rem)',
     },
     {
       hash: CertificateView.raw,
@@ -92,7 +93,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
-      height: '634px',
+      minHeight: '634px',
     },
     {
       hash: CertificateView.render,
@@ -107,7 +108,7 @@ export class WCertificateV4 {
           timestampCheckUrl={this.timestampCheckUrl}
         ></w-version-view>
       ),
-      height: '634px',
+      minHeight: '634px',
     },
   ] as Route[];
 
