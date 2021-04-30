@@ -78,7 +78,7 @@ export class WCertificateV4 {
         ></w-compare-versions-view>
       ),
       minHeight: 'calc(634px)',
-      maxHeight: 'calc(100vh - 2rem)',
+      height: 'calc(100vh - 2rem)',
     },
     {
       hash: CertificateView.raw,
