@@ -25,7 +25,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
   onDateSelect = () => {},
   strings,
 }) => (
-  <div class="mx-2 pb-5 shadow rounded-b bg-white">
+  <div class="pb-5 shadow rounded-b bg-white">
     <div
       class="px-4 pb-6 grid grid-cols-7 grid-flow-row gap-x-0.5 gap-y-4"
       style={{ width: '356px' }}
