@@ -34,7 +34,12 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
 
     <w-dropdown-menu
       options={[
-        { label: strings.explainThis, action: () => {} },
+        {
+          label: strings.explainThis,
+          action: () => {
+            router.go(CertificateView.importance);
+          },
+        },
         ...(timestampCheckUrl
           ? [{ label: strings.timestampChecker, href: timestampCheckUrl }]
           : []),

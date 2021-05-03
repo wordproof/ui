@@ -10,6 +10,7 @@ import { router } from '../../../w-router-outlet';
 import BaseButton from '../../components/base-button';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from '../../components/ContentPreview';
+import TabLabel from '../../components/tab-label';
 import { CertificateView } from '../../types';
 @Component({
   tag: 'w-compare-versions-view',
@@ -120,9 +121,11 @@ export class WCertificateVersionsView {
   render() {
     return (
       <div
-        class="px-3 pt-7 pb-7 h-full flex flex-col"
+        class="px-3 pt-7 pb-7 h-full flex flex-col relative"
         style={{ lineHeight: '1.5' }}
       >
+        <TabLabel onClick={() => router.go(CertificateView.importance)} />
+
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}
