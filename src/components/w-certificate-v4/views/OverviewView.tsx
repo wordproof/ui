@@ -108,7 +108,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         <span class="mr-4">
           <BaseButton
             text={strings.compareVersions}
-            onClick={() => router.go(CertificateView.raw)}
+            onClick={() => router.go(CertificateView.clean)}
           />
         </span>
       )}

@@ -91,7 +91,7 @@ export class WVersionView {
 
   getRoute(): string {
     if (this.view === 'raw') {
-      return `${CertificateView.content}?revision=${this.currentRevisionIndex}`;
+      return `${CertificateView.clean}?revision=${this.currentRevisionIndex}`;
     }
 
     if (this.view === 'clean') {

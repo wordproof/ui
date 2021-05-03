@@ -100,7 +100,7 @@ export class WCertificateV4 {
       minHeight: '634px',
     },
     {
-      hash: CertificateView.content,
+      hash: CertificateView.clean,
       renderer: (params: URLSearchParams) => (
         <w-version-view
           strings={this.strings}
