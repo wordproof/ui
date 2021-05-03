@@ -88,6 +88,7 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
 
     <div class="flex justify-center mt-8">
       <BaseButton
+        leftArrow={true}
         text={strings.goBack}
         onClick={() => {
           router.back();
