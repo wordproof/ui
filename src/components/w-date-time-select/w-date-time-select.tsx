@@ -250,7 +250,7 @@ export class WDateTimeSelect {
 
             <div
               class={cx(
-                'bg-white px-4 py-3 absolute rounded right-1.5 transform translate-x-full overflow-x-auto',
+                'bg-white px-4 py-3 absolute rounded -right-0.5 transform translate-x-full overflow-x-auto',
                 {
                   hidden: !this.showTimeOptions,
                 },

@@ -13,6 +13,7 @@ import { router } from '../../../w-router-outlet';
 import BaseButton from '../../components/base-button';
 import CertificateHeader from '../../components/certificate-header';
 import ContentPreview from '../../components/ContentPreview';
+import TabLabel from '../../components/tab-label';
 import { CertificateView } from '../../types';
 @Component({
   tag: 'w-version-view',
@@ -91,7 +92,7 @@ export class WVersionView {
 
   getRoute(): string {
     if (this.view === 'raw') {
-      return `${CertificateView.content}?revision=${this.currentRevisionIndex}`;
+      return `${CertificateView.clean}?revision=${this.currentRevisionIndex}`;
     }
 
     if (this.view === 'clean') {
@@ -140,6 +141,8 @@ export class WVersionView {
         class="px-3 pt-7 pb-10 flex flex-col items-center relative"
         style={{ lineHeight: '1.5', minHeight: '634px' }}
       >
+        <TabLabel onClick={() => router.go(CertificateView.importance)} />
+
         <div class="px-7 w-full">
           <CertificateHeader
             strings={this.strings}

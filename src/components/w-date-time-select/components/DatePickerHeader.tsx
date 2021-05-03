@@ -12,7 +12,7 @@ const DatePickerHeader: FunctionalComponent<DatePickerHeaderProps> = ({
   onLeftArrowClick = () => {},
   onRightArrowClick = () => {},
 }) => (
-  <div class="flex justify-between items-center px-4 py-3 bg-blue text-white font-sohne-semibold">
+  <div class="flex justify-between items-center px-4 py-3 bg-blue text-white font-sohne-semibold rounded-t">
     <button
       class="p-2 rounded-full focus:outline-none transform rotate-180"
       onClick={() => {

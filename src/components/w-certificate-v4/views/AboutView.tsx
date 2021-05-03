@@ -1,43 +1,24 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { CertificateV4Strings } from '../../../i18n';
-import CheckBullet from '../components/check-bullet';
 import BaseButton from '../components/base-button';
 import cx from 'classnames';
-import { DateTimeFormatOptions, formatDate } from '../../../utils/locale';
 import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
-import { CertificateView } from '../types';
 
-// import { router } from '../../w-router-outlet';
-
-interface OverviewViewProps {
+interface AboutViewProps {
   strings: CertificateV4Strings;
-  lastEdited: string;
-  publishedBy: string;
-  locale: string;
   hasChanged: boolean;
 }
 
-const DATE_FORMAT_OPTIONS = {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-} as DateTimeFormatOptions;
-
-const OverviewView: FunctionalComponent<OverviewViewProps> = ({
+const OverviewView: FunctionalComponent<AboutViewProps> = ({
   strings,
-  lastEdited,
-  // publishedBy,
-  locale,
   hasChanged,
 }) => (
   <div
     class="px-56 py-10 flex flex-col items-center relative"
     style={{ lineHeight: '1.5' }}
   >
-    <TabLabel onClick={() => router.go(CertificateView.importance)} />
+    <TabLabel onClick={() => {}} />
     <div
       class={cx(
         ' mx-auto w-20 h-20 rounded-full flex items-center justify-center',
@@ -79,43 +60,39 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
     </h2>
 
     <p
-      class="text-black text-base text-center mx-auto mt-2 font-sohne"
+      class="text-black text-base text-center mx-auto mt-4 font-sohne"
+      style={{ width: '26rem' }}
+      innerHTML={strings.whatIsTimestamp}
+    ></p>
+
+    <p
+      class="text-black text-base text-center mx-auto mt-4 font-sohne"
+      style={{ width: '26rem' }}
+      innerHTML={strings.withTimestampYouCan}
+    ></p>
+
+    <p
+      class="text-black text-base text-center mx-auto mt-4 font-sohne"
       style={{ width: '26rem' }}
     >
-      {strings.thatIsImportantText}
+      {strings.wantToKnowMore}
+      <a
+        href="https://wordproof.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="border-b border-black ml-1"
+      >
+        wordproof.com
+      </a>
     </p>
 
-    <div
-      class="shadow-md rounded mx-auto mt-8 p-6 font-sohne"
-      style={{ width: '26rem' }}
-    >
-      <div class="flex items-center">
-        <CheckBullet checked={!hasChanged} />
-        <div class="text-gray-600 ml-4">{strings.lastEdited}</div>
-        <div class="text-black ml-2">
-          {formatDate(lastEdited, locale, DATE_FORMAT_OPTIONS)}
-        </div>
-      </div>
-      {/* <div class="border-t border-light-blue pt-5 flex items-center">
-        <CheckBullet checked={true} />
-        <div class="text-gray-600 ml-4">{strings.publishedBy}</div>
-        <div class="text-black ml-2">Jelle van der Scoot</div>
-      </div> */}
-    </div>
-
     <div class="flex justify-center mt-8">
-      {hasChanged ? null : (
-        <span class="mr-4">
-          <BaseButton
-            text={strings.compareVersions}
-            onClick={() => router.go(CertificateView.clean)}
-          />
-        </span>
-      )}
       <BaseButton
-        outlined
-        text={strings.explainThis}
-        onClick={() => router.go(CertificateView.importance)}
+        leftArrow={true}
+        text={strings.goBack}
+        onClick={() => {
+          router.back();
+        }}
       />
     </div>
 

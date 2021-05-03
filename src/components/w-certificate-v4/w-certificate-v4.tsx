@@ -25,6 +25,7 @@ import {
   TIMESTAMP_CHECK_URL,
 } from '../../config/blockchain.config';
 import { disableDebug, enableDebug, LogSources } from '../../utils/debug';
+import AboutView from './views/AboutView';
 
 @Component({
   tag: 'w-certificate-v4',
@@ -78,7 +79,7 @@ export class WCertificateV4 {
           which={parseInt(params.get('which'))}
           to={parseInt(params.get('to'))}
           view={params.get('view')}
-          ></w-compare-versions-view>
+        ></w-compare-versions-view>
       ),
       minHeight: 'calc(634px)',
       height: 'calc(100vh - 2rem)',
@@ -99,7 +100,7 @@ export class WCertificateV4 {
       minHeight: '634px',
     },
     {
-      hash: CertificateView.content,
+      hash: CertificateView.clean,
       renderer: (params: URLSearchParams) => (
         <w-version-view
           strings={this.strings}
@@ -112,6 +113,16 @@ export class WCertificateV4 {
         ></w-version-view>
       ),
       minHeight: '634px',
+    },
+    {
+      hash: CertificateView.importance,
+      renderer: () => (
+        <AboutView
+          strings={this.strings}
+          hasChanged={this.content.hasChanged}
+        />
+      ),
+      height: '692px',
     },
   ] as Route[];
 
