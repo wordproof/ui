@@ -122,7 +122,7 @@ export class WCertificateV4 {
           hasChanged={this.content.hasChanged}
         />
       ),
-      height: '716px',
+      height: '692px',
     },
   ] as Route[];
 
