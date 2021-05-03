@@ -74,6 +74,10 @@ type CertificateV4Keys = [
   'viewCode',
   'viewContent',
   'mostRecent',
+  'whatIsTimestamp',
+  'withTimestampYouCan',
+  'wantToKnowMore',
+  'goBack'
 ][number];
 export type CertificateV4Strings = Record<CertificateV4Keys, string>;
 
