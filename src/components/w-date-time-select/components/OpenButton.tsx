@@ -37,7 +37,7 @@ const OpenButton: FunctionalComponent<OpenButtonProps> = ({
     }}
     ref={el => ref(el)}
   >
-    <div class="p-1.5 bg-blue border border-blue rounded-full">
+    <div class="p-1.5 bg-blue border border-blue rounded-full h-7 w-7 flex items-center justify-center">
       <w-icon name="calendar" class="text-white"></w-icon>
     </div>
     <div
