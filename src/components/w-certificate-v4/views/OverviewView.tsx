@@ -68,9 +68,9 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         {strings.thisContent}
       </div>
       <div
-        class={cx('-mt-4 font-bold', {
-          'text-blue': !hasChanged,
-          'text-black': hasChanged,
+        class={cx('-mt-3 font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block', {
+          'text-blue bg-gray-200': !hasChanged,
+          'text-black bg-white': hasChanged,
         })}
         style={{ fontSize: '1.75rem' }}
       >
@@ -86,7 +86,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
     </p>
 
     <div
-      class="shadow-md rounded mx-auto mt-8 p-6 font-sohne"
+      class="shadow-md rounded mx-auto mt-8 p-6 font-sohne bg-white"
       style={{ width: '26rem' }}
     >
       <div class="flex items-center">

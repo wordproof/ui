@@ -4,6 +4,7 @@ import { onMobile } from '../../utils/responsive';
 
 @Component({
   tag: 'w-router-outlet',
+  styleUrl: 'w-router-outlet.css',
 })
 export class MyEmbeddedComponent {
   @Prop() routes: Route[];
@@ -39,6 +40,7 @@ export class MyEmbeddedComponent {
   render() {
     return (
       <div
+        class="background-shape"
         style={{
           maxHeight: onMobile()
             ? 'calc(100vh - 2rem)'
