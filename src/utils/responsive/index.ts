@@ -8,3 +8,10 @@ export const onMobile = (): boolean => {
 
   return vw <= smBreakpoint;
 };
+
+export const getScreenHeight = (): number => {
+  return Math.max(
+    document.documentElement.clientHeight || 0,
+    window.innerHeight || 0,
+  );
+};

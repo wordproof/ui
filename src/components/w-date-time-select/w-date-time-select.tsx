@@ -25,6 +25,7 @@ import {
 import { DateTimeSelectStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
 import TimeLabel from './components/TimeLabel';
+import { getScreenHeight } from '../../utils/responsive';
 
 export interface DateTimeOption {
   value: Date;
@@ -86,7 +87,7 @@ export class WDateTimeSelect {
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'Escape') {
       ev.stopPropagation();
-      this.showDatepicker = false;
+      this.hideDatePicker();
     }
   }
 
@@ -99,6 +100,7 @@ export class WDateTimeSelect {
   @State() sameDayOptions: DateTimeOption[] = [];
 
   dateEl: HTMLInputElement;
+  datepickerEl: HTMLElement;
   triggerButtonElement: HTMLButtonElement;
   datepickerValue: string;
   strings: DateTimeSelectStrings;
@@ -136,7 +138,7 @@ export class WDateTimeSelect {
     if (this.sameDayOptions.length === 1) {
       this.selected = this.sameDayOptions[0].index;
       this.selectedDate = this.getSelectedDate(this.selected);
-      this.showDatepicker = false;
+      this.hideDatePicker();
       this.emitValue(this.selected);
     }
 
@@ -155,7 +157,7 @@ export class WDateTimeSelect {
   onTimeOptionSelect(option: DateTimeOption) {
     this.selected = option.index;
     this.emitValue(option.index);
-    this.showDatepicker = false;
+    this.hideDatePicker();
   }
 
   getStartOfMonth(): Date {
@@ -179,7 +181,7 @@ export class WDateTimeSelect {
 
     if (this.showDatepicker) {
       this.triggerButtonElement.blur();
-      this.showDatepicker = false;
+      this.hideDatePicker();
       return;
     }
 
@@ -210,6 +212,27 @@ export class WDateTimeSelect {
     this.hostElement.dispatchEvent(emittedEvent);
   }
 
+  positionDatePicker(el: HTMLInputElement) {
+    this.datepickerEl = el as HTMLElement;
+    setTimeout(() => {
+      const { bottom, top } = this.datepickerEl.getBoundingClientRect();
+      const screenHeight = getScreenHeight();
+
+      if (bottom > screenHeight && !this.openToTop) {
+        this.datepickerEl.style.top = `${screenHeight - bottom + 32}px`;
+      }
+
+      if (top < 0 && this.openToTop) {
+        this.datepickerEl.style.top = `${-32 - top}px`;
+      }
+    }, 0);
+  }
+
+  hideDatePicker() {
+    this.datepickerEl.style.top = this.openToTop ? '-40px' : '40px';
+    this.showDatepicker = false;
+  }
+
   render() {
     return (
       <span class="relative z-10">
@@ -233,6 +256,7 @@ export class WDateTimeSelect {
             onClick={() => this.toggleDatePicker()}
           ></div>
           <div
+            ref={this.positionDatePicker.bind(this)}
             class={cx('absolute transform -translate-x-1/2 left-1/2 z-50', {
               'top-10': !this.openToTop,
               '-top-10 -translate-y-full': this.openToTop,
