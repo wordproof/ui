@@ -142,7 +142,7 @@ export class WCertificateVersionsView {
 
         {this.renderFlexibleSpace()}
 
-        <div class="z-40 h-6 flex justify-center">
+        <div class="h-6 flex justify-center">
           <w-date-time-select
             options={this.revisionDateOptions}
             selected={this.currentRevisionIndex}
