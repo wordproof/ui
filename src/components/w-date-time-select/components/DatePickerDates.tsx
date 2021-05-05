@@ -52,7 +52,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
     </div>
     <div class="border-b border-gray-400 w-full"></div>
     <div class="flex items-center justify-center my-5 font-sohne">
-      <w-icon name="calendar"></w-icon>
+      <w-icon class="text-blue" name="calendar"></w-icon>
       <button
         class="text-blue ml-3"
         onClick={() => {
