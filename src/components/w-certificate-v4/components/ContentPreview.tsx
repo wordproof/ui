@@ -6,7 +6,6 @@ import {
   renderContent,
   StyleContentFunction,
 } from '../../../utils/content-preview';
-import LegendButton from './LegendButton';
 import cx from 'classnames';
 
 interface ContentPreviewProps {
@@ -33,10 +32,11 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
 }) => {
   return (
     <div
-      class={cx('w-full rounded border relative', {
+      class={cx('w-full rounded border relative h-10', {
         'border-light-blue bg-white': view !== 'raw',
         'bg-black': view === 'raw',
       })}
+      style={{flex:'1 1 200px'}}
     >
       <div
         class={cx('absolute h-8 rounded', {
@@ -49,7 +49,7 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
         <textarea
           readonly
           class={cx(
-            `rounded font-sohne resize-none block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
+            `rounded font-sohne resize-none block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
             {
               'bg-white text-black': view !== 'raw',
               'bg-black text-white font-mono': view === 'raw',
@@ -62,13 +62,13 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
       ) : null}
       {view === 'render' ? (
         <div
-          class="block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll"
+          class="block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll"
           innerHTML={renderContent(revisions, view as 'render', viewInd)}
         ></div>
       ) : null}
       {view === 'diff' && diffInd !== undefined ? (
         <div
-          class="block w-full h-80 max-w-full pt-10 pb-8 px-4 overflow-y-scroll font-sohne"
+          class="block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll font-sohne"
           innerHTML={renderContent(
             revisions,
             view as 'diff',

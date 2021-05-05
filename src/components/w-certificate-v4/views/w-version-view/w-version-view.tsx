@@ -157,7 +157,7 @@ export class WVersionView {
           {this.strings.thatIsImportantText}
         </p>
 
-        <div class="w-full flex flex-col items-center style={{height:'471px'}}">
+        <div class="w-full flex flex-col flex-grow items-center style={{height:'471px'}}">
           <div class="h-12">
             {this.currentRevisionIndex !== undefined ? (
               <w-date-time-select
@@ -172,16 +172,14 @@ export class WVersionView {
             ) : null}
           </div>
 
-          <div class="w-full" style={{ height: '320px' }}>
-            {this.currentRevisionIndex !== undefined ? (
-              <ContentPreview
-                revisions={this.allRevisions}
-                viewInd={this.currentRevisionIndex}
-                view={this.view}
-                strings={this.strings}
-              />
-            ) : null}
-          </div>
+          {this.currentRevisionIndex !== undefined ? (
+            <ContentPreview
+              revisions={this.allRevisions}
+              viewInd={this.currentRevisionIndex}
+              view={this.view}
+              strings={this.strings}
+            />
+          ) : null}
 
           <div class="flex mt-10">
             {this.currentRevisionIndex !== undefined ? (
