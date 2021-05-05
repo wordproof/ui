@@ -112,7 +112,7 @@ export class WCertificateVersionsView {
 
   renderFlexibleSpace() {
     return (
-      <div class="flex-grow" style={{ minHeight: '0.5rem' }}>
+      <div class="flex-grow" style={{ flex: '0.1 2 1rem' }}>
         {' '}
       </div>
     );
@@ -142,7 +142,7 @@ export class WCertificateVersionsView {
 
         {this.renderFlexibleSpace()}
 
-        <div class="z-40 h-6 flex justify-center">
+        <div class="h-6 flex justify-center">
           <w-date-time-select
             options={this.revisionDateOptions}
             selected={this.currentRevisionIndex}
@@ -174,17 +174,15 @@ export class WCertificateVersionsView {
           ) : null}
         </div>
 
-        <div style={{ height: '322px' }}>
-          {this.diffRevisionIndex !== null ? (
-            <ContentPreview
-              revisions={this.allRevisions}
-              viewInd={this.currentRevisionIndex}
-              diffInd={this.diffRevisionIndex}
-              view={this.showCode ? 'raw' : 'diff'}
-              strings={this.strings}
-            />
-          ) : null}
-        </div>
+        {this.diffRevisionIndex !== null ? (
+          <ContentPreview
+            revisions={this.allRevisions}
+            viewInd={this.currentRevisionIndex}
+            diffInd={this.diffRevisionIndex}
+            view={this.showCode ? 'raw' : 'diff'}
+            strings={this.strings}
+          />
+        ) : null}
 
         {this.renderFlexibleSpace()}
 

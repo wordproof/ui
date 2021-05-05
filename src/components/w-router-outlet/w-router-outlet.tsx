@@ -1,8 +1,10 @@
 import { Component, Prop, State, h } from '@stencil/core';
 import { TRIGGER_HASH, Route } from '.';
+import { onMobile } from '../../utils/responsive';
 
 @Component({
   tag: 'w-router-outlet',
+  styleUrl: 'w-router-outlet.css',
 })
 export class MyEmbeddedComponent {
   @Prop() routes: Route[];
@@ -37,11 +39,18 @@ export class MyEmbeddedComponent {
 
   render() {
     return (
-      <div style={{
-        maxHeight: this.matchedRoute.maxHeight,
-        minHeight: this.matchedRoute.minHeight,
-        height: this.matchedRoute.height,
-      }}>
+      <div
+        class="background-shape"
+        style={{
+          maxHeight: onMobile()
+            ? 'calc(100vh - 2rem)'
+            : this.matchedRoute.maxHeight,
+          minHeight: onMobile()
+            ? 'calc(100vh - 2rem)'
+            : this.matchedRoute.minHeight,
+          height: onMobile() ? 'calc(100vh - 2rem)' : this.matchedRoute.height,
+        }}
+      >
         {this.matchedRoute.renderer(this.extractParams())}
       </div>
     );
