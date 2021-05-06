@@ -57,6 +57,10 @@ export class WCertificateVersionsView {
     ];
     this.baseRevisionOptions = this.revisionDateOptions;
     this.diffRevisionOptions = [];
+    this.currentRevisionIndex = 0;
+    this.diffRevisionIndex = null;
+    this.updateBaseAndDiffOptions();
+
     this.transactionId = this.allRevisions[0].transactionId;
 
     this.showCode = this.view === 'raw';
@@ -81,7 +85,7 @@ export class WCertificateVersionsView {
       }));
 
       this.setBaseRevisionIndex(
-        this.which < this.allRevisions.length ? this.which : 0,
+        this.which < this.allRevisions.length - 1 ? this.which : 0,
       );
       this.setDiffRevisionIndex(
         this.to > this.which && this.to < this.allRevisions.length
@@ -91,20 +95,33 @@ export class WCertificateVersionsView {
     }
   }
 
+  updateBaseAndDiffOptions() {
+    if (this.revisionDateOptions.length === 1) {
+      this.baseRevisionOptions = this.revisionDateOptions;
+      this.diffRevisionOptions = [];
+    }
+
+    this.baseRevisionOptions = this.revisionDateOptions.slice(
+      0,
+      this.diffRevisionIndex === null
+        ? this.revisionDateOptions.length - 1
+        : this.diffRevisionIndex,
+    );
+
+    this.diffRevisionOptions = this.revisionDateOptions.slice(
+      this.currentRevisionIndex + 1,
+      this.revisionDateOptions.length,
+    );
+  }
+
   setBaseRevisionIndex(revisionIndex: number) {
     this.currentRevisionIndex = revisionIndex;
-    this.baseRevisionOptions = this.revisionDateOptions.slice(
-      revisionIndex + 1,
-    );
-    this.diffRevisionOptions = this.revisionDateOptions.slice(
-      revisionIndex + 1,
-    );
+    this.updateBaseAndDiffOptions();
   }
 
   setDiffRevisionIndex(revisionIndex: number) {
     this.diffRevisionIndex = revisionIndex;
-    this.baseRevisionOptions = this.revisionDateOptions.slice(0, revisionIndex);
-    this.diffRevisionOptions = this.revisionDateOptions.slice(revisionIndex);
+    this.updateBaseAndDiffOptions();
   }
 
   renderFlexibleSpace() {

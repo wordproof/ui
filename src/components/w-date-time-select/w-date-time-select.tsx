@@ -106,7 +106,9 @@ export class WDateTimeSelect {
   strings: DateTimeSelectStrings;
 
   connectedCallback() {
-    this.mostRecent = this.options[0].value;
+    if (this.options.length) {
+      this.mostRecent = this.options[0].value;
+    }
   }
 
   async componentWillLoad(): Promise<void> {
