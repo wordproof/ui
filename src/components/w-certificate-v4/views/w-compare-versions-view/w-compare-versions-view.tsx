@@ -47,7 +47,7 @@ export class WCertificateVersionsView {
   @State() showCode: boolean = false;
 
   revisionDateOptions: DateTimeOption[];
-  @State() currentRevisionOptions: DateTimeOption[];
+  @State() baseRevisionOptions: DateTimeOption[];
   @State() diffRevisionOptions: DateTimeOption[];
 
   async componentWillLoad() {
@@ -55,8 +55,12 @@ export class WCertificateVersionsView {
     this.revisionDateOptions = [
       { value: new Date(this.content.date), index: 0 },
     ];
-    this.currentRevisionOptions = this.revisionDateOptions;
+    this.baseRevisionOptions = this.revisionDateOptions;
     this.diffRevisionOptions = [];
+    this.currentRevisionIndex = 0;
+    this.diffRevisionIndex = null;
+    this.updateBaseAndDiffOptions();
+
     this.transactionId = this.allRevisions[0].transactionId;
 
     this.showCode = this.view === 'raw';
@@ -80,8 +84,8 @@ export class WCertificateVersionsView {
         index,
       }));
 
-      this.setCurrentRevisionIndex(
-        this.which < this.allRevisions.length ? this.which : 0,
+      this.setBaseRevisionIndex(
+        this.which < this.allRevisions.length - 1 ? this.which : 0,
       );
       this.setDiffRevisionIndex(
         this.to > this.which && this.to < this.allRevisions.length
@@ -91,23 +95,33 @@ export class WCertificateVersionsView {
     }
   }
 
-  setCurrentRevisionIndex(revisionIndex: number) {
-    this.currentRevisionIndex = revisionIndex;
-    this.currentRevisionOptions = this.revisionDateOptions.slice(
-      revisionIndex + 1,
+  updateBaseAndDiffOptions() {
+    if (this.revisionDateOptions.length === 1) {
+      this.baseRevisionOptions = this.revisionDateOptions;
+      this.diffRevisionOptions = [];
+    }
+
+    this.baseRevisionOptions = this.revisionDateOptions.slice(
+      0,
+      this.diffRevisionIndex === null
+        ? this.revisionDateOptions.length - 1
+        : this.diffRevisionIndex,
     );
+
     this.diffRevisionOptions = this.revisionDateOptions.slice(
-      revisionIndex + 1,
+      this.currentRevisionIndex + 1,
+      this.revisionDateOptions.length,
     );
+  }
+
+  setBaseRevisionIndex(revisionIndex: number) {
+    this.currentRevisionIndex = revisionIndex;
+    this.updateBaseAndDiffOptions();
   }
 
   setDiffRevisionIndex(revisionIndex: number) {
     this.diffRevisionIndex = revisionIndex;
-    this.currentRevisionOptions = this.revisionDateOptions.slice(
-      0,
-      revisionIndex,
-    );
-    this.diffRevisionOptions = this.revisionDateOptions.slice(revisionIndex);
+    this.updateBaseAndDiffOptions();
   }
 
   renderFlexibleSpace() {
@@ -144,10 +158,10 @@ export class WCertificateVersionsView {
 
         <div class="h-6 flex justify-center">
           <w-date-time-select
-            options={this.revisionDateOptions}
+            options={this.baseRevisionOptions}
             selected={this.currentRevisionIndex}
             onChange={(ev: InputEvent) => {
-              this.setCurrentRevisionIndex(Number(ev.data));
+              this.setBaseRevisionIndex(Number(ev.data));
             }}
           />
         </div>
@@ -165,7 +179,7 @@ export class WCertificateVersionsView {
           {this.diffRevisionIndex !== null ? (
             <w-date-time-select
               openToTop={true}
-              options={this.revisionDateOptions}
+              options={this.diffRevisionOptions}
               selected={this.diffRevisionIndex}
               onChange={(ev: InputEvent) => {
                 this.setDiffRevisionIndex(Number(ev.data));

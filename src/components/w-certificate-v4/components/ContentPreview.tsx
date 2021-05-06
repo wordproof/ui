@@ -30,13 +30,76 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
   diffInd,
   classes = '',
 }) => {
+  const SkeletonView = () => {
+    const lineStyles = Array(20)
+      .fill(0)
+      .map(_ => ({ width: `${Math.round(Math.random() * 50) + 50}%` }));
+
+    return (
+      <div class="block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll font-sohne">
+        {lineStyles.map(style => (
+          <div
+            class="animate-pulse bg-gray-600 h-4 mb-3 rounded"
+            style={style}
+          ></div>
+        ))}
+      </div>
+    );
+  };
+
+  const CleanOrRawView = () =>
+    revisions.length && view && viewInd >= 0 ? (
+      <textarea
+        readonly
+        class={cx(
+          `absolute rounded font-sohne resize-none block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
+          {
+            'bg-white text-black': view !== 'raw',
+            'bg-black text-white font-mono': view === 'raw',
+          },
+        )}
+      >
+        {view === 'clean' ? renderContent(revisions, 'clean', viewInd) : null}
+        {view === 'raw' ? renderContent(revisions, 'raw', viewInd) : null}
+      </textarea>
+    ) : (
+      SkeletonView()
+    );
+
+  const RenderView = () =>
+    revisions.length && view && viewInd >= 0 ? (
+      <div
+        class="block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll"
+        innerHTML={renderContent(revisions, view as 'render', viewInd)}
+      ></div>
+    ) : (
+      SkeletonView()
+    );
+
+  const DiffView = () =>
+    revisions.length && view && viewInd >= 0 && diffInd >= 0 ? (
+      <div
+        class="block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll font-sohne"
+        innerHTML={renderContent(
+          revisions,
+          view as 'diff',
+          viewInd,
+          diffInd,
+          styleAsAdded,
+          styleAsRemoved,
+        )}
+      ></div>
+    ) : (
+      SkeletonView()
+    );
+
   return (
     <div
       class={cx('w-full rounded border relative h-10', {
         'border-light-blue bg-white': view !== 'raw',
         'bg-black': view === 'raw',
       })}
-      style={{flex:'1 1 200px'}}
+      style={{ flex: '1 1 200px' }}
     >
       <div
         class={cx('absolute h-8 rounded', {
@@ -45,40 +108,9 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
         })}
         style={{ width: 'calc(100% - 24px)' }}
       ></div>
-      {view === 'raw' || view === 'clean' ? (
-        <textarea
-          readonly
-          class={cx(
-            `rounded font-sohne resize-none block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
-            {
-              'bg-white text-black': view !== 'raw',
-              'bg-black text-white font-mono': view === 'raw',
-            },
-          )}
-        >
-          {view === 'clean' ? renderContent(revisions, 'clean', viewInd) : null}
-          {view === 'raw' ? renderContent(revisions, 'raw', viewInd) : null}
-        </textarea>
-      ) : null}
-      {view === 'render' ? (
-        <div
-          class="block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll"
-          innerHTML={renderContent(revisions, view as 'render', viewInd)}
-        ></div>
-      ) : null}
-      {view === 'diff' && diffInd !== undefined ? (
-        <div
-          class="block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll font-sohne"
-          innerHTML={renderContent(
-            revisions,
-            view as 'diff',
-            viewInd,
-            diffInd,
-            styleAsAdded,
-            styleAsRemoved,
-          )}
-        ></div>
-      ) : null}
+      {view === 'raw' || view === 'clean' ? CleanOrRawView() : null}
+      {view === 'render' ? RenderView() : null}
+      {view === 'diff' && diffInd !== undefined ? DiffView() : null}
     </div>
   );
 };

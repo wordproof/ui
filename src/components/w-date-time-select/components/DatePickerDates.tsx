@@ -71,7 +71,7 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
           onDateSelect(mostRecent);
         }}
       >
-        {format(mostRecent, 'MMMM d, yyyy')}
+        {mostRecent ? format(mostRecent, 'MMMM d, yyyy') : ' '}
       </button>
     </div>
   </div>

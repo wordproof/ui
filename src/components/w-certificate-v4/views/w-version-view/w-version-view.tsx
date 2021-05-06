@@ -45,13 +45,16 @@ export class WVersionView {
 
   revisionDateOptions: DateTimeOption[];
   diffRevisionOptions: DateTimeOption[];
-  diffRevisionIndex: number;
 
   setCurrentRevisionIndex(revisionIndex: number) {
     this.currentRevisionIndex =
       revisionIndex >= 0 && revisionIndex < this.allRevisions.length
         ? revisionIndex
         : 0;
+
+    this.diffRevisionOptions = this.revisionDateOptions.slice(
+      this.currentRevisionIndex + 1,
+    );
 
     this.updateUrl();
   }
@@ -130,11 +133,6 @@ export class WVersionView {
     return <span>{this.strings.mostRecent}</span>;
   };
 
-  setDiffRevisionIndex(revisionIndex: number) {
-    this.diffRevisionIndex = revisionIndex;
-    this.diffRevisionOptions = this.revisionDateOptions.slice(revisionIndex);
-  }
-
   render() {
     return (
       <div
@@ -185,9 +183,7 @@ export class WVersionView {
             {this.currentRevisionIndex !== undefined ? (
               <w-date-time-select
                 class="z-40 mr-3"
-                options={this.revisionDateOptions.slice(
-                  this.currentRevisionIndex + 1,
-                )}
+                options={this.diffRevisionOptions}
                 selected={null}
                 openToTop={true}
                 onChange={(ev: InputEvent) => {
