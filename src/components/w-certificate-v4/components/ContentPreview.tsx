@@ -49,7 +49,7 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
         <textarea
           readonly
           class={cx(
-            `rounded font-sohne resize-none block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
+            `absolute rounded font-sohne resize-none block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
             {
               'bg-white text-black': view !== 'raw',
               'bg-black text-white font-mono': view === 'raw',
