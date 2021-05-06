@@ -47,7 +47,7 @@ export class WCertificateVersionsView {
   @State() showCode: boolean = false;
 
   revisionDateOptions: DateTimeOption[];
-  @State() currentRevisionOptions: DateTimeOption[];
+  @State() baseRevisionOptions: DateTimeOption[];
   @State() diffRevisionOptions: DateTimeOption[];
 
   async componentWillLoad() {
@@ -55,7 +55,7 @@ export class WCertificateVersionsView {
     this.revisionDateOptions = [
       { value: new Date(this.content.date), index: 0 },
     ];
-    this.currentRevisionOptions = this.revisionDateOptions;
+    this.baseRevisionOptions = this.revisionDateOptions;
     this.diffRevisionOptions = [];
     this.transactionId = this.allRevisions[0].transactionId;
 
@@ -80,7 +80,7 @@ export class WCertificateVersionsView {
         index,
       }));
 
-      this.setCurrentRevisionIndex(
+      this.setBaseRevisionIndex(
         this.which < this.allRevisions.length ? this.which : 0,
       );
       this.setDiffRevisionIndex(
@@ -91,9 +91,9 @@ export class WCertificateVersionsView {
     }
   }
 
-  setCurrentRevisionIndex(revisionIndex: number) {
+  setBaseRevisionIndex(revisionIndex: number) {
     this.currentRevisionIndex = revisionIndex;
-    this.currentRevisionOptions = this.revisionDateOptions.slice(
+    this.baseRevisionOptions = this.revisionDateOptions.slice(
       revisionIndex + 1,
     );
     this.diffRevisionOptions = this.revisionDateOptions.slice(
@@ -103,10 +103,7 @@ export class WCertificateVersionsView {
 
   setDiffRevisionIndex(revisionIndex: number) {
     this.diffRevisionIndex = revisionIndex;
-    this.currentRevisionOptions = this.revisionDateOptions.slice(
-      0,
-      revisionIndex,
-    );
+    this.baseRevisionOptions = this.revisionDateOptions.slice(0, revisionIndex);
     this.diffRevisionOptions = this.revisionDateOptions.slice(revisionIndex);
   }
 
@@ -144,10 +141,10 @@ export class WCertificateVersionsView {
 
         <div class="h-6 flex justify-center">
           <w-date-time-select
-            options={this.revisionDateOptions}
+            options={this.baseRevisionOptions}
             selected={this.currentRevisionIndex}
             onChange={(ev: InputEvent) => {
-              this.setCurrentRevisionIndex(Number(ev.data));
+              this.setBaseRevisionIndex(Number(ev.data));
             }}
           />
         </div>
@@ -165,7 +162,7 @@ export class WCertificateVersionsView {
           {this.diffRevisionIndex !== null ? (
             <w-date-time-select
               openToTop={true}
-              options={this.revisionDateOptions}
+              options={this.diffRevisionOptions}
               selected={this.diffRevisionIndex}
               onChange={(ev: InputEvent) => {
                 this.setDiffRevisionIndex(Number(ev.data));
