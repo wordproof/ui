@@ -29,7 +29,7 @@ export class WVersionView {
 
   @Prop() locale: string;
 
-  @Prop() view: Exclude<ContentPreviewType, 'diff'>;
+  @Prop({ mutable: true }) view: Exclude<ContentPreviewType, 'diff'>;
 
   @Prop() revision: number;
 
@@ -93,20 +93,24 @@ export class WVersionView {
     return '';
   }
 
-  getRoute(): string {
+  updateUrl() {
+    router.replace(
+      `${CertificateView.content}?revision=${this.currentRevisionIndex}&view=${this.view}`,
+    );
+  }
+
+  toggleView() {
     if (this.view === 'raw') {
-      return `${CertificateView.clean}?revision=${this.currentRevisionIndex}`;
+      this.view = 'clean';
+      return;
     }
 
     if (this.view === 'clean') {
-      return `${CertificateView.raw}?revision=${this.currentRevisionIndex}`;
+      this.view = 'raw';
+      return;
     }
 
-    return '';
-  }
-
-  updateUrl() {
-    router.replace(`${this.view}?revision=${this.currentRevisionIndex}`);
+    this.view = 'clean';
   }
 
   getOpenButtonText: getButtonTextFunction = (
@@ -199,7 +203,8 @@ export class WVersionView {
               outlined
               text={this.getButtonText()}
               onClick={() => {
-                router.replace(this.getRoute());
+                this.toggleView();
+                this.updateUrl();
               }}
             />
           </div>
