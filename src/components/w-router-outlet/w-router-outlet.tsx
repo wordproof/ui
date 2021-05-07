@@ -19,8 +19,10 @@ export class MyEmbeddedComponent {
   }
 
   getMatchedRoute() {
-    const matchedRouteIndex = this.routes.findIndex(route =>
-      location.hash.includes(`${TRIGGER_HASH}-${route.hash}`),
+    const matchedRouteIndex = this.routes.findIndex(
+      route =>
+        location.hash.includes(`${TRIGGER_HASH}-${route.hash}`) &&
+        (!onMobile() || (onMobile() && route.mobile)),
     );
 
     return matchedRouteIndex === -1
@@ -45,9 +47,7 @@ export class MyEmbeddedComponent {
           maxHeight: onMobile()
             ? 'calc(100vh - 4rem)'
             : this.matchedRoute.maxHeight,
-          minHeight: onMobile()
-            ? ''
-            : this.matchedRoute.minHeight,
+          minHeight: onMobile() ? '' : this.matchedRoute.minHeight,
           height: onMobile() ? '' : this.matchedRoute.height,
         }}
       >
