@@ -276,12 +276,11 @@ export class WDateTimeSelect {
 
             <div
               class={cx(
-                'bg-white px-4 py-3 absolute rounded -right-0.5 transform translate-x-full overflow-x-auto',
+                'time-options-panel bg-white px-4 py-3 absolute rounded -right-0.5 transform translate-x-full overflow-x-auto',
                 {
                   hidden: !this.showTimeOptions,
                 },
               )}
-              style={{ maxWidth: '21.5rem', maxHeight: '22rem' }}
             >
               <ul
                 class={cx('grid cell-border-top', {
