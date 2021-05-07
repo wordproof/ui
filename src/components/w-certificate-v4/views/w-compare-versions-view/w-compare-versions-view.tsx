@@ -212,7 +212,7 @@ export class WCertificateVersionsView {
                 `${CertificateView.compare}?which=${
                   this.currentRevisionIndex
                 }&to=${this.diffRevisionIndex}&view=${
-                  this.showCode ? 'raw' : 'content'
+                  this.showCode ? 'raw' : 'clean'
                 }`,
               );
             }}
