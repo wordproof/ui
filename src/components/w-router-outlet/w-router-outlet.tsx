@@ -46,9 +46,9 @@ export class MyEmbeddedComponent {
             ? 'calc(100vh - 4rem)'
             : this.matchedRoute.maxHeight,
           minHeight: onMobile()
-            ? 'calc(100vh - 4rem)'
+            ? ''
             : this.matchedRoute.minHeight,
-          height: onMobile() ? 'calc(100vh - 4rem)' : this.matchedRoute.height,
+          height: onMobile() ? '' : this.matchedRoute.height,
         }}
       >
         {this.matchedRoute.renderer(this.extractParams())}
