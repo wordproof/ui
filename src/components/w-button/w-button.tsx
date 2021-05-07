@@ -70,7 +70,7 @@ export class WButton {
         type={this.type}
         disabled={this.disabled}
         class={cx(
-          'items-center active:bg-gray-900 outline-none focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150',
+          'select-none items-center active:bg-gray-900 outline-none focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150',
           {
             ['px-5 py-2 font-sohne-bold focus:ring-blue focus:ring-2 focus:ring-opacity-50 rounded-full']:
               !this.text && !this.icon,
@@ -88,7 +88,7 @@ export class WButton {
             ['font-sohne']: this.text,
             ['underline font-sohne']: this.text && !this.underlineNone,
             ['text-gray-600 hover:text-gray-800']:
-              this.text && this.color === 'gray',
+              this.text && (this.color === 'gray' || this.disabled),
             ['text-white']: this.text && this.color === 'white',
             ['text-xs']: this.size === 'xs',
             ['text-base']: this.size === 'base',
@@ -99,6 +99,7 @@ export class WButton {
               'hover:bg-gray-200 rounded-full',
               this.size === 'xs' ? 'p-1.5' : 'p-2',
             )]: this.icon,
+            ['cursor-default']: this.disabled,
           },
         )}
       >
