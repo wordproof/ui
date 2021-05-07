@@ -85,33 +85,23 @@ export class WCertificateV4 {
       height: 'calc(100vh - 2rem)',
     },
     {
-      hash: CertificateView.raw,
-      renderer: (params: URLSearchParams) => (
-        <w-version-view
-          strings={this.strings}
-          content={this.content}
-          locale={this.locale}
-          view="raw"
-          revision={parseInt(params.get('revision'))}
-          viewBlockchainUrl={this.viewBlockchainUrl}
-          timestampCheckUrl={this.timestampCheckUrl}
-        ></w-version-view>
-      ),
-      minHeight: '634px',
-    },
-    {
-      hash: CertificateView.clean,
-      renderer: (params: URLSearchParams) => (
-        <w-version-view
-          strings={this.strings}
-          content={this.content}
-          locale={this.locale}
-          view="clean"
-          revision={parseInt(params.get('revision'))}
-          viewBlockchainUrl={this.viewBlockchainUrl}
-          timestampCheckUrl={this.timestampCheckUrl}
-        ></w-version-view>
-      ),
+      hash: CertificateView.content,
+      renderer: (params: URLSearchParams) => {
+        const revision = parseInt(params.get('revision'));
+        const view = params.get('view');
+
+        return (
+          <w-version-view
+            strings={this.strings}
+            content={this.content}
+            locale={this.locale}
+            view={view === 'raw' || view === 'clean' ? view : 'clean'}
+            revision={revision}
+            viewBlockchainUrl={this.viewBlockchainUrl}
+            timestampCheckUrl={this.timestampCheckUrl}
+          ></w-version-view>
+        );
+      },
       minHeight: '634px',
     },
     {

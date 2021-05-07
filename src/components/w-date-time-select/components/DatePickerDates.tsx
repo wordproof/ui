@@ -49,6 +49,8 @@ const DatePickerDates: FunctionalComponent<DatePickerDatesProps> = ({
           }}
         />
       ))}
+
+      {displayDates.length === 35 ? <div class="w-11 h-11"></div> : null}
     </div>
     <div class="border-b border-gray-400 w-full"></div>
     <div class="flex items-center justify-center my-5 font-sohne">

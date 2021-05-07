@@ -68,10 +68,13 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         {strings.thisContent}
       </div>
       <div
-        class={cx('-mt-3 font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block', {
-          'text-blue bg-gray-200': !hasChanged,
-          'text-black bg-white': hasChanged,
-        })}
+        class={cx(
+          '-mt-3 font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block',
+          {
+            'text-blue bg-gray-200': !hasChanged,
+            'text-black bg-white': hasChanged,
+          },
+        )}
         style={{ fontSize: '1.75rem' }}
       >
         {hasChanged ? strings.hasChanged : strings.hasNotChanged}
@@ -108,7 +111,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         <span class="mr-4">
           <BaseButton
             text={strings.compareVersions}
-            onClick={() => router.go(CertificateView.clean)}
+            onClick={() => router.go(CertificateView.content)}
           />
         </span>
       )}
