@@ -30,3 +30,9 @@
   border-left-width: 1px;
   border-left-style: solid;
 }
+
+.time-options-panel {
+  right: -0.125rem;
+  maxwidth: '21.5rem';
+  maxheight: '22rem';
+}
