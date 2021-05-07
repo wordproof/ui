@@ -65,6 +65,7 @@ export class WCertificateV4 {
         />
       ),
       default: true,
+      mobile: true,
       height: '590px',
     },
     {
@@ -112,6 +113,7 @@ export class WCertificateV4 {
           hasChanged={this.content.hasChanged}
         />
       ),
+      mobile: true,
       height: '692px',
     },
   ] as Route[];

@@ -7,6 +7,7 @@ import { DateTimeFormatOptions, formatDate } from '../../../utils/locale';
 import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
 import { CertificateView } from '../types';
+import { onMobile } from '../../../utils/responsive';
 
 // import { router } from '../../w-router-outlet';
 
@@ -34,10 +35,13 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   hasChanged,
 }) => (
   <div
-    class="px-56 py-10 flex flex-col items-center relative"
+    class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
     style={{ lineHeight: '1.5' }}
   >
-    <TabLabel onClick={() => router.go(CertificateView.importance)} />
+    {onMobile() ? null : (
+      <TabLabel onClick={() => router.go(CertificateView.importance)} />
+    )}
+
     <div
       class={cx(
         ' mx-auto w-20 h-20 rounded-full flex items-center justify-center',
@@ -64,38 +68,31 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       )}
     </div>
     <h2 class="font-sohne-bold text-center mt-2">
-      <div class="text-black font-bold" style={{ fontSize: '3.75rem' }}>
+      <div class="text-black font-bold text-3xl sm:text-4xl">
         {strings.thisContent}
       </div>
       <div
         class={cx(
-          '-mt-3 font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block',
+          'sm:-mt-3 font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block text-1.5xl',
           {
             'text-blue bg-gray-200': !hasChanged,
             'text-black bg-white': hasChanged,
           },
         )}
-        style={{ fontSize: '1.75rem' }}
       >
         {hasChanged ? strings.hasChanged : strings.hasNotChanged}
       </div>
     </h2>
 
-    <p
-      class="text-black text-base text-center mx-auto mt-2 font-sohne"
-      style={{ width: '26rem' }}
-    >
+    <p class="text-black text-base text-center mx-auto mt-2 font-sohne sm:w-104">
       {strings.thatIsImportantText}
     </p>
 
-    <div
-      class="shadow-md rounded mx-auto mt-8 p-6 font-sohne bg-white"
-      style={{ width: '26rem' }}
-    >
-      <div class="flex items-center">
+    <div class="shadow-md rounded mx-auto mt-8 p-6 font-sohne bg-white sm:w-104">
+      <div class="flex flex-wrap items-center justify-center sm:justify-start">
         <CheckBullet checked={!hasChanged} />
         <div class="text-gray-600 ml-4">{strings.lastEdited}</div>
-        <div class="text-black ml-2">
+        <div class="text-black ml-2 mt-2 sm:mt-0">
           {formatDate(lastEdited, locale, DATE_FORMAT_OPTIONS)}
         </div>
       </div>
@@ -106,9 +103,9 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       </div> */}
     </div>
 
-    <div class="flex justify-center mt-8">
-      {hasChanged ? null : (
-        <span class="mr-4">
+    <div class="flex flex-wrap justify-center mt-8">
+      {hasChanged || onMobile() ? null : (
+        <span class="mb-4 sm:mb-0 sm:mr-4">
           <BaseButton
             text={strings.compareVersions}
             onClick={() => router.go(CertificateView.content)}

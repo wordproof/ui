@@ -4,6 +4,7 @@ import BaseButton from '../components/base-button';
 import cx from 'classnames';
 import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
+import { onMobile } from '../../../utils/responsive';
 
 interface AboutViewProps {
   strings: CertificateV4Strings;
@@ -15,10 +16,10 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
   hasChanged,
 }) => (
   <div
-    class="px-56 py-10 flex flex-col items-center relative"
+    class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
     style={{ lineHeight: '1.5' }}
   >
-    <TabLabel onClick={() => {}} />
+    {onMobile() ? null : <TabLabel onClick={() => {}} />}
     <div
       class={cx(
         ' mx-auto w-20 h-20 rounded-full flex items-center justify-center',
@@ -45,35 +46,34 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
       )}
     </div>
     <h2 class="font-sohne-bold text-center mt-2">
-      <div class="text-black font-bold" style={{ fontSize: '3.75rem' }}>
+      <div class="text-black font-bold text-3xl sm:text-4xl">
         {strings.thisContent}
       </div>
       <div
-        class={cx('-mt-4 font-bold', {
-          'text-blue': !hasChanged,
-          'text-black': hasChanged,
-        })}
-        style={{ fontSize: '1.75rem' }}
+        class={cx(
+          'sm:-mt-3 font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block text-1.5xl',
+          {
+            'text-blue bg-gray-200': !hasChanged,
+            'text-black bg-white': hasChanged,
+          },
+        )}
       >
         {hasChanged ? strings.hasChanged : strings.hasNotChanged}
       </div>
     </h2>
 
     <p
-      class="text-black text-base text-center mx-auto mt-4 font-sohne"
-      style={{ width: '26rem' }}
+      class="text-black text-base text-center mx-auto mt-4 font-sohne sm:w-104"
       innerHTML={strings.whatIsTimestamp}
     ></p>
 
     <p
-      class="text-black text-base text-center mx-auto mt-4 font-sohne"
-      style={{ width: '26rem' }}
+      class="sm:w-104 text-black text-base text-center mx-auto mt-4 font-sohne"
       innerHTML={strings.withTimestampYouCan}
     ></p>
 
     <p
-      class="text-black text-base text-center mx-auto mt-4 font-sohne"
-      style={{ width: '26rem' }}
+      class="sm:w-104 text-black text-base text-center mx-auto mt-4 font-sohne"
     >
       {strings.wantToKnowMore}
       <a

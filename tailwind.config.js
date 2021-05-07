@@ -29,8 +29,10 @@ module.exports = {
         'base': '1rem',
         'lg': '1.125rem',
         'xl': '1.5rem',
+        '1.5xl': '1.75rem',
         '2xl': '2rem',
         '3xl': '2.5rem',
+        '4xl': '3.75rem',
       },
       spacing: {
         1: '4px',
@@ -41,6 +43,7 @@ module.exports = {
         8: '32px',
         10: '40px',
         20: '80px',
+        104: '26rem',
       },
       fontFamily: {
         'sans': ['Nunito', ...defaultTheme.fontFamily.sans],
