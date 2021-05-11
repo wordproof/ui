@@ -7,7 +7,6 @@ import {
   WPRevision,
 } from '../../../../utils/certificate-data';
 import { ContentPreviewType } from '../../../../utils/content-preview';
-import { onMobile } from '../../../../utils/responsive';
 import { getButtonTextFunction } from '../../../w-date-time-select/components/OpenButton';
 import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
 import { router } from '../../../w-router-outlet';
@@ -141,7 +140,7 @@ export class WVersionView {
   render() {
     return (
       <div
-        class="px-3 pt-6 sm:pt-7 pb-10 flex flex-col items-center relative"
+        class="px-3 pt-6 sm:pt-7 pb-7 sm:pb-10 flex flex-col items-center relative"
         style={{ lineHeight: '1.5', minHeight: '634px' }}
       >
         <TabLabel onClick={() => router.go(CertificateView.importance)} />
@@ -154,7 +153,9 @@ export class WVersionView {
           />
         </div>
 
-        <h2 class="sm:hidden my-1 text-black font-bold text-xl font-sohne-semibold">{this.strings.showContent}</h2>
+        <h2 class="sm:hidden my-1 text-black font-bold text-xl font-sohne-semibold">
+          {this.strings.showContent}
+        </h2>
 
         <p
           class="hidden sm:block text-black text-base text-center mx-auto mt-2 h-12 font-sohne"
@@ -199,10 +200,10 @@ export class WVersionView {
             />
           ) : null}
 
-          <div class="flex mt-10">
-            {this.currentRevisionIndex !== undefined && !onMobile() ? (
+          <div class="flex mt-6 sm:mt-10">
+            {this.currentRevisionIndex !== undefined ? (
               <w-date-time-select
-                class="z-40 mr-3"
+                class="z-40 mr-3 hidden sm:inline-block"
                 options={this.diffRevisionOptions}
                 selected={null}
                 openToTop={true}
