@@ -4,7 +4,6 @@ import BaseButton from '../components/base-button';
 import cx from 'classnames';
 import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
-import { onMobile } from '../../../utils/responsive';
 
 interface AboutViewProps {
   strings: CertificateV4Strings;

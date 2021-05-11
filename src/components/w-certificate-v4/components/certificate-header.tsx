@@ -26,7 +26,7 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
     </button>
 
     <h2
-      class="capitalize text-black font-sohne-bold font-bold"
+      class="hidden sm:block capitalize text-black font-sohne-bold font-bold"
       style={{ fontSize: '1.75rem' }}
     >
       {strings.compareVersions}

@@ -141,7 +141,7 @@ export class WVersionView {
   render() {
     return (
       <div
-        class="px-3 pt-7 pb-10 flex flex-col items-center relative"
+        class="px-3 pt-6 sm:pt-7 pb-10 flex flex-col items-center relative"
         style={{ lineHeight: '1.5', minHeight: '634px' }}
       >
         <TabLabel onClick={() => router.go(CertificateView.importance)} />
@@ -153,6 +153,9 @@ export class WVersionView {
             timestampCheckUrl={this.timestampCheckUrl}
           />
         </div>
+
+        <h2 class="sm:hidden my-1 text-black font-bold text-xl font-sohne-semibold">{this.strings.showContent}</h2>
+
         <p
           class="hidden sm:block text-black text-base text-center mx-auto mt-2 h-12 font-sohne"
           style={{ width: '26rem' }}
