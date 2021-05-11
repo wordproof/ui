@@ -187,7 +187,6 @@ export class WVersionView {
               onChange={(ev: InputEvent) => {
                 this.setCurrentRevisionIndex(Number(ev.data));
               }}
-              getButtonText={this.getOpenButtonText.bind(this)}
             />
           ) : null}
 

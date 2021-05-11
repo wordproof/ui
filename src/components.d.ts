@@ -316,7 +316,6 @@ export namespace Components {
         "wrapClassName": string;
     }
     interface WRevisionSelect {
-        "getButtonText": getButtonTextFunction;
         /**
           * revision date time options
          */
@@ -808,7 +807,6 @@ declare namespace LocalJSX {
         "wrapClassName"?: string;
     }
     interface WRevisionSelect {
-        "getButtonText"?: getButtonTextFunction;
         /**
           * revision date time options
          */
