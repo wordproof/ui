@@ -141,11 +141,11 @@ export class WVersionView {
     return (
       <div
         class="px-3 pt-6 sm:pt-7 pb-7 sm:pb-10 flex flex-col items-center relative"
-        style={{ lineHeight: '1.5', minHeight: '634px' }}
+        style={{ lineHeight: '1.5' }}
       >
         <TabLabel onClick={() => router.go(CertificateView.importance)} />
 
-        <div class="px-7 w-full">
+        <div class="px-2 sm:px-7 w-full">
           <CertificateHeader
             strings={this.strings}
             viewBlockchainUrl={this.viewBlockchainUrl}
@@ -164,7 +164,7 @@ export class WVersionView {
           {this.strings.thatIsImportantText}
         </p>
 
-        <div class="w-full flex flex-col flex-grow items-center style={{height:'471px'}}">
+        <div class="w-full flex flex-col flex-grow items-center">
           {this.currentRevisionIndex !== undefined ? (
             <div class="h-12 hidden sm:block">
               <w-date-time-select

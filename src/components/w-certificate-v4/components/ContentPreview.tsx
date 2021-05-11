@@ -7,6 +7,7 @@ import {
   StyleContentFunction,
 } from '../../../utils/content-preview';
 import cx from 'classnames';
+import { onMobile } from '../../../utils/responsive';
 
 interface ContentPreviewProps {
   revisions: WPRevision[];
@@ -99,7 +100,11 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
         'border-light-blue bg-white': view !== 'raw',
         'bg-black': view === 'raw',
       })}
-      style={{ flex: '1 1 200px' }}
+      style={
+        onMobile()
+          ? { flex: '1 1 calc(100vh - 21rem)' }
+          : { flex: '1 1 20rem' }
+      }
     >
       <div
         class={cx('absolute h-8 rounded', {
