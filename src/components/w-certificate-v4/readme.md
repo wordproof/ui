@@ -42,8 +42,10 @@ graph TD;
   w-date-time-select --> w-icon
   w-dropdown-menu --> w-icon
   w-version-view --> w-date-time-select
+  w-version-view --> w-revision-select
   w-version-view --> w-icon
   w-version-view --> w-dropdown-menu
+  w-revision-select --> w-icon
   w-modal --> w-icon
   style w-certificate-v4 fill:#f9f,stroke:#333,stroke-width:4px
 ```
