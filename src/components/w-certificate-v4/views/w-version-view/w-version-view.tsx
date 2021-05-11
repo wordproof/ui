@@ -7,6 +7,7 @@ import {
   WPRevision,
 } from '../../../../utils/certificate-data';
 import { ContentPreviewType } from '../../../../utils/content-preview';
+import { onMobile } from '../../../../utils/responsive';
 import { getButtonTextFunction } from '../../../w-date-time-select/components/OpenButton';
 import { DateTimeOption } from '../../../w-date-time-select/w-date-time-select';
 import { router } from '../../../w-router-outlet';
@@ -161,7 +162,7 @@ export class WVersionView {
 
         <div class="w-full flex flex-col flex-grow items-center style={{height:'471px'}}">
           <div class="h-12">
-            {this.currentRevisionIndex !== undefined ? (
+            {this.currentRevisionIndex !== undefined && !onMobile() ? (
               <w-date-time-select
                 class="mt-2 relative top-7 z-40"
                 options={this.revisionDateOptions}
@@ -173,6 +174,18 @@ export class WVersionView {
               />
             ) : null}
           </div>
+
+          {this.currentRevisionIndex !== undefined && onMobile() ? (
+              <w-revision-select
+                class="mt-2 relative top-7 z-40"
+                options={this.revisionDateOptions}
+                selected={this.currentRevisionIndex}
+                onChange={(ev: InputEvent) => {
+                  this.setCurrentRevisionIndex(Number(ev.data));
+                }}
+                getButtonText={this.getOpenButtonText.bind(this)}
+              />
+            ) : null}
 
           {this.currentRevisionIndex !== undefined ? (
             <ContentPreview

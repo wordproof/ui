@@ -50,12 +50,10 @@ const getLocaleComponentStrings = async (
   return strings;
 };
 
-export const getLocaleStrings = async (
-  element: HTMLElement,
+export const getLocaleStringsByNameAndLang = async (
+  componentName: string,
+  componentLanguage: string,
 ): Promise<Record<string, string>> => {
-  const componentName = element.tagName.toLowerCase();
-  const componentLanguage = getComponentClosestLanguage(element);
-
   const strings = await getLocaleComponentStrings(
     componentName,
     componentLanguage,
@@ -79,6 +77,15 @@ export const getLocaleStrings = async (
       return value;
     },
   });
+};
+
+export const getLocaleStrings = async (
+  element: HTMLElement,
+): Promise<Record<string, string>> => {
+  const componentName = element.tagName.toLowerCase();
+  const componentLanguage = getComponentClosestLanguage(element);
+
+  return getLocaleStringsByNameAndLang(componentName, componentLanguage);
 };
 
 export interface DateTimeFormatOptions {
