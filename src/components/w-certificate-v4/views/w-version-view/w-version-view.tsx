@@ -154,15 +154,15 @@ export class WVersionView {
           />
         </div>
         <p
-          class="text-black text-base text-center mx-auto mt-2 h-12 font-sohne"
+          class="hidden sm:block text-black text-base text-center mx-auto mt-2 h-12 font-sohne"
           style={{ width: '26rem' }}
         >
           {this.strings.thatIsImportantText}
         </p>
 
         <div class="w-full flex flex-col flex-grow items-center style={{height:'471px'}}">
-          <div class="h-12">
-            {this.currentRevisionIndex !== undefined && !onMobile() ? (
+          {this.currentRevisionIndex !== undefined ? (
+            <div class="h-12 hidden sm:block">
               <w-date-time-select
                 class="mt-2 relative top-7 z-40"
                 options={this.revisionDateOptions}
@@ -172,20 +172,20 @@ export class WVersionView {
                 }}
                 getButtonText={this.getOpenButtonText.bind(this)}
               />
-            ) : null}
-          </div>
+            </div>
+          ) : null}
 
-          {this.currentRevisionIndex !== undefined && onMobile() ? (
-              <w-revision-select
-                class="mt-2 relative top-7 z-40"
-                options={this.revisionDateOptions}
-                selected={this.currentRevisionIndex}
-                onChange={(ev: InputEvent) => {
-                  this.setCurrentRevisionIndex(Number(ev.data));
-                }}
-                getButtonText={this.getOpenButtonText.bind(this)}
-              />
-            ) : null}
+          {this.currentRevisionIndex !== undefined ? (
+            <w-revision-select
+              class="mb-4 block sm:hidden"
+              options={this.revisionDateOptions}
+              selected={this.currentRevisionIndex}
+              onChange={(ev: InputEvent) => {
+                this.setCurrentRevisionIndex(Number(ev.data));
+              }}
+              getButtonText={this.getOpenButtonText.bind(this)}
+            />
+          ) : null}
 
           {this.currentRevisionIndex !== undefined ? (
             <ContentPreview
@@ -197,7 +197,7 @@ export class WVersionView {
           ) : null}
 
           <div class="flex mt-10">
-            {this.currentRevisionIndex !== undefined ? (
+            {this.currentRevisionIndex !== undefined && !onMobile() ? (
               <w-date-time-select
                 class="z-40 mr-3"
                 options={this.diffRevisionOptions}

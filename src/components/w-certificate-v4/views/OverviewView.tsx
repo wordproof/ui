@@ -38,9 +38,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
     style={{ lineHeight: '1.5' }}
   >
-    {onMobile() ? null : (
-      <TabLabel onClick={() => router.go(CertificateView.importance)} />
-    )}
+    <TabLabel onClick={() => router.go(CertificateView.importance)} />
 
     <div
       class={cx(
