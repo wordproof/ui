@@ -38,9 +38,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
     style={{ lineHeight: '1.5' }}
   >
-    {onMobile() ? null : (
-      <TabLabel onClick={() => router.go(CertificateView.importance)} />
-    )}
+    <TabLabel onClick={() => router.go(CertificateView.importance)} />
 
     <div
       class={cx(
@@ -104,19 +102,21 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
     </div>
 
     <div class="flex flex-wrap justify-center mt-8">
-      {hasChanged || onMobile() ? null : (
-        <span class="mb-4 sm:mb-0 sm:mr-4">
+      {hasChanged ? null : (
+        <span class="mb-4 sm:mb-0 mr-2 sm:mr-4">
           <BaseButton
-            text={strings.compareVersions}
+            text={onMobile() ? strings.showContent : strings.compareVersions}
             onClick={() => router.go(CertificateView.content)}
           />
         </span>
       )}
-      <BaseButton
-        outlined
-        text={strings.explainThis}
-        onClick={() => router.go(CertificateView.importance)}
-      />
+      <span>
+        <BaseButton
+          outlined
+          text={strings.explainThis}
+          onClick={() => router.go(CertificateView.importance)}
+        />
+      </span>
     </div>
 
     <w-logo

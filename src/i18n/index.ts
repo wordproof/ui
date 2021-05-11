@@ -77,7 +77,8 @@ type CertificateV4Keys = [
   'whatIsTimestamp',
   'withTimestampYouCan',
   'wantToKnowMore',
-  'goBack'
+  'goBack',
+  'showContent'
 ][number];
 export type CertificateV4Strings = Record<CertificateV4Keys, string>;
 

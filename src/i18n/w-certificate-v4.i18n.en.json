@@ -21,5 +21,6 @@
   "whatIsTimestamp": "The <strong>fingerprint</strong> of this webpage has been published to the blockchain, a public ledger that <strong>can’t be changed</strong>. This is what is called a “timestamp”.",
   "withTimestampYouCan": "With this timestamp, you can verify <strong>when</strong> and <strong>how</strong> the website changed its content over time. Websites that timestamp their content stand for more transparency and accountability, which ultimately leads to a more trustworthy internet.",
   "wantToKnowMore": "Want to know more? Visit",
-  "goBack": "Go back"
+  "goBack": "Go back",
+  "showContent":"Show content"
 }

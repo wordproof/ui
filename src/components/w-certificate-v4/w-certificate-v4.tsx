@@ -104,6 +104,7 @@ export class WCertificateV4 {
         );
       },
       minHeight: '634px',
+      mobile: true,
     },
     {
       hash: CertificateView.importance,

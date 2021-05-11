@@ -140,28 +140,33 @@ export class WVersionView {
   render() {
     return (
       <div
-        class="px-3 pt-7 pb-10 flex flex-col items-center relative"
-        style={{ lineHeight: '1.5', minHeight: '634px' }}
+        class="px-3 pt-6 sm:pt-7 pb-7 sm:pb-10 flex flex-col items-center relative"
+        style={{ lineHeight: '1.5' }}
       >
         <TabLabel onClick={() => router.go(CertificateView.importance)} />
 
-        <div class="px-7 w-full">
+        <div class="px-2 sm:px-7 w-full">
           <CertificateHeader
             strings={this.strings}
             viewBlockchainUrl={this.viewBlockchainUrl}
             timestampCheckUrl={this.timestampCheckUrl}
           />
         </div>
+
+        <h2 class="sm:hidden my-1 text-black font-bold text-xl font-sohne-semibold">
+          {this.strings.showContent}
+        </h2>
+
         <p
-          class="text-black text-base text-center mx-auto mt-2 h-12 font-sohne"
+          class="hidden sm:block text-black text-base text-center mx-auto mt-2 h-12 font-sohne"
           style={{ width: '26rem' }}
         >
           {this.strings.thatIsImportantText}
         </p>
 
-        <div class="w-full flex flex-col flex-grow items-center style={{height:'471px'}}">
-          <div class="h-12">
-            {this.currentRevisionIndex !== undefined ? (
+        <div class="w-full flex flex-col flex-grow items-center">
+          {this.currentRevisionIndex !== undefined ? (
+            <div class="h-12 hidden sm:block">
               <w-date-time-select
                 class="mt-2 relative top-7 z-40"
                 options={this.revisionDateOptions}
@@ -171,8 +176,19 @@ export class WVersionView {
                 }}
                 getButtonText={this.getOpenButtonText.bind(this)}
               />
-            ) : null}
-          </div>
+            </div>
+          ) : null}
+
+          {this.currentRevisionIndex !== undefined ? (
+            <w-revision-select
+              class="mb-4 block sm:hidden"
+              options={this.revisionDateOptions}
+              selected={this.currentRevisionIndex}
+              onChange={(ev: InputEvent) => {
+                this.setCurrentRevisionIndex(Number(ev.data));
+              }}
+            />
+          ) : null}
 
           {this.currentRevisionIndex !== undefined ? (
             <ContentPreview
@@ -183,10 +199,10 @@ export class WVersionView {
             />
           ) : null}
 
-          <div class="flex mt-10">
+          <div class="flex mt-6 sm:mt-10">
             {this.currentRevisionIndex !== undefined ? (
               <w-date-time-select
-                class="z-40 mr-3"
+                class="z-40 mr-3 hidden sm:inline-block"
                 options={this.diffRevisionOptions}
                 selected={null}
                 openToTop={true}

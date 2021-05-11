@@ -4,7 +4,6 @@ import BaseButton from '../components/base-button';
 import cx from 'classnames';
 import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
-import { onMobile } from '../../../utils/responsive';
 
 interface AboutViewProps {
   strings: CertificateV4Strings;
@@ -19,7 +18,7 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
     style={{ lineHeight: '1.5' }}
   >
-    {onMobile() ? null : <TabLabel onClick={() => {}} />}
+    <TabLabel onClick={() => {}} />
     <div
       class={cx(
         ' mx-auto w-20 h-20 rounded-full flex items-center justify-center',
@@ -72,9 +71,7 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
       innerHTML={strings.withTimestampYouCan}
     ></p>
 
-    <p
-      class="sm:w-104 text-black text-base text-center mx-auto mt-4 font-sohne"
-    >
+    <p class="sm:w-104 text-black text-base text-center mx-auto mt-4 font-sohne">
       {strings.wantToKnowMore}
       <a
         href="https://wordproof.com/"

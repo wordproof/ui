@@ -8,7 +8,7 @@ interface TabLabelProps {
 const TabLabel: FunctionalComponent<TabLabelProps> = ({ onClick }) => (
   <div
     class={cx(
-      'select-none bg-gradient-to-b from-blue to-purple text-white font-sohne-semibold rounded-r w-10 pt-3 pb-4 inline-flex items-center justify-center absolute right-0 top-0 mt-32 transform translate-x-full',
+      'hidden sm:inline-flex select-none bg-gradient-to-b from-blue to-purple text-white font-sohne-semibold rounded-r w-10 pt-3 pb-4 items-center justify-center absolute right-0 top-0 mt-32 transform translate-x-full',
     )}
     style={{ writingMode: 'vertical-rl' }}
     onClick={() => onClick()}

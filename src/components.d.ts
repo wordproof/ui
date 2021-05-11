@@ -13,6 +13,7 @@ import { DateTimeOption } from "./components/w-date-time-select/w-date-time-sele
 import { getButtonTextFunction } from "./components/w-date-time-select/components/OpenButton";
 import { VNode } from "@stencil/core";
 import { DropdownMenuOption } from "./components/w-dropdown-menu/w-dropdown-menu";
+import { DateTimeOption as DateTimeOption1 } from "./components/w-date-time-select/w-date-time-select";
 import { Route } from "./components/w-router-outlet";
 import { ContentPreviewType } from "./utils/content-preview";
 export namespace Components {
@@ -314,6 +315,16 @@ export namespace Components {
          */
         "wrapClassName": string;
     }
+    interface WRevisionSelect {
+        /**
+          * revision date time options
+         */
+        "options": DateTimeOption[];
+        /**
+          * selected option index
+         */
+        "selected": number | null;
+    }
     interface WRouterOutlet {
         "routes": Route[];
     }
@@ -448,6 +459,12 @@ declare global {
         prototype: HTMLWModalElement;
         new (): HTMLWModalElement;
     };
+    interface HTMLWRevisionSelectElement extends Components.WRevisionSelect, HTMLStencilElement {
+    }
+    var HTMLWRevisionSelectElement: {
+        prototype: HTMLWRevisionSelectElement;
+        new (): HTMLWRevisionSelectElement;
+    };
     interface HTMLWRouterOutletElement extends Components.WRouterOutlet, HTMLStencilElement {
     }
     var HTMLWRouterOutletElement: {
@@ -481,6 +498,7 @@ declare global {
         "w-input-text": HTMLWInputTextElement;
         "w-logo": HTMLWLogoElement;
         "w-modal": HTMLWModalElement;
+        "w-revision-select": HTMLWRevisionSelectElement;
         "w-router-outlet": HTMLWRouterOutletElement;
         "w-version-view": HTMLWVersionViewElement;
     }
@@ -788,6 +806,16 @@ declare namespace LocalJSX {
          */
         "wrapClassName"?: string;
     }
+    interface WRevisionSelect {
+        /**
+          * revision date time options
+         */
+        "options"?: DateTimeOption[];
+        /**
+          * selected option index
+         */
+        "selected"?: number | null;
+    }
     interface WRouterOutlet {
         "routes"?: Route[];
     }
@@ -821,6 +849,7 @@ declare namespace LocalJSX {
         "w-input-text": WInputText;
         "w-logo": WLogo;
         "w-modal": WModal;
+        "w-revision-select": WRevisionSelect;
         "w-router-outlet": WRouterOutlet;
         "w-version-view": WVersionView;
     }
@@ -849,6 +878,7 @@ declare module "@stencil/core" {
             "w-input-text": LocalJSX.WInputText & JSXBase.HTMLAttributes<HTMLWInputTextElement>;
             "w-logo": LocalJSX.WLogo & JSXBase.HTMLAttributes<HTMLWLogoElement>;
             "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;
+            "w-revision-select": LocalJSX.WRevisionSelect & JSXBase.HTMLAttributes<HTMLWRevisionSelectElement>;
             "w-router-outlet": LocalJSX.WRouterOutlet & JSXBase.HTMLAttributes<HTMLWRouterOutletElement>;
             "w-version-view": LocalJSX.WVersionView & JSXBase.HTMLAttributes<HTMLWVersionViewElement>;
         }
