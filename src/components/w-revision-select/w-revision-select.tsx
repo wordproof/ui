@@ -46,13 +46,22 @@ export class WRevisionSelect {
     this.hostElement.dispatchEvent(event);
   }
 
+  onSelectChange(ev: Event) {
+    const { value } = ev.target as HTMLSelectElement;
+    const emittedEvent = new InputEvent('change', { data: value });
+    this.hostElement.dispatchEvent(emittedEvent);
+  }
+
   render() {
     return (
       <div class="bg-white shadow text-blue h-12 inline-flex pl-4 pr-4 py-3 items-center rounded-full focus:outline-none focus:ring-2 appearance-none font-sohne">
         <div class="mr-2 p-1.5 bg-blue border border-blue rounded-full h-7 w-7 flex items-center justify-center">
           <w-icon name="calendar" class="text-white"></w-icon>
         </div>
-        <select class="border-none outline-none bg-white text-blue">
+        <select
+          class="border-none outline-none bg-white text-blue"
+          onChange={this.onSelectChange.bind(this)}
+        >
           {this.options.map(option => (
             <option
               class="text-black"
