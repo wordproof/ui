@@ -7,7 +7,6 @@ import {
   StyleContentFunction,
 } from '../../../utils/content-preview';
 import cx from 'classnames';
-import { onMobile } from '../../../utils/responsive';
 
 interface ContentPreviewProps {
   revisions: WPRevision[];
