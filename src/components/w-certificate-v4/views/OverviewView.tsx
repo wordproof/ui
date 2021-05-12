@@ -16,6 +16,7 @@ interface OverviewViewProps {
   publishedBy: string;
   locale: string;
   hasChanged: boolean;
+  showRevisions: boolean;
 }
 
 const DATE_FORMAT_OPTIONS = {
@@ -32,6 +33,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   // publishedBy,
   locale,
   hasChanged,
+  showRevisions,
 }) => (
   <div
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
@@ -112,7 +114,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       {hasChanged ? null : (
         <span class="mb-4 sm:mb-0 mr-2 sm:mr-4 hidden sm:inline-flex">
           <BaseButton
-            text={strings.compareVersions}
+            text={showRevisions ? strings.compareVersions : strings.showContent}
             onClick={() => router.go(CertificateView.content)}
           />
         </span>
