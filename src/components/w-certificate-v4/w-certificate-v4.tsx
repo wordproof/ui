@@ -50,6 +50,11 @@ export class WCertificateV4 {
    */
   @Prop() debug: boolean = false;
 
+  /**
+   * shows or hides revisions, default value is `true`
+   */
+  @Prop() showRevisions: string | boolean;
+
   @State() visible: boolean = true;
 
   routes = [
@@ -139,6 +144,8 @@ export class WCertificateV4 {
   }
 
   async componentWillLoad(): Promise<void> {
+    this.showRevisions = this.showRevisions !== 'false';
+
     if (this.debug) {
       enableDebug(LogSources.parsePage);
     }

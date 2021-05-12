@@ -96,6 +96,10 @@ export namespace Components {
           * hides icon on certificate link
          */
         "noIcon": boolean;
+        /**
+          * shows or hides revisions, default value is `true`
+         */
+        "showRevisions": string | boolean;
     }
     interface WCertificateVersionsCompare {
         "allOptions": RevisionOption[];
@@ -583,6 +587,10 @@ declare namespace LocalJSX {
           * hides icon on certificate link
          */
         "noIcon"?: boolean;
+        /**
+          * shows or hides revisions, default value is `true`
+         */
+        "showRevisions"?: string | boolean;
     }
     interface WCertificateVersionsCompare {
         "allOptions"?: RevisionOption[];
