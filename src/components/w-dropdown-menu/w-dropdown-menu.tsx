@@ -62,7 +62,12 @@ export class WDropdownMenu {
           <ul class="absolute right-10 mt-1 bg-white border-light-blue divide-y rounded shadow-md z-30">
             {this.options.map(option => (
               <li
-                class="pl-6 pr-12 pt-5 pb-6 whitespace-nowrap select-none hover:bg-gray-200 cursor-pointer font-sohne"
+                class={cx(
+                  'whitespace-nowrap select-none hover:bg-gray-200 cursor-pointer font-sohne',
+                  {
+                    'pl-6 pr-12 pt-5 pb-6': !option.href,
+                  },
+                )}
                 onClick={() => {
                   this.close();
                   if (option.action) {
@@ -71,7 +76,11 @@ export class WDropdownMenu {
                 }}
               >
                 {option.href ? (
-                  <a href={option.href} target="blank">
+                  <a
+                    href={option.href}
+                    target="blank"
+                    class="block pl-6 pr-12 pt-5 pb-6"
+                  >
                     {option.label}
                   </a>
                 ) : (
