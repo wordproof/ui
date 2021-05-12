@@ -164,6 +164,7 @@ export class WVersionView {
             strings={this.strings}
             viewBlockchainUrl={this.viewBlockchainUrl}
             timestampCheckUrl={this.timestampCheckUrl}
+            title={!this.showRevisions ? this.strings.showContent : ''}
           />
         </div>
 
