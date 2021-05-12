@@ -175,7 +175,10 @@ export class WDateTimeSelect {
   }
 
   toggleDatePicker() {
-    if (this.options.length < 1) {
+    if (
+      this.options.length < 1 ||
+      (this.options.length === 1 && this.selected !== null)
+    ) {
       return;
     }
 
