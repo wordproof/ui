@@ -7,7 +7,6 @@ import { DateTimeFormatOptions, formatDate } from '../../../utils/locale';
 import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
 import { CertificateView } from '../types';
-import { onMobile } from '../../../utils/responsive';
 
 // import { router } from '../../w-router-outlet';
 
@@ -17,6 +16,7 @@ interface OverviewViewProps {
   publishedBy: string;
   locale: string;
   hasChanged: boolean;
+  showRevisions: boolean;
 }
 
 const DATE_FORMAT_OPTIONS = {
@@ -33,6 +33,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
   // publishedBy,
   locale,
   hasChanged,
+  showRevisions,
 }) => (
   <div
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
@@ -103,9 +104,17 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
 
     <div class="flex flex-wrap justify-center mt-8">
       {hasChanged ? null : (
-        <span class="mb-4 sm:mb-0 mr-2 sm:mr-4">
+        <span class="mb-4 sm:mb-0 mr-2 sm:mr-4 sm:hidden">
           <BaseButton
-            text={onMobile() ? strings.showContent : strings.compareVersions}
+            text={strings.showContent}
+            onClick={() => router.go(CertificateView.content)}
+          />
+        </span>
+      )}
+      {hasChanged ? null : (
+        <span class="mb-4 sm:mb-0 mr-2 sm:mr-4 hidden sm:inline-flex">
+          <BaseButton
+            text={showRevisions ? strings.compareVersions : strings.showContent}
             onClick={() => router.go(CertificateView.content)}
           />
         </span>

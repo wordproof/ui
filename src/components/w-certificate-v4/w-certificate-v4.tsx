@@ -50,6 +50,11 @@ export class WCertificateV4 {
    */
   @Prop() debug: boolean = false;
 
+  /**
+   * shows or hides revisions, default value is `true`
+   */
+  @Prop({ mutable: true }) showRevisions: string | boolean;
+
   @State() visible: boolean = true;
 
   routes = [
@@ -62,6 +67,7 @@ export class WCertificateV4 {
           publishedBy=""
           locale={this.locale}
           hasChanged={this.content.hasChanged}
+          showRevisions={this.showRevisions as boolean}
         />
       ),
       default: true,
@@ -100,6 +106,7 @@ export class WCertificateV4 {
             revision={revision}
             viewBlockchainUrl={this.viewBlockchainUrl}
             timestampCheckUrl={this.timestampCheckUrl}
+            showRevisions={this.showRevisions as boolean}
           ></w-version-view>
         );
       },
@@ -139,6 +146,8 @@ export class WCertificateV4 {
   }
 
   async componentWillLoad(): Promise<void> {
+    this.showRevisions = this.showRevisions !== 'false';
+
     if (this.debug) {
       enableDebug(LogSources.parsePage);
     }
@@ -196,7 +205,10 @@ export class WCertificateV4 {
             name="close"
             class="mr-8 mt-8 inline-block"
           ></w-icon>
-          <w-router-outlet routes={this.routes} />
+          <w-router-outlet
+            routes={this.routes}
+            showRevisions={this.showRevisions as boolean}
+          />
         </w-modal>
       </Host>
     ) : (

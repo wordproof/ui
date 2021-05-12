@@ -96,6 +96,10 @@ export namespace Components {
           * hides icon on certificate link
          */
         "noIcon": boolean;
+        /**
+          * shows or hides revisions, default value is `true`
+         */
+        "showRevisions": string | boolean;
     }
     interface WCertificateVersionsCompare {
         "allOptions": RevisionOption[];
@@ -327,11 +331,13 @@ export namespace Components {
     }
     interface WRouterOutlet {
         "routes": Route[];
+        "showRevisions": boolean;
     }
     interface WVersionView {
         "content": WPContent;
         "locale": string;
         "revision": number;
+        "showRevisions": boolean;
         "strings": CertificateV4Strings;
         "timestampCheckUrl": string;
         "view": Exclude<ContentPreviewType, 'diff'>;
@@ -583,6 +589,10 @@ declare namespace LocalJSX {
           * hides icon on certificate link
          */
         "noIcon"?: boolean;
+        /**
+          * shows or hides revisions, default value is `true`
+         */
+        "showRevisions"?: string | boolean;
     }
     interface WCertificateVersionsCompare {
         "allOptions"?: RevisionOption[];
@@ -818,11 +828,13 @@ declare namespace LocalJSX {
     }
     interface WRouterOutlet {
         "routes"?: Route[];
+        "showRevisions"?: boolean;
     }
     interface WVersionView {
         "content"?: WPContent;
         "locale"?: string;
         "revision"?: number;
+        "showRevisions"?: boolean;
         "strings"?: CertificateV4Strings;
         "timestampCheckUrl"?: string;
         "view"?: Exclude<ContentPreviewType, 'diff'>;

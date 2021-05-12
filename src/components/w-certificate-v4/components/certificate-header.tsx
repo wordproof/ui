@@ -8,12 +8,14 @@ interface CertificateHeaderProps {
   strings: CertificateV4Strings;
   viewBlockchainUrl: string;
   timestampCheckUrl: string;
+  title?: string;
 }
 
 const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
   strings,
   viewBlockchainUrl,
   timestampCheckUrl,
+  title,
 }) => (
   <div class="flex justify-between w-full pr-12 h-11">
     <button
@@ -29,7 +31,7 @@ const CertificateHeader: FunctionalComponent<CertificateHeaderProps> = ({
       class="hidden sm:block capitalize text-black font-sohne-bold font-bold"
       style={{ fontSize: '1.75rem' }}
     >
-      {strings.compareVersions}
+      {title ? title : strings.compareVersions}
     </h2>
 
     <w-dropdown-menu

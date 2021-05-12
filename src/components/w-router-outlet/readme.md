@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default     |
-| -------- | --------- | ----------- | --------- | ----------- |
-| `routes` | --        |             | `Route[]` | `undefined` |
+| Property        | Attribute        | Description | Type      | Default     |
+| --------------- | ---------------- | ----------- | --------- | ----------- |
+| `routes`        | --               |             | `Route[]` | `undefined` |
+| `showRevisions` | `show-revisions` |             | `boolean` | `undefined` |
 
 
 ## Dependencies
