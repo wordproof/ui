@@ -1,6 +1,7 @@
 import { Component, Prop, State, h } from '@stencil/core';
 import { TRIGGER_HASH, Route } from '.';
 import { onMobile } from '../../utils/responsive';
+import { CertificateView } from '../w-certificate-v4/types';
 
 @Component({
   tag: 'w-router-outlet',
@@ -13,6 +14,8 @@ export class MyEmbeddedComponent {
 
   defaultRoute: Route;
 
+  contentRoute: Route;
+
   @State() matchedRoute: Route;
 
   extractParams() {
@@ -21,6 +24,13 @@ export class MyEmbeddedComponent {
   }
 
   getMatchedRoute() {
+    if (
+      location.hash.includes(`${TRIGGER_HASH}-${CertificateView.compare}`) &&
+      !this.showRevisions
+    ) {
+      return this.contentRoute;
+    }
+
     const matchedRouteIndex = this.routes.findIndex(
       route =>
         location.hash.includes(`${TRIGGER_HASH}-${route.hash}`) &&
@@ -34,6 +44,9 @@ export class MyEmbeddedComponent {
 
   componentWillLoad() {
     this.defaultRoute = this.routes.find(route => route.default);
+    this.contentRoute = this.routes.find(
+      route => route.hash === CertificateView.content,
+    );
     this.matchedRoute = this.getMatchedRoute();
 
     window.addEventListener('hashchange', () => {
