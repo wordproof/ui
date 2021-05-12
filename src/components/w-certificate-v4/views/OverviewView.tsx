@@ -7,7 +7,6 @@ import { DateTimeFormatOptions, formatDate } from '../../../utils/locale';
 import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
 import { CertificateView } from '../types';
-import { onMobile } from '../../../utils/responsive';
 
 // import { router } from '../../w-router-outlet';
 

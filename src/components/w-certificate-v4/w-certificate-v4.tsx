@@ -53,7 +53,7 @@ export class WCertificateV4 {
   /**
    * shows or hides revisions, default value is `true`
    */
-  @Prop() showRevisions: string | boolean;
+  @Prop({ mutable: true }) showRevisions: string | boolean;
 
   @State() visible: boolean = true;
 
@@ -105,6 +105,7 @@ export class WCertificateV4 {
             revision={revision}
             viewBlockchainUrl={this.viewBlockchainUrl}
             timestampCheckUrl={this.timestampCheckUrl}
+            showRevisions={this.showRevisions as boolean}
           ></w-version-view>
         );
       },
@@ -203,7 +204,10 @@ export class WCertificateV4 {
             name="close"
             class="mr-8 mt-8 inline-block"
           ></w-icon>
-          <w-router-outlet routes={this.routes} />
+          <w-router-outlet
+            routes={this.routes}
+            showRevisions={this.showRevisions as boolean}
+          />
         </w-modal>
       </Host>
     ) : (

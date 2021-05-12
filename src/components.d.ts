@@ -331,11 +331,13 @@ export namespace Components {
     }
     interface WRouterOutlet {
         "routes": Route[];
+        "showRevisions": boolean;
     }
     interface WVersionView {
         "content": WPContent;
         "locale": string;
         "revision": number;
+        "showRevisions": boolean;
         "strings": CertificateV4Strings;
         "timestampCheckUrl": string;
         "view": Exclude<ContentPreviewType, 'diff'>;
@@ -826,11 +828,13 @@ declare namespace LocalJSX {
     }
     interface WRouterOutlet {
         "routes"?: Route[];
+        "showRevisions"?: boolean;
     }
     interface WVersionView {
         "content"?: WPContent;
         "locale"?: string;
         "revision"?: number;
+        "showRevisions"?: boolean;
         "strings"?: CertificateV4Strings;
         "timestampCheckUrl"?: string;
         "view"?: Exclude<ContentPreviewType, 'diff'>;

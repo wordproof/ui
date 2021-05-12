@@ -9,6 +9,8 @@ import { onMobile } from '../../utils/responsive';
 export class MyEmbeddedComponent {
   @Prop() routes: Route[];
 
+  @Prop() showRevisions: boolean;
+
   defaultRoute: Route;
 
   @State() matchedRoute: Route;

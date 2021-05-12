@@ -37,6 +37,8 @@ export class WVersionView {
 
   @Prop() timestampCheckUrl: string;
 
+  @Prop() showRevisions: boolean;
+
   @State() transactionId: string;
 
   @State() allRevisions: WPRevision[];
@@ -59,7 +61,20 @@ export class WVersionView {
     this.updateUrl();
   }
 
+  async componentWillLoad() {
+    this.allRevisions = [this.content];
+    this.currentRevisionIndex = 0;
+    this.transactionId = this.allRevisions[0].transactionId;
+    this.revisionDateOptions = this.allRevisions.map((revision, index) => ({
+      value: new Date(revision.date),
+      index,
+    }));
+  }
+
   async componentDidLoad() {
+    if (!this.showRevisions) {
+      return;
+    }
     this.content.revisions = await fetchRevisions(this.content);
 
     const { revisions, ...otherProps } = this.content;
@@ -71,14 +86,14 @@ export class WVersionView {
           new Date(revisionA.date).getTime(),
       );
 
-      this.transactionId = this.allRevisions[0].transactionId;
-      this.revisionDateOptions = this.allRevisions.map((revision, index) => ({
-        value: new Date(revision.date),
-        index,
-      }));
-
       this.setCurrentRevisionIndex(this.revision);
     }
+
+    this.transactionId = this.allRevisions[0].transactionId;
+    this.revisionDateOptions = this.allRevisions.map((revision, index) => ({
+      value: new Date(revision.date),
+      index,
+    }));
   }
 
   getButtonText(): string {
@@ -165,7 +180,8 @@ export class WVersionView {
         </p>
 
         <div class="w-full flex flex-col flex-grow items-center">
-          {this.currentRevisionIndex !== undefined ? (
+          {this.currentRevisionIndex !== undefined &&
+          this.revisionDateOptions?.length ? (
             <div class="h-12 hidden sm:block">
               <w-date-time-select
                 class="mt-2 relative top-7 z-40"
@@ -179,7 +195,8 @@ export class WVersionView {
             </div>
           ) : null}
 
-          {this.currentRevisionIndex !== undefined ? (
+          {this.currentRevisionIndex !== undefined &&
+          this.revisionDateOptions?.length ? (
             <w-revision-select
               class="mb-4 block sm:hidden"
               options={this.revisionDateOptions}
