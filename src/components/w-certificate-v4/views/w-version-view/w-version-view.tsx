@@ -85,8 +85,6 @@ export class WVersionView {
           new Date(revisionB.date).getTime() -
           new Date(revisionA.date).getTime(),
       );
-
-      this.setCurrentRevisionIndex(this.revision);
     }
 
     this.transactionId = this.allRevisions[0].transactionId;
@@ -94,6 +92,7 @@ export class WVersionView {
       value: new Date(revision.date),
       index,
     }));
+    this.setCurrentRevisionIndex(this.revision);
   }
 
   getButtonText(): string {
