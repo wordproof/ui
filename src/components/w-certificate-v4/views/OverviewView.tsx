@@ -103,9 +103,17 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
 
     <div class="flex flex-wrap justify-center mt-8">
       {hasChanged ? null : (
-        <span class="mb-4 sm:mb-0 mr-2 sm:mr-4">
+        <span class="mb-4 sm:mb-0 mr-2 sm:mr-4 sm:hidden">
           <BaseButton
-            text={onMobile() ? strings.showContent : strings.compareVersions}
+            text={strings.showContent}
+            onClick={() => router.go(CertificateView.content)}
+          />
+        </span>
+      )}
+      {hasChanged ? null : (
+        <span class="mb-4 sm:mb-0 mr-2 sm:mr-4 hidden sm:inline-flex">
+          <BaseButton
+            text={strings.compareVersions}
             onClick={() => router.go(CertificateView.content)}
           />
         </span>

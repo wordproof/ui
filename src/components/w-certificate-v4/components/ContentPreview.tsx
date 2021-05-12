@@ -96,15 +96,10 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
 
   return (
     <div
-      class={cx('w-full rounded border relative h-10', {
+      class={cx('w-full rounded border relative h-10 content-preview-flex', {
         'border-light-blue bg-white': view !== 'raw',
         'bg-black': view === 'raw',
       })}
-      style={
-        onMobile()
-          ? { flex: '1 1 calc(100vh - 21rem)' }
-          : { flex: '1 1 20rem' }
-      }
     >
       <div
         class={cx('absolute h-8 rounded', {
