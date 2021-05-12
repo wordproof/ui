@@ -217,7 +217,8 @@ export class WVersionView {
           ) : null}
 
           <div class="flex mt-6 sm:mt-10">
-            {this.currentRevisionIndex !== undefined ? (
+            {this.currentRevisionIndex !== undefined &&
+            this.allRevisions?.length > 1 ? (
               <w-date-time-select
                 class="z-40 mr-3 hidden sm:inline-block"
                 options={this.diffRevisionOptions}
