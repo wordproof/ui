@@ -10,7 +10,7 @@ interface TextButtonProps {
   underlineNone: boolean;
   type: string;
 }
-const Button: FunctionalComponent<TextButtonProps> = (
+const TextButton: FunctionalComponent<TextButtonProps> = (
   {
     color = 'gray',
     size = 'lg',
@@ -54,4 +54,4 @@ const Button: FunctionalComponent<TextButtonProps> = (
   );
 };
 
-export default Button;
+export default TextButton;
