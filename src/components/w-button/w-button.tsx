@@ -50,6 +50,11 @@ export class WButton {
    */
   @Prop() color: WButtonColor;
 
+  /**
+   * show spinner
+   */
+  @Prop() loading: boolean;
+
   getIconSizeClasses() {
     if (this.size === 'xs') {
       return 'w-3 h-3';
@@ -90,6 +95,7 @@ export class WButton {
           size={this.size}
           disabled={this.disabled}
           type={this.type}
+          loading={this.loading}
         >
           <slot></slot>
         </SolidButton>

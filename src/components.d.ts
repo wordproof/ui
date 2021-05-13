@@ -42,6 +42,10 @@ export namespace Components {
          */
         "icon": IconName;
         /**
+          * show spinner
+         */
+        "loading": boolean;
+        /**
           * renders button as underlined text
          */
         "outline": boolean;
@@ -534,6 +538,10 @@ declare namespace LocalJSX {
           * button html "type" attribute
          */
         "icon"?: IconName;
+        /**
+          * show spinner
+         */
+        "loading"?: boolean;
         /**
           * renders button as underlined text
          */
