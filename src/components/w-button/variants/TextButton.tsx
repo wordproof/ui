@@ -1,5 +1,10 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import cx from 'classnames';
+import {
+  ButtonDefaultClasses,
+  ButtonDisabledClasses,
+  ButtonFontSizeClasses,
+} from '../CommonCssClasses';
 import { WButtonColor, WButtonSize } from '../types';
 
 interface TextButtonProps {
@@ -29,18 +34,11 @@ const TextButton: FunctionalComponent<TextButtonProps> = (
         onClick();
       }}
       class={cx(
-        'font-sohne select-none items-center transition ease-in-out duration-150',
-        'focus:rounded outline-none focus:outline-none focus:ring-2 focus:ring-opacity-50',
-        'disabled: opacity-50',
+        ButtonDefaultClasses(),
+        ButtonFontSizeClasses(size),
+        ButtonDisabledClasses(disabled),
+        'focus:rounded focus:border-transparent',
         { ['border-b border-current']: !underlineNone },
-        { ['opacity-50 cursor-default']: disabled },
-        {
-          ['text-xs']: size === 'xs',
-          ['text-base']: size === 'base',
-          ['text-sm']: size === 'sm',
-          ['text-lg']: size === 'lg',
-          ['text-xl']: size === 'xl',
-        },
         {
           ['text-white  focus:ring-white']: color === 'white',
           ['text-blue focus:ring-blue']: color === 'blue',

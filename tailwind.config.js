@@ -61,6 +61,7 @@ module.exports = {
     extend: {
       opacity: ['disabled'],
       borderRadius: ['focus'],
+      borderColor: ['focus'],
     },
   },
   plugins: [],
