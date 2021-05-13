@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { WButtonColor, WButtonSize } from "./components/w-button/types";
 import { IconName } from "./components/w-icon/types";
 import { WPContent, WPRevision } from "./utils/certificate-data";
 import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
@@ -31,7 +32,7 @@ export namespace Components {
         /**
           * button text size
          */
-        "color": 'gray' | 'white' | 'yellow';
+        "color": WButtonColor;
         /**
           * button html "disabled" attribute
          */
@@ -47,7 +48,7 @@ export namespace Components {
         /**
           * button text size
          */
-        "size": 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+        "size": WButtonSize;
         /**
           * renders button as underlined text
          */
@@ -524,7 +525,7 @@ declare namespace LocalJSX {
         /**
           * button text size
          */
-        "color"?: 'gray' | 'white' | 'yellow';
+        "color"?: WButtonColor;
         /**
           * button html "disabled" attribute
          */
@@ -540,7 +541,7 @@ declare namespace LocalJSX {
         /**
           * button text size
          */
-        "size"?: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+        "size"?: WButtonSize;
         /**
           * renders button as underlined text
          */

@@ -58,7 +58,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      opacity: ['disabled'],
+      borderRadius: ['focus'],
+    },
   },
   plugins: [],
 };
