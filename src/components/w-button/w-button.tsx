@@ -69,7 +69,14 @@ export class WButton {
   render() {
     if (this.text) {
       return (
-        <TextButton onClick={() => {}} color={this.color} size={this.size}>
+        <TextButton
+          onClick={() => {}}
+          color={this.color}
+          size={this.size}
+          disabled={this.disabled}
+          type={this.type}
+          underlineNone={this.underlineNone}
+        >
           <slot></slot>
         </TextButton>
       );

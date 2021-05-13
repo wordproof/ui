@@ -6,13 +6,25 @@ interface TextButtonProps {
   onClick: Function;
   color: WButtonColor;
   size: WButtonSize;
+  disabled: boolean;
+  underlineNone: boolean;
+  type: string;
 }
 const Button: FunctionalComponent<TextButtonProps> = (
-  { color = 'gray', size = 'lg', onClick },
+  {
+    color = 'gray',
+    size = 'lg',
+    onClick,
+    disabled = false,
+    type = 'button',
+    underlineNone = false,
+  },
   children,
 ) => {
   return (
     <button
+      disabled={disabled}
+      type={type}
       onClick={() => {
         onClick();
       }}
@@ -20,7 +32,8 @@ const Button: FunctionalComponent<TextButtonProps> = (
         'font-sohne select-none items-center transition ease-in-out duration-150',
         'focus:rounded outline-none focus:outline-none focus:ring-2 focus:ring-opacity-50',
         'disabled: opacity-50',
-        'border-b border-current',
+        { ['border-b border-current']: !underlineNone },
+        { ['opacity-50 cursor-default']: disabled },
         {
           ['text-xs']: size === 'xs',
           ['text-base']: size === 'base',
