@@ -1,5 +1,9 @@
 # w-button
 
+## Playground
+
+<ShowWButton />
+
 ## Variants
 
 ### default
@@ -10,13 +14,13 @@
 <w-button>Sample Button</w-button>
 ```
 
-### outline
+<!-- ### outline
 
 <div style="margin-top:1rem;"><w-button outline>Sample Button</w-button></div>
 
 ```html
 <w-button outline>Sample Button</w-button>
-```
+``` -->
 
 ### text
 
