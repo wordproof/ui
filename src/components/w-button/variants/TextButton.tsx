@@ -4,7 +4,7 @@ import {
   ButtonDefaultClasses,
   ButtonDisabledClasses,
   ButtonFontSizeClasses,
-} from '../CommonCssClasses';
+} from '../helpers/SharedCssClasses';
 import { WButtonColor, WButtonSize } from '../types';
 
 interface TextButtonProps {

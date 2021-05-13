@@ -1,4 +1,4 @@
-import { WButtonSize } from './types';
+import { WButtonSize } from '../types';
 
 export const ButtonFontSizeClasses = (size: WButtonSize) => ({
   ['text-xs']: size === 'xs',

@@ -5,8 +5,8 @@ import {
   ButtonFontSizeClasses,
   ButtonDefaultClasses,
   ButtonDisabledClasses,
-} from '../CommonCssClasses';
-import Spinner from './Spinner';
+} from '../helpers/SharedCssClasses';
+import Spinner from '../helpers/Spinner';
 
 interface SolidButtonProps {
   onClick: Function;
