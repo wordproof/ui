@@ -57,17 +57,34 @@ export class WButton {
    */
   @Prop() loading: boolean = false;
 
+  /**
+   * opens an url on click (make button work as a link)
+   */
+  @Prop() href: string = '';
+
+  /**
+   * name of the browsing context, defaults to '_blank' (specify '_self' to open url in the same tab)
+   */
+  @Prop() target: string = '';
+
   componentWillRender() {
     this.color = this.color ? this.color : 'blue';
     this.size = this.size ? this.size : 'lg';
     this.type = this.type ? this.type : 'button';
+    this.target = this.target ? this.target : '_blank';
+  }
+
+  handleClick() {
+    if (this.href) {
+      window.open(this.href, this.target);
+    }
   }
 
   render() {
     if (this.icon) {
       return (
         <IconButton
-          onClick={() => {}}
+          onClick={this.handleClick.bind(this)}
           color={this.color}
           size={this.size}
           disabled={this.disabled}
@@ -81,7 +98,7 @@ export class WButton {
     if (this.text) {
       return (
         <TextButton
-          onClick={() => {}}
+          onClick={this.handleClick.bind(this)}
           color={this.color}
           size={this.size}
           disabled={this.disabled}
@@ -96,7 +113,7 @@ export class WButton {
     if (this.outline) {
       return (
         <OutlineButton
-          onClick={() => {}}
+          onClick={this.handleClick.bind(this)}
           color={this.color}
           size={this.size}
           disabled={this.disabled}
@@ -110,7 +127,7 @@ export class WButton {
 
     return (
       <SolidButton
-        onClick={() => {}}
+        onClick={this.handleClick.bind(this)}
         color={this.color}
         size={this.size}
         disabled={this.disabled}

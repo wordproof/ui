@@ -38,6 +38,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * opens an url on click (make button work as a link)
+         */
+        "href": string;
+        /**
           * button html "type" attribute
          */
         "icon": IconName;
@@ -53,6 +57,10 @@ export namespace Components {
           * button text size
          */
         "size": WButtonSize;
+        /**
+          * name of the browsing context, defaults to '_blank' (specify '_self' to open url in the same tab)
+         */
+        "target": string;
         /**
           * renders button as underlined text
          */
@@ -535,6 +543,10 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * opens an url on click (make button work as a link)
+         */
+        "href"?: string;
+        /**
           * button html "type" attribute
          */
         "icon"?: IconName;
@@ -550,6 +562,10 @@ declare namespace LocalJSX {
           * button text size
          */
         "size"?: WButtonSize;
+        /**
+          * name of the browsing context, defaults to '_blank' (specify '_self' to open url in the same tab)
+         */
+        "target"?: string;
         /**
           * renders button as underlined text
          */

@@ -9,6 +9,8 @@
         :loading="attributes.loading"
         :outline="attributes.outline"
         :icon="attributes.icon"
+        :href="attributes.href"
+        :target="attributes.target"
         :underline-none="attributes.underlineNone"
         >{{ buttonText }}</w-button
       >
@@ -35,6 +37,9 @@
           option
         }}</option>
       </select>
+
+      <label for="href" class="mr-2 my-2">href: </label>
+      <input type="text" id="href" v-model="attributes.href" />
 
       <br />
 
@@ -64,8 +69,19 @@
         />
         <label for="underlineNone" class="mr-4 my-2">underline-none </label>
       </span>
-    </div>
 
+      <span v-if="attributes.href">
+        <label for="target" class="mr-2 my-2">target: </label>
+        <select id="target" v-model="attributes.target" class="mr-4 my-2">
+          <option
+            v-for="option in targetOptions"
+            :key="option"
+            :value="option"
+            >{{ option }}</option
+          >
+        </select>
+      </span>
+    </div>
     <div class="language-html extra-class">
       <pre class="language-html">
         <code>{{html}}</code>
@@ -89,8 +105,11 @@ export default {
         underlineNone: false,
         outline: false,
         icon: '',
+        url: '',
+        target: '',
       },
       buttonText: 'Sample button',
+      targetOptions: ['_self', '_blank'],
       colorOptions: ['', 'blue', 'white', 'yellow', 'gray'],
       sizeOptions: ['', 'xs', 'sm', 'base', 'lg', 'xl'],
       iconOptions: [
