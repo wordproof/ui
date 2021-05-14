@@ -67,6 +67,7 @@ module.exports = {
       '/pages/installation',
       '/pages/w-button',
       '/pages/w-input-text',
+      '/pages/w-input-select',
       '/pages/w-modal',
       '/pages/w-certificate',
       '/pages/w-certificate-v4',

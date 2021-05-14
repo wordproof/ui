@@ -200,6 +200,10 @@ export namespace Components {
          */
         "error": string;
         /**
+          * label
+         */
+        "label": string;
+        /**
           * placeholder
          */
         "placeholder": string;
@@ -706,6 +710,10 @@ declare namespace LocalJSX {
           * form element error message
          */
         "error"?: string;
+        /**
+          * label
+         */
+        "label"?: string;
         /**
           * placeholder
          */
