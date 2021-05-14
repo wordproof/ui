@@ -8,6 +8,7 @@
         :disabled="attributes.disabled"
         :loading="attributes.loading"
         :outline="attributes.outline"
+        :icon="attributes.icon"
         :underline-none="attributes.underlineNone"
         >{{ buttonText }}</w-button
       >
@@ -24,6 +25,13 @@
       <label for="size" class="mr-2 my-2">size: </label>
       <select id="size" v-model="attributes.size" class="mr-4 my-2">
         <option v-for="option in sizeOptions" :key="option" :value="option">{{
+          option
+        }}</option>
+      </select>
+
+      <label for="icon" class="mr-2 my-2">icon: </label>
+      <select id="icon" v-model="attributes.icon" class="mr-4 my-2">
+        <option v-for="option in iconOptions" :key="option" :value="option">{{
           option
         }}</option>
       </select>
@@ -82,8 +90,39 @@ export default {
         loading: false,
         underlineNone: false,
         outline: true,
+        icon: 'close',
       },
       buttonText: 'Sample button',
+      iconOptions: [
+        '',
+        'comment',
+        'eye',
+        'close',
+        'close-circle',
+        'check-circle',
+        'clock',
+        'ink-pen',
+        'times-circle',
+        'arrow-down',
+        'question-circle',
+        'eye-large',
+        'blockchain',
+        'accessibility',
+        'hamburger',
+        'hamburger-close',
+        'arrow-right',
+        'dots',
+        'check-ring',
+        'check',
+        'api',
+        'shopify',
+        'wordpress',
+        'gear',
+        'search',
+        'calendar',
+        'shield',
+        'info',
+      ],
     };
   },
 

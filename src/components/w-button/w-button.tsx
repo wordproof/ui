@@ -1,6 +1,7 @@
 import { Component, Prop, h } from '@stencil/core';
 import { IconName } from '../w-icon/types';
 import { WButtonColor, WButtonSize } from './types';
+import IconButton from './variants/IconButton';
 import OutlineButton from './variants/OutlineButton';
 import SolidButton from './variants/SolidButton';
 import TextButton from './variants/TextButton';
@@ -73,6 +74,21 @@ export class WButton {
   }
 
   render() {
+    if (this.icon) {
+      return (
+        <IconButton
+          onClick={() => {}}
+          color={this.color}
+          size={this.size}
+          disabled={this.disabled}
+          type={this.type}
+          icon={this.icon}
+          loading={this.loading}
+        >
+        </IconButton>
+      );
+    }
+
     if (this.text) {
       return (
         <TextButton
