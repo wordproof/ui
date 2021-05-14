@@ -50,7 +50,9 @@ const SolidButton: FunctionalComponent<SolidButtonProps> = (
         'flex flex-nowrap',
       )}
     >
-      <Spinner show={loading} />
+      <span style={{ marginRight: '0.5em' }}>
+        <Spinner show={loading} />
+      </span>
       {children}
     </button>
   );

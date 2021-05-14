@@ -51,7 +51,9 @@ const OutlineButton: FunctionalComponent<OutlineButtonProps> = (
       )}
       style={{ '--tw-ring-opacity': '0.5' }}
     >
-      <Spinner show={loading} />
+      <span style={{ marginRight: '0.5em' }}>
+        <Spinner show={loading} />
+      </span>
       {children}
     </button>
   );
