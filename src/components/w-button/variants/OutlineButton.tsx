@@ -5,8 +5,8 @@ import {
   ButtonFontSizeClasses,
   ButtonDefaultClasses,
   ButtonDisabledClasses,
-} from '../helpers/SharedCssClasses';
-import Spinner from '../helpers/Spinner';
+} from '../shared/SharedCssClasses';
+import Spinner from '../shared/Spinner';
 
 interface OutlineButtonProps {
   onClick: Function;
