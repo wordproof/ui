@@ -10,7 +10,6 @@ const Spinner: FunctionalComponent<SpinnerProps> = ({ show = true }) => (
     style={{
       width: '1em',
       height: '1em',
-      marginRight: '0.5em',
     }}
     class={cx('animate-spin', {
       ['hidden']: !show,

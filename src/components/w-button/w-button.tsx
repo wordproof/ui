@@ -1,6 +1,8 @@
 import { Component, Prop, h } from '@stencil/core';
 import { IconName } from '../w-icon/types';
 import { WButtonColor, WButtonSize } from './types';
+import IconButton from './variants/IconButton';
+import OutlineButton from './variants/OutlineButton';
 import SolidButton from './variants/SolidButton';
 import TextButton from './variants/TextButton';
 
@@ -13,12 +15,12 @@ export class WButton {
   /**
    * button html "type" attribute
    */
-  @Prop() type: string = 'button';
+  @Prop({ mutable: true }) type: string;
 
   /**
    * button text size
    */
-  @Prop() size: WButtonSize = 'lg';
+  @Prop({ mutable: true }) size: WButtonSize;
 
   /**
    * renders button as underlined text
@@ -46,36 +48,57 @@ export class WButton {
   @Prop() icon: IconName;
 
   /**
-   * button text size
+   * button color
    */
-  @Prop() color: WButtonColor;
+  @Prop({ mutable: true }) color: WButtonColor;
 
   /**
    * show spinner
    */
-  @Prop() loading: boolean;
+  @Prop() loading: boolean = false;
 
-  getIconSizeClasses() {
-    if (this.size === 'xs') {
-      return 'w-3 h-3';
+  /**
+   * opens an url on click (make button work as a link)
+   */
+  @Prop() href: string = '';
+
+  /**
+   * name of the browsing context, defaults to '_blank' (specify '_self' to open url in the same tab)
+   */
+  @Prop() target: string = '';
+
+  componentWillRender() {
+    this.color = this.color ? this.color : 'blue';
+    this.size = this.size ? this.size : 'lg';
+    this.type = this.type ? this.type : 'button';
+    this.target = this.target ? this.target : '_blank';
+  }
+
+  handleClick() {
+    if (this.href) {
+      window.open(this.href, this.target);
     }
-
-    if (this.size === 'lg') {
-      return 'w-5 h-5';
-    }
-
-    if (this.size === 'xl') {
-      return 'w-6 h-6';
-    }
-
-    return 'w-4 h-4';
   }
 
   render() {
+    if (this.icon) {
+      return (
+        <IconButton
+          onClick={this.handleClick.bind(this)}
+          color={this.color}
+          size={this.size}
+          disabled={this.disabled}
+          type={this.type}
+          icon={this.icon}
+          loading={this.loading}
+        ></IconButton>
+      );
+    }
+
     if (this.text) {
       return (
         <TextButton
-          onClick={() => {}}
+          onClick={this.handleClick.bind(this)}
           color={this.color}
           size={this.size}
           disabled={this.disabled}
@@ -87,10 +110,10 @@ export class WButton {
       );
     }
 
-    if (!this.text) {
+    if (this.outline) {
       return (
-        <SolidButton
-          onClick={() => {}}
+        <OutlineButton
+          onClick={this.handleClick.bind(this)}
           color={this.color}
           size={this.size}
           disabled={this.disabled}
@@ -98,61 +121,21 @@ export class WButton {
           loading={this.loading}
         >
           <slot></slot>
-        </SolidButton>
+        </OutlineButton>
       );
     }
 
-    // if (!this.text) {
-    //   return (
-    //     <button
-    //       type={this.type}
-    //       disabled={this.disabled}
-    //       class={cx(
-    //         'select-none items-center active:bg-gray-900 outline-none focus:outline-none focus:shadow-outline-blue transition ease-in-out duration-150',
-    //         {
-    //           ['px-5 py-2 font-sohne-bold focus:ring-blue focus:ring-2 focus:ring-opacity-50 rounded-full']:
-    //             !this.text && !this.icon,
-    //           ['bg-gradient-to-r from-blue to-purple text-white']:
-    //             !this.outline &&
-    //             !this.text &&
-    //             !this.icon &&
-    //             this.color !== 'yellow',
-    //           ['bg-gradient-to-r from-yellow to-pink text-white']:
-    //             !this.outline &&
-    //             !this.text &&
-    //             !this.icon &&
-    //             this.color === 'yellow',
-    //           ['bg-white border-2 border-blue text-blue']: this.outline,
-    //           ['font-sohne']: this.text,
-    //           ['underline font-sohne']: this.text && !this.underlineNone,
-    //           ['text-gray-600 hover:text-gray-800']:
-    //             this.text && (this.color === 'gray' || this.disabled),
-    //           ['text-white']: this.text && this.color === 'white',
-    //           ['text-xs']: this.size === 'xs',
-    //           ['text-base']: this.size === 'base',
-    //           ['text-sm']: this.size === 'sm',
-    //           ['text-lg']: this.size === 'lg',
-    //           ['text-xl']: this.size === 'xl',
-    //           [cx(
-    //             'hover:bg-gray-200 rounded-full',
-    //             this.size === 'xs' ? 'p-1.5' : 'p-2',
-    //           )]: this.icon,
-    //           ['cursor-default']: this.disabled,
-    //         },
-    //       )}
-    //     >
-    //       {this.icon ? (
-    //         <w-icon
-    //           fit
-    //           name={this.icon}
-    //           class={cx(this.getIconSizeClasses())}
-    //         ></w-icon>
-    //       ) : (
-    //         <slot></slot>
-    //       )}
-    //       <slot></slot>
-    //     </button>
-    //   );
-    // }
+    return (
+      <SolidButton
+        onClick={this.handleClick.bind(this)}
+        color={this.color}
+        size={this.size}
+        disabled={this.disabled}
+        type={this.type}
+        loading={this.loading}
+      >
+        <slot></slot>
+      </SolidButton>
+    );
   }
 }

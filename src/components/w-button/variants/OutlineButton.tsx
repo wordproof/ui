@@ -8,7 +8,7 @@ import {
 } from '../shared/SharedCssClasses';
 import Spinner from '../shared/Spinner';
 
-interface SolidButtonProps {
+interface OutlineButtonProps {
   onClick: Function;
   color: WButtonColor;
   size: WButtonSize;
@@ -16,7 +16,7 @@ interface SolidButtonProps {
   loading?: boolean;
   type: string;
 }
-const SolidButton: FunctionalComponent<SolidButtonProps> = (
+const OutlineButton: FunctionalComponent<OutlineButtonProps> = (
   { color, size, onClick, disabled, type, loading },
   children,
 ) => {
@@ -32,12 +32,12 @@ const SolidButton: FunctionalComponent<SolidButtonProps> = (
         ButtonFontSizeClasses(size),
         ButtonDisabledClasses(disabled || loading),
         {
-          ['bg-white text-blue focus:ring-white']: color === 'white',
-          ['bg-gradient-to-r from-blue to-purple text-white focus:ring-blue']:
-            color === 'blue',
-          ['bg-gradient-to-r from-yellow to-pink text-white focus:ring-yellow']:
+          ['bg-white border-2 border-blue text-blue focus:ring-blue']:
+            color === 'blue' || color === 'white',
+          ['bg-white border-2 border-yellow text-yellow focus:ring-yellow']:
             color === 'yellow',
-          ['bg-gray-600 text-white focus:ring-gray-600']: color === 'gray',
+          ['bg-white border-2 border-gray-600 text-gray-600 focus:ring-gray-600']:
+            color === 'gray',
         },
         'font-sohne-bold font-bold px-5 py-2 rounded-full focus:rounded-full',
         'flex flex-nowrap',
@@ -52,4 +52,4 @@ const SolidButton: FunctionalComponent<SolidButtonProps> = (
   );
 };
 
-export default SolidButton;
+export default OutlineButton;

@@ -7,6 +7,10 @@
         :text="attributes.text"
         :disabled="attributes.disabled"
         :loading="attributes.loading"
+        :outline="attributes.outline"
+        :icon="attributes.icon"
+        :href="attributes.href"
+        :target="attributes.target"
         :underline-none="attributes.underlineNone"
         >{{ buttonText }}</w-button
       >
@@ -27,7 +31,27 @@
         }}</option>
       </select>
 
+      <label for="icon" class="mr-2 my-2">icon: </label>
+      <select id="icon" v-model="attributes.icon" class="mr-4 my-2">
+        <option v-for="option in iconOptions" :key="option" :value="option">{{
+          option
+        }}</option>
+      </select>
+
+      <label for="href" class="mr-2 my-2">href: </label>
+      <input type="text" id="href" v-model="attributes.href" />
+
       <br />
+
+      <span v-if="!attributes.text">
+        <input type="checkbox" id="outline" v-model="attributes.outline" />
+        <label for="outline" class="mr-4 my-2">outline</label>
+      </span>
+
+      <span v-if="!attributes.outline">
+        <input type="checkbox" id="text" v-model="attributes.text" />
+        <label for="text" class="mr-4 my-2">text </label>
+      </span>
 
       <span v-if="!attributes.text">
         <input type="checkbox" id="loading" v-model="attributes.loading" />
@@ -37,9 +61,6 @@
       <input type="checkbox" id="disabled" v-model="attributes.disabled" />
       <label for="disabled" class="mr-4 my-2">disabled </label>
 
-      <input type="checkbox" id="text" v-model="attributes.text" />
-      <label for="text" class="mr-4 my-2">text </label>
-
       <span v-if="attributes.text">
         <input
           type="checkbox"
@@ -48,8 +69,19 @@
         />
         <label for="underlineNone" class="mr-4 my-2">underline-none </label>
       </span>
-    </div>
 
+      <span v-if="attributes.href">
+        <label for="target" class="mr-2 my-2">target: </label>
+        <select id="target" v-model="attributes.target" class="mr-4 my-2">
+          <option
+            v-for="option in targetOptions"
+            :key="option"
+            :value="option"
+            >{{ option }}</option
+          >
+        </select>
+      </span>
+    </div>
     <div class="language-html extra-class">
       <pre class="language-html">
         <code>{{html}}</code>
@@ -64,17 +96,52 @@ export default {
 
   data() {
     return {
-      colorOptions: ['blue', 'white', 'yellow', 'gray'],
-      sizeOptions: ['xs', 'sm', 'base', 'lg', 'xl'],
       attributes: {
-        color: 'blue',
-        size: 'lg',
+        color: '',
+        size: '',
         text: false,
         disabled: false,
         loading: false,
         underlineNone: false,
+        outline: false,
+        icon: '',
+        url: '',
+        target: '',
       },
       buttonText: 'Sample button',
+      targetOptions: ['_self', '_blank'],
+      colorOptions: ['', 'blue', 'white', 'yellow', 'gray'],
+      sizeOptions: ['', 'xs', 'sm', 'base', 'lg', 'xl'],
+      iconOptions: [
+        '',
+        'comment',
+        'eye',
+        'close',
+        'close-circle',
+        'check-circle',
+        'clock',
+        'ink-pen',
+        'times-circle',
+        'arrow-down',
+        'question-circle',
+        'eye-large',
+        'blockchain',
+        'accessibility',
+        'hamburger',
+        'hamburger-close',
+        'arrow-right',
+        'dots',
+        'check-ring',
+        'check',
+        'api',
+        'shopify',
+        'wordpress',
+        'gear',
+        'search',
+        'calendar',
+        'shield',
+        'info',
+      ],
     };
   },
 
@@ -85,7 +152,9 @@ export default {
         .map(([key, value]) => `${key}="${value}"`)
         .join(' ');
 
-      return `<w-button ${attrStr}>${this.buttonText}</w-button>`;
+      return `<w-button${attrStr ? ' ' : ''}${attrStr}>${
+        this.buttonText
+      }</w-button>`;
     },
   },
 };

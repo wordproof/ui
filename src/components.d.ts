@@ -30,13 +30,17 @@ export namespace Components {
     }
     interface WButton {
         /**
-          * button text size
+          * button color
          */
         "color": WButtonColor;
         /**
           * button html "disabled" attribute
          */
         "disabled": boolean;
+        /**
+          * opens an url on click (make button work as a link)
+         */
+        "href": string;
         /**
           * button html "type" attribute
          */
@@ -53,6 +57,10 @@ export namespace Components {
           * button text size
          */
         "size": WButtonSize;
+        /**
+          * name of the browsing context, defaults to '_blank' (specify '_self' to open url in the same tab)
+         */
+        "target": string;
         /**
           * renders button as underlined text
          */
@@ -527,13 +535,17 @@ declare namespace LocalJSX {
     }
     interface WButton {
         /**
-          * button text size
+          * button color
          */
         "color"?: WButtonColor;
         /**
           * button html "disabled" attribute
          */
         "disabled"?: boolean;
+        /**
+          * opens an url on click (make button work as a link)
+         */
+        "href"?: string;
         /**
           * button html "type" attribute
          */
@@ -550,6 +562,10 @@ declare namespace LocalJSX {
           * button text size
          */
         "size"?: WButtonSize;
+        /**
+          * name of the browsing context, defaults to '_blank' (specify '_self' to open url in the same tab)
+         */
+        "target"?: string;
         /**
           * renders button as underlined text
          */
