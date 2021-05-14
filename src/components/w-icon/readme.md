@@ -17,6 +17,7 @@
 
 ### Used by
 
+ - [w-button](../w-button)
  - [w-certificate](../w-certificate)
  - [w-certificate-v4](../w-certificate-v4)
  - [w-certificate-versions-view](../w-certificate/views/w-certificate-compare-view)
@@ -32,6 +33,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  w-button --> w-icon
   w-certificate --> w-icon
   w-certificate-v4 --> w-icon
   w-certificate-versions-view --> w-icon
