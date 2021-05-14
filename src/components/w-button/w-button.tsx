@@ -57,7 +57,7 @@ export class WButton {
    */
   @Prop() loading: boolean = false;
 
-  componentWillLoad() {
+  componentWillRender() {
     this.color = this.color ? this.color : 'blue';
     this.size = this.size ? this.size : 'lg';
     this.type = this.type ? this.type : 'button';
