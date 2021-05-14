@@ -80,19 +80,19 @@ export default {
 
   data() {
     return {
-      colorOptions: ['blue', 'white', 'yellow', 'gray'],
-      sizeOptions: ['xs', 'sm', 'base', 'lg', 'xl'],
       attributes: {
-        color: 'blue',
-        size: 'lg',
+        color: '',
+        size: '',
         text: false,
         disabled: false,
         loading: false,
         underlineNone: false,
-        outline: true,
-        icon: 'close',
+        outline: false,
+        icon: '',
       },
       buttonText: 'Sample button',
+      colorOptions: ['', 'blue', 'white', 'yellow', 'gray'],
+      sizeOptions: ['', 'xs', 'sm', 'base', 'lg', 'xl'],
       iconOptions: [
         '',
         'comment',
@@ -133,7 +133,9 @@ export default {
         .map(([key, value]) => `${key}="${value}"`)
         .join(' ');
 
-      return `<w-button ${attrStr}>${this.buttonText}</w-button>`;
+      return `<w-button${attrStr ? ' ' : ''}${attrStr}>${
+        this.buttonText
+      }</w-button>`;
     },
   },
 };

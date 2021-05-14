@@ -15,12 +15,12 @@ export class WButton {
   /**
    * button html "type" attribute
    */
-  @Prop() type: string = 'button';
+  @Prop({ mutable: true }) type: string;
 
   /**
    * button text size
    */
-  @Prop() size: WButtonSize = 'lg';
+  @Prop({ mutable: true }) size: WButtonSize;
 
   /**
    * renders button as underlined text
@@ -48,29 +48,19 @@ export class WButton {
   @Prop() icon: IconName;
 
   /**
-   * button text size
+   * button color
    */
-  @Prop() color: WButtonColor;
+  @Prop({ mutable: true }) color: WButtonColor;
 
   /**
    * show spinner
    */
-  @Prop() loading: boolean;
+  @Prop() loading: boolean = false;
 
-  getIconSizeClasses() {
-    if (this.size === 'xs') {
-      return 'w-3 h-3';
-    }
-
-    if (this.size === 'lg') {
-      return 'w-5 h-5';
-    }
-
-    if (this.size === 'xl') {
-      return 'w-6 h-6';
-    }
-
-    return 'w-4 h-4';
+  componentWillLoad() {
+    this.color = this.color ? this.color : 'blue';
+    this.size = this.size ? this.size : 'lg';
+    this.type = this.type ? this.type : 'button';
   }
 
   render() {
@@ -84,8 +74,7 @@ export class WButton {
           type={this.type}
           icon={this.icon}
           loading={this.loading}
-        >
-        </IconButton>
+        ></IconButton>
       );
     }
 

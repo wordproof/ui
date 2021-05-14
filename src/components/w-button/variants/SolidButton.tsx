@@ -17,14 +17,7 @@ interface SolidButtonProps {
   type: string;
 }
 const SolidButton: FunctionalComponent<SolidButtonProps> = (
-  {
-    color = 'blue',
-    size = 'lg',
-    onClick,
-    disabled = false,
-    type = 'button',
-    loading = false,
-  },
+  { color, size, onClick, disabled, type, loading },
   children,
 ) => {
   return (
@@ -49,6 +42,7 @@ const SolidButton: FunctionalComponent<SolidButtonProps> = (
         'font-sohne-bold font-bold px-5 py-2 rounded-full focus:rounded-full',
         'flex flex-nowrap',
       )}
+      style={{ '--tw-ring-opacity': '0.5' }}
     >
       <span style={{ marginRight: '0.5em' }}>
         <Spinner show={loading} />

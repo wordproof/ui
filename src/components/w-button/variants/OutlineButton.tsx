@@ -17,14 +17,7 @@ interface OutlineButtonProps {
   type: string;
 }
 const OutlineButton: FunctionalComponent<OutlineButtonProps> = (
-  {
-    color = 'blue',
-    size = 'lg',
-    onClick,
-    disabled = false,
-    type = 'button',
-    loading = false,
-  },
+  { color, size, onClick, disabled, type, loading },
   children,
 ) => {
   return (

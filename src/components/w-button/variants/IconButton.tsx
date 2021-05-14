@@ -20,12 +20,12 @@ interface IconButtonProps {
   icon: IconName;
 }
 const IconButton: FunctionalComponent<IconButtonProps> = ({
-  color = 'blue',
-  size = 'lg',
+  color,
+  size,
   onClick,
-  disabled = false,
-  type = 'button',
-  loading = false,
+  disabled,
+  type,
+  loading,
   icon,
 }) => {
   return (

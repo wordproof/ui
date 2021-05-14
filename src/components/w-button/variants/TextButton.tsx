@@ -16,14 +16,7 @@ interface TextButtonProps {
   type: string;
 }
 const TextButton: FunctionalComponent<TextButtonProps> = (
-  {
-    color = 'gray',
-    size = 'lg',
-    onClick,
-    disabled = false,
-    type = 'button',
-    underlineNone = false,
-  },
+  { color, size, onClick, disabled, type, underlineNone },
   children,
 ) => {
   return (
@@ -46,6 +39,7 @@ const TextButton: FunctionalComponent<TextButtonProps> = (
           ['text-gray-600 focus:ring-gray-600']: color === 'gray',
         },
       )}
+      style={{ '--tw-ring-opacity': '0.5' }}
     >
       {children}
     </button>

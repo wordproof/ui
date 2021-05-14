@@ -30,7 +30,7 @@ export namespace Components {
     }
     interface WButton {
         /**
-          * button text size
+          * button color
          */
         "color": WButtonColor;
         /**
@@ -527,7 +527,7 @@ declare namespace LocalJSX {
     }
     interface WButton {
         /**
-          * button text size
+          * button color
          */
         "color"?: WButtonColor;
         /**
