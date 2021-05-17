@@ -35,16 +35,16 @@ export class WCertificateVersionsRaw {
       <div>
         <div class="flex flex-col sm:flex-row mx-3 sm:space-x-4 sm:mx-4 sm:mt-3 sm:mb-4">
           <w-input-select
-            value={this.revisionValue}
+            // value={this.revisionValue}
             class="w-full"
             onInput={(ev: InputEvent) => {
               this.revisionValue = Number(ev.data);
             }}
           >
-            {this.allOptions.map(option => (
+            {this.allOptions.map(() => (
               <w-input-select-option
-                value={option.value}
-                label={option.label}
+              // value={option.value}
+              // label={option.label}
               ></w-input-select-option>
             ))}
           </w-input-select>

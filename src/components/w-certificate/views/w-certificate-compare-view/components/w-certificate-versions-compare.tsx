@@ -49,30 +49,30 @@ export class WCertificateVersionsCompare {
       <div>
         <div class="flex flex-col sm:flex-row mx-3 sm:space-x-4 sm:mx-4 sm:mt-3 sm:mb-4">
           <w-input-select
-            value={this.oldRevisionValue}
+            // value={this.oldRevisionValue}
             class="w-full"
             onInput={(ev: InputEvent) => {
               this.oldRevisionValue = Number(ev.data);
             }}
           >
-            {this.oldOptions.map(option => (
+            {this.oldOptions.map(() => (
               <w-input-select-option
-                value={option.value}
-                label={option.label}
+              // value={option.value}
+              // label={option.label}
               ></w-input-select-option>
             ))}
           </w-input-select>
           <w-input-select
-            value={this.newRevisionValue}
+            // value={this.newRevisionValue}
             class="w-full"
             onInput={(ev: InputEvent) => {
               this.newRevisionValue = Number(ev.data);
             }}
           >
-            {this.newOptions.map(option => (
+            {this.newOptions.map(() => (
               <w-input-select-option
-                value={option.value}
-                label={option.label}
+              // value={option.value}
+              // label={option.label}
               ></w-input-select-option>
             ))}
           </w-input-select>
