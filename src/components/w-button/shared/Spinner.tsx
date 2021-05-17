@@ -1,19 +1,14 @@
 import { FunctionalComponent, h } from '@stencil/core';
-import cx from 'classnames';
 
-interface SpinnerProps {
-  show?: boolean;
-}
+interface SpinnerProps {}
 
-const Spinner: FunctionalComponent<SpinnerProps> = ({ show = true }) => (
+const Spinner: FunctionalComponent<SpinnerProps> = ({}) => (
   <svg
     style={{
       width: '1em',
       height: '1em',
     }}
-    class={cx('animate-spin', {
-      ['hidden']: !show,
-    })}
+    class="animate-spin"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"

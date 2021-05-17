@@ -50,13 +50,13 @@ const SolidButton: FunctionalComponent<SolidButtonProps> = (
     >
       {loading ? (
         <span style={{ marginRight: '0.5em' }}>
-          <Spinner show />
+          <Spinner />
         </span>
       ) : null}
 
       {!loading && prependIcon ? (
         <span style={{ marginRight: '0.5em' }}>
-          <Icon show name={prependIcon} />
+          <Icon name={prependIcon} />
         </span>
       ) : null}
 
@@ -64,7 +64,7 @@ const SolidButton: FunctionalComponent<SolidButtonProps> = (
 
       {appendIcon ? (
         <span style={{ marginLeft: '0.5em' }}>
-          <Icon show name={appendIcon} />
+          <Icon name={appendIcon} />
         </span>
       ) : null}
     </button>
