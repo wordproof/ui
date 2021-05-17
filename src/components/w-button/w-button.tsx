@@ -65,7 +65,7 @@ export class WButton {
   /**
    * name of the browsing context, defaults to '_blank' (specify '_self' to open url in the same tab)
    */
-  @Prop() target: string = '';
+  @Prop({ mutable: true }) target: string = '';
 
   componentWillRender() {
     this.color = this.color ? this.color : 'blue';
