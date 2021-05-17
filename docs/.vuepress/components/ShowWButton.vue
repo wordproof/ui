@@ -14,6 +14,8 @@
         :href="attributes.href"
         :target="attributes.target"
         :underline-none="attributes.underlineNone"
+        :prepend-icon="attributes.prependIcon"
+        :append-icon="attributes.appendIcon"
         >{{ buttonText }}</w-button
       >
     </div>
