@@ -3,6 +3,7 @@ import { Component, h, Prop, Element, State } from '@stencil/core';
 type OptionItem = {
   label: string;
   value: string;
+  disabled: boolean;
 };
 
 @Component({
@@ -51,9 +52,11 @@ export class WInputSelect {
 
     this.options = optionElems.map(option => {
       const value = option.attributes['value']?.nodeValue;
+      const disabled = option.attributes['disabled']?.nodeValue;
       return {
         label: option.textContent,
         value: value ? value : option.textContent,
+        disabled: disabled !== undefined && disabled !== 'false',
       };
     });
 
@@ -63,7 +66,7 @@ export class WInputSelect {
 
     if (!selectedOption) {
       this.options = [
-        { label: this.placeholder, value: this.value },
+        { label: this.placeholder, value: this.value, disabled: true },
         ...this.options,
       ];
     }
@@ -76,11 +79,12 @@ export class WInputSelect {
           <span class="text-gray-700 text-sm">{this.label}</span>
           <select
             onChange={this.handleChange.bind(this)}
-            class="fblock w-full text-gray-800 text-lg border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm focus:outline-none"
+            class="block w-full text-gray-800 text-lg border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm focus:outline-none"
           >
             {this.options.map(option => (
               <option
                 value={option.value}
+                disabled={option.disabled}
                 selected={option.value === this.value}
               >
                 {option.label}

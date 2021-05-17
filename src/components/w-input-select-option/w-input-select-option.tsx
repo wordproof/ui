@@ -9,10 +9,6 @@ export class WInputSelectOption {
   @Element() hostElement: HTMLElement;
 
   render() {
-    return (
-      <option class="hidden">
-        <slot></slot>
-      </option>
-    );
+    return <option class="hidden"></option>;
   }
 }
