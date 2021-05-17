@@ -1,7 +1,7 @@
 import { Component, Prop, State, h } from '@stencil/core';
 import { TRIGGER_HASH, Route } from '.';
 import { onMobile } from '../../utils/responsive';
-import { CertificateView } from '../w-certificate-v4/types';
+import { CertificateView } from '../w-certificate/types';
 
 @Component({
   tag: 'w-router-outlet',
