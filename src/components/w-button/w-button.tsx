@@ -129,6 +129,8 @@ export class WButton {
           disabled={this.disabled}
           type={this.type}
           loading={this.loading}
+          appendIcon={this.appendIcon}
+          prependIcon={this.prependIcon}
         >
           <slot></slot>
         </OutlineButton>

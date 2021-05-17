@@ -7,6 +7,8 @@ import {
   ButtonDisabledClasses,
 } from '../shared/SharedCssClasses';
 import Spinner from '../shared/Spinner';
+import Icon from '../shared/Icon';
+import { IconName } from '../../w-icon/types';
 
 interface OutlineButtonProps {
   onClick: Function;
@@ -15,9 +17,11 @@ interface OutlineButtonProps {
   disabled: boolean;
   loading?: boolean;
   type: string;
+  prependIcon?: IconName;
+  appendIcon?: IconName;
 }
 const OutlineButton: FunctionalComponent<OutlineButtonProps> = (
-  { color, size, onClick, disabled, type, loading },
+  { color, size, onClick, disabled, type, loading, prependIcon, appendIcon },
   children,
 ) => {
   return (
@@ -50,7 +54,19 @@ const OutlineButton: FunctionalComponent<OutlineButtonProps> = (
         </span>
       ) : null}
 
+      {!loading && prependIcon ? (
+        <span style={{ marginRight: '0.5em' }}>
+          <Icon name={prependIcon} />
+        </span>
+      ) : null}
+
       {children}
+
+      {appendIcon ? (
+        <span style={{ marginLeft: '0.5em' }}>
+          <Icon name={appendIcon} />
+        </span>
+      ) : null}
     </button>
   );
 };

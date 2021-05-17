@@ -141,7 +141,7 @@ export default {
         url: '',
         target: '',
         prependIcon: '',
-        appendIcon: 'arrow-right',
+        appendIcon: '',
       },
       buttonText: 'Sample button',
       targetOptions: ['_self', '_blank'],
