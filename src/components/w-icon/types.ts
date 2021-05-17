@@ -28,6 +28,7 @@ export const Icon = {
   'calendar': 'calendar',
   'shield': 'shield',
   'info': 'info',
+  'arrowLeft': 'arrow-left',
 } as const;
 
 export type IconName = Values<typeof Icon>;

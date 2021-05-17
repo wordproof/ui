@@ -141,6 +141,11 @@
   height: 24px;
 }
 
+.arrow-left {
+  width: 17px;
+  height: 12px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

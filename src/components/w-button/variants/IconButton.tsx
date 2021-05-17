@@ -50,8 +50,7 @@ const IconButton: FunctionalComponent<IconButtonProps> = ({
       style={{ '--tw-ring-opacity': '0.5' }}
     >
       <div style={{ padding: '0.25em' }}>
-        <Spinner show={loading} />
-        <Icon show={!loading} name={icon} />
+        {loading ? <Spinner /> : <Icon name={icon} />}
       </div>
     </button>
   );

@@ -65,7 +65,17 @@ export class WButton {
   /**
    * name of the browsing context, defaults to '_blank' (specify '_self' to open url in the same tab)
    */
-  @Prop() target: string = '';
+  @Prop({ mutable: true }) target: string = '';
+
+  /**
+   * adds an icon with the corresponding name before button content
+   */
+  @Prop() prependIcon: IconName;
+
+  /**
+   * adds an icon with the corresponding name after button content
+   */
+  @Prop() appendIcon: IconName;
 
   componentWillRender() {
     this.color = this.color ? this.color : 'blue';
@@ -119,6 +129,8 @@ export class WButton {
           disabled={this.disabled}
           type={this.type}
           loading={this.loading}
+          appendIcon={this.appendIcon}
+          prependIcon={this.prependIcon}
         >
           <slot></slot>
         </OutlineButton>
@@ -133,6 +145,8 @@ export class WButton {
         disabled={this.disabled}
         type={this.type}
         loading={this.loading}
+        appendIcon={this.appendIcon}
+        prependIcon={this.prependIcon}
       >
         <slot></slot>
       </SolidButton>
