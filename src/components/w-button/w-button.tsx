@@ -67,6 +67,16 @@ export class WButton {
    */
   @Prop({ mutable: true }) target: string = '';
 
+  /**
+   * adds an icon with the corresponding name before button content
+   */
+  @Prop() prependIcon: IconName;
+
+  /**
+   * adds an icon with the corresponding name after button content
+   */
+  @Prop() appendIcon: IconName;
+
   componentWillRender() {
     this.color = this.color ? this.color : 'blue';
     this.size = this.size ? this.size : 'lg';
@@ -133,6 +143,8 @@ export class WButton {
         disabled={this.disabled}
         type={this.type}
         loading={this.loading}
+        appendIcon={this.appendIcon}
+        prependIcon={this.prependIcon}
       >
         <slot></slot>
       </SolidButton>

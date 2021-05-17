@@ -29,6 +29,10 @@ export namespace Components {
     }
     interface WButton {
         /**
+          * adds an icon with the corresponding name after button content
+         */
+        "appendIcon": IconName;
+        /**
           * button color
          */
         "color": WButtonColor;
@@ -52,6 +56,10 @@ export namespace Components {
           * renders button as underlined text
          */
         "outline": boolean;
+        /**
+          * adds an icon with the corresponding name before button content
+         */
+        "prependIcon": IconName;
         /**
           * button text size
          */
@@ -468,6 +476,10 @@ declare namespace LocalJSX {
     }
     interface WButton {
         /**
+          * adds an icon with the corresponding name after button content
+         */
+        "appendIcon"?: IconName;
+        /**
           * button color
          */
         "color"?: WButtonColor;
@@ -491,6 +503,10 @@ declare namespace LocalJSX {
           * renders button as underlined text
          */
         "outline"?: boolean;
+        /**
+          * adds an icon with the corresponding name before button content
+         */
+        "prependIcon"?: IconName;
         /**
           * button text size
          */

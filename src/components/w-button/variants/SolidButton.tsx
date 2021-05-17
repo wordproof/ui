@@ -7,6 +7,8 @@ import {
   ButtonDisabledClasses,
 } from '../shared/SharedCssClasses';
 import Spinner from '../shared/Spinner';
+import Icon from '../shared/Icon';
+import { IconName } from '../../w-icon/types';
 
 interface SolidButtonProps {
   onClick: Function;
@@ -15,9 +17,11 @@ interface SolidButtonProps {
   disabled: boolean;
   loading?: boolean;
   type: string;
+  prependIcon?: IconName;
+  appendIcon?: IconName;
 }
 const SolidButton: FunctionalComponent<SolidButtonProps> = (
-  { color, size, onClick, disabled, type, loading },
+  { color, size, onClick, disabled, type, loading, prependIcon, appendIcon },
   children,
 ) => {
   return (
@@ -44,10 +48,25 @@ const SolidButton: FunctionalComponent<SolidButtonProps> = (
       )}
       style={{ '--tw-ring-opacity': '0.5' }}
     >
-      <span style={{ marginRight: '0.5em' }}>
-        <Spinner show={loading} />
-      </span>
+      {loading ? (
+        <span style={{ marginRight: '0.5em' }}>
+          <Spinner show />
+        </span>
+      ) : null}
+
+      {!loading && prependIcon ? (
+        <span style={{ marginRight: '0.5em' }}>
+          <Icon show name={prependIcon} />
+        </span>
+      ) : null}
+
       {children}
+
+      {appendIcon ? (
+        <span style={{ marginLeft: '0.5em' }}>
+          <Icon show name={appendIcon} />
+        </span>
+      ) : null}
     </button>
   );
 };
