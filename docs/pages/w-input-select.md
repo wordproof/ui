@@ -13,11 +13,15 @@
 <ClientOnly>
   <script>
     setTimeout(()=>{
-      const selectEl = document.querySelector('#select');
-      const valueEl = document.querySelector('#value');
-      selectEl.addEventListener('change' , (ev)=>{
-        valueEl.innerText = ev.target.value;
-      })
+      try{
+        const selectEl = document.querySelector('#select');
+        const valueEl = document.querySelector('#value');
+        selectEl.addEventListener('change' , (ev)=>{
+          valueEl.innerText = ev.target.value;
+        })
+      } catch(e){
+        //
+      }
     }, 100)
   </script>
 </ClientOnly>
