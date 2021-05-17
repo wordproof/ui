@@ -158,6 +158,7 @@ export default {
         'ink-pen',
         'times-circle',
         'arrow-down',
+        'arrow-left',
         'question-circle',
         'eye-large',
         'blockchain',
@@ -176,7 +177,7 @@ export default {
         'calendar',
         'shield',
         'info',
-      ],
+      ].sort(),
     };
   },
 

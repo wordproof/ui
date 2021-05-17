@@ -276,6 +276,13 @@ export class WIcon {
           />
         </symbol>
 
+        <symbol id="arrow-left" viewBox="0 0 17 12">
+          <path
+            d="M6.787 1.88L3.655 5.142H16.5v1.716H3.655l3.132 3.262-1.166 1.213L.5 6 5.621.667 6.786 1.88z"
+            fill="currentColor"
+          />
+        </symbol>
+
         {/* <symbol id="somename" viewBox="0 0 28 23"></symbol> */}
       </svg>
     );
