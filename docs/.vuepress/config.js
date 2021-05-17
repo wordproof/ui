@@ -66,7 +66,8 @@ module.exports = {
     sidebar: [
       '/pages/installation',
       '/pages/w-button',
-      '/pages/w-text-input',
+      '/pages/w-input-text',
+      '/pages/w-input-select',
       '/pages/w-modal',
       '/pages/w-certificate',
       '/pages/w-certificate-v4',

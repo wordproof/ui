@@ -1,4 +1,4 @@
-# w-text-input
+# w-input-text
 
 <div style="margin-top:1rem;"><w-input-text label="Email" type="email"></w-input-text></div>
 

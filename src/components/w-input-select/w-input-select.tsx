@@ -1,6 +1,10 @@
-import { Component, h, Listen, Prop, State, Element } from '@stencil/core';
-import cx from 'classnames';
-import { WInputSelectOption } from '../w-input-select-option/w-input-select-option';
+import { Component, h, Prop, Element, State } from '@stencil/core';
+
+type OptionItem = {
+  label: string;
+  value: string;
+  disabled: boolean;
+};
 
 @Component({
   tag: 'w-input-select',
@@ -16,112 +20,88 @@ export class WInputSelect {
   @Prop() error: string = '';
 
   /**
-   * placeholder
+   * placeholder (shown as select's value if no value provided
+   * or provided value is not found among options' values)
    */
   @Prop() placeholder: string = '';
+
+  /**
+   * label
+   */
+  @Prop() label: string = '';
+
+  /**
+   * disabled
+   */
+  @Prop() disabled: boolean = false;
 
   /**
    * value
    */
   @Prop({ mutable: true })
-  value: string | number = '';
+  value: string = '';
 
-  @State() displayVallue: string = '';
+  @State() options: OptionItem[] = [];
 
-  @State() open: boolean = false;
-
-  @Listen('choose')
-  selectHandler(event: CustomEvent<WInputSelectOption>) {
-    event.stopPropagation();
-    const { value: data, label } = event.detail;
-    this.close();
-    this.displayVallue = label;
-    const emittedEvent = new InputEvent('input', { data: String(data) });
+  handleChange(ev: Event) {
+    ev.stopPropagation();
+    const { value } = ev.target as any;
+    this.value = value;
+    const emittedEvent = new Event('change');
     this.hostElement.dispatchEvent(emittedEvent);
   }
 
-  @Listen('keydown')
-  handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key === 'Escape') {
-      this.close();
-    }
-  }
-
-  options: WInputSelectOption[];
-
-  backdropEl: HTMLElement;
-
   componentWillLoad() {
-    this.options = (Array.from(this.hostElement.childNodes).filter(
-      node => node.nodeType === Node.ELEMENT_NODE,
-    ) as unknown) as WInputSelectOption[];
+    const optionElems = Array.from(
+      this.hostElement.querySelectorAll('w-input-select-option'),
+    );
 
-    const selected = this.options.find(option => option.value == this.value);
+    this.options = optionElems.map(option => {
+      const value = option.attributes['value']?.nodeValue;
+      const disabled = option.attributes['disabled']?.nodeValue;
+      return {
+        label: option.textContent,
+        value: value ? value : option.textContent,
+        disabled: disabled !== undefined && disabled !== 'false',
+      };
+    });
 
-    if (selected) {
-      this.displayVallue = selected.label;
+    const selectedOption = this.options.find(
+      option => option.value === this.value,
+    );
+
+    if (!selectedOption) {
+      this.options = [
+        { label: this.placeholder, value: this.value, disabled: true },
+        ...this.options,
+      ];
     }
-  }
-
-  toggle() {
-    this.open = !this.open;
-  }
-
-  close() {
-    this.open = false;
   }
 
   render() {
     return (
       <div>
-        <span class="text-sm text-pink" v-if="error">
+        <label class="block">
+          <span class="text-gray-700 text-sm">{this.label}</span>
+          <select
+            onChange={this.handleChange.bind(this)}
+            disabled={this.disabled}
+            class="block w-full text-gray-800 text-lg border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm focus:outline-none"
+          >
+            {this.options.map(option => (
+              <option
+                value={option.value}
+                disabled={option.disabled}
+                selected={option.value === this.value}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <span v-if="error" class="text-sm text-pink">
           {this.error}
         </span>
-
-        <div class="mt-2 relative">
-          <button
-            type="button"
-            aria-haspopup="listbox"
-            aria-expanded="true"
-            aria-labelledby="listbox-label"
-            class={cx(
-              { ['z-10']: this.open },
-              'relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 h-12 text-left focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer',
-            )}
-            onClick={this.toggle.bind(this)}
-          >
-            <span class="flex items-center">
-              <span class="ml-3 block text-gray-800 truncate">
-                {this.displayVallue ? this.displayVallue : this.placeholder}
-              </span>
-            </span>
-            <span class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <w-icon name="arrow-down" class="text-blue"></w-icon>
-            </span>
-          </button>
-          <div
-            class={cx(
-              'absolute mt-1 w-full rounded-md bg-white shadow-lg z-10',
-              {
-                hidden: !this.open,
-              },
-            )}
-          >
-            <div
-              class="fixed w-full h-full top-0 left-0 bg-transparent"
-              ref={el => (this.backdropEl = el as HTMLElement)}
-              onClick={this.close.bind(this)}
-            ></div>
-            <ul
-              tabindex="-1"
-              role="listbox"
-              aria-labelledby="listbox-label"
-              class="z-50 max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none"
-            >
-              <slot />
-            </ul>
-          </div>
-        </div>
       </div>
     );
   }

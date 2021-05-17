@@ -196,31 +196,27 @@ export namespace Components {
     }
     interface WInputSelect {
         /**
-          * form element error message
-         */
-        "error": string;
-        /**
-          * placeholder
-         */
-        "placeholder": string;
-        /**
-          * value
-         */
-        "value": string | number;
-    }
-    interface WInputSelectOption {
-        /**
           * disabled
          */
         "disabled": boolean;
         /**
           * form element error message
          */
+        "error": string;
+        /**
+          * label
+         */
         "label": string;
         /**
-          * form element error message
+          * placeholder (shown as select's value if no value provided or provided value is not found among options' values)
          */
-        "value": string | number;
+        "placeholder": string;
+        /**
+          * value
+         */
+        "value": string;
+    }
+    interface WInputSelectOption {
     }
     interface WInputText {
         /**
@@ -703,32 +699,27 @@ declare namespace LocalJSX {
     }
     interface WInputSelect {
         /**
-          * form element error message
-         */
-        "error"?: string;
-        /**
-          * placeholder
-         */
-        "placeholder"?: string;
-        /**
-          * value
-         */
-        "value"?: string | number;
-    }
-    interface WInputSelectOption {
-        /**
           * disabled
          */
         "disabled"?: boolean;
         /**
           * form element error message
          */
-        "label"?: string;
-        "onChoose"?: (event: CustomEvent<HTMLElement>) => void;
+        "error"?: string;
         /**
-          * form element error message
+          * label
          */
-        "value"?: string | number;
+        "label"?: string;
+        /**
+          * placeholder (shown as select's value if no value provided or provided value is not found among options' values)
+         */
+        "placeholder"?: string;
+        /**
+          * value
+         */
+        "value"?: string;
+    }
+    interface WInputSelectOption {
     }
     interface WInputText {
         /**
