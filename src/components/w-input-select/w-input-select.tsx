@@ -1,6 +1,9 @@
-import { Component, h, Listen, Prop, State, Element } from '@stencil/core';
-import cx from 'classnames';
-import { WInputSelectOption } from '../w-input-select-option/w-input-select-option';
+import { Component, h, Prop, Element, State } from '@stencil/core';
+
+type OptionItem = {
+  label: string;
+  value: string;
+};
 
 @Component({
   tag: 'w-input-select',
@@ -31,6 +34,8 @@ export class WInputSelect {
   @Prop({ mutable: true })
   value: string | number = '';
 
+  @State() options: OptionItem[] = [];
+
   handleChange(ev: Event) {
     ev.preventDefault();
 
@@ -42,6 +47,21 @@ export class WInputSelect {
     this.hostElement.dispatchEvent(emittedEvent);
   }
 
+  componentWillLoad() {
+    const optionElems = Array.from(
+      this.hostElement.querySelectorAll('w-input-select-option'),
+    );
+
+    this.options = optionElems.map(option => {
+      const value = option.attributes['value']?.nodeValue;
+      return {
+        label: option.textContent,
+        value: value ? value : option.textContent,
+      };
+    });
+    console.dir(this.options);
+  }
+
   render() {
     return (
       <div>
@@ -51,7 +71,9 @@ export class WInputSelect {
             onChange={this.handleChange.bind(this)}
             class="fblock w-full text-gray-800 text-lg border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm focus:outline-none"
           >
-            <slot></slot>
+            {this.options.map(option => (
+              <option value={option.value}>{option.label}</option>
+            ))}
           </select>
         </label>
         <span v-if="error" class="text-sm text-pink">

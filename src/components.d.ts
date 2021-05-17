@@ -213,18 +213,6 @@ export namespace Components {
         "value": string | number;
     }
     interface WInputSelectOption {
-        /**
-          * disabled
-         */
-        "disabled": boolean;
-        /**
-          * form element error message
-         */
-        "label": string;
-        /**
-          * form element error message
-         */
-        "value": string | number;
     }
     interface WInputText {
         /**
@@ -724,19 +712,6 @@ declare namespace LocalJSX {
         "value"?: string | number;
     }
     interface WInputSelectOption {
-        /**
-          * disabled
-         */
-        "disabled"?: boolean;
-        /**
-          * form element error message
-         */
-        "label"?: string;
-        "onChoose"?: (event: CustomEvent<HTMLElement>) => void;
-        /**
-          * form element error message
-         */
-        "value"?: string | number;
     }
     interface WInputText {
         /**
