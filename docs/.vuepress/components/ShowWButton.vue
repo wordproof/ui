@@ -9,6 +9,8 @@
         :loading="attributes.loading"
         :outline="attributes.outline"
         :icon="attributes.icon"
+        :prependIcon="attributes.prependIcon"
+        :appendIcon="attributes.appendIcon"
         :href="attributes.href"
         :target="attributes.target"
         :underline-none="attributes.underlineNone"
@@ -17,6 +19,25 @@
     </div>
 
     <div class="settings-wrap">
+      <label for="icon" class="mr-2 my-2">icon: </label>
+      <select id="icon" v-model="attributes.icon" class="mr-4 my-2">
+        <option v-for="option in iconOptions" :key="option" :value="option">{{
+          option
+        }}</option>
+      </select>
+
+      <span v-if="!attributes.text">
+        <input type="checkbox" id="outline" v-model="attributes.outline" />
+        <label for="outline" class="mr-4 my-2">outline</label>
+      </span>
+
+      <span v-if="!attributes.outline">
+        <input type="checkbox" id="text" v-model="attributes.text" />
+        <label for="text" class="mr-4 my-2">text </label>
+      </span>
+
+      <br />
+
       <label for="color" class="mr-2 my-2">color: </label>
       <select id="color" v-model="attributes.color" class="mr-4 my-2">
         <option v-for="option in colorOptions" :key="option" :value="option">{{
@@ -31,27 +52,48 @@
         }}</option>
       </select>
 
-      <label for="icon" class="mr-2 my-2">icon: </label>
-      <select id="icon" v-model="attributes.icon" class="mr-4 my-2">
-        <option v-for="option in iconOptions" :key="option" :value="option">{{
-          option
-        }}</option>
-      </select>
-
       <label for="href" class="mr-2 my-2">href: </label>
       <input type="text" id="href" v-model="attributes.href" />
 
+      <span v-if="attributes.href">
+        <label for="target" class="mr-2 my-2">target: </label>
+        <select id="target" v-model="attributes.target" class="mr-4 my-2">
+          <option
+            v-for="option in targetOptions"
+            :key="option"
+            :value="option"
+            >{{ option }}</option
+          >
+        </select>
+      </span>
+
       <br />
 
-      <span v-if="!attributes.text">
-        <input type="checkbox" id="outline" v-model="attributes.outline" />
-        <label for="outline" class="mr-4 my-2">outline</label>
-      </span>
+      <div v-if="!attributes.icon && !attributes.text">
+        <label for="prepend-icon" class="mr-2 my-2">prepend-icon: </label>
+        <select
+          id="prepend-icon"
+          v-model="attributes.prependIcon"
+          class="mr-3 my-2"
+        >
+          <option v-for="option in iconOptions" :key="option" :value="option">{{
+            option
+          }}</option>
+        </select>
 
-      <span v-if="!attributes.outline">
-        <input type="checkbox" id="text" v-model="attributes.text" />
-        <label for="text" class="mr-4 my-2">text </label>
-      </span>
+        <label for="append-icon" class="mr-2 my-2">append-icon: </label>
+        <select
+          id="append-icon"
+          v-model="attributes.appendIcon"
+          class="mr-3 my-2"
+        >
+          <option v-for="option in iconOptions" :key="option" :value="option">{{
+            option
+          }}</option>
+        </select>
+      </div>
+
+      <br />
 
       <span v-if="!attributes.text">
         <input type="checkbox" id="loading" v-model="attributes.loading" />
@@ -69,19 +111,8 @@
         />
         <label for="underlineNone" class="mr-4 my-2">underline-none </label>
       </span>
-
-      <span v-if="attributes.href">
-        <label for="target" class="mr-2 my-2">target: </label>
-        <select id="target" v-model="attributes.target" class="mr-4 my-2">
-          <option
-            v-for="option in targetOptions"
-            :key="option"
-            :value="option"
-            >{{ option }}</option
-          >
-        </select>
-      </span>
     </div>
+
     <div class="language-html extra-class">
       <pre class="language-html">
         <code>{{html}}</code>
@@ -107,6 +138,8 @@ export default {
         icon: '',
         url: '',
         target: '',
+        prependIcon: '',
+        appendIcon: 'arrow-right',
       },
       buttonText: 'Sample button',
       targetOptions: ['_self', '_blank'],
@@ -147,9 +180,15 @@ export default {
 
   computed: {
     html() {
+      const kebabize = str =>
+        str.replace(
+          /[A-Z]+(?![a-z])|[A-Z]/g,
+          ($, ofs) => (ofs ? '-' : '') + $.toLowerCase(),
+        );
+
       const attrStr = Object.entries(this.attributes)
         .filter(([key, value]) => value)
-        .map(([key, value]) => `${key}="${value}"`)
+        .map(([key, value]) => `${kebabize(key)}="${value}"`)
         .join(' ');
 
       return `<w-button${attrStr ? ' ' : ''}${attrStr}>${
