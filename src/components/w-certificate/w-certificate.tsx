@@ -7,27 +7,32 @@ import {
   Listen,
   Host,
 } from '@stencil/core';
-import {
-  CertificateView,
-  CertificateViewKeys,
-  NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT,
-} from './types';
-import { CertificateStrings } from '../../i18n';
+import { CertificateV4Strings } from '../../i18n';
 import {
   getLocaleStrings,
   getComponentClosestLanguage,
 } from '../../utils/locale';
 import OverviewView from './views/OverviewView';
-import ImportanceView from './views/ImportanceView';
 import { router, Route } from '../w-router-outlet';
 import { WPContent, parsePage } from '../../utils/certificate-data/index';
+import {
+  CertificateView,
+  CertificateViewKeys,
+  NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT,
+} from './types';
+import {
+  BLOCKCHAIN_CONFIG,
+  TIMESTAMP_CHECK_URL,
+} from '../../config/blockchain.config';
+import { disableDebug, enableDebug, LogSources } from '../../utils/debug';
+import AboutView from './views/AboutView';
 
 @Component({
   tag: 'w-certificate',
   styleUrl: 'w-certificate.css',
   shadow: true,
 })
-export class WCertificate {
+export class WCertificateV4 {
   @Element() hostElement: HTMLElement;
 
   /**
@@ -40,6 +45,16 @@ export class WCertificate {
    */
   @Prop() linkText: string;
 
+  /**
+   * enables debug information logging to the console
+   */
+  @Prop() debug: boolean = false;
+
+  /**
+   * shows or hides revisions, default value is `true`
+   */
+  @Prop({ mutable: true }) showRevisions: string | boolean;
+
   @State() visible: boolean = true;
 
   routes = [
@@ -48,55 +63,78 @@ export class WCertificate {
       renderer: () => (
         <OverviewView
           strings={this.strings}
-          lastEdited={new Date(this.content.date)}
+          lastEdited={this.content.date}
           publishedBy=""
           locale={this.locale}
-          hasRevisions={this.content.revisions !== undefined}
           hasChanged={this.content.hasChanged}
+          showRevisions={this.showRevisions as boolean}
         />
       ),
       default: true,
+      mobile: true,
+      height: '590px',
+    },
+    {
+      hash: CertificateView.compare,
+      renderer: (params: URLSearchParams) => (
+        <w-compare-versions-view
+          strings={this.strings}
+          content={this.content}
+          locale={this.locale}
+          viewBlockchainUrl={this.viewBlockchainUrl}
+          timestampCheckUrl={this.timestampCheckUrl}
+          which={parseInt(params.get('which'))}
+          to={parseInt(params.get('to'))}
+          view={params.get('view')}
+        ></w-compare-versions-view>
+      ),
+      minHeight: 'calc(634px)',
+      height: 'calc(100vh - 2rem)',
+    },
+    {
+      hash: CertificateView.content,
+      renderer: (params: URLSearchParams) => {
+        const revision = parseInt(params.get('revision'));
+        const view = params.get('view');
+
+        return (
+          <w-version-view
+            strings={this.strings}
+            content={this.content}
+            locale={this.locale}
+            view={view === 'raw' || view === 'clean' ? view : 'clean'}
+            revision={revision}
+            viewBlockchainUrl={this.viewBlockchainUrl}
+            timestampCheckUrl={this.timestampCheckUrl}
+            showRevisions={this.showRevisions as boolean}
+          ></w-version-view>
+        );
+      },
+      minHeight: '634px',
+      mobile: true,
     },
     {
       hash: CertificateView.importance,
       renderer: () => (
-        <ImportanceView
+        <AboutView
           strings={this.strings}
           hasChanged={this.content.hasChanged}
         />
       ),
-    },
-    {
-      hash: CertificateView.compare,
-      renderer: () => (
-        <w-certificate-versions-view
-          strings={this.strings}
-          content={this.content}
-          locale={this.locale}
-          raw={false}
-          hasRevisions={this.content.revisions !== undefined}
-        ></w-certificate-versions-view>
-      ),
-    },
-    {
-      hash: CertificateView.raw,
-      renderer: () => (
-        <w-certificate-versions-view
-          strings={this.strings}
-          content={this.content}
-          locale={this.locale}
-          raw={true}
-          hasRevisions={this.content.revisions !== undefined}
-        ></w-certificate-versions-view>
-      ),
+      mobile: true,
+      height: '692px',
     },
   ] as Route[];
 
-  currentView: CertificateViewKeys = CertificateView.importance;
+  currentView: CertificateViewKeys = CertificateView.overview;
 
-  strings: CertificateStrings;
+  strings: CertificateV4Strings;
 
   @State() content: WPContent;
+
+  @State() viewBlockchainUrl: string;
+
+  @State() timestampCheckUrl: string;
 
   locale: string;
 
@@ -108,14 +146,31 @@ export class WCertificate {
   }
 
   async componentWillLoad(): Promise<void> {
+    this.showRevisions = this.showRevisions !== 'false';
+
+    if (this.debug) {
+      enableDebug(LogSources.parsePage);
+    }
+
     const content = await parsePage();
+
+    if (this.debug) {
+      disableDebug(LogSources.parsePage);
+    }
+
     if (content !== null) {
       this.content = content;
       this.strings = (await getLocaleStrings(
         this.hostElement,
-      )) as CertificateStrings;
+      )) as CertificateV4Strings;
       this.locale = getComponentClosestLanguage(this.hostElement);
       this.visible = router.isTriggered();
+
+      this.viewBlockchainUrl = `${
+        BLOCKCHAIN_CONFIG[this.content.blockchain].explorer
+      }${this.content.transactionId}`;
+
+      this.timestampCheckUrl = `${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`;
     }
   }
 
@@ -136,14 +191,24 @@ export class WCertificate {
         <w-certificate-link
           noIcon={this.noIcon}
           onClick={() => this.showModal()}
-          linkText={this.linkText}
-        ></w-certificate-link>
+        >
+          {this.linkText ? this.linkText : null}
+        </w-certificate-link>
         <w-modal
-          rounded="lg"
+          rounded
           visible={this.visible}
           onClose={() => this.hideModal()}
+          modalClassName="md:max-w-4xl"
         >
-          <w-router-outlet routes={this.routes} />
+          <w-icon
+            slot="close"
+            name="close"
+            class="mr-8 mt-8 inline-block"
+          ></w-icon>
+          <w-router-outlet
+            routes={this.routes}
+            showRevisions={this.showRevisions as boolean}
+          />
         </w-modal>
       </Host>
     ) : (

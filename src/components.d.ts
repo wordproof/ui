@@ -7,9 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { WButtonColor, WButtonSize } from "./components/w-button/types";
 import { IconName } from "./components/w-icon/types";
-import { WPContent, WPRevision } from "./utils/certificate-data";
-import { RevisionOption } from "./components/w-certificate/views/w-certificate-compare-view/types";
-import { CertificateStrings, CertificateV4Strings } from "./i18n";
+import { CertificateV4Strings } from "./i18n";
+import { WPContent } from "./utils/certificate-data";
 import { DateTimeOption } from "./components/w-date-time-select/w-date-time-select";
 import { getButtonTextFunction } from "./components/w-date-time-select/components/OpenButton";
 import { VNode } from "@stencil/core";
@@ -76,28 +75,6 @@ export namespace Components {
     }
     interface WCertificate {
         /**
-          * custom certificate link text
-         */
-        "linkText": string;
-        /**
-          * hides icon on certificate link
-         */
-        "noIcon": boolean;
-    }
-    interface WCertificateHeader {
-    }
-    interface WCertificateLink {
-        /**
-          * custom certificate link text
-         */
-        "linkText": string;
-        /**
-          * hides icon
-         */
-        "noIcon": boolean;
-    }
-    interface WCertificateV4 {
-        /**
           * enables debug information logging to the console
          */
         "debug": boolean;
@@ -114,20 +91,15 @@ export namespace Components {
          */
         "showRevisions": string | boolean;
     }
-    interface WCertificateVersionsCompare {
-        "allOptions": RevisionOption[];
-        "allRevisions": WPRevision[];
-    }
-    interface WCertificateVersionsRaw {
-        "allOptions": RevisionOption[];
-        "allRevisions": WPRevision[];
-    }
-    interface WCertificateVersionsView {
-        "content": WPContent;
-        "hasRevisions": boolean;
-        "locale": string;
-        "raw": boolean;
-        "strings": CertificateStrings;
+    interface WCertificateLink {
+        /**
+          * custom certificate link text
+         */
+        "linkText": string;
+        /**
+          * hides icon
+         */
+        "noIcon": boolean;
     }
     interface WCompareVersionsView {
         "content": WPContent;
@@ -372,41 +344,11 @@ declare global {
         prototype: HTMLWCertificateElement;
         new (): HTMLWCertificateElement;
     };
-    interface HTMLWCertificateHeaderElement extends Components.WCertificateHeader, HTMLStencilElement {
-    }
-    var HTMLWCertificateHeaderElement: {
-        prototype: HTMLWCertificateHeaderElement;
-        new (): HTMLWCertificateHeaderElement;
-    };
     interface HTMLWCertificateLinkElement extends Components.WCertificateLink, HTMLStencilElement {
     }
     var HTMLWCertificateLinkElement: {
         prototype: HTMLWCertificateLinkElement;
         new (): HTMLWCertificateLinkElement;
-    };
-    interface HTMLWCertificateV4Element extends Components.WCertificateV4, HTMLStencilElement {
-    }
-    var HTMLWCertificateV4Element: {
-        prototype: HTMLWCertificateV4Element;
-        new (): HTMLWCertificateV4Element;
-    };
-    interface HTMLWCertificateVersionsCompareElement extends Components.WCertificateVersionsCompare, HTMLStencilElement {
-    }
-    var HTMLWCertificateVersionsCompareElement: {
-        prototype: HTMLWCertificateVersionsCompareElement;
-        new (): HTMLWCertificateVersionsCompareElement;
-    };
-    interface HTMLWCertificateVersionsRawElement extends Components.WCertificateVersionsRaw, HTMLStencilElement {
-    }
-    var HTMLWCertificateVersionsRawElement: {
-        prototype: HTMLWCertificateVersionsRawElement;
-        new (): HTMLWCertificateVersionsRawElement;
-    };
-    interface HTMLWCertificateVersionsViewElement extends Components.WCertificateVersionsView, HTMLStencilElement {
-    }
-    var HTMLWCertificateVersionsViewElement: {
-        prototype: HTMLWCertificateVersionsViewElement;
-        new (): HTMLWCertificateVersionsViewElement;
     };
     interface HTMLWCompareVersionsViewElement extends Components.WCompareVersionsView, HTMLStencilElement {
     }
@@ -496,12 +438,7 @@ declare global {
         "w-badge": HTMLWBadgeElement;
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
-        "w-certificate-header": HTMLWCertificateHeaderElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
-        "w-certificate-v4": HTMLWCertificateV4Element;
-        "w-certificate-versions-compare": HTMLWCertificateVersionsCompareElement;
-        "w-certificate-versions-raw": HTMLWCertificateVersionsRawElement;
-        "w-certificate-versions-view": HTMLWCertificateVersionsViewElement;
         "w-compare-versions-view": HTMLWCompareVersionsViewElement;
         "w-date-time-select": HTMLWDateTimeSelectElement;
         "w-dropdown-menu": HTMLWDropdownMenuElement;
@@ -577,28 +514,6 @@ declare namespace LocalJSX {
     }
     interface WCertificate {
         /**
-          * custom certificate link text
-         */
-        "linkText"?: string;
-        /**
-          * hides icon on certificate link
-         */
-        "noIcon"?: boolean;
-    }
-    interface WCertificateHeader {
-    }
-    interface WCertificateLink {
-        /**
-          * custom certificate link text
-         */
-        "linkText"?: string;
-        /**
-          * hides icon
-         */
-        "noIcon"?: boolean;
-    }
-    interface WCertificateV4 {
-        /**
           * enables debug information logging to the console
          */
         "debug"?: boolean;
@@ -615,22 +530,15 @@ declare namespace LocalJSX {
          */
         "showRevisions"?: string | boolean;
     }
-    interface WCertificateVersionsCompare {
-        "allOptions"?: RevisionOption[];
-        "allRevisions"?: WPRevision[];
-        "onChoose"?: (event: CustomEvent<WPRevision>) => void;
-    }
-    interface WCertificateVersionsRaw {
-        "allOptions"?: RevisionOption[];
-        "allRevisions"?: WPRevision[];
-        "onChoose"?: (event: CustomEvent<WPRevision>) => void;
-    }
-    interface WCertificateVersionsView {
-        "content"?: WPContent;
-        "hasRevisions"?: boolean;
-        "locale"?: string;
-        "raw"?: boolean;
-        "strings"?: CertificateStrings;
+    interface WCertificateLink {
+        /**
+          * custom certificate link text
+         */
+        "linkText"?: string;
+        /**
+          * hides icon
+         */
+        "noIcon"?: boolean;
     }
     interface WCompareVersionsView {
         "content"?: WPContent;
@@ -860,12 +768,7 @@ declare namespace LocalJSX {
         "w-badge": WBadge;
         "w-button": WButton;
         "w-certificate": WCertificate;
-        "w-certificate-header": WCertificateHeader;
         "w-certificate-link": WCertificateLink;
-        "w-certificate-v4": WCertificateV4;
-        "w-certificate-versions-compare": WCertificateVersionsCompare;
-        "w-certificate-versions-raw": WCertificateVersionsRaw;
-        "w-certificate-versions-view": WCertificateVersionsView;
         "w-compare-versions-view": WCompareVersionsView;
         "w-date-time-select": WDateTimeSelect;
         "w-dropdown-menu": WDropdownMenu;
@@ -889,12 +792,7 @@ declare module "@stencil/core" {
             "w-badge": LocalJSX.WBadge & JSXBase.HTMLAttributes<HTMLWBadgeElement>;
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
-            "w-certificate-header": LocalJSX.WCertificateHeader & JSXBase.HTMLAttributes<HTMLWCertificateHeaderElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
-            "w-certificate-v4": LocalJSX.WCertificateV4 & JSXBase.HTMLAttributes<HTMLWCertificateV4Element>;
-            "w-certificate-versions-compare": LocalJSX.WCertificateVersionsCompare & JSXBase.HTMLAttributes<HTMLWCertificateVersionsCompareElement>;
-            "w-certificate-versions-raw": LocalJSX.WCertificateVersionsRaw & JSXBase.HTMLAttributes<HTMLWCertificateVersionsRawElement>;
-            "w-certificate-versions-view": LocalJSX.WCertificateVersionsView & JSXBase.HTMLAttributes<HTMLWCertificateVersionsViewElement>;
             "w-compare-versions-view": LocalJSX.WCompareVersionsView & JSXBase.HTMLAttributes<HTMLWCompareVersionsViewElement>;
             "w-date-time-select": LocalJSX.WDateTimeSelect & JSXBase.HTMLAttributes<HTMLWDateTimeSelectElement>;
             "w-dropdown-menu": LocalJSX.WDropdownMenu & JSXBase.HTMLAttributes<HTMLWDropdownMenuElement>;

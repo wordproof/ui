@@ -70,7 +70,6 @@ module.exports = {
       '/pages/w-input-select',
       '/pages/w-modal',
       '/pages/w-certificate',
-      '/pages/w-certificate-v4',
     ],
   },
 };

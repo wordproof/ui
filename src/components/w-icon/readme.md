@@ -19,29 +19,23 @@
 
  - [w-button](../w-button)
  - [w-certificate](../w-certificate)
- - [w-certificate-v4](../w-certificate-v4)
- - [w-certificate-versions-view](../w-certificate/views/w-certificate-compare-view)
- - [w-compare-versions-view](../w-certificate-v4/views/w-compare-versions-view)
+ - [w-compare-versions-view](../w-certificate/views/w-compare-versions-view)
  - [w-date-time-select](../w-date-time-select)
  - [w-dropdown-menu](../w-dropdown-menu)
  - [w-input-date](../w-input-date)
- - [w-input-select](../w-input-select)
  - [w-modal](../w-modal)
  - [w-revision-select](../w-revision-select)
- - [w-version-view](../w-certificate-v4/views/w-version-view)
+ - [w-version-view](../w-certificate/views/w-version-view)
 
 ### Graph
 ```mermaid
 graph TD;
   w-button --> w-icon
   w-certificate --> w-icon
-  w-certificate-v4 --> w-icon
-  w-certificate-versions-view --> w-icon
   w-compare-versions-view --> w-icon
   w-date-time-select --> w-icon
   w-dropdown-menu --> w-icon
   w-input-date --> w-icon
-  w-input-select --> w-icon
   w-modal --> w-icon
   w-revision-select --> w-icon
   w-version-view --> w-icon

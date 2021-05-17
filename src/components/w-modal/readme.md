@@ -31,7 +31,6 @@
 ### Used by
 
  - [w-certificate](../w-certificate)
- - [w-certificate-v4](../w-certificate-v4)
 
 ### Depends on
 
@@ -42,7 +41,6 @@
 graph TD;
   w-modal --> w-icon
   w-certificate --> w-modal
-  w-certificate-v4 --> w-modal
   style w-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

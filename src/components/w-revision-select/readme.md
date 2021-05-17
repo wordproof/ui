@@ -17,7 +17,7 @@
 
 ### Used by
 
- - [w-version-view](../w-certificate-v4/views/w-version-view)
+ - [w-version-view](../w-certificate/views/w-version-view)
 
 ### Depends on
 
