@@ -16,8 +16,8 @@
 
 ### Used by
 
- - [w-compare-versions-view](../w-certificate-v4/views/w-compare-versions-view)
- - [w-version-view](../w-certificate-v4/views/w-version-view)
+ - [w-compare-versions-view](../w-certificate/views/w-compare-versions-view)
+ - [w-version-view](../w-certificate/views/w-version-view)
 
 ### Depends on
 

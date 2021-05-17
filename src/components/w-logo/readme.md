@@ -23,13 +23,11 @@
 ### Used by
 
  - [w-certificate](../w-certificate)
- - [w-certificate-v4](../w-certificate-v4)
 
 ### Graph
 ```mermaid
 graph TD;
   w-certificate --> w-logo
-  w-certificate-v4 --> w-logo
   style w-logo fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

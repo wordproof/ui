@@ -30,13 +30,13 @@
 ### Graph
 ```mermaid
 graph TD;
-  w-certificate-v4 --> w-compare-versions-view
-  w-certificate-v4 --> w-version-view
-  w-certificate-v4 --> w-certificate-link
-  w-certificate-v4 --> w-modal
-  w-certificate-v4 --> w-icon
-  w-certificate-v4 --> w-router-outlet
-  w-certificate-v4 --> w-logo
+  w-certificate --> w-compare-versions-view
+  w-certificate --> w-version-view
+  w-certificate --> w-certificate-link
+  w-certificate --> w-modal
+  w-certificate --> w-icon
+  w-certificate --> w-router-outlet
+  w-certificate --> w-logo
   w-compare-versions-view --> w-date-time-select
   w-compare-versions-view --> w-icon
   w-compare-versions-view --> w-dropdown-menu
@@ -48,7 +48,7 @@ graph TD;
   w-version-view --> w-dropdown-menu
   w-revision-select --> w-icon
   w-modal --> w-icon
-  style w-certificate-v4 fill:#f9f,stroke:#333,stroke-width:4px
+  style w-certificate fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
