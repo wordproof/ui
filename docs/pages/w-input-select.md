@@ -10,15 +10,17 @@
   <div style="padding:1rem 0;">Value: <span id="value"></span></div>
 </div>
 
-<script>
-  setTimeout(()=>{
-    const selectEl = document.querySelector('#select');
-    const valueEl = document.querySelector('#value');
-    selectEl.addEventListener('change' , (ev)=>{
-      valueEl.innerText = ev.target.value;
-    })
-  }, 100)
-</script>
+<ClientOnly>
+  <script>
+    setTimeout(()=>{
+      const selectEl = document.querySelector('#select');
+      const valueEl = document.querySelector('#value');
+      selectEl.addEventListener('change' , (ev)=>{
+        valueEl.innerText = ev.target.value;
+      })
+    }, 100)
+  </script>
+</ClientOnly>
 
 ```html
 <w-input-select
