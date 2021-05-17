@@ -210,7 +210,7 @@ export namespace Components {
         /**
           * value
          */
-        "value": string | number;
+        "value": string;
     }
     interface WInputSelectOption {
     }
@@ -709,7 +709,7 @@ declare namespace LocalJSX {
         /**
           * value
          */
-        "value"?: string | number;
+        "value"?: string;
     }
     interface WInputSelectOption {
     }

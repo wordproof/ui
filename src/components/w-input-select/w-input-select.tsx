@@ -32,18 +32,15 @@ export class WInputSelect {
    * value
    */
   @Prop({ mutable: true })
-  value: string | number = '';
+  value: string = '';
 
   @State() options: OptionItem[] = [];
 
   handleChange(ev: Event) {
-    ev.preventDefault();
-
-    console.warn((ev.target as any).value);
-
-    const emittedEvent = new InputEvent('change', {
-      // data: String(this.checked),
-    });
+    ev.stopPropagation();
+    const { value } = ev.target as any;
+    this.value = value;
+    const emittedEvent = new Event('change');
     this.hostElement.dispatchEvent(emittedEvent);
   }
 
@@ -59,7 +56,17 @@ export class WInputSelect {
         value: value ? value : option.textContent,
       };
     });
-    console.dir(this.options);
+
+    const selectedOption = this.options.find(
+      option => option.value === this.value,
+    );
+
+    if (!selectedOption) {
+      this.options = [
+        { label: this.placeholder, value: this.value },
+        ...this.options,
+      ];
+    }
   }
 
   render() {
@@ -72,7 +79,12 @@ export class WInputSelect {
             class="fblock w-full text-gray-800 text-lg border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm focus:outline-none"
           >
             {this.options.map(option => (
-              <option value={option.value}>{option.label}</option>
+              <option
+                value={option.value}
+                selected={option.value === this.value}
+              >
+                {option.label}
+              </option>
             ))}
           </select>
         </label>
