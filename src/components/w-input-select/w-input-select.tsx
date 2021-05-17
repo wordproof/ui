@@ -20,7 +20,8 @@ export class WInputSelect {
   @Prop() error: string = '';
 
   /**
-   * placeholder
+   * placeholder (shown as select's value if no value provided
+   * or provided value is not found among options' values)
    */
   @Prop() placeholder: string = '';
 
@@ -28,6 +29,11 @@ export class WInputSelect {
    * label
    */
   @Prop() label: string = '';
+
+  /**
+   * disabled
+   */
+  @Prop() disabled: boolean = false;
 
   /**
    * value
@@ -79,6 +85,7 @@ export class WInputSelect {
           <span class="text-gray-700 text-sm">{this.label}</span>
           <select
             onChange={this.handleChange.bind(this)}
+            disabled={this.disabled}
             class="block w-full text-gray-800 text-lg border border-solid border-gray-800 h-12 pl-2 bg-transparent focus:border-blue rounded-md shadow-sm focus:outline-none"
           >
             {this.options.map(option => (

@@ -196,6 +196,10 @@ export namespace Components {
     }
     interface WInputSelect {
         /**
+          * disabled
+         */
+        "disabled": boolean;
+        /**
           * form element error message
          */
         "error": string;
@@ -204,7 +208,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * placeholder
+          * placeholder (shown as select's value if no value provided or provided value is not found among options' values)
          */
         "placeholder": string;
         /**
@@ -695,6 +699,10 @@ declare namespace LocalJSX {
     }
     interface WInputSelect {
         /**
+          * disabled
+         */
+        "disabled"?: boolean;
+        /**
           * form element error message
          */
         "error"?: string;
@@ -703,7 +711,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * placeholder
+          * placeholder (shown as select's value if no value provided or provided value is not found among options' values)
          */
         "placeholder"?: string;
         /**
