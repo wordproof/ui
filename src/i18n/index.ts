@@ -1,10 +1,12 @@
 import wCertificateLinkStrings from '../i18n/w-certificate-link.i18n.en.json';
+import wCertificateButtonStrings from '../i18n/w-certificate-button.i18n.en.json';
 import wCertificateStrings from '../i18n/w-certificate.i18n.en.json';
 import wDateTimeSelectStrings from '../i18n/w-date-time-select.i18n.en.json';
 import wModalStrings from '../i18n/w-modal.i18n.en.json';
 
 export const EnglishStrings = {
   'w-certificate-link': wCertificateLinkStrings,
+  'w-certificate-button': wCertificateButtonStrings,
   'w-certificate': wCertificateStrings,
   'w-date-time-select': wDateTimeSelectStrings,
   'w-modal': wModalStrings,
