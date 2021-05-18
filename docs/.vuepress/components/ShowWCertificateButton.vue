@@ -53,15 +53,15 @@ export default {
   data() {
     return {
       attributes: {
-        shape: 'pill',
-        variant: 'blue',
+        shape: 'box',
+        variant: 'base',
         text: '',
       },
       shapeOptions: ['text', 'box', 'pill'],
       variantOptions: {
         text: ['blue', 'gray'],
-        box: ['1', '2'],
-        pill: ['white', 'blue', 'tall'],
+        box: ['base', 'sm', 'xs', 'tall', 'rounded', 'fluid'],
+        pill: ['white', 'blue'],
       },
     };
   },
@@ -98,7 +98,7 @@ export default {
 .button-wrap {
   display: grid;
   place-items: center;
-  height: 6rem;
+  height: 12rem;
 }
 
 .settings-wrap {

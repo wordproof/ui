@@ -7,11 +7,17 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Sohne-Dreiviertelfett";
-  src: url("../../global/fonts/Sohne-Dreiviertelfett.otf");
+  font-family: 'Sohne-Dreiviertelfett';
+  src: url('../../global/fonts/Sohne-Dreiviertelfett.otf');
 }
 
 @font-face {
-  font-family: "Sohne-Buch";
-  src: url("../../global/fonts/Sohne-Buch.otf");
+  font-family: 'Sohne-Buch';
+  src: url('../../global/fonts/Sohne-Buch.otf');
+}
+
+.button-background-shape-left {
+  background-position: -72px -19px;
+  background-image: url("data:image/svg+xml,%3Csvg width='869' height='838' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M32 21.154c113.206-55.67 209.084 15.03 261.5 63.533 52.417 48.502 584.832 754.224 584.832 754.224L-3.123 858.318-136.499 236s55.293-159.176 168.5-214.846z' fill='%23F5F7FA'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
 }
