@@ -53,13 +53,13 @@ export default {
   data() {
     return {
       attributes: {
-        shape: '',
-        variant: '',
+        shape: 'text',
+        variant: 'blue',
         text: '',
       },
       shapeOptions: ['text', 'box', 'pill'],
       variantOptions: {
-        text: ['1', '2'],
+        text: ['blue', 'gray'],
         box: ['1', '2'],
         pill: ['1', '2'],
       },
@@ -99,7 +99,6 @@ export default {
   display: grid;
   place-items: center;
   height: 6rem;
-  background-color: #eeeeee;
 }
 
 .settings-wrap {

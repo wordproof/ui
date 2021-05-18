@@ -110,7 +110,7 @@ export namespace Components {
          */
         "text": string;
         /**
-          * variant of th button with certain shapet
+          * variant of the button with certain shape
          */
         "variant": string;
     }
@@ -578,7 +578,7 @@ declare namespace LocalJSX {
          */
         "text"?: string;
         /**
-          * variant of th button with certain shapet
+          * variant of the button with certain shape
          */
         "variant"?: string;
     }

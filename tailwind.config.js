@@ -44,6 +44,7 @@ module.exports = {
         10: '40px',
         20: '80px',
         104: '26rem',
+        '3px': '3px',
       },
       fontFamily: {
         'sans': ['Nunito', ...defaultTheme.fontFamily.sans],

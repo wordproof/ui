@@ -1,6 +1,7 @@
 import { Component, Prop, h, Element } from '@stencil/core';
 import { CertificateButtonStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
+import CertificateTextButton from './components/CertificateTextButton';
 
 export type CertificateButtonShape = 'box' | 'text' | 'pill';
 
@@ -25,9 +26,9 @@ export class WCertificateButton {
   @Prop() shape: CertificateButtonShape = 'box';
 
   /**
-   * variant of th button with certain shapet
+   * variant of the button with certain shape
    */
-  @Prop() variant: string = '1';
+  @Prop() variant: string;
 
   async componentWillLoad(): Promise<void> {
     this.strings = (await getLocaleStrings(
@@ -41,15 +42,21 @@ export class WCertificateButton {
     this.hostElement.dispatchEvent(event);
   }
 
+  getButtonText() {
+    return this.text ? this.text : this.strings.defaultButtonText;
+  }
+
   render() {
-    return (
-      <button
-        class="bg-blue text-white"
-        type="button"
-        onClick={ev => this.onTriggerClick(ev)}
-      >
-        {this.text ? this.text : this.strings.defaultButtonText}
-      </button>
-    );
+    if (this.shape === 'text') {
+      return (
+        <CertificateTextButton
+          color={this.variant as 'blue' | 'gray'}
+          text={this.getButtonText()}
+          onClick={ev => this.onTriggerClick(ev)}
+        />
+      );
+    }
+
+    return null;
   }
 }
