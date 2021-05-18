@@ -19,6 +19,7 @@
 
  - [w-button](../w-button)
  - [w-certificate](../w-certificate)
+ - [w-certificate-button](../w-certificate-button)
  - [w-compare-versions-view](../w-certificate/views/w-compare-versions-view)
  - [w-date-time-select](../w-date-time-select)
  - [w-dropdown-menu](../w-dropdown-menu)
@@ -32,6 +33,7 @@
 graph TD;
   w-button --> w-icon
   w-certificate --> w-icon
+  w-certificate-button --> w-icon
   w-compare-versions-view --> w-icon
   w-date-time-select --> w-icon
   w-dropdown-menu --> w-icon
