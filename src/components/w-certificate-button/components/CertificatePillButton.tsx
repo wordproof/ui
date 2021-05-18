@@ -1,0 +1,35 @@
+import { FunctionalComponent, h } from '@stencil/core';
+import RoundLogo from '../shared/RoundLogo';
+import cx from 'classnames';
+import { ButtonDefaultClasses } from '../shared/SharedCssClasses';
+
+interface CertificatePillButtonProps {
+  color: 'blue' | 'white';
+  text: string;
+  onClick: Function;
+}
+
+const CertificatePillButton: FunctionalComponent<CertificatePillButtonProps> = ({
+  color,
+  text,
+  onClick,
+}) => (
+  <button
+    class={cx(
+      ButtonDefaultClasses(),
+      'p-1 rounded-full shadow py-3 pl-4 pr-9 focus:ring-blue',
+      {
+        ['text-white bg-gradient-to-r from-blue to-purple']: color === 'blue',
+        ['text-blue bg-white']: color === 'white',
+      },
+    )}
+    type="button"
+    onClick={ev => onClick(ev)}
+    style={{ '--tw-ring-opacity': '0.5' }}
+  >
+    <RoundLogo color={'blue'} />
+    <span class="ml-3 mt-1px whitespace-nowrap">{text}</span>
+  </button>
+);
+
+export default CertificatePillButton;

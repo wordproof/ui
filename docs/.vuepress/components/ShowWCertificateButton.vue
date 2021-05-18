@@ -53,15 +53,15 @@ export default {
   data() {
     return {
       attributes: {
-        shape: 'text',
-        variant: 'gray',
+        shape: 'pill',
+        variant: 'blue',
         text: '',
       },
       shapeOptions: ['text', 'box', 'pill'],
       variantOptions: {
         text: ['blue', 'gray'],
         box: ['1', '2'],
-        pill: ['1', '2'],
+        pill: ['white', 'blue', 'tall'],
       },
     };
   },
