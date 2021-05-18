@@ -15,6 +15,11 @@ export class WCertificateButton {
   strings: CertificateButtonStrings;
 
   /**
+   * text on the button, if not specified defaults to 'View this content's Timestamp certificate'
+   */
+  @Prop() text: string;
+
+  /**
    * shape of the button ('box' | 'text' | 'pill')
    */
   @Prop() shape: CertificateButtonShape = 'box';
@@ -39,11 +44,11 @@ export class WCertificateButton {
   render() {
     return (
       <button
+        class="bg-blue text-white"
         type="button"
-        class="flex items-center focus:outline-none relative"
         onClick={ev => this.onTriggerClick(ev)}
       >
-        <slot>{this.strings.defaultButtonText}</slot>
+        {this.text ? this.text : this.strings.defaultButtonText}
       </button>
     );
   }

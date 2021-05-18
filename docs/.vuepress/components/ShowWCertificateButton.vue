@@ -4,8 +4,8 @@
       <w-certificate-button
         :shape="attributes.shape"
         :variant="attributes.variant"
+        :text="attributes.text"
       >
-        {{ buttonText }}
       </w-certificate-button>
     </div>
 
@@ -14,7 +14,7 @@
       <input
         type="text"
         id="button-text"
-        v-model="buttonText"
+        v-model="attributes.text"
         class="mr-4 my-2"
       />
 
@@ -55,8 +55,8 @@ export default {
       attributes: {
         shape: '',
         variant: '',
+        text: '',
       },
-      buttonText: '',
       shapeOptions: ['text', 'box', 'pill'],
       variantOptions: {
         text: ['1', '2'],
@@ -79,9 +79,9 @@ export default {
         .map(([key, value]) => `${kebabize(key)}="${value}"`)
         .join(' ');
 
-      return `<w-certificate-button${attrStr ? ' ' : ''}${attrStr}>${
-        this.buttonText
-      }</w-certificate-button>`;
+      return `<w-certificate-button${
+        attrStr ? ' ' : ''
+      }${attrStr}></w-certificate-button>`;
     },
   },
 };
