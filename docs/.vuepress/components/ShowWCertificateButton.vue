@@ -1,9 +1,12 @@
 <template>
   <div class="wrap">
     <div class="button-wrap" ref="wbutton">
-      <w-button :shape="attributes.shape" :variant="attributes.variant">{{
-        buttonText
-      }}</w-button>
+      <w-certificate-button
+        :shape="attributes.shape"
+        :variant="attributes.variant"
+      >
+        {{ buttonText }}
+      </w-certificate-button>
     </div>
 
     <div class="settings-wrap">
