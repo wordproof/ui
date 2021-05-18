@@ -13,6 +13,9 @@ export const EnglishStrings = {
 type CertificateLinkKeys = ['defaultLinkText'][number];
 export type CertificateLinkStrings = Record<CertificateLinkKeys, string>;
 
+type CertificateButtonKeys = ['defaultButtonText'][number];
+export type CertificateButtonStrings = Record<CertificateButtonKeys, string>;
+
 type CertificateKeys = [
   'contentIsWordProof',
   'contentIsNotWordProof',

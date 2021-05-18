@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { WButtonColor, WButtonSize } from "./components/w-button/types";
 import { IconName } from "./components/w-icon/types";
+import { CertificateButtonShape } from "./components/w-certificate-button/w-certificate-button";
 import { CertificateV4Strings } from "./i18n";
 import { WPContent } from "./utils/certificate-data";
 import { DateTimeOption } from "./components/w-date-time-select/w-date-time-select";
@@ -98,6 +99,16 @@ export namespace Components {
           * shows or hides revisions, default value is `true`
          */
         "showRevisions": string | boolean;
+    }
+    interface WCertificateButton {
+        /**
+          * shape of the button ('box' | 'text' | 'pill')
+         */
+        "shape": CertificateButtonShape;
+        /**
+          * variant of th button with certain shapet
+         */
+        "variant": string;
     }
     interface WCertificateLink {
         /**
@@ -352,6 +363,12 @@ declare global {
         prototype: HTMLWCertificateElement;
         new (): HTMLWCertificateElement;
     };
+    interface HTMLWCertificateButtonElement extends Components.WCertificateButton, HTMLStencilElement {
+    }
+    var HTMLWCertificateButtonElement: {
+        prototype: HTMLWCertificateButtonElement;
+        new (): HTMLWCertificateButtonElement;
+    };
     interface HTMLWCertificateLinkElement extends Components.WCertificateLink, HTMLStencilElement {
     }
     var HTMLWCertificateLinkElement: {
@@ -446,6 +463,7 @@ declare global {
         "w-badge": HTMLWBadgeElement;
         "w-button": HTMLWButtonElement;
         "w-certificate": HTMLWCertificateElement;
+        "w-certificate-button": HTMLWCertificateButtonElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
         "w-compare-versions-view": HTMLWCompareVersionsViewElement;
         "w-date-time-select": HTMLWDateTimeSelectElement;
@@ -545,6 +563,16 @@ declare namespace LocalJSX {
           * shows or hides revisions, default value is `true`
          */
         "showRevisions"?: string | boolean;
+    }
+    interface WCertificateButton {
+        /**
+          * shape of the button ('box' | 'text' | 'pill')
+         */
+        "shape"?: CertificateButtonShape;
+        /**
+          * variant of th button with certain shapet
+         */
+        "variant"?: string;
     }
     interface WCertificateLink {
         /**
@@ -784,6 +812,7 @@ declare namespace LocalJSX {
         "w-badge": WBadge;
         "w-button": WButton;
         "w-certificate": WCertificate;
+        "w-certificate-button": WCertificateButton;
         "w-certificate-link": WCertificateLink;
         "w-compare-versions-view": WCompareVersionsView;
         "w-date-time-select": WDateTimeSelect;
@@ -808,6 +837,7 @@ declare module "@stencil/core" {
             "w-badge": LocalJSX.WBadge & JSXBase.HTMLAttributes<HTMLWBadgeElement>;
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
+            "w-certificate-button": LocalJSX.WCertificateButton & JSXBase.HTMLAttributes<HTMLWCertificateButtonElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
             "w-compare-versions-view": LocalJSX.WCompareVersionsView & JSXBase.HTMLAttributes<HTMLWCompareVersionsViewElement>;
             "w-date-time-select": LocalJSX.WDateTimeSelect & JSXBase.HTMLAttributes<HTMLWDateTimeSelectElement>;
