@@ -20,7 +20,6 @@ interface CertificateBoxButtonProps {
 }
 
 const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
-  variant,
   text,
   strings,
   onClick,
