@@ -1,6 +1,7 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import RoundLogo from '../shared/RoundLogo';
 import cx from 'classnames';
+import { ButtonDefaultClasses } from '../shared/SharedCssClasses';
 
 interface CertificateTextButtonProps {
   color: 'blue' | 'gray';
@@ -14,9 +15,13 @@ const CertificateTextButton: FunctionalComponent<CertificateTextButtonProps> = (
   onClick,
 }) => (
   <button
-    class="flex items-center flex-nowrap"
+    class={cx(ButtonDefaultClasses(), 'p-1 rounded', {
+      ['focus:ring-blue']: color === 'blue',
+      ['focus:ring-black']: color === 'gray',
+    })}
     type="button"
     onClick={ev => onClick(ev)}
+    style={{ '--tw-ring-opacity': '0.5' }}
   >
     <RoundLogo color={color} />
     <span
