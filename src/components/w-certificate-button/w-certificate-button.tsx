@@ -1,8 +1,12 @@
 import { Component, Prop, h, Element } from '@stencil/core';
 import { CertificateButtonStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
-import CertificatePillButton from './components/CertificatePillButton';
-import CertificateTextButton from './components/CertificateTextButton';
+import CertificatePillButton, {
+  CertificatePillButtonVariants,
+} from './components/CertificatePillButton';
+import CertificateTextButton, {
+  CertificateTextButtonVariants,
+} from './components/CertificateTextButton';
 
 export type CertificateButtonShape = 'box' | 'text' | 'pill';
 
@@ -51,7 +55,7 @@ export class WCertificateButton {
     if (this.shape === 'text') {
       return (
         <CertificateTextButton
-          color={this.variant as 'blue' | 'gray'}
+          color={this.variant as CertificateTextButtonVariants}
           text={this.getButtonText()}
           onClick={ev => this.onTriggerClick(ev)}
         />
@@ -61,7 +65,7 @@ export class WCertificateButton {
     if (this.shape === 'pill') {
       return (
         <CertificatePillButton
-          color={this.variant as 'blue' | 'white'}
+          color={this.variant as CertificatePillButtonVariants}
           text={this.getButtonText()}
           onClick={ev => this.onTriggerClick(ev)}
         />

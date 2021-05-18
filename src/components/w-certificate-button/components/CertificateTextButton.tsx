@@ -3,8 +3,10 @@ import RoundLogo from '../shared/RoundLogo';
 import cx from 'classnames';
 import { ButtonDefaultClasses } from '../shared/SharedCssClasses';
 
+export type CertificateTextButtonVariants = 'blue' | 'gray';
+
 interface CertificateTextButtonProps {
-  color: 'blue' | 'gray';
+  color: CertificateTextButtonVariants;
   text: string;
   onClick: Function;
 }

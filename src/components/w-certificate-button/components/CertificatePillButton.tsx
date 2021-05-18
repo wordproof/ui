@@ -3,8 +3,10 @@ import RoundLogo from '../shared/RoundLogo';
 import cx from 'classnames';
 import { ButtonDefaultClasses } from '../shared/SharedCssClasses';
 
+export type CertificatePillButtonVariants = 'blue' | 'white'
+
 interface CertificatePillButtonProps {
-  color: 'blue' | 'white';
+  color: CertificatePillButtonVariants;
   text: string;
   onClick: Function;
 }
