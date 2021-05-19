@@ -7,9 +7,7 @@ import CertificateBoxButton, {
 import CertificatePillButton, {
   CertificatePillButtonVariants,
 } from './components/CertificatePillButton';
-import CertificateTextButton, {
-  CertificateTextButtonVariants,
-} from './components/CertificateTextButton';
+import CertificateTextButton from './components/CertificateTextButton';
 
 export type CertificateButtonShape = 'box' | 'text' | 'pill';
 
@@ -31,7 +29,7 @@ export class WCertificateButton {
   /**
    * shape of the button ('box' | 'text' | 'pill')
    */
-  @Prop() shape: CertificateButtonShape = 'box';
+  @Prop() shape: CertificateButtonShape | '' = 'text';
 
   /**
    * variant of the button with certain shape
@@ -55,10 +53,10 @@ export class WCertificateButton {
   }
 
   render() {
-    if (this.shape === 'text') {
+    if (this.shape === 'text' || this.shape === '') {
       return (
         <CertificateTextButton
-          color={this.variant as CertificateTextButtonVariants}
+          color={this.variant}
           text={this.getButtonText()}
           onClick={ev => this.onTriggerClick(ev)}
         />

@@ -104,7 +104,7 @@ export namespace Components {
         /**
           * shape of the button ('box' | 'text' | 'pill')
          */
-        "shape": CertificateButtonShape;
+        "shape": CertificateButtonShape | '';
         /**
           * text on the button, if not specified defaults to 'View this content's Timestamp certificate'
          */
@@ -572,7 +572,7 @@ declare namespace LocalJSX {
         /**
           * shape of the button ('box' | 'text' | 'pill')
          */
-        "shape"?: CertificateButtonShape;
+        "shape"?: CertificateButtonShape | '';
         /**
           * text on the button, if not specified defaults to 'View this content's Timestamp certificate'
          */
