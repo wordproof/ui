@@ -7,7 +7,9 @@ import CertificateBoxButton, {
 import CertificatePillButton, {
   CertificatePillButtonVariants,
 } from './components/CertificatePillButton';
-import CertificateTextButton from './components/CertificateTextButton';
+import CertificateTextButton, {
+  CertificateTextButtonIcon,
+} from './components/CertificateTextButton';
 
 export type CertificateButtonShape = 'box' | 'text' | 'pill';
 
@@ -41,6 +43,11 @@ export class WCertificateButton {
    */
   @Prop() color: string;
 
+  /**
+   * color of the text and pill button
+   */
+  @Prop() icon: CertificateTextButtonIcon;
+
   async componentWillLoad(): Promise<void> {
     this.strings = (await getLocaleStrings(
       this.hostElement,
@@ -61,9 +68,10 @@ export class WCertificateButton {
     if (this.shape === 'text' || !this.shape) {
       return (
         <CertificateTextButton
-          color={/^#([0-9A-F]{3}){1,2}$/i.test(this.color) ? this.color : ''}
+          color={/^#([0-9A-F]{6})$/i.test(this.color) ? this.color : ''}
           text={this.getButtonText()}
           onClick={ev => this.onTriggerClick(ev)}
+          icon={this.icon}
         />
       );
     }

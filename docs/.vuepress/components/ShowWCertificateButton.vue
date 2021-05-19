@@ -6,6 +6,7 @@
         :variant="attributes.variant"
         :text="attributes.text"
         :color="attributes.color"
+        :icon="attributes.icon"
       >
       </w-certificate-button>
     </div>
@@ -27,6 +28,8 @@
         class="mr-4 my-2"
       />
 
+      <br />
+
       <OptionSelect
         v-if="attributes.shape === 'box'"
         label="variant"
@@ -43,6 +46,14 @@
         class="mr-4 my-2"
       />
 
+      <OptionSelect
+        v-if="attributes.shape === 'text'"
+        label="icon"
+        v-model="attributes.icon"
+        :options="variantOptions.icon"
+        class="mr-4 my-2"
+      />
+
       <span v-if="attributes.shape === 'text'">
         <label for="color" class="mr-2 my-2">color: </label>
         <input
@@ -50,6 +61,7 @@
           id="color"
           v-model="attributes.color"
           class="mr-4 my-2"
+          style="width: 4rem;"
         />
       </span>
     </div>
@@ -75,11 +87,13 @@ export default {
         variant: '',
         text: '',
         color: '',
+        icon: '',
       },
       shapeOptions: ['text', 'box', 'pill'],
       variantOptions: {
         box: ['base', 'sm', 'tall', 'rounded', 'fluid'],
         pill: ['white', 'blue'],
+        icon: ['wordproof', 'shield', 'none'],
       },
     };
   },
@@ -151,7 +165,7 @@ export default {
 }
 
 .mr-2 {
-  margin: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .my-2 {

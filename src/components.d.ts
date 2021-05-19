@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { WButtonColor, WButtonSize } from "./components/w-button/types";
 import { IconName } from "./components/w-icon/types";
 import { CertificateButtonShape } from "./components/w-certificate-button/w-certificate-button";
+import { CertificateTextButtonIcon } from "./components/w-certificate-button/components/CertificateTextButton";
 import { CertificateV4Strings } from "./i18n";
 import { WPContent } from "./utils/certificate-data";
 import { DateTimeOption } from "./components/w-date-time-select/w-date-time-select";
@@ -105,6 +106,10 @@ export namespace Components {
           * color of the text and pill button
          */
         "color": string;
+        /**
+          * color of the text and pill button
+         */
+        "icon": CertificateTextButtonIcon;
         /**
           * shape of the button ('box' | 'text' | 'pill')
          */
@@ -577,6 +582,10 @@ declare namespace LocalJSX {
           * color of the text and pill button
          */
         "color"?: string;
+        /**
+          * color of the text and pill button
+         */
+        "icon"?: CertificateTextButtonIcon;
         /**
           * shape of the button ('box' | 'text' | 'pill')
          */
