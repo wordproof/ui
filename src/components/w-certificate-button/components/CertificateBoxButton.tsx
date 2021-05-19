@@ -44,8 +44,9 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
     {variant === 'tall' ? <ShieldLogo /> : null}
 
     <div
-      class={cx('flex flex-col items-center', {
-        ['mt-4']: variant === 'tall',
+      class={cx('flex flex-col', {
+        ['mt-4 items-center']: variant === 'tall',
+        ['items-left']: variant !== 'tall',
       })}
     >
       {variant === 'tall' || variant === 'fluid' ? <TextLogo /> : <RectLogo />}
