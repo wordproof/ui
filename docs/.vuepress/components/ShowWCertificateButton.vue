@@ -78,7 +78,7 @@ export default {
       },
       shapeOptions: ['text', 'box', 'pill'],
       variantOptions: {
-        box: ['base', 'sm', 'xs', 'tall', 'rounded', 'fluid'],
+        box: ['base', 'sm', 'tall', 'rounded', 'fluid'],
         pill: ['white', 'blue'],
       },
     };

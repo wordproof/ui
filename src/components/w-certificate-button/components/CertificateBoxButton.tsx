@@ -9,7 +9,6 @@ import TextLogo from '../shared/TextLogo';
 export type CertificateBoxButtonVariants =
   | 'base'
   | 'sm'
-  | 'xs'
   | 'tall'
   | 'rounded'
   | 'fluid';
@@ -32,8 +31,7 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
       ['px-8 py-11 rounded-sm shape-left shape-base']: variant === 'base',
       ['pl-10 pr-9 pt-6 pb-5 rounded-full shape-right shape-rounded']:
         variant === 'rounded',
-      ['px-12 py-11 rounded-sm relative shape-left shape-sm']: variant === 'sm',
-      ['px-12 py-6 rounded-sm']: variant === 'xs',
+      ['px-12 py-6 rounded-sm']: variant === 'sm',
       ['px-12 pt-6 pb-4 rounded-sm flex-col shape-left shape-tall']:
         variant === 'tall',
       ['pl-7 pr-10 py-5 rounded-sm w-full']: variant === 'fluid',
@@ -68,7 +66,7 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
       class={cx('w-48 text-blue text-left whitespace-normal', {
         ['ml-8']: variant === 'base',
         ['ml-10']: variant === 'rounded',
-        ['hidden']: variant === 'sm' || variant === 'xs' || variant === 'tall',
+        ['hidden']: variant === 'sm' || variant === 'tall',
         ['mx-10 flex-grow']: variant === 'fluid',
       })}
     >
@@ -78,8 +76,7 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
     <w-icon
       name="arrow-right"
       class={cx('text-blue', {
-        ['absolute bottom-4 right-4']: variant === 'sm',
-        ['hidden']: variant === 'xs',
+        ['hidden']: variant === 'sm',
         ['mt-4']: variant === 'tall',
       })}
     ></w-icon>
