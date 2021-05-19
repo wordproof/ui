@@ -36,37 +36,45 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
       ['px-12 py-6 rounded-sm']: variant === 'xs',
       ['px-12 pt-6 pb-4 rounded-sm flex-col shape-left shape-tall']:
         variant === 'tall',
+      ['pl-7 pr-10 py-5 rounded-sm w-full']: variant === 'fluid',
     })}
     type="button"
     onClick={ev => onClick(ev)}
     style={{ '--tw-ring-opacity': '0.5' }}
   >
-    {variant === 'tall' ? <ShieldLogo /> : null}
+    {variant === 'tall' || variant === 'fluid' ? <ShieldLogo /> : null}
 
     <div
       class={cx('flex flex-col', {
         ['mt-4 items-center']: variant === 'tall',
         ['items-left']: variant !== 'tall',
+        ['ml-3 mt-1']: variant === 'fluid',
       })}
     >
       {variant === 'tall' || variant === 'fluid' ? <TextLogo /> : <RectLogo />}
 
       <div
-        class="w-full text-blue opacity-40 mt-2px"
+        class={cx('w-full text-blue opacity-40', {
+          ['mt-2px']: variant !== 'fluid',
+          ['mt-1']: variant === 'fluid',
+        })}
         style={{ fontSize: '15px' }}
       >
         {strings.contentCertificate}
       </div>
     </div>
+
     <p
       class={cx('w-48 text-blue text-left whitespace-normal', {
         ['ml-8']: variant === 'base',
         ['ml-10']: variant === 'rounded',
         ['hidden']: variant === 'sm' || variant === 'xs' || variant === 'tall',
+        ['mx-10 flex-grow']: variant === 'fluid',
       })}
     >
       {text}
     </p>
+
     <w-icon
       name="arrow-right"
       class={cx('text-blue', {
