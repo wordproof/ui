@@ -36,6 +36,11 @@ export class WCertificateButton {
    */
   @Prop() variant: string;
 
+  /**
+   * color of the text button
+   */
+  @Prop() color: string;
+
   async componentWillLoad(): Promise<void> {
     this.strings = (await getLocaleStrings(
       this.hostElement,
@@ -56,7 +61,7 @@ export class WCertificateButton {
     if (this.shape === 'text' || this.shape === '') {
       return (
         <CertificateTextButton
-          color={this.variant}
+          color={/^#([0-9A-F]{3}){1,2}$/i.test(this.color) ? this.color : ''}
           text={this.getButtonText()}
           onClick={ev => this.onTriggerClick(ev)}
         />

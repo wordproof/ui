@@ -5,6 +5,7 @@
         :shape="attributes.shape"
         :variant="attributes.variant"
         :text="attributes.text"
+        :color="attributes.color"
       >
       </w-certificate-button>
     </div>
@@ -70,8 +71,8 @@ export default {
   data() {
     return {
       attributes: {
-        shape: 'box',
-        variant: 'fluid',
+        shape: 'text',
+        variant: '',
         text: '',
         color: '',
       },
@@ -105,7 +106,7 @@ export default {
   methods: {
     onShapeChange(shape) {
       if (shape === 'box') {
-        this.attributes.variant = 'fluid';
+        this.attributes.variant = 'rounded';
         this.attributes.color = '';
         return;
       }

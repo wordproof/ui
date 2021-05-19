@@ -21,13 +21,22 @@ const CertificateTextButton: FunctionalComponent<CertificateTextButtonProps> = (
       })}
       type="button"
       onClick={ev => onClick(ev)}
-      style={{ '--tw-ring-opacity': '0.5' }}
+      style={{ '--tw-ring-opacity': '0.5', ...(color ? { color } : {}) }}
     >
       <RoundLogo color={color} />
       <span
         class={cx('ml-3 pb-3px whitespace-nowrap border-b', {
           ['text-blue border-blue']: !color,
         })}
+        style={
+          color
+            ? {
+                'border-bottom-width': '1px',
+                'border-color': color,
+                'border-style': 'solid',
+              }
+            : {}
+        }
       >
         {text}
       </span>
