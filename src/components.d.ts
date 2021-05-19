@@ -102,7 +102,7 @@ export namespace Components {
     }
     interface WCertificateButton {
         /**
-          * color of the text button
+          * color of the text and pill button
          */
         "color": string;
         /**
@@ -114,7 +114,7 @@ export namespace Components {
          */
         "text": string;
         /**
-          * variant of the button with certain shape
+          * variant of the box button
          */
         "variant": string;
     }
@@ -574,7 +574,7 @@ declare namespace LocalJSX {
     }
     interface WCertificateButton {
         /**
-          * color of the text button
+          * color of the text and pill button
          */
         "color"?: string;
         /**
@@ -586,7 +586,7 @@ declare namespace LocalJSX {
          */
         "text"?: string;
         /**
-          * variant of the button with certain shape
+          * variant of the box button
          */
         "variant"?: string;
     }

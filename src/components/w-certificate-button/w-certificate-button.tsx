@@ -32,12 +32,12 @@ export class WCertificateButton {
   @Prop() shape: CertificateButtonShape | '' = 'text';
 
   /**
-   * variant of the button with certain shape
+   * variant of the box button
    */
   @Prop() variant: string;
 
   /**
-   * color of the text button
+   * color of the text and pill button
    */
   @Prop() color: string;
 
@@ -58,7 +58,7 @@ export class WCertificateButton {
   }
 
   render() {
-    if (this.shape === 'text' || this.shape === '') {
+    if (this.shape === 'text' || !this.shape) {
       return (
         <CertificateTextButton
           color={/^#([0-9A-F]{3}){1,2}$/i.test(this.color) ? this.color : ''}
@@ -71,7 +71,7 @@ export class WCertificateButton {
     if (this.shape === 'pill') {
       return (
         <CertificatePillButton
-          color={this.variant as CertificatePillButtonVariants}
+          color={this.color as CertificatePillButtonVariants}
           text={this.getButtonText()}
           onClick={ev => this.onTriggerClick(ev)}
         />
