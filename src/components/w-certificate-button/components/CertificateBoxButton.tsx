@@ -23,12 +23,15 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
   text,
   strings,
   onClick,
+  variant,
 }) => (
   <button
-    class={cx(
-      ButtonDefaultClasses(),
-      'py-11 px-8 rounded-sm shadow focus:ring-blue button-background-shape-left',
-    )}
+    class={cx(ButtonDefaultClasses(), 'shadow focus:ring-blue', {
+      ['px-8 py-11 rounded-sm button-background-shape-left']:
+        variant === 'base',
+      ['pl-10 pr-9 pt-6 pb-5 rounded-full button-background-shape-left']:
+        variant === 'rounded',
+    })}
     type="button"
     onClick={ev => onClick(ev)}
     style={{ '--tw-ring-opacity': '0.5' }}
@@ -42,7 +45,14 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
         {strings.contentCertificate}
       </div>
     </div>
-    <p class="ml-8 w-48 text-blue text-left whitespace-normal">{text}</p>
+    <p
+      class={cx('w-48 text-blue text-left whitespace-normal', {
+        ['ml-8']: variant === 'base',
+        ['ml-10']: variant === 'rounded',
+      })}
+    >
+      {text}
+    </p>
     <w-icon name="arrow-right" class="text-blue"></w-icon>
   </button>
 );
