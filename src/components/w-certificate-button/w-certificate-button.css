@@ -37,3 +37,7 @@
 .shape-sm {
   background-position: -157px -19px;
 }
+.shape-tall {
+  background-position: -31px 14px;
+  background-size: 375px 300px;
+}
