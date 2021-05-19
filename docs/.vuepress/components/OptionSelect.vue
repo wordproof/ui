@@ -3,13 +3,17 @@
     <label :for="label" class="mr-2 my-2">{{ label }}: </label>
     <select
       :id="label"
-      v-model="modelValue"
+      :value="value"
       class="mr-4 my-2"
-      @change="$emit('input', modelValue)"
+      @change="ev => $emit('input', ev.target.value)"
     >
-      <option v-for="option in options" :key="option" :value="option">{{
-        option
-      }}</option>
+      <option
+        v-for="option in options"
+        :key="option"
+        :value="option"
+        :selected="value === option"
+        >{{ option }}</option
+      >
     </select>
   </span>
 </template>
@@ -22,12 +26,6 @@ export default {
     label: { type: String, required: true },
     options: { type: Array, required: true },
     value: { type: String, required: true },
-  },
-
-  data() {
-    return {
-      modelValue: this.value,
-    };
   },
 };
 </script>

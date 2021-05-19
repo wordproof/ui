@@ -22,18 +22,35 @@
         label="shape"
         v-model="attributes.shape"
         :options="shapeOptions"
-        @input="attributes.variant = variantOptions[attributes.shape][0]"
+        @input="onShapeChange(attributes.shape)"
         class="mr-4 my-2"
       />
 
       <OptionSelect
-        v-if="attributes.shape"
-        :key="attributes.shape"
+        v-if="attributes.shape === 'box'"
         label="variant"
         v-model="attributes.variant"
-        :options="variantOptions[attributes.shape]"
+        :options="variantOptions.box"
         class="mr-4 my-2"
       />
+
+      <OptionSelect
+        v-if="attributes.shape === 'pill'"
+        label="color"
+        v-model="attributes.color"
+        :options="variantOptions.pill"
+        class="mr-4 my-2"
+      />
+
+      <span v-if="attributes.shape === 'text'">
+        <label for="color" class="mr-2 my-2">color: </label>
+        <input
+          type="text"
+          id="color"
+          v-model="attributes.color"
+          class="mr-4 my-2"
+        />
+      </span>
     </div>
 
     <div class="language-html extra-class">
@@ -56,10 +73,10 @@ export default {
         shape: 'box',
         variant: 'fluid',
         text: '',
+        color: '',
       },
       shapeOptions: ['text', 'box', 'pill'],
       variantOptions: {
-        text: ['blue', 'gray'],
         box: ['base', 'sm', 'xs', 'tall', 'rounded', 'fluid'],
         pill: ['white', 'blue'],
       },
@@ -82,6 +99,28 @@ export default {
       return `<w-certificate-button${
         attrStr ? ' ' : ''
       }${attrStr}></w-certificate-button>`;
+    },
+  },
+
+  methods: {
+    onShapeChange(shape) {
+      if (shape === 'box') {
+        this.attributes.variant = 'fluid';
+        this.attributes.color = '';
+        return;
+      }
+
+      if (shape === 'pill') {
+        this.attributes.variant = '';
+        this.attributes.color = 'white';
+        return;
+      }
+
+      if (shape === 'text') {
+        this.attributes.variant = '';
+        this.attributes.color = '';
+        return;
+      }
     },
   },
 };
