@@ -54,7 +54,7 @@ export default {
     return {
       attributes: {
         shape: 'box',
-        variant: 'sm',
+        variant: 'xs',
         text: '',
       },
       shapeOptions: ['text', 'box', 'pill'],
