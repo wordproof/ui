@@ -47,4 +47,8 @@
     background-position: -47px -19px;
     background-size: 375px 300px;
   }
+
+  .shape-base {
+    background-position: -138px -19px;
+  }
 }
