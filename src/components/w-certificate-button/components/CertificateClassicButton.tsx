@@ -1,5 +1,4 @@
 import { FunctionalComponent, h } from '@stencil/core';
-import ShieldLogo from '../shared/ShieldLogo';
 import cx from 'classnames';
 import { ButtonDefaultClasses } from '../shared/SharedCssClasses';
 
