@@ -7,6 +7,7 @@
         :text="attributes.text"
         :color="attributes.color"
         :icon="attributes.icon"
+        :key="JSON.stringify(attributes)"
       >
       </w-certificate-button>
     </div>
