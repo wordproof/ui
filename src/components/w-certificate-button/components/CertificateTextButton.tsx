@@ -39,19 +39,11 @@ const CertificateTextButton: FunctionalComponent<CertificateTextButtonProps> = (
       </span>
 
       <span
-        class={cx('pb-3px sm:whitespace-nowrap border-b flex-shrink', {
-          ['text-blue border-blue']: !color || icon === 'wordproof' || !icon,
+        class={cx('pb-3px sm:whitespace-nowrap flex-shrink underline text-left', {
+          ['text-blue']: !color || icon === 'wordproof' || !icon,
           ['ml-3']: icon !== 'none',
         })}
-        style={
-          color && icon !== 'wordproof' && icon
-            ? {
-                'border-bottom-width': '1px',
-                'border-color': color,
-                'border-style': 'solid',
-              }
-            : {}
-        }
+        style={{ 'text-underline-offset': '4px' }}
       >
         {text}
       </span>
