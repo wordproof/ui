@@ -3,7 +3,7 @@ import RoundLogo from '../shared/RoundLogo';
 import cx from 'classnames';
 import { ButtonDefaultClasses } from '../shared/SharedCssClasses';
 
-export type CertificatePillButtonVariants = 'blue' | 'white'
+export type CertificatePillButtonVariants = 'blue' | 'white';
 
 interface CertificatePillButtonProps {
   color: CertificatePillButtonVariants;
@@ -29,8 +29,10 @@ const CertificatePillButton: FunctionalComponent<CertificatePillButtonProps> = (
     onClick={ev => onClick(ev)}
     style={{ '--tw-ring-opacity': '0.5' }}
   >
-    <RoundLogo color={'blue'} />
-    <span class="ml-3 mt-1px whitespace-nowrap">{text}</span>
+    <span class="flex-shrink-0">
+      <RoundLogo color={'blue'} />
+    </span>
+    <span class="ml-3 mt-1px sm:whitespace-nowrap text-left">{text}</span>
   </button>
 );
 
