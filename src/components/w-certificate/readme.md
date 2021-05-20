@@ -21,7 +21,7 @@
 
 - [w-compare-versions-view](./views/w-compare-versions-view)
 - [w-version-view](./views/w-version-view)
-- [w-certificate-link](../w-certificate-link)
+- [w-certificate-button](../w-certificate-button)
 - [w-modal](../w-modal)
 - [w-icon](../w-icon)
 - [w-router-outlet](../w-router-outlet)
@@ -32,7 +32,7 @@
 graph TD;
   w-certificate --> w-compare-versions-view
   w-certificate --> w-version-view
-  w-certificate --> w-certificate-link
+  w-certificate --> w-certificate-button
   w-certificate --> w-modal
   w-certificate --> w-icon
   w-certificate --> w-router-outlet
@@ -47,6 +47,7 @@ graph TD;
   w-version-view --> w-icon
   w-version-view --> w-dropdown-menu
   w-revision-select --> w-icon
+  w-certificate-button --> w-icon
   w-modal --> w-icon
   style w-certificate fill:#f9f,stroke:#333,stroke-width:4px
 ```

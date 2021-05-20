@@ -36,6 +36,13 @@ export class WCertificateV4 {
   @Element() hostElement: HTMLElement;
 
   /**
+   * @slot
+   * if the slot contains `w-certificate-button` it will be used
+   * otherwise slot text content is used as text on the button
+   * it overrides the value of the `link-text` attribute (see below)
+   */
+
+  /**
    * hides icon on certificate link
    */
   @Prop() noIcon: boolean = false;
@@ -130,6 +137,10 @@ export class WCertificateV4 {
 
   strings: CertificateV4Strings;
 
+  slotTextContent: string = '';
+
+  slotShouldRender: boolean = true;
+
   @State() content: WPContent;
 
   @State() viewBlockchainUrl: string;
@@ -143,6 +154,11 @@ export class WCertificateV4 {
     if (ev.key === 'Escape') {
       this.hideModal();
     }
+  }
+
+  @Listen('click')
+  handleClick() {
+    this.showModal();
   }
 
   async componentWillLoad(): Promise<void> {
@@ -172,6 +188,14 @@ export class WCertificateV4 {
 
       this.timestampCheckUrl = `${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`;
     }
+
+    if (this.hostElement.hasChildNodes()) {
+      const firstNode = this.hostElement.childNodes[0];
+      if (firstNode.nodeName !== 'W-CERTIFICATE-BUTTON') {
+        this.slotShouldRender = false;
+        this.slotTextContent = firstNode.textContent;
+      }
+    }
   }
 
   showModal() {
@@ -188,12 +212,22 @@ export class WCertificateV4 {
   render() {
     return this.content ? (
       <Host>
-        <w-certificate-link
-          noIcon={this.noIcon}
-          onClick={() => this.showModal()}
-        >
-          {this.linkText ? this.linkText : null}
-        </w-certificate-link>
+        {this.slotShouldRender ? (
+          <slot>
+            <w-certificate-button
+              text={this.linkText}
+              shape="text"
+              icon={this.noIcon ? 'none' : 'wordproof'}
+            ></w-certificate-button>
+          </slot>
+        ) : (
+          <w-certificate-button
+            text={this.slotTextContent}
+            shape="text"
+            icon={this.noIcon ? 'none' : 'wordproof'}
+          ></w-certificate-button>
+        )}
+
         <w-modal
           rounded
           visible={this.visible}

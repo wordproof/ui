@@ -33,23 +33,17 @@ const CertificateTextButton: FunctionalComponent<CertificateTextButtonProps> = (
           : {}),
       }}
     >
-      {icon === 'wordproof' || !icon ? <RoundLogo color="" /> : null}
-      {icon === 'shield' ? <ShieldLogo color={color} small={true} /> : null}
+      <span class="flex-shrink-0 self-start">
+        {icon === 'wordproof' || !icon ? <RoundLogo color="" /> : null}
+        {icon === 'shield' ? <ShieldLogo color={color} small={true} /> : null}
+      </span>
 
       <span
-        class={cx('pb-3px whitespace-nowrap border-b', {
-          ['text-blue border-blue']: !color || icon === 'wordproof' || !icon,
+        class={cx('pb-3px sm:whitespace-nowrap flex-shrink underline text-left', {
+          ['text-blue']: !color || icon === 'wordproof' || !icon,
           ['ml-3']: icon !== 'none',
         })}
-        style={
-          color && icon !== 'wordproof' && icon
-            ? {
-                'border-bottom-width': '1px',
-                'border-color': color,
-                'border-style': 'solid',
-              }
-            : {}
-        }
+        style={{ 'text-underline-offset': '4px' }}
       >
         {text}
       </span>

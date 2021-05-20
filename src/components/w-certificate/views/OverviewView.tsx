@@ -67,12 +67,12 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       )}
     </div>
     <h2 class="font-sohne-bold text-center mt-2">
-      <div class="text-black font-bold text-3xl sm:text-4xl">
+      <div class="text-black font-semibold text-3xl sm:text-4xl">
         {strings.thisContent}
       </div>
       <div
         class={cx(
-          'sm:-mt-3 font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block text-1.5xl',
+          'sm:-mt-3 font-semibold px-5 py-1 h-10 leading-8 rounded-full inline-block text-1.5xl',
           {
             'text-blue bg-gray-200': !hasChanged,
             'text-black bg-white': hasChanged,

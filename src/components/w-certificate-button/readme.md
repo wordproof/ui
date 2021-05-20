@@ -7,16 +7,20 @@
 
 ## Properties
 
-| Property  | Attribute | Description                                                                                  | Type                                | Default     |
-| --------- | --------- | -------------------------------------------------------------------------------------------- | ----------------------------------- | ----------- |
-| `color`   | `color`   | color of the text and pill button                                                            | `string`                            | `undefined` |
-| `icon`    | `icon`    | color of the text and pill button                                                            | `"none" \| "shield" \| "wordproof"` | `undefined` |
-| `shape`   | `shape`   | shape of the button ('box' \| 'text' \| 'pill')                                              | `"" \| "box" \| "pill" \| "text"`   | `'text'`    |
-| `text`    | `text`    | text on the button, if not specified defaults to 'View this content's Timestamp certificate' | `string`                            | `undefined` |
-| `variant` | `variant` | variant of the box button                                                                    | `string`                            | `undefined` |
+| Property  | Attribute | Description                                                                                  | Type                                           | Default     |
+| --------- | --------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------- | ----------- |
+| `color`   | `color`   | color of the text and pill button                                                            | `string`                                       | `undefined` |
+| `icon`    | `icon`    | color of the text and pill button                                                            | `"none" \| "shield" \| "wordproof"`            | `undefined` |
+| `shape`   | `shape`   | shape of the button ('box' \| 'text' \| 'pill')                                              | `"" \| "box" \| "classic" \| "pill" \| "text"` | `'text'`    |
+| `text`    | `text`    | text on the button, if not specified defaults to 'View this content's Timestamp certificate' | `string`                                       | `undefined` |
+| `variant` | `variant` | variant of the box button                                                                    | `string`                                       | `undefined` |
 
 
 ## Dependencies
+
+### Used by
+
+ - [w-certificate](../w-certificate)
 
 ### Depends on
 
@@ -26,6 +30,7 @@
 ```mermaid
 graph TD;
   w-certificate-button --> w-icon
+  w-certificate --> w-certificate-button
   style w-certificate-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
