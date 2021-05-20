@@ -113,7 +113,11 @@ export class WCertificateButton {
       return (
         <Host style={this.variant === 'fluid' ? { width: '100%' } : {}}>
           <CertificateBoxButton
-            variant={this.variant as CertificateBoxButtonVariants}
+            variant={
+              this.variant
+                ? (this.variant as CertificateBoxButtonVariants)
+                : 'rounded'
+            }
             strings={this.strings}
             text={this.getButtonText()}
             onClick={ev => this.onTriggerClick(ev)}
