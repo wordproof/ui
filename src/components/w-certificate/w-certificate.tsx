@@ -145,6 +145,11 @@ export class WCertificateV4 {
     }
   }
 
+  @Listen('click')
+  handleClick() {
+    this.showModal();
+  }
+
   async componentWillLoad(): Promise<void> {
     this.showRevisions = this.showRevisions !== 'false';
 
@@ -188,12 +193,14 @@ export class WCertificateV4 {
   render() {
     return this.content ? (
       <Host>
-        <w-certificate-link
-          noIcon={this.noIcon}
-          onClick={() => this.showModal()}
-        >
-          {this.linkText ? this.linkText : null}
-        </w-certificate-link>
+        <slot>
+          <w-certificate-button
+            text={this.linkText}
+            shape="text"
+            icon={this.noIcon ? 'none' : 'wordproof'}
+          ></w-certificate-button>
+        </slot>
+
         <w-modal
           rounded
           visible={this.visible}
