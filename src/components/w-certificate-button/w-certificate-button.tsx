@@ -62,6 +62,8 @@ export class WCertificateButton {
 
       const compStyles = window.getComputedStyle(linkElem);
       this.defaultLinkColor = compStyles.getPropertyValue('color');
+
+      linkElem.remove();
     }
   }
 
