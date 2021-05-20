@@ -28,7 +28,8 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
 }) => (
   <button
     class={cx(ButtonDefaultClasses(), 'shadow focus:ring-blue flex-col', {
-      ['px-8 py-11 rounded-sm shape-left shape-base']: variant === 'base',
+      ['px-8 py-1 sm:py-11 rounded-sm shape-left shape-base']:
+        variant === 'base',
       ['sm:pl-10 sm:pr-9 px-4 py-1 sm:pt-6 sm:pb-5 rounded-3xl sm:rounded-full shape-right shape-rounded']:
         variant === 'rounded',
       ['px-12 py-6 rounded-sm']: variant === 'sm',
@@ -64,7 +65,7 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
 
     <p
       class={cx('w-48 text-blue text-left whitespace-normal', {
-        ['ml-8']: variant === 'base',
+        ['sm:ml-8  text-center mt-2']: variant === 'base',
         ['sm:ml-10 text-center mt-2']: variant === 'rounded',
         ['hidden']: variant === 'sm' || variant === 'tall',
         ['mx-10 flex-grow']: variant === 'fluid',
@@ -78,7 +79,7 @@ const CertificateBoxButton: FunctionalComponent<CertificateBoxButtonProps> = ({
       class={cx('text-blue', {
         ['hidden']: variant === 'sm',
         ['mt-4']: variant === 'tall',
-        ['my-2 sm:my-0']: variant === 'rounded',
+        ['my-2 sm:my-0']: variant === 'rounded' || variant === 'base',
       })}
     ></w-icon>
   </button>
