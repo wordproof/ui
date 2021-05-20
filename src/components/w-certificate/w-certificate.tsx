@@ -130,6 +130,10 @@ export class WCertificateV4 {
 
   strings: CertificateV4Strings;
 
+  slotTextContent: string = '';
+
+  slotShouldRender: boolean = true;
+
   @State() content: WPContent;
 
   @State() viewBlockchainUrl: string;
@@ -177,6 +181,14 @@ export class WCertificateV4 {
 
       this.timestampCheckUrl = `${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`;
     }
+
+    if (this.hostElement.hasChildNodes()) {
+      const firstNode = this.hostElement.childNodes[0];
+      if (firstNode.nodeName !== 'W-CERTIFICATE-BUTTON') {
+        this.slotShouldRender = false;
+        this.slotTextContent = firstNode.textContent;
+      }
+    }
   }
 
   showModal() {
@@ -193,13 +205,21 @@ export class WCertificateV4 {
   render() {
     return this.content ? (
       <Host>
-        <slot>
+        {this.slotShouldRender ? (
+          <slot>
+            <w-certificate-button
+              text={this.linkText}
+              shape="text"
+              icon={this.noIcon ? 'none' : 'wordproof'}
+            ></w-certificate-button>
+          </slot>
+        ) : (
           <w-certificate-button
-            text={this.linkText}
+            text={this.slotTextContent}
             shape="text"
             icon={this.noIcon ? 'none' : 'wordproof'}
           ></w-certificate-button>
-        </slot>
+        )}
 
         <w-modal
           rounded
