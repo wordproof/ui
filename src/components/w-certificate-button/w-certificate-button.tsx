@@ -25,6 +25,11 @@ export class WCertificateButton {
   strings: CertificateButtonStrings;
 
   /**
+   * @slot - slot text content is used as text on the button
+   * it overrides the value of the `text` attribute (see below)
+   */
+
+  /**
    * text on the button, if not specified defaults to 'View this content's Timestamp certificate'
    */
   @Prop() text: string;
@@ -51,6 +56,8 @@ export class WCertificateButton {
 
   defaultLinkColor: string;
 
+  slotTextContent: string = '';
+
   async componentWillLoad(): Promise<void> {
     this.strings = (await getLocaleStrings(
       this.hostElement,
@@ -65,6 +72,11 @@ export class WCertificateButton {
 
       linkElem.remove();
     }
+
+    if (this.hostElement.hasChildNodes()) {
+      const firstNode = this.hostElement.childNodes[0];
+      this.slotTextContent = firstNode.textContent;
+    }
   }
 
   onTriggerClick(ev: MouseEvent) {
@@ -74,7 +86,15 @@ export class WCertificateButton {
   }
 
   getButtonText() {
-    return this.text ? this.text : this.strings.defaultButtonText;
+    if (this.slotTextContent) {
+      return this.slotTextContent;
+    }
+
+    if (this.text) {
+      return this.text;
+    }
+
+    return this.strings.defaultButtonText;
   }
 
   render() {
