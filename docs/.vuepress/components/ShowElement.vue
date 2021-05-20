@@ -1,10 +1,10 @@
 <template>
-  <div class="show-elemnt__card">
+  <div>
     <div class="show-elemnt__slot-wrapper" ref="wrapper">
       <slot></slot>
     </div>
 
-    <div class="language-html extra-class show-elemnt__code">
+    <div class="language-html extra-class">
       <pre class="language-html"><code>{{html}}</code></pre>
     </div>
   </div>
@@ -27,23 +27,16 @@ export default {
 </script>
 
 <style>
-.show-elemnt__card {
-  margin: 1rem 0;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 100%;
+@media (min-width: 419px) {
+  .show-elemnt__slot-wrapper {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem;
+  }
 }
-
 .show-elemnt__slot-wrapper {
-  width: 100%;
-  padding: 1rem 0;
+  margin-top: 1.5rem;
+  margin-bottom: 0.25rem;
   display: grid;
   place-items: center;
-}
-
-.show-elemnt__code {
-  width: 100%;
 }
 </style>

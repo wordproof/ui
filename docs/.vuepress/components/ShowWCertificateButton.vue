@@ -142,10 +142,14 @@ export default {
 
 <style scoped>
 .wrap {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  padding: 1rem;
-  border-radius: 0.5rem;
   margin-top: 1rem;
+}
+
+@media (min-width: 419px) {
+  .button-wrap {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem;
+  }
 }
 
 .button-wrap {
