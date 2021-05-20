@@ -41,3 +41,10 @@
   background-position: -31px 14px;
   background-size: 375px 300px;
 }
+
+@media (max-width: 640px) {
+  .shape-rounded {
+    background-position: -47px -19px;
+    background-size: 375px 300px;
+  }
+}
