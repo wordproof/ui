@@ -36,6 +36,13 @@ export class WCertificateV4 {
   @Element() hostElement: HTMLElement;
 
   /**
+   * @slot
+   * if the slot contains `w-certificate-button` it will be used
+   * otherwise slot text content is used as text on the button
+   * it overrides the value of the `link-text` attribute (see below)
+   */
+
+  /**
    * hides icon on certificate link
    */
   @Prop() noIcon: boolean = false;
