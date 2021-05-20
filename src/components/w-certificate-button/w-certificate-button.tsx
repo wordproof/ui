@@ -4,6 +4,7 @@ import { getLocaleStrings } from '../../utils/locale';
 import CertificateBoxButton, {
   CertificateBoxButtonVariants,
 } from './components/CertificateBoxButton';
+import CertificateClassicButton from './components/CertificateClassicButton';
 import CertificatePillButton, {
   CertificatePillButtonVariants,
 } from './components/CertificatePillButton';
@@ -11,7 +12,7 @@ import CertificateTextButton, {
   CertificateTextButtonIcon,
 } from './components/CertificateTextButton';
 
-export type CertificateButtonShape = 'box' | 'text' | 'pill';
+export type CertificateButtonShape = 'box' | 'text' | 'pill' | 'classic';
 
 @Component({
   tag: 'w-certificate-button',
@@ -48,10 +49,22 @@ export class WCertificateButton {
    */
   @Prop() icon: CertificateTextButtonIcon;
 
+  defaultLinkColor: string;
+
   async componentWillLoad(): Promise<void> {
     this.strings = (await getLocaleStrings(
       this.hostElement,
     )) as CertificateButtonStrings;
+
+    if (this.shape === 'classic') {
+      const linkElem = document.createElement('a');
+      this.hostElement.append(linkElem);
+
+      const compStyles = window.getComputedStyle(linkElem);
+      this.defaultLinkColor = compStyles.getPropertyValue('color');
+
+      linkElem.remove();
+    }
   }
 
   onTriggerClick(ev: MouseEvent) {
@@ -72,6 +85,16 @@ export class WCertificateButton {
           text={this.getButtonText()}
           onClick={ev => this.onTriggerClick(ev)}
           icon={this.icon}
+        />
+      );
+    }
+
+    if (this.shape === 'classic') {
+      return (
+        <CertificateClassicButton
+          color={this.defaultLinkColor}
+          text={this.getButtonText()}
+          onClick={ev => this.onTriggerClick(ev)}
         />
       );
     }

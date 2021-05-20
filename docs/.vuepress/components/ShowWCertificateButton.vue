@@ -7,6 +7,7 @@
         :text="attributes.text"
         :color="attributes.color"
         :icon="attributes.icon"
+        :key="JSON.stringify(attributes)"
       >
       </w-certificate-button>
     </div>
@@ -67,9 +68,7 @@
     </div>
 
     <div class="language-html extra-class">
-      <pre class="language-html">
-        <code>{{html}}</code>
-      </pre>
+      <pre class="language-html"><code>{{html}}</code></pre>
     </div>
   </div>
 </template>
@@ -89,7 +88,7 @@ export default {
         color: '',
         icon: '',
       },
-      shapeOptions: ['text', 'box', 'pill'],
+      shapeOptions: ['text', 'box', 'pill', 'classic'],
       variantOptions: {
         box: ['base', 'sm', 'tall', 'rounded', 'fluid'],
         pill: ['white', 'blue'],
