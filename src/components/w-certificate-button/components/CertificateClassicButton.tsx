@@ -27,7 +27,7 @@ const CertificateClassicButton: FunctionalComponent<CertificateClassicButtonProp
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 59 59"
-        class="w-6 h-6 mr-1"
+        class="w-6 h-6 mr-1 self-start"
       >
         <g fill-rule="nonzero" fill="none">
           <rect fill="#00E8C6" width="59" height="59" rx="2"></rect>
@@ -43,7 +43,7 @@ const CertificateClassicButton: FunctionalComponent<CertificateClassicButtonProp
         </g>
       </svg>
 
-      <span class="mt-2px whitespace-nowrap">{text}</span>
+      <span class="mt-2px sm:whitespace-nowrap text-left">{text}</span>
     </button>
   );
 };
