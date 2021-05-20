@@ -33,7 +33,7 @@ const CertificateTextButton: FunctionalComponent<CertificateTextButtonProps> = (
           : {}),
       }}
     >
-      <span class="flex-shrink-0">
+      <span class="flex-shrink-0 self-start">
         {icon === 'wordproof' || !icon ? <RoundLogo color="" /> : null}
         {icon === 'shield' ? <ShieldLogo color={color} small={true} /> : null}
       </span>
