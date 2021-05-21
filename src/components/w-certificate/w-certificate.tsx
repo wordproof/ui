@@ -79,7 +79,6 @@ export class WCertificateV4 {
       ),
       default: true,
       mobile: true,
-      height: '590px',
     },
     {
       hash: CertificateView.compare,
@@ -95,8 +94,6 @@ export class WCertificateV4 {
           view={params.get('view')}
         ></w-compare-versions-view>
       ),
-      minHeight: 'calc(634px)',
-      height: 'calc(100vh - 2rem)',
     },
     {
       hash: CertificateView.content,
@@ -117,7 +114,6 @@ export class WCertificateV4 {
           ></w-version-view>
         );
       },
-      minHeight: '634px',
       mobile: true,
     },
     {
@@ -129,7 +125,6 @@ export class WCertificateV4 {
         />
       ),
       mobile: true,
-      height: '692px',
     },
   ] as Route[];
 

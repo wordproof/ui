@@ -2,6 +2,7 @@ import { Component, Prop, State, h } from '@stencil/core';
 import { TRIGGER_HASH, Route } from '.';
 import { onMobile } from '../../utils/responsive';
 import { CertificateView } from '../w-certificate/types';
+import cx from 'classnames';
 
 @Component({
   tag: 'w-router-outlet',
@@ -57,14 +58,10 @@ export class MyEmbeddedComponent {
   render() {
     return (
       <div
-        class="background-shape"
-        style={{
-          maxHeight: onMobile()
-            ? 'calc(100vh - 4rem)'
-            : this.matchedRoute.maxHeight,
-          minHeight: onMobile() ? '' : this.matchedRoute.minHeight,
-          height: onMobile() ? '' : this.matchedRoute.height,
-        }}
+        class={cx(
+          'background-shape',
+          `router-outlet__${this.matchedRoute.hash}`,
+        )}
       >
         {this.matchedRoute.renderer(this.extractParams())}
       </div>
