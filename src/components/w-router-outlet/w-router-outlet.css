@@ -7,3 +7,46 @@
   background-repeat: no-repeat;
   background-position-y: 300px;
 }
+
+.router-outlet__overview {
+  height: 590px;
+}
+
+.router-outlet__importance {
+  min-height: 692px;
+}
+
+.router-outlet__compare {
+  min-height: 634px;
+  height: calc(100vh - 4rem);
+}
+
+.router-outlet__content {
+  min-height: 634px;
+}
+
+@media (min-height: 640px) {
+  .router-outlet__overview {
+    min-height: auto;
+    max-height: calc(100vh - 4rem);
+    height: auto;
+  }
+
+  .router-outlet__importance {
+    min-height: auto;
+    max-height: calc(100vh - 4rem);
+    height: auto;
+  }
+
+  .router-outlet__compare {
+    min-height: auto;
+    max-height: calc(100vh - 4rem);
+    height: auto;
+  }
+
+  .router-outlet__content {
+    min-height: auto;
+    max-height: calc(100vh - 4rem);
+    height: auto;
+  }
+}
