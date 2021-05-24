@@ -71,7 +71,7 @@
 
       <br />
 
-      <div v-if="!attributes.icon && !attributes.text">
+      <div v-if="!attributes.icon">
         <label for="prepend-icon" class="mr-2 my-2">prepend-icon: </label>
         <select
           id="prepend-icon"
@@ -97,10 +97,8 @@
 
       <br />
 
-      <span v-if="!attributes.text">
         <input type="checkbox" id="loading" v-model="attributes.loading" />
         <label for="loading" class="mr-4 my-2">loading</label>
-      </span>
 
       <input type="checkbox" id="disabled" v-model="attributes.disabled" />
       <label for="disabled" class="mr-4 my-2">disabled </label>

@@ -41,8 +41,8 @@
 
       <OptionSelect
         v-if="attributes.shape === 'pill'"
-        label="color"
-        v-model="attributes.color"
+        label="variant"
+        v-model="attributes.variant"
         :options="variantOptions.pill"
         class="mr-4 my-2"
       />

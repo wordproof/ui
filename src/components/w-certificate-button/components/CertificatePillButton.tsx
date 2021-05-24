@@ -6,13 +6,13 @@ import { ButtonDefaultClasses } from '../shared/SharedCssClasses';
 export type CertificatePillButtonVariants = 'blue' | 'white';
 
 interface CertificatePillButtonProps {
-  color: CertificatePillButtonVariants;
+  variant: CertificatePillButtonVariants;
   text: string;
   onClick: Function;
 }
 
 const CertificatePillButton: FunctionalComponent<CertificatePillButtonProps> = ({
-  color,
+  variant,
   text,
   onClick,
 }) => (
@@ -21,8 +21,8 @@ const CertificatePillButton: FunctionalComponent<CertificatePillButtonProps> = (
       ButtonDefaultClasses(),
       'p-1 rounded-full shadow py-3 pl-4 pr-9 focus:ring-blue',
       {
-        ['text-white bg-gradient-to-r from-blue to-purple']: color === 'blue',
-        ['text-blue bg-white']: color === 'white',
+        ['text-white bg-gradient-to-r from-blue to-purple']: variant === 'blue',
+        ['text-blue bg-white']: variant === 'white',
       },
     )}
     type="button"
