@@ -28,9 +28,9 @@ const CertificateTextButton: FunctionalComponent<CertificateTextButtonProps> = (
       onClick={ev => onClick(ev)}
       style={{
         '--tw-ring-opacity': '0.5',
-        ...(color && icon !== 'wordproof'
-          ? { color, '--tw-ring-color': `${color}80` }
-          : {}),
+        ...(!color || icon === 'wordproof' || !icon
+          ? { color, '--tw-ring-color': `#2000FF80` }
+          : { color, '--tw-ring-color': `${color}80` }),
       }}
     >
       <span class="flex-shrink-0 self-start">
@@ -39,10 +39,13 @@ const CertificateTextButton: FunctionalComponent<CertificateTextButtonProps> = (
       </span>
 
       <span
-        class={cx('pb-3px sm:whitespace-nowrap flex-shrink underline text-left', {
-          ['text-blue']: !color || icon === 'wordproof' || !icon,
-          ['ml-3']: icon !== 'none',
-        })}
+        class={cx(
+          'pb-3px sm:whitespace-nowrap flex-shrink underline text-left',
+          {
+            ['text-blue']: !color || icon === 'wordproof' || !icon,
+            ['ml-3']: icon !== 'none',
+          },
+        )}
         style={{ 'text-underline-offset': '4px' }}
       >
         {text}

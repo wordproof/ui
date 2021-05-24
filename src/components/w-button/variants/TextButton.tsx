@@ -61,13 +61,13 @@ const TextButton: FunctionalComponent<TextButtonProps> = (
       }}
     >
       {loading ? (
-        <span style={{ marginRight: '0.5em' }}>
+        <span style={{ marginRight: '0.5em', marginBottom: '0.2em' }}>
           <Spinner />
         </span>
       ) : null}
 
       {!loading && prependIcon ? (
-        <span style={{ marginRight: '0.5em' }}>
+        <span style={{ marginRight: '0.5em', marginBottom: '0.2em' }}>
           <Icon name={prependIcon} />
         </span>
       ) : null}
@@ -75,7 +75,7 @@ const TextButton: FunctionalComponent<TextButtonProps> = (
       {children}
 
       {appendIcon ? (
-        <span style={{ marginLeft: '0.5em' }}>
+        <span style={{ marginLeft: '0.5em', marginBottom: '0.2em' }}>
           <Icon name={appendIcon} />
         </span>
       ) : null}
