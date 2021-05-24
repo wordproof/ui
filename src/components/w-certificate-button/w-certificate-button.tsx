@@ -122,7 +122,7 @@ export class WCertificateButton {
     if (this.shape === 'pill') {
       return (
         <CertificatePillButton
-          color={this.color as CertificatePillButtonVariants}
+          variant={this.variant as CertificatePillButtonVariants}
           text={this.getButtonText()}
           onClick={ev => this.onTriggerClick(ev)}
         />
