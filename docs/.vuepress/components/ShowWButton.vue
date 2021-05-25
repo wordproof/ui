@@ -175,6 +175,8 @@ export default {
         'calendar',
         'shield',
         'info',
+        'download',
+        'key',
       ].sort(),
     };
   },

@@ -40,10 +40,10 @@ const IconButton: FunctionalComponent<IconButtonProps> = ({
         ButtonFontSizeClasses(size),
         ButtonDisabledClasses(disabled || loading),
         {
-          ['bg-white text-blue focus:ring-blue']:
+          ['bg-transparent text-blue focus:ring-blue']:
             color === 'blue' || color === 'white',
-          ['bg-white text-yellow focus:ring-yellow']: color === 'yellow',
-          ['bg-white text-gray-600 focus:ring-gray-600']: color === 'gray',
+          ['bg-transparent text-yellow focus:ring-yellow']: color === 'yellow',
+          ['bg-transparent text-gray-600 focus:ring-gray-600']: color === 'gray',
         },
         'rounded-full focus:rounded-full p-1 flex justify-items-center items-center',
       )}
