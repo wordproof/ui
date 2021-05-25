@@ -26,6 +26,7 @@
  - [w-input-date](../w-input-date)
  - [w-modal](../w-modal)
  - [w-revision-select](../w-revision-select)
+ - [w-serp-certificate](../w-serp-certificate)
  - [w-version-view](../w-certificate/views/w-version-view)
 
 ### Graph
@@ -40,6 +41,7 @@ graph TD;
   w-input-date --> w-icon
   w-modal --> w-icon
   w-revision-select --> w-icon
+  w-serp-certificate --> w-icon
   w-version-view --> w-icon
   style w-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
