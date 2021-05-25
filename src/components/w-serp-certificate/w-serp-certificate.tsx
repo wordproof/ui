@@ -1,6 +1,7 @@
 import { Component, Prop, h, Element, State } from '@stencil/core';
 import { SerpCertificateStrings } from '../../i18n';
 import TabLabel from '../w-certificate/components/tab-label';
+import AboutView from './components/AboutView';
 import CertificateView from './components/CertificateView';
 
 @Component({
@@ -65,12 +66,16 @@ export class WSerpCertificate {
           </h2>
         </div>
 
-        <CertificateView
-          strings={this.strings}
-          firstTimestamped={this.firstTimestamped}
-          lastEdited={this.lastEdited}
-          publishedBy={this.publishedBy}
-        />
+        {this.showCertificate ? (
+          <CertificateView
+            strings={this.strings}
+            firstTimestamped={this.firstTimestamped}
+            lastEdited={this.lastEdited}
+            publishedBy={this.publishedBy}
+          />
+        ) : (
+          <AboutView strings={this.strings} />
+        )}
 
         <div class="flex-grow flex items-end justify-center">
           <w-logo
