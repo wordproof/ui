@@ -97,3 +97,15 @@ type DateTimeSelectStringKeys = [
 export type DateTimeSelectStrings = Record<DateTimeSelectStringKeys, string>;
 
 export type i18nStrings = Record<string, unknown>;
+
+type SerpCertificateKeys = [
+  'timestamped',
+  'someWebsitesChoose',
+  'withTimestampsYouCan',
+  'certificate',
+  'whatIsThis',
+  'firstTimestamped',
+  'lastEdited',
+  'publishedBy',
+][number];
+export type SerpCertificateStrings = Record<SerpCertificateKeys, string>;

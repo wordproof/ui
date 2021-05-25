@@ -70,6 +70,7 @@ module.exports = {
       '/pages/w-input-select',
       '/pages/w-modal',
       '/pages/w-certificate',
+      '/pages/w-serp-certificate',
       '/pages/w-certificate-button',
     ],
   },
