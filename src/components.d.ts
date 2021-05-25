@@ -346,6 +346,20 @@ export namespace Components {
         "routes": Route[];
         "showRevisions": boolean;
     }
+    interface WSerpCertificate {
+        /**
+          * date string when content was first timestamped
+         */
+        "firstTimestamped": string;
+        /**
+          * date string when content was last edited
+         */
+        "lastEdited": string;
+        /**
+          * name of an individual or company that published the content
+         */
+        "publishedBy": string;
+    }
     interface WVersionView {
         "content": WPContent;
         "locale": string;
@@ -466,6 +480,12 @@ declare global {
         prototype: HTMLWRouterOutletElement;
         new (): HTMLWRouterOutletElement;
     };
+    interface HTMLWSerpCertificateElement extends Components.WSerpCertificate, HTMLStencilElement {
+    }
+    var HTMLWSerpCertificateElement: {
+        prototype: HTMLWSerpCertificateElement;
+        new (): HTMLWSerpCertificateElement;
+    };
     interface HTMLWVersionViewElement extends Components.WVersionView, HTMLStencilElement {
     }
     var HTMLWVersionViewElement: {
@@ -491,6 +511,7 @@ declare global {
         "w-modal": HTMLWModalElement;
         "w-revision-select": HTMLWRevisionSelectElement;
         "w-router-outlet": HTMLWRouterOutletElement;
+        "w-serp-certificate": HTMLWSerpCertificateElement;
         "w-version-view": HTMLWVersionViewElement;
     }
 }
@@ -823,6 +844,20 @@ declare namespace LocalJSX {
         "routes"?: Route[];
         "showRevisions"?: boolean;
     }
+    interface WSerpCertificate {
+        /**
+          * date string when content was first timestamped
+         */
+        "firstTimestamped"?: string;
+        /**
+          * date string when content was last edited
+         */
+        "lastEdited"?: string;
+        /**
+          * name of an individual or company that published the content
+         */
+        "publishedBy"?: string;
+    }
     interface WVersionView {
         "content"?: WPContent;
         "locale"?: string;
@@ -852,6 +887,7 @@ declare namespace LocalJSX {
         "w-modal": WModal;
         "w-revision-select": WRevisionSelect;
         "w-router-outlet": WRouterOutlet;
+        "w-serp-certificate": WSerpCertificate;
         "w-version-view": WVersionView;
     }
 }
@@ -877,6 +913,7 @@ declare module "@stencil/core" {
             "w-modal": LocalJSX.WModal & JSXBase.HTMLAttributes<HTMLWModalElement>;
             "w-revision-select": LocalJSX.WRevisionSelect & JSXBase.HTMLAttributes<HTMLWRevisionSelectElement>;
             "w-router-outlet": LocalJSX.WRouterOutlet & JSXBase.HTMLAttributes<HTMLWRouterOutletElement>;
+            "w-serp-certificate": LocalJSX.WSerpCertificate & JSXBase.HTMLAttributes<HTMLWSerpCertificateElement>;
             "w-version-view": LocalJSX.WVersionView & JSXBase.HTMLAttributes<HTMLWVersionViewElement>;
         }
     }
