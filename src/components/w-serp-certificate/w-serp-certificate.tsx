@@ -1,18 +1,7 @@
 import { Component, Prop, h, Element, State } from '@stencil/core';
 import { SerpCertificateStrings } from '../../i18n';
-import { DateTimeFormatOptions, formatDate } from '../../utils/locale';
 import TabLabel from '../w-certificate/components/tab-label';
-import CertificateItem from './components/CertificateItem';
-
-const DATE_FORMAT_OPTIONS = {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-} as DateTimeFormatOptions;
-
-const LOCALE = 'en-US';
+import CertificateView from './components/CertificateView';
 
 @Component({
   tag: 'w-serp-certificate',
@@ -76,29 +65,12 @@ export class WSerpCertificate {
           </h2>
         </div>
 
-        <div class="shadow-md rounded mx-auto mt-8 px-6 font-sohne bg-white w-full divide-y divide-gray-400">
-          <CertificateItem
-            label={this.strings.firstTimestamped}
-            text={formatDate(
-              this.firstTimestamped,
-              LOCALE,
-              DATE_FORMAT_OPTIONS,
-            )}
-            checked={true}
-          />
-
-          <CertificateItem
-            label={this.strings.lastEdited}
-            text={formatDate(this.lastEdited, LOCALE, DATE_FORMAT_OPTIONS)}
-            checked={true}
-          />
-
-          <CertificateItem
-            label={this.strings.publishedBy}
-            text={this.publishedBy}
-            checked={true}
-          />
-        </div>
+        <CertificateView
+          strings={this.strings}
+          firstTimestamped={this.firstTimestamped}
+          lastEdited={this.lastEdited}
+          publishedBy={this.publishedBy}
+        />
 
         <div class="flex-grow flex items-end justify-center">
           <w-logo
