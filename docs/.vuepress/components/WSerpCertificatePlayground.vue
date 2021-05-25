@@ -11,17 +11,17 @@
     <div>
       <w-input-text
         class="mt-4"
-        label="Last edited"
-        :value="attributes.lastEdited"
-        @input="attributes.lastEdited = $event.target.value"
-      ></w-input-text>
-
-      <w-input-text
-        class="mt-4"
         label="First timestamped"
         v-model="attributes.firstTimestamped"
         :value="attributes.firstTimestamped"
         @input="attributes.firstTimestamped = $event.target.value"
+      ></w-input-text>
+
+      <w-input-text
+        class="mt-4"
+        label="Last edited"
+        :value="attributes.lastEdited"
+        @input="attributes.lastEdited = $event.target.value"
       ></w-input-text>
 
       <w-input-text
