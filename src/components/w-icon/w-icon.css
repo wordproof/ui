@@ -146,6 +146,16 @@
   height: 12px;
 }
 
+.download {
+  width: 23px;
+  height: 23px;
+}
+
+.key {
+  width: 32px;
+  height: 32px;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
