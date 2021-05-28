@@ -87,7 +87,7 @@ export namespace Components {
         /**
           * widt of the card
          */
-        "size": string;
+        "size": 'base' | 'lg';
     }
     interface WCertificate {
         /**
@@ -597,7 +597,7 @@ declare namespace LocalJSX {
         /**
           * widt of the card
          */
-        "size"?: string;
+        "size"?: 'base' | 'lg';
     }
     interface WCertificate {
         /**

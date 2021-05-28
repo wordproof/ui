@@ -1,4 +1,5 @@
 import { Component, Prop, h, Element } from '@stencil/core';
+import cx from 'classnames';
 
 @Component({
   tag: 'w-card',
@@ -11,11 +12,16 @@ export class WCard {
   /**
    * widt of the card
    */
-  @Prop() size: string = '';
+  @Prop() size: 'base' | 'lg' = 'base';
 
   render() {
     return (
-      <div class="p-10 shadow rounded">
+      <div
+        class={cx('p-10 shadow rounded bg-white', {
+          ['w-96']: this.size === 'base',
+          ['w-128']: this.size === 'lg',
+        })}
+      >
         <slot />
       </div>
     );

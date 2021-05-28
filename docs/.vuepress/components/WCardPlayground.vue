@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="element-wrap">
-      <w-card :size="attributes.size"></w-card>
+      <w-card :size="attributes.size">{{ content }}</w-card>
     </div>
 
     <div>
@@ -11,6 +11,16 @@
         v-model="attributes.size"
         :value="attributes.size"
         @input="attributes.size = $event.target.value"
+      ></w-input-text>
+    </div>
+
+    <div>
+      <w-input-text
+        class="mt-4"
+        label="Slot content"
+        v-model="content"
+        :value="content"
+        @input="content = $event.target.value"
       ></w-input-text>
     </div>
 
@@ -31,12 +41,13 @@ export default {
       attributes: {
         size: 'base',
       },
+      content: 'Some content',
     };
   },
 
   computed: {
     html() {
-      return getHtml('w-card', this.attributes);
+      return getHtml('w-card', this.attributes, this.content);
     },
   },
 };
