@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description      | Type     | Default |
-| -------- | --------- | ---------------- | -------- | ------- |
-| `size`   | `size`    | widt of the card | `string` | `''`    |
+| Property | Attribute | Description      | Type             | Default  |
+| -------- | --------- | ---------------- | ---------------- | -------- |
+| `size`   | `size`    | widt of the card | `"base" \| "lg"` | `'base'` |
 
 
 ----------------------------------------------
