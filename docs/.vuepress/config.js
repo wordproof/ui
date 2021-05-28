@@ -72,6 +72,7 @@ module.exports = {
       '/pages/w-certificate',
       '/pages/w-serp-certificate',
       '/pages/w-certificate-button',
+      '/pages/w-card',
     ],
   },
 };
