@@ -83,6 +83,12 @@ export namespace Components {
          */
         "underlineNone": boolean;
     }
+    interface WCard {
+        /**
+          * widt of the card
+         */
+        "size": string;
+    }
     interface WCertificate {
         /**
           * enables debug information logging to the console
@@ -384,6 +390,12 @@ declare global {
         prototype: HTMLWButtonElement;
         new (): HTMLWButtonElement;
     };
+    interface HTMLWCardElement extends Components.WCard, HTMLStencilElement {
+    }
+    var HTMLWCardElement: {
+        prototype: HTMLWCardElement;
+        new (): HTMLWCardElement;
+    };
     interface HTMLWCertificateElement extends Components.WCertificate, HTMLStencilElement {
     }
     var HTMLWCertificateElement: {
@@ -495,6 +507,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "w-badge": HTMLWBadgeElement;
         "w-button": HTMLWButtonElement;
+        "w-card": HTMLWCardElement;
         "w-certificate": HTMLWCertificateElement;
         "w-certificate-button": HTMLWCertificateButtonElement;
         "w-certificate-link": HTMLWCertificateLinkElement;
@@ -579,6 +592,12 @@ declare namespace LocalJSX {
           * underline decoration for text button
          */
         "underlineNone"?: boolean;
+    }
+    interface WCard {
+        /**
+          * widt of the card
+         */
+        "size"?: string;
     }
     interface WCertificate {
         /**
@@ -871,6 +890,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "w-badge": WBadge;
         "w-button": WButton;
+        "w-card": WCard;
         "w-certificate": WCertificate;
         "w-certificate-button": WCertificateButton;
         "w-certificate-link": WCertificateLink;
@@ -897,6 +917,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "w-badge": LocalJSX.WBadge & JSXBase.HTMLAttributes<HTMLWBadgeElement>;
             "w-button": LocalJSX.WButton & JSXBase.HTMLAttributes<HTMLWButtonElement>;
+            "w-card": LocalJSX.WCard & JSXBase.HTMLAttributes<HTMLWCardElement>;
             "w-certificate": LocalJSX.WCertificate & JSXBase.HTMLAttributes<HTMLWCertificateElement>;
             "w-certificate-button": LocalJSX.WCertificateButton & JSXBase.HTMLAttributes<HTMLWCertificateButtonElement>;
             "w-certificate-link": LocalJSX.WCertificateLink & JSXBase.HTMLAttributes<HTMLWCertificateLinkElement>;
