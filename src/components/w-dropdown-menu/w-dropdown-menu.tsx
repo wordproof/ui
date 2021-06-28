@@ -78,7 +78,7 @@ export class WDropdownMenu {
                 {option.href ? (
                   <a
                     href={option.href}
-                    target="blank"
+                    target="_blank"
                     class="block pl-6 pr-12 pt-5 pb-6"
                   >
                     {option.label}
