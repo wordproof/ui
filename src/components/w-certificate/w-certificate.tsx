@@ -198,7 +198,7 @@ export class WCertificateV4 {
       }
 
       if (nodes.find(node => node.nodeName === 'W-CERTIFICATE-BUTTON') === undefined) {
-        this.slotShouldRender = false;x
+        this.slotShouldRender = false;
         this.slotTextContent = nodes[0].textContent;
       }
     }
