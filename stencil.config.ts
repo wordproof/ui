@@ -72,4 +72,7 @@ export const config: Config = {
     reloadStrategy: 'pageReload',
     openBrowser: false,
   },
+  testing: {
+    'browserExecutablePath': '/opt/homebrew/bin/chromium'
+  }
 };
