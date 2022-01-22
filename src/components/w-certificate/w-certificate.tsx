@@ -183,25 +183,6 @@ export class WCertificateV4 {
 
       this.timestampCheckUrl = `${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`;
     }
-
-    /**
-     * If none of the childNodes contain "W-CERTIFICATE-BUTTON",
-     * use the textContent of the first one.
-     * This allows w-certificate-button to be wrapped in a HTML element and still being rendered.
-     */
-    if (this.hostElement.hasChildNodes()) {
-      const nodes = Object.values(this.hostElement.childNodes);
-
-      if (this.debug) {
-        console.log("W-Certificate has childNodes.");
-        console.log(nodes);
-      }
-
-      if (nodes.find(node => node.nodeName === 'W-CERTIFICATE-BUTTON') === undefined) {
-        this.slotShouldRender = false;
-        this.slotTextContent = nodes[0].textContent;
-      }
-    }
   }
 
   showModal() {
