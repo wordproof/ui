@@ -1,5 +1,5 @@
 //External
-import { Component, Prop, h, Element, Host, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Element, Host } from '@stencil/core';
 
 //Internal
 import { CertificateButtonStrings } from '../../i18n';
@@ -54,17 +54,6 @@ export class WCertificateButton {
    */
   @Prop() icon: CertificateTextButtonIcon;
 
-  /**
-   * Create event to open certificate modal.
-   * @event wordproofCertificateOpen
-   */
-  @Event({
-    eventName: 'wordproofCertificateOpen',
-    composed: true,
-    cancelable: true,
-    bubbles: true,
-  }) wordproofCertificateOpen: EventEmitter<Boolean>;
-
   defaultLinkColor: string;
   slotTextContent: string = '';
 
@@ -87,10 +76,11 @@ export class WCertificateButton {
   onTriggerClick(mouseEvent: MouseEvent) {
     mouseEvent.stopPropagation();
 
-    const event = new MouseEvent('click', { bubbles: true, composed: true });
-    this.hostElement.dispatchEvent(event);
+    const hostEvent = new MouseEvent('click', { bubbles: true, composed: true });
+    this.hostElement.dispatchEvent(hostEvent);
 
-    this.wordproofCertificateOpen.emit(true);
+    const windowEvent = new Event('wordproofCertificateOpen');
+    window.dispatchEvent(windowEvent)
   }
 
   getButtonText() {

@@ -143,7 +143,7 @@ export class WCertificateV4 {
    * Opens the certificate on DOM event.
    * @event wordproofCertificateOpen
    */
-  @Listen('wordproofCertificateOpen')
+  @Listen('wordproofCertificateOpen', {target: 'window'})
   handleCertificateOpenEvent() {
     this.showModal();
   }
