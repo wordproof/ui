@@ -109,23 +109,23 @@ export namespace Components {
     }
     interface WCertificateButton {
         /**
-          * color of the text and pill button
+          * Specify the color of the icon and tet.
          */
         "color": string;
         /**
-          * color of the text and pill button
+          * Change the icon of the button.
          */
         "icon": CertificateTextButtonIcon;
         /**
-          * shape of the button ('box' | 'text' | 'pill')
+          * Specify the shape of the button ('box' | 'text' | 'pill')
          */
         "shape": CertificateButtonShape | '';
         /**
-          * text on the button, if not specified defaults to 'View this content's Timestamp certificate'
+          * Specify the text on the button, if not specified defaults to 'View this content's Timestamp certificate'
          */
         "text": string;
         /**
-          * variant of the box button
+          * Specify the variant used.
          */
         "variant": string;
     }
@@ -619,23 +619,23 @@ declare namespace LocalJSX {
     }
     interface WCertificateButton {
         /**
-          * color of the text and pill button
+          * Specify the color of the icon and tet.
          */
         "color"?: string;
         /**
-          * color of the text and pill button
+          * Change the icon of the button.
          */
         "icon"?: CertificateTextButtonIcon;
         /**
-          * shape of the button ('box' | 'text' | 'pill')
+          * Specify the shape of the button ('box' | 'text' | 'pill')
          */
         "shape"?: CertificateButtonShape | '';
         /**
-          * text on the button, if not specified defaults to 'View this content's Timestamp certificate'
+          * Specify the text on the button, if not specified defaults to 'View this content's Timestamp certificate'
          */
         "text"?: string;
         /**
-          * variant of the box button
+          * Specify the variant used.
          */
         "variant"?: string;
     }
