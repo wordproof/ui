@@ -1,6 +1,6 @@
 {
   "name": "@wordproof/uikit",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
@@ -27,7 +27,7 @@
     "mock": "json-server src/mocks/db.json"
   },
   "dependencies": {
-    "@stencil/core": "2.9.0",
+    "@stencil/core": "2.12.0",
     "autoprefixer": "^10.2.3",
     "classnames": "^2.2.6",
     "date-fns": "^2.19.0",
@@ -54,7 +54,8 @@
     "jest-fetch-mock": "^3.0.3",
     "json-server": "^0.16.3",
     "markdown-it-include": "^2.0.0",
-    "puppeteer": "^5.4.1",
+    "puppeteer": "^5.5.0",
+    "puppeteer-core": "^5.2.1",
     "vuepress": "^1.8.0",
     "vuepress-plugin-mermaidjs": "^1.8.1"
   }
