@@ -1,31 +1,19 @@
-import {
-  Component,
-  Prop,
-  h,
-  State,
-  Element,
-  Listen,
-  Host,
-} from '@stencil/core';
+//External
+import { Component, Prop, h, State, Element, Listen, Host,} from '@stencil/core';
+
+//Internal
 import {CertificateV4Strings} from '../../i18n';
-import {
-  getLocaleStrings,
-  getComponentClosestLanguage,
-} from '../../utils/locale';
-import OverviewView from './views/OverviewView';
+import {CertificateView, CertificateViewKeys, NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT,} from './types';
 import {router, Route} from '../w-router-outlet';
-import {WPContent, parsePage} from '../../utils/certificate-data/index';
-import {
-  CertificateView,
-  CertificateViewKeys,
-  NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT,
-} from './types';
-import {
-  BLOCKCHAIN_CONFIG,
-  TIMESTAMP_CHECK_URL,
-} from '../../config/blockchain.config';
+
+import { getLocaleStrings,  getComponentClosestLanguage } from '../../utils/locale';
 import {disableDebug, enableDebug, LogSources} from '../../utils/debug';
+import {WPContent, parsePage} from '../../utils/certificate-data/index';
+
+import {BLOCKCHAIN_CONFIG, TIMESTAMP_CHECK_URL } from '../../config/blockchain.config';
+
 import AboutView from './views/AboutView';
+import OverviewView from './views/OverviewView';
 
 @Component({
   tag: 'w-certificate',
@@ -36,29 +24,26 @@ export class WCertificateV4 {
   @Element() hostElement: HTMLElement;
 
   /**
-   * @slot
-   * if the slot contains `w-certificate-button` it will be used
-   * otherwise slot text content is used as text on the button
-   * it overrides the value of the `link-text` attribute (see below)
+   * @slot The slot will always be rendered. Set text as a prop.
    */
 
   /**
-   * hides icon on certificate link
+   * Hides the icon on certificate link.
    */
   @Prop() noIcon: boolean = false;
 
   /**
-   * custom certificate link text
+   * Change the certificate link text.
    */
   @Prop() linkText: string;
 
   /**
-   * enables debug information logging to the console
+   * Enables debug information logging to the console.
    */
   @Prop() debug: boolean = false;
 
   /**
-   * shows or hides revisions, default value is `true`
+   * Determines if revisions are shown in the certificate.
    */
   @Prop({mutable: true}) showRevisions: string | boolean;
 
@@ -129,29 +114,31 @@ export class WCertificateV4 {
   ] as Route[];
 
   currentView: CertificateViewKeys = CertificateView.overview;
-
   strings: CertificateV4Strings;
-
   slotTextContent: string = '';
-
   slotShouldRender: boolean = true;
-
-  @State() content: WPContent;
-
-  @State() viewBlockchainUrl: string;
-
-  @State() timestampCheckUrl: string;
-
   locale: string;
 
+  @State() content: WPContent;
+  @State() viewBlockchainUrl: string;
+  @State() timestampCheckUrl: string;
+
+  /**
+   * Listen for keydown to close the modal.
+   * @param keyboardEvent
+   */
   @Listen('keydown', {target: 'body'})
-  handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key === 'Escape') {
+  handleKeyDown(keyboardEvent: KeyboardEvent) {
+    if (keyboardEvent.key === 'Escape') {
       this.hideModal();
     }
   }
 
-  @Listen('click')
+  /**
+   * Opens the certificate on DOM event.
+   * @event wordproofCertificateOpen
+   */
+  @Listen('wordproofCertificateOpen')
   handleClick() {
     this.showModal();
   }
@@ -159,21 +146,17 @@ export class WCertificateV4 {
   async componentWillLoad(): Promise<void> {
     this.showRevisions = this.showRevisions !== 'false';
 
-    if (this.debug) {
+    if (this.debug)
       enableDebug(LogSources.parsePage);
-    }
 
     const content = await parsePage();
 
-    if (this.debug) {
+    if (this.debug)
       disableDebug(LogSources.parsePage);
-    }
 
     if (content !== null) {
       this.content = content;
-      this.strings = (await getLocaleStrings(
-        this.hostElement,
-      )) as CertificateV4Strings;
+      this.strings = (await getLocaleStrings(this.hostElement)) as CertificateV4Strings;
       this.locale = getComponentClosestLanguage(this.hostElement);
       this.visible = router.isTriggered();
 

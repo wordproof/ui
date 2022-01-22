@@ -1,16 +1,14 @@
-import { Component, Prop, h, Element, Host } from '@stencil/core';
+//External
+import { Component, Prop, h, Element, Host, Event, EventEmitter } from '@stencil/core';
+
+//Internal
 import { CertificateButtonStrings } from '../../i18n';
 import { getLocaleStrings } from '../../utils/locale';
-import CertificateBoxButton, {
-  CertificateBoxButtonVariants,
-} from './components/CertificateBoxButton';
+
+import CertificateBoxButton, { CertificateBoxButtonVariants } from './components/CertificateBoxButton';
 import CertificateClassicButton from './components/CertificateClassicButton';
-import CertificatePillButton, {
-  CertificatePillButtonVariants,
-} from './components/CertificatePillButton';
-import CertificateTextButton, {
-  CertificateTextButtonIcon,
-} from './components/CertificateTextButton';
+import CertificatePillButton, { CertificatePillButtonVariants } from './components/CertificatePillButton';
+import CertificateTextButton, { CertificateTextButtonIcon } from './components/CertificateTextButton';
 
 export type CertificateButtonShape = 'box' | 'text' | 'pill' | 'classic';
 
@@ -19,14 +17,16 @@ export type CertificateButtonShape = 'box' | 'text' | 'pill' | 'classic';
   styleUrl: 'w-certificate-button.css',
   shadow: true,
 })
+
 export class WCertificateButton {
+
   @Element() hostElement: HTMLElement;
 
   strings: CertificateButtonStrings;
 
   /**
-   * @slot - slot text content is used as text on the button
-   * it overrides the value of the `text` attribute (see below)
+   * @slot - Slot text content is used as text on the button
+   * It overrides the value of the `text` attribute (see below)
    */
 
   /**
@@ -54,8 +54,18 @@ export class WCertificateButton {
    */
   @Prop() icon: CertificateTextButtonIcon;
 
-  defaultLinkColor: string;
+  /**
+   * Create event to open certificate modal.
+   * @event wordproofCertificateOpen
+   */
+  @Event({
+    eventName: 'wordproofCertificateOpen',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  }) wordproofCertificateOpen: EventEmitter<Boolean>;
 
+  defaultLinkColor: string;
   slotTextContent: string = '';
 
   async componentWillLoad(): Promise<void> {
@@ -64,27 +74,29 @@ export class WCertificateButton {
     )) as CertificateButtonStrings;
 
     if (this.shape === 'classic') {
-      const linkElem = document.createElement('a');
-      this.hostElement.append(linkElem);
+      const linkElement = document.createElement('a');
+      this.hostElement.append(linkElement);
 
-      const compStyles = window.getComputedStyle(linkElem);
-      this.defaultLinkColor = compStyles.getPropertyValue('color');
+      const computedStyles = window.getComputedStyle(linkElement);
+      this.defaultLinkColor = computedStyles.getPropertyValue('color');
 
-      linkElem.remove();
+      linkElement.remove();
     }
   }
 
-  onTriggerClick(ev: MouseEvent) {
-    ev.stopPropagation();
-    const event = new MouseEvent('click', { bubbles: true, composed: true });
-    this.hostElement.dispatchEvent(event);
+  onTriggerClick(mouseEvent: MouseEvent) {
+    mouseEvent.stopPropagation();
+
+    this.wordproofCertificateOpen.emit(true);
   }
 
   getButtonText() {
+    //Slot text content will override other props.
     if (this.slotTextContent) {
       return this.slotTextContent;
     }
 
+    //We accept empty string as well.
     if (this.text || this.text === '') {
       return this.text;
     }
@@ -93,6 +105,7 @@ export class WCertificateButton {
   }
 
   render() {
+
     if (this.shape === 'text' || !this.shape) {
       return (
         <CertificateTextButton
