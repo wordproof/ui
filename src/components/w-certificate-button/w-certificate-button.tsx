@@ -85,7 +85,7 @@ export class WCertificateButton {
       return this.slotTextContent;
     }
 
-    if (this.text) {
+    if (this.text || this.text === '') {
       return this.text;
     }
 
