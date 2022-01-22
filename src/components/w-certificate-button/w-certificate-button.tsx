@@ -87,6 +87,9 @@ export class WCertificateButton {
   onTriggerClick(mouseEvent: MouseEvent) {
     mouseEvent.stopPropagation();
 
+    const event = new MouseEvent('click', { bubbles: true, composed: true });
+    this.hostElement.dispatchEvent(event);
+
     this.wordproofCertificateOpen.emit(true);
   }
 

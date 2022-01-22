@@ -1,5 +1,5 @@
 //External
-import { Component, Prop, h, State, Element, Listen, Host,} from '@stencil/core';
+import {Component, Prop, h, State, Element, Listen, Host, Fragment,} from '@stencil/core';
 
 //Internal
 import {CertificateV4Strings} from '../../i18n';
@@ -46,6 +46,11 @@ export class WCertificateV4 {
    * Determines if revisions are shown in the certificate.
    */
   @Prop({mutable: true}) showRevisions: string | boolean;
+
+  /**
+   * Render without button inside, if a button is used outside this element.
+   */
+  @Prop() renderWithoutButton: boolean = false;
 
   @State() visible: boolean = true;
 
@@ -139,7 +144,16 @@ export class WCertificateV4 {
    * @event wordproofCertificateOpen
    */
   @Listen('wordproofCertificateOpen')
-  handleClick() {
+  handleCertificateOpenEvent() {
+    this.showModal();
+  }
+
+  /**
+   * Opens the certificate on mouse click event from children.
+   * @event click
+   */
+  @Listen('click')
+  handleMouseClickEvent() {
     this.showModal();
   }
 
@@ -179,41 +193,64 @@ export class WCertificateV4 {
     router.clearHash();
   }
 
-  render() {
-    return this.content ? (
-      <Host>
-        {this.slotShouldRender ? (
-          <slot>
-            <w-certificate-button
-              text={this.linkText}
-              shape="text"
-              icon={this.noIcon ? 'none' : 'wordproof'}
-            ></w-certificate-button>
-          </slot>
-        ) : (
+  /**
+   * Returns HTML for the certificate button.
+   */
+  getButtonContents() {
+    if (this.renderWithoutButton) {
+      return (<Fragment></Fragment>);
+    }
+
+    if (this.slotShouldRender) {
+      return (
+        <slot>
           <w-certificate-button
-            text={this.slotTextContent}
+            text={this.linkText}
             shape="text"
             icon={this.noIcon ? 'none' : 'wordproof'}
           ></w-certificate-button>
-        )}
+        </slot>
+      );
+    } else {
+      return (
+        <w-certificate-button
+          text={this.slotTextContent}
+          shape="text"
+          icon={this.noIcon ? 'none' : 'wordproof'}
+        ></w-certificate-button>
+      );
+    }
+  }
 
-        <w-modal
-          rounded
-          visible={this.visible}
-          onClose={() => this.hideModal()}
-          modalClassName="md:max-w-4xl"
-        >
-          <w-icon
-            slot="close"
-            name="close"
-            class="mr-8 mt-8 inline-block"
-          ></w-icon>
-          <w-router-outlet
-            routes={this.routes}
-            showRevisions={this.showRevisions as boolean}
-          />
-        </w-modal>
+  /**
+   * Returns HTML for modal contents.
+   */
+  getModalContents() {
+    return (
+      <w-modal
+        rounded
+        visible={this.visible}
+        onClose={() => this.hideModal()}
+        modalClassName="md:max-w-4xl"
+      >
+        <w-icon
+          slot="close"
+          name="close"
+          class="mr-8 mt-8 inline-block"
+        ></w-icon>
+        <w-router-outlet
+          routes={this.routes}
+          showRevisions={this.showRevisions as boolean}
+        />
+      </w-modal>
+    );
+  }
+
+  render() {
+    return this.content ? (
+      <Host>
+        { this.getButtonContents() }
+        { this.getModalContents() }
       </Host>
     ) : (
       <Host

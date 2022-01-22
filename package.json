@@ -1,7 +1,7 @@
 {
   "name": "@wordproof/uikit",
-  "version": "1.0.23",
-  "description": "Stencil Component Starter",
+  "version": "1.0.24",
+  "description": "WordProof Component library",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
