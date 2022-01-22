@@ -7,14 +7,14 @@ import {
   Listen,
   Host,
 } from '@stencil/core';
-import { CertificateV4Strings } from '../../i18n';
+import {CertificateV4Strings} from '../../i18n';
 import {
   getLocaleStrings,
   getComponentClosestLanguage,
 } from '../../utils/locale';
 import OverviewView from './views/OverviewView';
-import { router, Route } from '../w-router-outlet';
-import { WPContent, parsePage } from '../../utils/certificate-data/index';
+import {router, Route} from '../w-router-outlet';
+import {WPContent, parsePage} from '../../utils/certificate-data/index';
 import {
   CertificateView,
   CertificateViewKeys,
@@ -24,7 +24,7 @@ import {
   BLOCKCHAIN_CONFIG,
   TIMESTAMP_CHECK_URL,
 } from '../../config/blockchain.config';
-import { disableDebug, enableDebug, LogSources } from '../../utils/debug';
+import {disableDebug, enableDebug, LogSources} from '../../utils/debug';
 import AboutView from './views/AboutView';
 
 @Component({
@@ -60,7 +60,7 @@ export class WCertificateV4 {
   /**
    * shows or hides revisions, default value is `true`
    */
-  @Prop({ mutable: true }) showRevisions: string | boolean;
+  @Prop({mutable: true}) showRevisions: string | boolean;
 
   @State() visible: boolean = true;
 
@@ -144,7 +144,7 @@ export class WCertificateV4 {
 
   locale: string;
 
-  @Listen('keydown', { target: 'body' })
+  @Listen('keydown', {target: 'body'})
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'Escape') {
       this.hideModal();
@@ -184,11 +184,22 @@ export class WCertificateV4 {
       this.timestampCheckUrl = `${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`;
     }
 
+    /**
+     * If none of the childNodes contain "W-CERTIFICATE-BUTTON",
+     * use the textContent of the first one.
+     * This allows w-certificate-button to be wrapped in a HTML element and still being rendered.
+     */
     if (this.hostElement.hasChildNodes()) {
-      const firstNode = this.hostElement.childNodes[0];
-      if (firstNode.nodeName !== 'W-CERTIFICATE-BUTTON') {
-        this.slotShouldRender = false;
-        this.slotTextContent = firstNode.textContent;
+      const nodes = Object.values(this.hostElement.childNodes);
+
+      if (this.debug) {
+        console.log("W-Certificate has childNodes.");
+        console.log(nodes);
+      }
+
+      if (nodes.find(node => node.nodeName === 'W-CERTIFICATE-BUTTON') === undefined) {
+        this.slotShouldRender = false;x
+        this.slotTextContent = nodes[0].textContent;
       }
     }
   }

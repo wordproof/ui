@@ -30,27 +30,27 @@ export class WCertificateButton {
    */
 
   /**
-   * text on the button, if not specified defaults to 'View this content's Timestamp certificate'
+   * Specify the text on the button, if not specified defaults to 'View this content's Timestamp certificate'
    */
   @Prop() text: string;
 
   /**
-   * shape of the button ('box' | 'text' | 'pill')
+   * Specify the shape of the button ('box' | 'text' | 'pill')
    */
   @Prop() shape: CertificateButtonShape | '' = 'text';
 
   /**
-   * variant of the box button
+   * Specify the variant used.
    */
   @Prop() variant: string;
 
   /**
-   * color of the text and pill button
+   * Specify the color of the icon and tet.
    */
   @Prop() color: string;
 
   /**
-   * color of the text and pill button
+   * Change the icon of the button.
    */
   @Prop() icon: CertificateTextButtonIcon;
 
@@ -71,11 +71,6 @@ export class WCertificateButton {
       this.defaultLinkColor = compStyles.getPropertyValue('color');
 
       linkElem.remove();
-    }
-
-    if (this.hostElement.hasChildNodes()) {
-      const firstNode = this.hostElement.childNodes[0];
-      this.slotTextContent = firstNode.textContent;
     }
   }
 
