@@ -7,14 +7,18 @@ The modal is also triggered by adding `#wordproof` hash tag to the url of the pa
   <w-certificate></w-certificate>
 </ShowElement>
 
-<ShowElement><w-certificate>slotted text</w-certificate></ShowElement>
-
 <ShowElement>
-  <w-certificate><span>slotted text in span</span></w-certificate>
+  <w-certificate linkText="Open me" no-icon="true"></w-certificate>
 </ShowElement>
 
 <ShowElement>
-  <w-certificate><w-certificate-button>slotted text in w-certificate-button</w-certificate-button></w-certificate>
+  <w-certificate shared-identifier="1" render-without-button="true"/>
+  <w-certificate-button shared-identifier="1"/>
+</ShowElement>
+
+<ShowElement>
+  <w-certificate shared-identifier="2" render-without-button="true"/>
+  <w-certificate-button icon="shield" text="" shared-identifier="2"/>
 </ShowElement>
 
 ## API

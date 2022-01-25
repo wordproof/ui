@@ -91,19 +91,27 @@ export namespace Components {
     }
     interface WCertificate {
         /**
-          * enables debug information logging to the console
+          * Enables debug information logging to the console.
          */
         "debug": boolean;
         /**
-          * custom certificate link text
+          * Change the certificate link text.
          */
         "linkText": string;
         /**
-          * hides icon on certificate link
+          * Hides the icon on certificate link.
          */
         "noIcon": boolean;
         /**
-          * shows or hides revisions, default value is `true`
+          * Render without button inside, if a button is used outside this element.
+         */
+        "renderWithoutButton": boolean;
+        /**
+          * Specify shared identifier to allow pages with multiple certificates.
+         */
+        "sharedIdentifier": string;
+        /**
+          * Determines if revisions are shown in the certificate.
          */
         "showRevisions": string | boolean;
     }
@@ -120,6 +128,10 @@ export namespace Components {
           * Specify the shape of the button ('box' | 'text' | 'pill')
          */
         "shape": CertificateButtonShape | '';
+        /**
+          * Specify shared identifier to allow pages with multiple certificates.
+         */
+        "sharedIdentifier": string;
         /**
           * Specify the text on the button, if not specified defaults to 'View this content's Timestamp certificate'
          */
@@ -601,19 +613,27 @@ declare namespace LocalJSX {
     }
     interface WCertificate {
         /**
-          * enables debug information logging to the console
+          * Enables debug information logging to the console.
          */
         "debug"?: boolean;
         /**
-          * custom certificate link text
+          * Change the certificate link text.
          */
         "linkText"?: string;
         /**
-          * hides icon on certificate link
+          * Hides the icon on certificate link.
          */
         "noIcon"?: boolean;
         /**
-          * shows or hides revisions, default value is `true`
+          * Render without button inside, if a button is used outside this element.
+         */
+        "renderWithoutButton"?: boolean;
+        /**
+          * Specify shared identifier to allow pages with multiple certificates.
+         */
+        "sharedIdentifier"?: string;
+        /**
+          * Determines if revisions are shown in the certificate.
          */
         "showRevisions"?: string | boolean;
     }
@@ -630,6 +650,10 @@ declare namespace LocalJSX {
           * Specify the shape of the button ('box' | 'text' | 'pill')
          */
         "shape"?: CertificateButtonShape | '';
+        /**
+          * Specify shared identifier to allow pages with multiple certificates.
+         */
+        "sharedIdentifier"?: string;
         /**
           * Specify the text on the button, if not specified defaults to 'View this content's Timestamp certificate'
          */

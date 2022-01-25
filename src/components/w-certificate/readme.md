@@ -7,12 +7,14 @@
 
 ## Properties
 
-| Property        | Attribute        | Description                                       | Type                | Default     |
-| --------------- | ---------------- | ------------------------------------------------- | ------------------- | ----------- |
-| `debug`         | `debug`          | enables debug information logging to the console  | `boolean`           | `false`     |
-| `linkText`      | `link-text`      | custom certificate link text                      | `string`            | `undefined` |
-| `noIcon`        | `no-icon`        | hides icon on certificate link                    | `boolean`           | `false`     |
-| `showRevisions` | `show-revisions` | shows or hides revisions, default value is `true` | `boolean \| string` | `undefined` |
+| Property              | Attribute               | Description                                                             | Type                | Default     |
+| --------------------- | ----------------------- | ----------------------------------------------------------------------- | ------------------- | ----------- |
+| `debug`               | `debug`                 | Enables debug information logging to the console.                       | `boolean`           | `false`     |
+| `linkText`            | `link-text`             | Change the certificate link text.                                       | `string`            | `undefined` |
+| `noIcon`              | `no-icon`               | Hides the icon on certificate link.                                     | `boolean`           | `false`     |
+| `renderWithoutButton` | `render-without-button` | Render without button inside, if a button is used outside this element. | `boolean`           | `false`     |
+| `sharedIdentifier`    | `shared-identifier`     | Specify shared identifier to allow pages with multiple certificates.    | `string`            | `''`        |
+| `showRevisions`       | `show-revisions`        | Determines if revisions are shown in the certificate.                   | `boolean \| string` | `undefined` |
 
 
 ## Dependencies
