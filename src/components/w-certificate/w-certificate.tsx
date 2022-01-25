@@ -20,6 +20,7 @@ import OverviewView from './views/OverviewView';
   styleUrl: 'w-certificate.css',
   shadow: true,
 })
+
 export class WCertificateV4 {
   @Element() hostElement: HTMLElement;
 
