@@ -1,6 +1,6 @@
 {
   "name": "@wordproof/uikit",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "WordProof Component library",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
