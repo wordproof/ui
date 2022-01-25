@@ -30,6 +30,11 @@ export class WCertificateButton {
    */
 
   /**
+   * Specify shared identifier to allow pages with multiple certificates.
+   */
+  @Prop() sharedIdentifier: string = '';
+
+  /**
    * Specify the text on the button, if not specified defaults to 'View this content's Timestamp certificate'
    */
   @Prop() text: string;
@@ -79,7 +84,10 @@ export class WCertificateButton {
     const hostEvent = new MouseEvent('click', { bubbles: true, composed: true });
     this.hostElement.dispatchEvent(hostEvent);
 
-    const windowEvent = new Event('wordproofCertificateOpen');
+    const windowEvent = new CustomEvent(
+      'wordproofCertificateOpen',
+      {detail: this.sharedIdentifier}
+    );
     window.dispatchEvent(windowEvent)
   }
 

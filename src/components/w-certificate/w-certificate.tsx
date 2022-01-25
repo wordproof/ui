@@ -29,6 +29,11 @@ export class WCertificateV4 {
    */
 
   /**
+   * Specify shared identifier to allow pages with multiple certificates.
+   */
+  @Prop() sharedIdentifier: string = '';
+
+  /**
    * Hides the icon on certificate link.
    */
   @Prop() noIcon: boolean = false;
@@ -145,8 +150,10 @@ export class WCertificateV4 {
    * @event wordproofCertificateOpen
    */
   @Listen('wordproofCertificateOpen', {target: 'window'})
-  handleCertificateOpenEvent() {
-    this.showModal();
+  handleCertificateOpenEvent(event) {
+    if (event.detail === this.sharedIdentifier) {
+      this.showModal();
+    }
   }
 
   /**
