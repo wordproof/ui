@@ -146,23 +146,33 @@ export class WCertificateV4 {
   }
 
   /**
-   * Opens the certificate on DOM event.
+   * Opens the certificate on event fired on the window.
+   *
+   * Only active if rendered without button and thus
+   * does not have a certificate button as child.
+   *
+   * Will use sharedIdentifier if set to allow use of multiple certificates per page.
    * @event wordproofCertificateOpen
    */
   @Listen('wordproofCertificateOpen', {target: 'window'})
   handleCertificateOpenEvent(event) {
-    if (event.detail === this.sharedIdentifier) {
+    if (this.renderWithoutButton && event.detail === this.sharedIdentifier) {
       this.showModal();
     }
   }
 
   /**
    * Opens the certificate on mouse click event from children.
+   *
+   * Only active if the certificate is rendered with button as child.
+   *
    * @event click
    */
   @Listen('click')
   handleMouseClickEvent() {
-    this.showModal();
+    if (!this.renderWithoutButton) {
+      this.showModal();
+    }
   }
 
   async componentWillLoad(): Promise<void> {
