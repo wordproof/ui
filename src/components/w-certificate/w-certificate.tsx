@@ -201,7 +201,7 @@ export class WCertificateV4 {
 
       // Check if content is modified after the last timestamp.
       if (this.lastModified) {
-        const lastTimestamped = new Date(this.content.date);
+        const lastTimestamped = new Date(content.date);
         const lastModified = new Date(this.lastModified);
 
         // @ts-ignore
