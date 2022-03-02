@@ -193,13 +193,27 @@ export class WCertificateV4 {
 
     const content = await parsePage();
 
-    console.log(content);
-    console.log(this.lastModified);
-
-    if (this.debug)
+    if (this.debug) {
       disableDebug(LogSources.parsePage);
+    }
 
     if (content !== null) {
+
+      // Check if content is modified after the last timestamp.
+      if (this.lastModified) {
+        const lastTimestamped = new Date(this.content.date);
+        const lastModified = new Date(this.lastModified);
+
+        // @ts-ignore
+        const difference = lastTimestamped - lastModified;
+        const differenceInSeconds = Math.abs(difference) / 1000;
+
+        // We regard changes within 5 seconds after the timestamp as not changed.
+        if (differenceInSeconds > 5) {
+          content.hasChanged = true;
+        }
+      }
+
       this.content = content;
       this.strings = (await getLocaleStrings(this.hostElement)) as CertificateV4Strings;
       this.locale = getComponentClosestLanguage(this.hostElement);
