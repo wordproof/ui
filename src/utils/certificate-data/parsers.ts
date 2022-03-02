@@ -1,6 +1,6 @@
 import { WPContent } from '.';
 import { mapNewData } from './mappers';
-import { getDebugLogFunction, LogSources } from '../../utils/debug';
+import { getDebugLogFunction, LogSources } from '../debug';
 
 const debugLog = getDebugLogFunction(LogSources.parsePage);
 
@@ -18,17 +18,17 @@ export const fetchHashData = async (
   });
 
 export const parseNewSchema = async (
-  parsedScriptElems: unknown[],
+  parsedScriptElements: unknown[],
 ): Promise<WPContent | null> =>
   new Promise(async resolve => {
-    const newSchemaEl = parsedScriptElems.find(
-      elem => elem['timestamp'] !== undefined,
+    const newSchemaElement = parsedScriptElements.find(
+      element => element['timestamp'] !== undefined,
     );
 
-    if (newSchemaEl) {
+    if (newSchemaElement) {
       debugLog(`found new schema element`);
 
-      const newSchemaData = newSchemaEl['timestamp'];
+      const newSchemaData = newSchemaElement['timestamp'];
       const {
         revisions: rawRevisions,
         recordedIn: { name: blockchain },
@@ -59,14 +59,14 @@ export const parseNewSchema = async (
   });
 
 export const parseGraphSchema = async (
-  parsedScriptElems: unknown[],
+  parsedScriptElements: unknown[],
 ): Promise<WPContent | null> =>
   new Promise(async resolve => {
     let timestamp: Record<string, string | Record<string, string>>;
 
-    parsedScriptElems.find(elem => {
-      if (elem['@graph'] !== undefined && Array.isArray(elem['@graph'])) {
-        return elem['@graph'].some(graphItem => {
+    parsedScriptElements.find(element => {
+      if (element['@graph'] !== undefined && Array.isArray(element['@graph'])) {
+        return element['@graph'].some(graphItem => {
           timestamp = graphItem['timestamp'];
           return timestamp !== undefined;
         });

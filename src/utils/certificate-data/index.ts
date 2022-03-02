@@ -2,7 +2,7 @@ import { Blockchain } from '../../config/blockchain.config';
 import { mapNewData, mapOldData } from './mappers';
 import { fetchHashData, parseGraphSchema, parseNewSchema } from './parsers';
 
-import { getDebugLogFunction, LogSources } from '../../utils/debug';
+import { getDebugLogFunction, LogSources } from '../debug';
 
 const debugLog = getDebugLogFunction(LogSources.parsePage);
 
@@ -27,6 +27,7 @@ export const parsePage = async (): Promise<WPContent | null> =>
   new Promise(async resolve => {
     const oldSchemaEl = document.querySelector('script.wordproof-schema');
     debugLog('trying to apply old schema');
+
     if (oldSchemaEl && oldSchemaEl.innerHTML) {
       try {
         const data = JSON.parse(oldSchemaEl.innerHTML);
@@ -36,19 +37,19 @@ export const parsePage = async (): Promise<WPContent | null> =>
         debugLog(`old schema JSON parsing failed: ${e}`);
       }
     }
-    debugLog('no valid old scema data found');
 
-    const ldJsonScriptElems = document.querySelectorAll(
+    debugLog('no valid old schema data found');
+
+    const ldJsonScriptElements = document.querySelectorAll(
       'script[type="application/ld+json"]',
     );
     debugLog(
-      `found ${ldJsonScriptElems.length}script tags with "application/ld+json" type`,
+      `found ${ldJsonScriptElements.length} script tags with "application/ld+json" type`,
     );
 
-    const parsedScriptElems = Array.from(ldJsonScriptElems).map((elem, index) => {
+    const parsedScriptElements = Array.from(ldJsonScriptElements).map((elem, index) => {
       try {
-        const data = JSON.parse(elem.innerHTML);
-        return data;
+        return JSON.parse(elem.innerHTML);
       } catch (e) {
         debugLog(`JSON parsing of script tag #${index} failed: ${e}`);
         return {};
@@ -57,7 +58,7 @@ export const parsePage = async (): Promise<WPContent | null> =>
 
     debugLog('trying to apply new schema');
 
-    const newSchemaData = await parseNewSchema(parsedScriptElems);
+    const newSchemaData = await parseNewSchema(parsedScriptElements);
     if (newSchemaData) {
       resolve(newSchemaData);
       debugLog(`successfully parsed new schema: ${JSON.stringify(newSchemaData)}`);
@@ -66,7 +67,7 @@ export const parsePage = async (): Promise<WPContent | null> =>
 
     debugLog('trying to apply graph schema');
 
-    const graphSchemaData = await parseGraphSchema(parsedScriptElems);
+    const graphSchemaData = await parseGraphSchema(parsedScriptElements);
     if (graphSchemaData) {
       resolve(graphSchemaData);
       debugLog(`successfully parsed graph schema: ${JSON.stringify(graphSchemaData)}`);

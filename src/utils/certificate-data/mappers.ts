@@ -1,8 +1,12 @@
 import { sha256 } from 'js-sha256';
 import { WPRevision } from '.';
 
-export const mapOldData = (src: any): WPRevision => {
-  const { transactionId, hash, content, date, revisions, blockchain } = src;
+/**
+ * Map content using the old schema.
+ * @param source
+ */
+export const mapOldData = (source: any): WPRevision => {
+  const { transactionId, hash, content, date, revisions, blockchain } = source;
 
   return {
     transactionId,
@@ -17,8 +21,13 @@ export const mapOldData = (src: any): WPRevision => {
     blockchain,
   };
 };
-export const mapNewData = (src: any): WPRevision => {
-  const { identifier: transactionId, hash, hashLinkContent, blockchain } = src;
+
+/**
+ * Map content using the new schema.
+ * @param source
+ */
+export const mapNewData = (source: any): WPRevision => {
+  const { identifier: transactionId, hash, hashLinkContent, blockchain } = source;
 
   const content = hashLinkContent
     ? hashLinkContent.text

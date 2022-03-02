@@ -8,8 +8,6 @@ import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
 import { CertificateView } from '../types';
 
-// import { router } from '../../w-router-outlet';
-
 interface OverviewViewProps {
   strings: CertificateV4Strings;
   lastEdited: string;
