@@ -44,6 +44,13 @@ export class WCertificateV4 {
   @Prop() linkText: string;
 
   /**
+   * The datetime the post was last modified. Used to show the visitor
+   * if the post is edited after the last timestamp. This is a visual
+   * notice, not a security feature.
+   */
+  @Prop() lastModified: string;
+
+  /**
    * Enables debug information logging to the console.
    */
   @Prop() debug: boolean = false;
@@ -58,6 +65,9 @@ export class WCertificateV4 {
    */
   @Prop() renderWithoutButton: boolean = false;
 
+  /**
+   * State used for when the modal is visable to the user.
+   */
   @State() visible: boolean = true;
 
   routes = [
@@ -182,6 +192,9 @@ export class WCertificateV4 {
       enableDebug(LogSources.parsePage);
 
     const content = await parsePage();
+
+    console.log(content);
+    console.log(this.lastModified);
 
     if (this.debug)
       disableDebug(LogSources.parsePage);
