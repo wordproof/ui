@@ -305,7 +305,6 @@ export class WIcon {
           />
         </symbol>
 
-        {/* <symbol id="somename" viewBox="0 0 28 23"></symbol> */}
       </svg>
     );
   }

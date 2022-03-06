@@ -20,7 +20,7 @@ const CheckBullet: FunctionalComponent<CheckBulletProps> = ({
     {checked ? (
       <w-icon fit class="w-2 h-3 text-white" name="check"></w-icon>
     ) : (
-      <span class="w-2.5 border-b border-white"></span>
+      <span class="w-3 border-b border-white"></span>
     )}
   </span>
 );
