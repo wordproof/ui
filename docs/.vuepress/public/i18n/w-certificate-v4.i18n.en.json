@@ -1,6 +1,7 @@
 {
   "compareVersions": "Compare Versions",
   "thatIsImportantText": "That is important, because it proofs that the content has not been tampered with and can be trusted.",
+  "contentChangedAfterTimestamp": "The content was modified after its fingerprint was last added to a public blockchain.",
   "aboutWordproof": "About WordProof",
   "todaysRevision": "Today’s version",
   "selectDayToCompare": "Select day to compare",

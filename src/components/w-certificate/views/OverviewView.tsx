@@ -82,7 +82,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
     </h2>
 
     <p class="text-black text-base text-center mx-auto mt-2 font-sohne sm:w-104">
-      {strings.thatIsImportantText}
+      {hasChanged ? strings.contentChangedAfterTimestamp : strings.thatIsImportantText}
     </p>
 
     <div class="shadow-md rounded mx-auto mt-8 p-6 font-sohne bg-white sm:w-104">

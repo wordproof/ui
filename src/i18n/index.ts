@@ -63,6 +63,7 @@ export type ModalStrings = Record<ModalStringKeys, string>;
 type CertificateV4Keys = [
   'compareVersions',
   'thatIsImportantText',
+  'contentChangedAfterTimestamp',
   'aboutWordproof',
   'todaysRevision',
   'selectDayToCompare',
