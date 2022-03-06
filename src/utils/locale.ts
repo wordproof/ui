@@ -95,6 +95,7 @@ export interface DateTimeFormatOptions {
   minute?: 'numeric' | '2-digit';
   second?: 'numeric' | '2-digit';
   year?: 'numeric' | '2-digit';
+  timeZone?: string
 }
 
 export const formatDate = (
@@ -108,4 +109,10 @@ export const formatDate = (
     minute: '2-digit',
     second: '2-digit',
   },
-): string => new Date(dateStr).toLocaleDateString(locale, options);
+): string => {
+  try {
+    options.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch (error) {}
+
+  return new Date(dateStr).toLocaleDateString(locale, options)
+};
