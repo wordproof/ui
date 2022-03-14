@@ -92,7 +92,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         <div class="text-black ml-2 mt-2 sm:mt-0">
           {formatDate(lastEdited, locale, DATE_FORMAT_OPTIONS)}
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center w-full">
           <span class="text-xs text-gray-600">
           ({timezone()})
           </span>
