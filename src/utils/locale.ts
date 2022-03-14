@@ -116,3 +116,11 @@ export const formatDate = (
 
   return new Date(dateStr).toLocaleDateString(locale, options)
 };
+
+export const timezone = (): string => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch (error) {}
+
+  return '';
+}

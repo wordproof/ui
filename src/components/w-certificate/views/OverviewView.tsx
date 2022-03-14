@@ -3,7 +3,7 @@ import { CertificateV4Strings } from '../../../i18n';
 import CheckBullet from '../components/check-bullet';
 import BaseButton from '../components/base-button';
 import cx from 'classnames';
-import { DateTimeFormatOptions, formatDate } from '../../../utils/locale';
+import { DateTimeFormatOptions, formatDate, timezone } from '../../../utils/locale';
 import TabLabel from '../components/tab-label';
 import { router } from '../../w-router-outlet';
 import { CertificateView } from '../types';
@@ -91,6 +91,11 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         <div class="text-gray-600 ml-4">{strings.lastEdited}</div>
         <div class="text-black ml-2 mt-2 sm:mt-0">
           {formatDate(lastEdited, locale, DATE_FORMAT_OPTIONS)}
+        </div>
+        <div class="flex justify-center">
+          <span class="text-xs text-gray-600">
+          ({timezone()})
+          </span>
         </div>
       </div>
       {/* <div class="border-t border-light-blue pt-5 flex items-center">
