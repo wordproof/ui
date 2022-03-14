@@ -1,12 +1,12 @@
-import { FunctionalComponent, h } from '@stencil/core';
-import { CertificateV4Strings } from '../../../i18n';
+import {FunctionalComponent, h} from '@stencil/core';
+import {CertificateV4Strings} from '../../../i18n';
 import CheckBullet from '../components/check-bullet';
 import BaseButton from '../components/base-button';
 import cx from 'classnames';
-import { DateTimeFormatOptions, formatDate, timezone } from '../../../utils/locale';
+import {DateTimeFormatOptions, formatDate, timezone} from '../../../utils/locale';
 import TabLabel from '../components/tab-label';
-import { router } from '../../w-router-outlet';
-import { CertificateView } from '../types';
+import {router} from '../../w-router-outlet';
+import {CertificateView} from '../types';
 
 interface OverviewViewProps {
   strings: CertificateV4Strings;
@@ -26,18 +26,18 @@ const DATE_FORMAT_OPTIONS = {
 } as DateTimeFormatOptions;
 
 const OverviewView: FunctionalComponent<OverviewViewProps> = ({
-  strings,
-  lastEdited,
-  // publishedBy,
-  locale,
-  hasChanged,
-  showRevisions,
-}) => (
+                                                                strings,
+                                                                lastEdited,
+                                                                // publishedBy,
+                                                                locale,
+                                                                hasChanged,
+                                                                showRevisions,
+                                                              }) => (
   <div
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
-    style={{ lineHeight: '1.5' }}
+    style={{lineHeight: '1.5'}}
   >
-    <TabLabel onClick={() => router.go(CertificateView.importance)} />
+    <TabLabel onClick={() => router.go(CertificateView.importance)}/>
 
     <div
       class={cx(
@@ -87,16 +87,19 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
 
     <div class="shadow-md rounded mx-auto mt-8 p-6 font-sohne bg-white sm:w-104">
       <div class="flex flex-wrap items-center justify-center sm:justify-start">
-        <CheckBullet checked={!hasChanged} />
+        <CheckBullet checked={!hasChanged}/>
         <div class="text-gray-600 ml-4">{strings.lastEdited}</div>
         <div class="text-black ml-2 mt-2 sm:mt-0">
           {formatDate(lastEdited, locale, DATE_FORMAT_OPTIONS)}
         </div>
+
+        {timezone() !== '' &&
         <div class="flex justify-center w-full">
           <span class="text-xs text-gray-600">
           ({timezone()})
           </span>
         </div>
+        }
       </div>
       {/* <div class="border-t border-light-blue pt-5 flex items-center">
         <CheckBullet checked={true} />
