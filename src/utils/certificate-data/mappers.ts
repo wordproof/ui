@@ -29,6 +29,9 @@ export const mapOldData = (source: any): WPRevision => {
 export const mapNewData = (source: any): WPRevision => {
   const { identifier: transactionId, hash, hashLinkContent, blockchain } = source;
 
+  console.log(source);
+  console.log(hashLinkContent);
+
   const content = hashLinkContent
     ? hashLinkContent.text
     : 'Failed to fetch raw content';
