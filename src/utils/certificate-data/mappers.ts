@@ -29,20 +29,30 @@ export const mapOldData = (source: any): WPRevision => {
 export const mapNewData = (source: any): WPRevision => {
   const { identifier: transactionId, hash, hashLinkContent, blockchain } = source;
 
-  console.log(source);
-  console.log(hashLinkContent);
-
-  const content = hashLinkContent
-    ? hashLinkContent.text
-    : 'Failed to fetch raw content';
-
-  const date = hashLinkContent ? hashLinkContent.dateCreated : 'Invalid date';
-
   const computedHash = hashLinkContent
     ? sha256(JSON.stringify(hashLinkContent))
     : '';
 
-  // console.warn({ hash, computedHash });
+  let content = 'Failed to fetch raw content';
+  let date = 'Invalid date';
+
+  /**
+   * Get data from new hashInput
+   */
+  if ("text" in hashLinkContent)
+    content = hashLinkContent.text
+
+  if ("dateCreated" in hashLinkContent)
+    date = hashLinkContent.dateCreated
+
+  /**
+   * Get data from old hashInput
+   */
+  if ("content" in hashLinkContent)
+    content = hashLinkContent.content
+
+  if ("date" in hashLinkContent)
+    date = hashLinkContent.date
 
   return {
     transactionId,
