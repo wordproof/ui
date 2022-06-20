@@ -27,8 +27,7 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
   revisions,
   view,
   viewInd,
-  diffInd,
-  classes = '',
+  diffInd
 }) => {
   const SkeletonView = () => {
     const lineStyles = Array(20)
