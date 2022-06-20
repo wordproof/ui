@@ -47,24 +47,34 @@ const ContentPreview: FunctionalComponent<ContentPreviewProps> = ({
     );
   };
 
-  const CleanOrRawView = () =>
-    revisions.length && view && viewInd >= 0 ? (
-      <textarea
-        readonly
-        class={cx(
-          `absolute rounded font-sohne resize-none block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none ${classes}`,
-          {
-            'bg-white text-black': view !== 'raw',
-            'bg-black text-white font-mono': view === 'raw',
-          },
-        )}
-      >
-        {view === 'clean' ? renderContent(revisions, 'clean', viewInd) : null}
-        {view === 'raw' ? renderContent(revisions, 'raw', viewInd) : null}
+  const CleanOrRawView = () => {
+
+    if (revisions.length && view && viewInd >= 0 && view === 'clean') {
+      return (
+        <div
+          class="block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll font-sohne"
+          innerHTML={renderContent(
+            revisions,
+            view,
+            viewInd,
+          )}
+        ></div>
+      )
+    }
+
+    if (revisions.length && view && viewInd >= 0 && view === 'raw') {
+      return (
+        <textarea
+          readOnly
+          class={`absolute rounded font-sohne resize-none block w-full h-full max-w-full pt-10 pb-8 px-4 overflow-y-scroll text-black focus:outline-none bg-black text-white font-mono`}
+        >
+          {renderContent(revisions, 'raw', viewInd)}
       </textarea>
-    ) : (
-      SkeletonView()
-    );
+      )
+    }
+
+    SkeletonView()
+  }
 
   const RenderView = () =>
     revisions.length && view && viewInd >= 0 ? (
