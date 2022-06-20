@@ -7,14 +7,15 @@
 
 ## Properties
 
-| Property              | Attribute               | Description                                                             | Type                | Default     |
-| --------------------- | ----------------------- | ----------------------------------------------------------------------- | ------------------- | ----------- |
-| `debug`               | `debug`                 | Enables debug information logging to the console.                       | `boolean`           | `false`     |
-| `linkText`            | `link-text`             | Change the certificate link text.                                       | `string`            | `undefined` |
-| `noIcon`              | `no-icon`               | Hides the icon on certificate link.                                     | `boolean`           | `false`     |
-| `renderWithoutButton` | `render-without-button` | Render without button inside, if a button is used outside this element. | `boolean`           | `false`     |
-| `sharedIdentifier`    | `shared-identifier`     | Specify shared identifier to allow pages with multiple certificates.    | `string`            | `''`        |
-| `showRevisions`       | `show-revisions`        | Determines if revisions are shown in the certificate.                   | `boolean \| string` | `undefined` |
+| Property              | Attribute               | Description                                                                                                                                                        | Type                | Default     |
+| --------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- | ----------- |
+| `debug`               | `debug`                 | Enables debug information logging to the console.                                                                                                                  | `boolean`           | `false`     |
+| `lastModified`        | `last-modified`         | The datetime the post was last modified. Used to show the visitor if the post is edited after the last timestamp. This is a visual notice, not a security feature. | `string`            | `undefined` |
+| `linkText`            | `link-text`             | Change the certificate link text.                                                                                                                                  | `string`            | `undefined` |
+| `noIcon`              | `no-icon`               | Hides the icon on certificate link.                                                                                                                                | `boolean`           | `false`     |
+| `renderWithoutButton` | `render-without-button` | Render without button inside, if a button is used outside this element.                                                                                            | `boolean`           | `false`     |
+| `sharedIdentifier`    | `shared-identifier`     | Specify shared identifier to allow pages with multiple certificates.                                                                                               | `string`            | `''`        |
+| `showRevisions`       | `show-revisions`        | Determines if revisions are shown in the certificate.                                                                                                              | `boolean \| string` | `undefined` |
 
 
 ## Dependencies

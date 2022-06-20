@@ -95,6 +95,10 @@ export namespace Components {
          */
         "debug": boolean;
         /**
+          * The datetime the post was last modified. Used to show the visitor if the post is edited after the last timestamp. This is a visual notice, not a security feature.
+         */
+        "lastModified": string;
+        /**
           * Change the certificate link text.
          */
         "linkText": string;
@@ -354,7 +358,7 @@ export namespace Components {
         /**
           * revision date time options
          */
-        "options": DateTimeOption[];
+        "options": DateTimeOption1[];
         /**
           * selected option index
          */
@@ -388,6 +392,10 @@ export namespace Components {
         "view": Exclude<ContentPreviewType, 'diff'>;
         "viewBlockchainUrl": string;
     }
+}
+export interface WModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLWModalElement;
 }
 declare global {
     interface HTMLWBadgeElement extends Components.WBadge, HTMLStencilElement {
@@ -616,6 +624,10 @@ declare namespace LocalJSX {
           * Enables debug information logging to the console.
          */
         "debug"?: boolean;
+        /**
+          * The datetime the post was last modified. Used to show the visitor if the post is edited after the last timestamp. This is a visual notice, not a security feature.
+         */
+        "lastModified"?: string;
         /**
           * Change the certificate link text.
          */
@@ -859,7 +871,7 @@ declare namespace LocalJSX {
           * class names added to modal element of the modal
          */
         "modalClassName"?: string;
-        "onClose"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: WModalCustomEvent<any>) => void;
         /**
           * controls visibility of the modal
          */
@@ -877,7 +889,7 @@ declare namespace LocalJSX {
         /**
           * revision date time options
          */
-        "options"?: DateTimeOption[];
+        "options"?: DateTimeOption1[];
         /**
           * selected option index
          */
