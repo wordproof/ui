@@ -23,7 +23,5 @@
   "withTimestampYouCan": "With this timestamp, you can verify <strong>when</strong> and <strong>how</strong> the website changed its content over time. Websites that timestamp their content stand for more transparency and accountability, which ultimately leads to a more trustworthy internet.",
   "wantToKnowMore": "Want to know more? Visit",
   "goBack": "Go back",
-  "showContent":"Show content",
-  "identifiedAs": "Identified As",
-  "with": "With"
+  "showContent":"Show content"
 }

@@ -86,8 +86,6 @@ type CertificateV4Keys = [
   'wantToKnowMore',
   'goBack',
   'showContent',
-  'identifiedAs',
-  'with'
 ][number];
 export type CertificateV4Strings = Record<CertificateV4Keys, string>;
 

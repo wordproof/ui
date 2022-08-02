@@ -95,18 +95,6 @@ export namespace Components {
          */
         "debug": boolean;
         /**
-          * Add Identity name.
-         */
-        "identityName": string;
-        /**
-          * Add Identity profile picture.
-         */
-        "identityProfilePicture": string;
-        /**
-          * Add Identity provider.
-         */
-        "identityProvider": string;
-        /**
           * The datetime the post was last modified. Used to show the visitor if the post is edited after the last timestamp. This is a visual notice, not a security feature.
          */
         "lastModified": string;
@@ -636,18 +624,6 @@ declare namespace LocalJSX {
           * Enables debug information logging to the console.
          */
         "debug"?: boolean;
-        /**
-          * Add Identity name.
-         */
-        "identityName"?: string;
-        /**
-          * Add Identity profile picture.
-         */
-        "identityProfilePicture"?: string;
-        /**
-          * Add Identity provider.
-         */
-        "identityProvider"?: string;
         /**
           * The datetime the post was last modified. Used to show the visitor if the post is edited after the last timestamp. This is a visual notice, not a security feature.
          */
