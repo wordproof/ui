@@ -66,6 +66,21 @@ export class WCertificateV4 {
   @Prop() renderWithoutButton: boolean = false;
 
   /**
+   * Add Identity provider.
+   */
+  @Prop() identityProvider: string;
+
+  /**
+   * Add Identity name.
+   */
+  @Prop() identityName: string;
+
+  /**
+   * Add Identity profile picture.
+   */
+  @Prop() identityProfilePicture: string;
+
+  /**
    * State used for when the modal is visable to the user.
    */
   @State() visible: boolean = true;
@@ -81,6 +96,8 @@ export class WCertificateV4 {
           locale={this.locale}
           hasChanged={this.content.hasChanged}
           showRevisions={this.showRevisions as boolean}
+          identityProvider={this.identityProvider}
+          identityName={this.identityName}
         />
       ),
       default: true,

@@ -15,6 +15,8 @@ interface OverviewViewProps {
   locale: string;
   hasChanged: boolean;
   showRevisions: boolean;
+  identityName: string;
+  identityProvider: string;
 }
 
 const DATE_FORMAT_OPTIONS = {
@@ -32,6 +34,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
                                                                 locale,
                                                                 hasChanged,
                                                                 showRevisions,
+                                                                identityProvider, identityName
                                                               }) => (
   <div
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
@@ -94,18 +97,30 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         </div>
 
         {timezone() !== '' &&
-        <div class="flex justify-center w-full">
+          <div class="flex justify-center w-full">
           <span class="text-xs text-gray-600">
           ({timezone()})
           </span>
-        </div>
+          </div>
         }
       </div>
-      {/* <div class="border-t border-light-blue pt-5 flex items-center">
-        <CheckBullet checked={true} />
-        <div class="text-gray-600 ml-4">{strings.publishedBy}</div>
-        <div class="text-black ml-2">Jelle van der Scoot</div>
-      </div> */}
+
+      {identityProvider !== '' &&
+        <div class="flex flex-wrap items-center justify-center sm:justify-start">
+          <CheckBullet checked={true}/>
+          <div class="text-gray-600 ml-4">{strings.identifiedAs}</div>
+          <div class="text-black ml-2 mt-2 sm:mt-0">
+            {identityName}
+          </div>
+]
+            <div class="flex justify-center w-full">
+          <span class="text-xs text-gray-600">
+            {strings.with} {identityProvider}
+          </span>
+            </div>
+        </div>
+      }
+
     </div>
 
     <div class="flex flex-wrap justify-center mt-8">

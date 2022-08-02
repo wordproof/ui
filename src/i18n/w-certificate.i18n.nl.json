@@ -23,5 +23,7 @@
   "withTimestampYouCan": "Met dit tijdstempel kunt u controleren <strong>wanneer</strong> en <strong>hoe</strong> de website de inhoud in de loop van de tijd heeft gewijzigd. Websites die hun inhoud een timestamp geven, staan in voor meer transparantie en verantwoording, wat uiteindelijk leidt tot een betrouwbaarder internet.",
   "wantToKnowMore": "Wil je meer weten? Bezoek",
   "goBack": "Terug",
-  "showContent":"Bekijk content"
+  "showContent":"Bekijk content",
+  "identifiedAs": "Geïdentificeerd als",
+  "with": "Met"
 }
