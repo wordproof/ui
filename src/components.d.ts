@@ -103,6 +103,10 @@ export namespace Components {
          */
         "identityProfilePicture": string;
         /**
+          * Add Identity proof url.
+         */
+        "identityProofUrl": string;
+        /**
           * Add Identity provider.
          */
         "identityProvider": string;
@@ -644,6 +648,10 @@ declare namespace LocalJSX {
           * Add Identity profile picture.
          */
         "identityProfilePicture"?: string;
+        /**
+          * Add Identity proof url.
+         */
+        "identityProofUrl"?: string;
         /**
           * Add Identity provider.
          */

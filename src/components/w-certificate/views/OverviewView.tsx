@@ -17,6 +17,7 @@ interface OverviewViewProps {
   showRevisions: boolean;
   identityName: string;
   identityProvider: string;
+  identityProofUrl: string;
 }
 
 const DATE_FORMAT_OPTIONS = {
@@ -36,6 +37,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
                                                                 showRevisions,
                                                                 identityName,
                                                                 identityProvider,
+                                                                identityProofUrl,
                                                               }) => (
   <div
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
@@ -116,7 +118,12 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
 
           <div class="flex justify-center w-full">
           <span class="text-xs text-gray-600">
-          { 'with ' + identityProvider }
+            {identityProofUrl !== '' &&
+              <a target={'_blank'} rel={'noopener noreferrer'} class="text-blue" href={identityProofUrl}>with {identityProvider}</a>
+            }
+            {identityProofUrl === '' &&
+              <span>with {identityProvider}</span>
+            }
           </span>
           </div>
         </div>

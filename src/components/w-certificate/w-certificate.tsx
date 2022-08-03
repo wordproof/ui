@@ -71,6 +71,11 @@ export class WCertificateV4 {
   @Prop() identityProfilePicture: string = '';
 
   /**
+   * Add Identity proof url.
+   */
+  @Prop() identityProofUrl: string = '';
+
+  /**
    * Determines if revisions are shown in the certificate.
    */
   @Prop({mutable: true}) showRevisions: string | boolean;
@@ -98,6 +103,7 @@ export class WCertificateV4 {
           showRevisions={this.showRevisions as boolean}
           identityProvider={this.identityProvider}
           identityName={this.identityName}
+          identityProofUrl={this.identityProofUrl}
         />
       ),
       default: true,
