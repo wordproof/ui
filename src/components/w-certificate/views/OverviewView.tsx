@@ -15,6 +15,8 @@ interface OverviewViewProps {
   locale: string;
   hasChanged: boolean;
   showRevisions: boolean;
+  identityName: string;
+  identityProvider: string;
 }
 
 const DATE_FORMAT_OPTIONS = {
@@ -32,6 +34,8 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
                                                                 locale,
                                                                 hasChanged,
                                                                 showRevisions,
+                                                                identityName,
+                                                                identityProvider,
                                                               }) => (
   <div
     class="px-4 py-8 sm:px-56 sm:py-10 flex flex-col items-center relative"
@@ -65,7 +69,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       )}
     </div>
     <h2 class="font-sohne-bold text-center mt-2">
-      <div class="text-black font-semibold text-3xl sm:text-4xl">
+      <div class="text-black font-semibold text-3xl">
         {strings.thisContent}
       </div>
       <div
@@ -101,11 +105,22 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         </div>
         }
       </div>
-      {/* <div class="border-t border-light-blue pt-5 flex items-center">
-        <CheckBullet checked={true} />
-        <div class="text-gray-600 ml-4">{strings.publishedBy}</div>
-        <div class="text-black ml-2">Jelle van der Scoot</div>
-      </div> */}
+
+      {identityProvider !== '' &&
+        <div class="flex flex-wrap items-center justify-center sm:justify-start pt-3">
+          <CheckBullet checked={true}/>
+          <div class="text-gray-600 ml-4">{ 'Identified as' }</div>
+          <div class="text-black ml-2 mt-2 sm:mt-0">
+            { identityName }
+          </div>
+
+          <div class="flex justify-center w-full">
+          <span class="text-xs text-gray-600">
+          { 'with ' + identityProvider }
+          </span>
+          </div>
+        </div>
+      }
     </div>
 
     <div class="flex flex-wrap justify-center mt-8">

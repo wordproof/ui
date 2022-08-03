@@ -45,7 +45,7 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
       )}
     </div>
     <h2 class="font-sohne-bold text-center mt-2">
-      <div class="text-black font-bold text-3xl sm:text-4xl">
+      <div class="text-black font-bold text-3xl">
         {strings.thisContent}
       </div>
       <div

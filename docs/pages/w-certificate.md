@@ -17,7 +17,7 @@ The modal is also triggered by adding `#wordproof` hash tag to the url of the pa
 </ShowElement>
 
 <ShowElement>
-  <w-certificate shared-identifier="2" render-without-button="true"/>
+  <w-certificate shared-identifier="2" render-without-button="true" identity-provider="LinkedIn" identity-name="Marijn Bent" identity-profile-picture="https://avatars.dicebear.com/api/open-peeps/wordproof.png"/>
   <w-certificate-button icon="shield" text="" shared-identifier="2"/>
 </ShowElement>
 

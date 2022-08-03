@@ -56,6 +56,21 @@ export class WCertificateV4 {
   @Prop() debug: boolean = false;
 
   /**
+   * Add Identity provider.
+   */
+  @Prop() identityProvider: string = '';
+
+  /**
+   * Add Identity name.
+   */
+  @Prop() identityName: string = '';
+
+  /**
+   * Add Identity profile picture.
+   */
+  @Prop() identityProfilePicture: string = '';
+
+  /**
    * Determines if revisions are shown in the certificate.
    */
   @Prop({mutable: true}) showRevisions: string | boolean;
@@ -81,6 +96,8 @@ export class WCertificateV4 {
           locale={this.locale}
           hasChanged={this.content.hasChanged}
           showRevisions={this.showRevisions as boolean}
+          identityProvider={this.identityProvider}
+          identityName={this.identityName}
         />
       ),
       default: true,
