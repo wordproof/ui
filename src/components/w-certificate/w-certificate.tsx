@@ -7,13 +7,15 @@ import {CertificateView, CertificateViewKeys, NO_DATA_CERTIFICATE_COMMENT_NODE_T
 import {router, Route} from '../w-router-outlet';
 
 import { getLocaleStrings,  getComponentClosestLanguage } from '../../utils/locale';
-import {disableDebug, enableDebug, LogSources} from '../../utils/debug';
+import {disableDebug, enableDebug, getDebugLogFunction, LogSources} from '../../utils/debug';
 import {WPContent, parsePage} from '../../utils/certificate-data/index';
 
 import {BLOCKCHAIN_CONFIG, TIMESTAMP_CHECK_URL } from '../../config/blockchain.config';
 
 import AboutView from './views/AboutView';
 import OverviewView from './views/OverviewView';
+
+const debugLog = getDebugLogFunction(LogSources.parsePage);
 
 @Component({
   tag: 'w-certificate',
@@ -216,10 +218,6 @@ export class WCertificateV4 {
 
     const content = await parsePage();
 
-    if (this.debug) {
-      disableDebug(LogSources.parsePage);
-    }
-
     if (content !== null) {
 
       // Check if content is modified after the last timestamp.
@@ -233,6 +231,7 @@ export class WCertificateV4 {
 
         // We regard changes within 5 seconds after the timestamp as not changed.
         if (differenceInSeconds > 5) {
+          debugLog('🚨⚠️ The difference between the timestamp and post modified is larger than 5 seconds.');
           content.hasChanged = true;
         }
       }
@@ -247,6 +246,10 @@ export class WCertificateV4 {
       }${this.content.transactionId}`;
 
       this.timestampCheckUrl = `${TIMESTAMP_CHECK_URL}?hash=${this.content.hash}`;
+    }
+
+    if (this.debug) {
+      disableDebug(LogSources.parsePage);
     }
   }
 
