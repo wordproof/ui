@@ -307,7 +307,7 @@ export class WCertificateV4 {
         <w-icon
           slot="close"
           name="close"
-          class="mr-8 mt-8 inline-block"
+          class="mr-8 mt-8 inline-block  sm:mr-4 sm:mt-4"
         ></w-icon>
         <w-router-outlet
           routes={this.routes}

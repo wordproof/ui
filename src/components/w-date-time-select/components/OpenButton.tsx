@@ -42,8 +42,8 @@ const OpenButton: FunctionalComponent<OpenButtonProps> = ({
     </div>
     <div
       class={cx('ml-4', {
-        'font-sohne-semibold': selected === null,
-        'font-sohne border-b border-blue': selected !== null,
+        'font-sohne-semibold sm:text-lg': selected === null,
+        'font-sohne border-b border-blue sm:text-lg': selected !== null,
       })}
     >
       {getButtonText(options, selected)}

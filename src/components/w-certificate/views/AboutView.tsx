@@ -50,7 +50,7 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
       </div>
       <div
         class={cx(
-          'sm:-mt-3 font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block text-1.5xl',
+          'font-bold px-5 py-1 h-10 leading-8 rounded-full inline-block text-1.5xl sm:text-lg sm:h-14 sm:py-2',
           {
             'text-blue bg-gray-200': !hasChanged,
             'text-black bg-white': hasChanged,
@@ -62,7 +62,7 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
     </h2>
 
     <p
-      class="text-black text-base text-center mx-auto mt-4 font-sohne sm:w-104"
+      class="text-black text-base text-center mx-auto mt-4 font-sohne sm:w-104 sm:text-lg"
       innerHTML={strings.whatIsTimestamp}
     ></p>
 

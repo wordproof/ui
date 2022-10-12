@@ -95,7 +95,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       <div class="flex flex-wrap items-center justify-center sm:justify-start">
         <CheckBullet checked={!hasChanged}/>
         <div class="text-gray-600 ml-4">{strings.lastEdited}</div>
-        <div class="text-black ml-2 mt-2 sm:mt-0">
+        <div class="text-black ml-2 mt-2 sm:mt-0 sm:text-lg">
           {formatDate(lastEdited, locale, DATE_FORMAT_OPTIONS)}
         </div>
 
@@ -112,7 +112,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
         <div class="flex flex-wrap items-center justify-center sm:justify-start pt-3">
           <CheckBullet checked={true}/>
           <div class="text-gray-600 ml-4">{ 'Identified as' }</div>
-          <div class="text-black ml-2 mt-2 sm:mt-0">
+          <div class="text-black ml-2 mt-2 sm:mt-0 sm:text-lg">
             { identityName }
           </div>
 

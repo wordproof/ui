@@ -17,7 +17,7 @@ const BaseButton: FunctionalComponent<BaseButtonProps> = ({
   <button
     onClick={() => onClick()}
     class={cx(
-      'rounded-full px-6 pt-3 pb-3 font-sohne-semibold text-base focus:outline-none focus:ring-blue flex flex-nowrap items-center',
+      'rounded-full px-6 pt-3 pb-3 font-sohne-semibold text-base focus:outline-none focus:ring-blue flex flex-nowrap items-center sm:text-lg',
       {
         'bg-gradient-to-r from-blue to-purple text-white': !outlined,
         'bg-white border border-blue text-blue': outlined,
