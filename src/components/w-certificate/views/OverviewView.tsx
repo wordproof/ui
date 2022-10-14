@@ -76,7 +76,7 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       </div>
       <div
         class={cx(
-          'sm:-mt-3 font-semibold px-5 py-1 h-10 leading-8 rounded-full inline-block text-1.5xl',
+          'font-semibold px-5 py-1 h-10 leading-8 rounded-full inline-block text-1.5xl sm:text-lg sm:h-14 sm:py-2',
           {
             'text-blue bg-gray-200': !hasChanged,
             'text-black bg-white': hasChanged,
@@ -87,14 +87,14 @@ const OverviewView: FunctionalComponent<OverviewViewProps> = ({
       </div>
     </h2>
 
-    <p class="text-black text-base text-center mx-auto mt-2 font-sohne sm:w-104">
+    <p class="text-black text-base text-center mx-auto mt-2 font-sohne sm:w-104 sm:text-lg">
       {hasChanged ? strings.contentChangedAfterTimestamp : strings.thatIsImportantText}
     </p>
 
     <div class="shadow-md rounded mx-auto mt-8 p-6 font-sohne bg-white sm:w-104">
       <div class="flex flex-wrap items-center justify-center sm:justify-start">
         <CheckBullet checked={!hasChanged}/>
-        <div class="text-gray-600 ml-4">{strings.lastEdited}</div>
+        <div class="text-gray-600 ml-4 sm:text-lg">{strings.lastEdited}</div>
         <div class="text-black ml-2 mt-2 sm:mt-0 sm:text-lg">
           {formatDate(lastEdited, locale, DATE_FORMAT_OPTIONS)}
         </div>

@@ -67,11 +67,11 @@ const OverviewView: FunctionalComponent<AboutViewProps> = ({
     ></p>
 
     <p
-      class="sm:w-104 text-black text-base text-center mx-auto mt-4 font-sohne"
+      class="sm:w-104 text-black text-base text-center mx-auto mt-4 font-sohne sm:text-lg"
       innerHTML={strings.withTimestampYouCan}
     ></p>
 
-    <p class="sm:w-104 text-black text-base text-center mx-auto mt-4 font-sohne">
+    <p class="sm:w-104 text-black text-base text-center mx-auto mt-4 font-sohne sm:text-lg">
       {strings.wantToKnowMore}
       <a
         href="https://wordproof.com/"
