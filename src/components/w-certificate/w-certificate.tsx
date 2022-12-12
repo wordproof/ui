@@ -6,11 +6,11 @@ import {CertificateV4Strings} from '../../i18n';
 import {CertificateView, CertificateViewKeys, NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT,} from './types';
 import {router, Route} from '../w-router-outlet';
 
-import { getLocaleStrings,  getComponentClosestLanguage } from '../../utils/locale';
+import {getLocaleStrings, getComponentClosestLanguage} from '../../utils/locale';
 import {disableDebug, enableDebug, getDebugLogFunction, LogSources} from '../../utils/debug';
 import {WPContent, parsePage} from '../../utils/certificate-data/index';
 
-import {BLOCKCHAIN_CONFIG, TIMESTAMP_CHECK_URL } from '../../config/blockchain.config';
+import {BLOCKCHAIN_CONFIG, TIMESTAMP_CHECK_URL} from '../../config/blockchain.config';
 
 import AboutView from './views/AboutView';
 import OverviewView from './views/OverviewView';
@@ -56,6 +56,11 @@ export class WCertificateV4 {
    * Enables debug information logging to the console.
    */
   @Prop() debug: boolean = false;
+
+  /**
+   * Enables debug information logging to the console.
+   */
+  @Prop() placeholderOnEmpty: boolean = false;
 
   /**
    * Add Identity provider.
@@ -318,15 +323,23 @@ export class WCertificateV4 {
   }
 
   render() {
-    return this.content ? (
-      <Host>
-        { this.getButtonContents() }
-        { this.getModalContents() }
+
+    if (this.content) {
+      return <Host>
+        {this.getButtonContents()}
+        {this.getModalContents()}
       </Host>
-    ) : (
+    }
+
+    if (this.placeholderOnEmpty) {
+      <Host>
+        <span>WordProof certificate link placeholder. This post is not timestamped yet.</span>
+      </Host>
+    } else {
       <Host
         innerHTML={`<!--${NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT}-->`}
       ></Host>
-    );
+    }
+
   }
 }
