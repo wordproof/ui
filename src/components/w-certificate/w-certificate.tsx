@@ -60,7 +60,7 @@ export class WCertificateV4 {
   /**
    * Enables debug information logging to the console.
    */
-  @Prop() placeholderOnEmpty: boolean = false;
+  @Prop() placeholder: string = '';
 
   /**
    * Add Identity provider.
@@ -331,14 +331,16 @@ export class WCertificateV4 {
       </Host>
     }
 
-    if (this.placeholderOnEmpty) {
-      <Host>
-        <span>WordProof certificate link placeholder. This post is not timestamped yet.</span>
-      </Host>
-    } else {
+    if (this.placeholder === '') {
       <Host
         innerHTML={`<!--${NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT}-->`}
       ></Host>
+    } else {
+      <Host
+        innerHTML={`<!--${NO_DATA_CERTIFICATE_COMMENT_NODE_TEXT}-->`}
+      >
+        <span>WordProof certificate link placeholder. This post is not timestamped yet.</span>
+      </Host>
     }
 
   }

@@ -123,6 +123,10 @@ export namespace Components {
          */
         "noIcon": boolean;
         /**
+          * Enables debug information logging to the console.
+         */
+        "placeholder": string;
+        /**
           * Render without button inside, if a button is used outside this element.
          */
         "renderWithoutButton": boolean;
@@ -668,6 +672,10 @@ declare namespace LocalJSX {
           * Hides the icon on certificate link.
          */
         "noIcon"?: boolean;
+        /**
+          * Enables debug information logging to the console.
+         */
+        "placeholder"?: string;
         /**
           * Render without button inside, if a button is used outside this element.
          */
